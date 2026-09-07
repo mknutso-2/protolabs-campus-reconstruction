@@ -111,9 +111,22 @@ def main():
     parser.add_argument('--output', type=Path)
     args = parser.parse_args(argv)
     source = cube_source_check(args.root)
-    report = {'source': source, 'scope': 'Closed cube winding only; no photographic or full-scene surface acceptance'}
+    report = {'source': source, 'scope': 'Closed cube winding, context clearance and canopy height; no photographic acceptance'}
     if not args.source_only:
         report['scene_boxes'] = scene_box_checks()
+    if not args.source_only:
+        import bpy
+        grounds=[bpy.data.objects.get(name) for name in ['Measured rolling ground','North context ground | lidar']]
+        surround=bpy.data.objects.get('Distant ground surround')
+        if all(grounds) and surround:
+            bottom=min(float((o.matrix_world@v.co).z) for o in grounds for v in o.data.vertices)
+            top=max(float((surround.matrix_world@v.co).z) for v in surround.data.vertices)
+            report['scene_boxes'].append({'object':'Distant surround below measured basin','passed':top<bottom,'surround_z':top,'lowest_ground_z':bottom})
+        for obj in bpy.data.objects:
+            if obj.name.startswith('North canopy envelope '):
+                actual=max(float((obj.matrix_world@v.co).z) for v in obj.data.vertices)
+                expected=obj['canopy_top_local_z']
+                if abs(actual-expected)>.001:report['scene_boxes'].append({'object':obj.name,'passed':False,'actual_top':actual,'expected_top':expected})
     report['passed'] = source['passed'] and all(result['passed'] for result in report.get('scene_boxes', []))
     encoded = json.dumps(report, indent=2) + '\n'
     if args.output:

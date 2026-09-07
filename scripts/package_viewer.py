@@ -1,6 +1,6 @@
 """Prepare locally cached references, Blender glTF and stills for browser preview."""
 from pathlib import Path
-import shutil,json,subprocess
+import shutil,json,subprocess,hashlib
 from PIL import Image
 root=Path(__file__).resolve().parents[1];pub=root/'viewer/public'
 for n in ['renders','models','references']:(pub/n).mkdir(parents=True,exist_ok=True)
@@ -19,4 +19,6 @@ for src,dst in refs.items():
 film=root/'deliverables/flythrough.mp4'
 if film.exists():shutil.copyfile(film,pub/'renders/flythrough.mp4')
 
-subprocess.run(['npx','gltf-transform','optimize','../scene/protolabs-campus.glb','public/models/campus.glb','--compress','meshopt','--simplify','false','--palette','false','--texture-compress','false'],cwd=root/'viewer',check=True)
+metadata=json.loads((root/'scene/viewer-export.json').read_text())
+if metadata['master_sha256']!=hashlib.sha256((root/'scene/protolabs-campus.blend').read_bytes()).hexdigest():raise RuntimeError('Browser export is stale. Run scripts/export_viewer.py in Blender with the current master.')
+subprocess.run(['npx','gltf-transform','optimize','../scene/protolabs-campus-viewer.glb','public/models/campus.glb','--compress','meshopt','--simplify','false','--palette','false','--texture-compress','false'],cwd=root/'viewer',check=True)

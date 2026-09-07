@@ -479,7 +479,7 @@ function Walkthrough({ view }: { view: ViewName }) {
 }
 export default function Home() {
   const [view, setView] = useState<ViewName>('reference_aerial');
-  const [tab, setTab] = useState('explore');
+  const [tab, setTab] = useState('stills');
   const [vcompare, setCompare] = useState('reference_aerial');
   const live = useRef({ view, tab });
   useEffect(() => {

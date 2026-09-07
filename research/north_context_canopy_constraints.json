@@ -1,0 +1,1759 @@
+{
+  "description": "Sparse inferred canopy envelope peaks for distant scene context; not surveyed tree locations. Do not add a uniform forest band over pond/open grass.",
+  "source": {
+    "url": "https://rockyweb.usgs.gov/vdelivery/Datasets/Staged/Elevation/LPC/Projects/MN_CentralMissRiver_B22/MN_CentralMissRiver_4_B22/LAZ/USGS_LPC_MN_CentralMissRiver_B22_4475_49845.laz",
+    "filename": "USGS_LPC_MN_CentralMissRiver_B22_4475_49845.laz",
+    "sha256": "772f6ee72e6ba327d653a3a9a10f42e867884f0d748cbc8d1b7f2b54dc699436",
+    "file_bytes": 74129464,
+    "point_count": 13323368,
+    "campaign_dates": "2022-04-25 through 2022-06-02; individual tile flight date not determined",
+    "published": "2023-09-14",
+    "cached_acquisition_date": "2026-09-07",
+    "tile_bounds_local_xy_m": [
+      -171.87506437348202,
+      -91.83646060246974,
+      328.11493562650867,
+      408.1535393977538
+    ],
+    "classes_used": {
+      "ground": 2,
+      "canopy_envelope": 1
+    }
+  },
+  "generated_date": "2026-09-07",
+  "origin_utm_m": [
+    447671.8750643735,
+    4984591.8364606025
+  ],
+  "vertical_datum": "NAVD88 GEOID18 metres",
+  "reference_navd88_m": 303.6,
+  "candidate_extent_xy_m": [
+    -170,
+    70,
+    230,
+    400
+  ],
+  "ground_grid_file": "north_context_ground_grid.json",
+  "method": {
+    "ground": "Class2 stride8 retained per chunk, 5m median/nearest-fill/0.65cell Gaussian; see separate grid.",
+    "canopy": "Class1 above ground3..35m, 1m-cell p95 with at least2 returns, connected envelope at least12cells. Gaussian0.7cell local peaks in9x9m window; reject local9x9 patch with p90-p10<0.8m; 5..8m peak suppression. Height=local9x9m p95 of accepted cell envelopes, crown diameter from occupied local9x9m area bounded4..12m.",
+    "placement": "XY locates envelope peak, not a measured trunk. Use asset world height equal canopy_height and base equal ground_z; crown diameter is an approximation."
+  },
+  "limitations": [
+    "Only cached tile used; x<-171.875 and y>408.154 are unavailable, so no unsupported grid to y450.",
+    "Class1 is unclassified elevated returns, not verified vegetation; flat-patch and area filters reject many poles/roofs but cannot certify every candidate.",
+    "Existing aerial was inspected qualitatively through y218.7; northern candidates have no aerial visual cross-check.",
+    "Leaf-off/partial-leaf campaign and occlusion may underrepresent canopy; inferred crown shapes/species are not measured.",
+    "Candidate centers may not be actual trunk locations; scene-tree scaling remains an interpretation.",
+    "Ground missing bins near pond are interpolated, not bathymetry; no ownership inference for context trees."
+  ],
+  "validation": {
+    "aerial_north_limit_local_y_m": 218.70774547755718,
+    "candidates_within_aerial": 65,
+    "scene_eligible_count": 102,
+    "excluded_candidate_ids": [
+      "north-canopy-086",
+      "north-canopy-103",
+      "north-canopy-105"
+    ],
+    "exclusion_rule": "Beyond cached aerial, height below7m and fewer than20 accepted1m canopy cells in local9x9m window; cautious omission of ambiguous small objects, not positive pole identification.",
+    "osm_building_overlap": "No north-analysis overlap in cached osm_buildings.json; OSM incompleteness means this does not certify absence of buildings.",
+    "read_chunk_size": 1000000
+  },
+  "point_counts": {
+    "ground_retained_stride8": 474606,
+    "unclassified_retained": 3290722
+  },
+  "candidate_count": 105,
+  "candidate_height_percentiles_m": {
+    "10": 7.868,
+    "25": 9.66,
+    "50": 12.146,
+    "75": 15.15,
+    "90": 20.736,
+    "95": 22.552,
+    "99": 24.653
+  },
+  "rows": [
+    {
+      "position": [
+        -155.5,
+        72.5
+      ],
+      "ground_z": -10.466,
+      "canopy_height": 24.715,
+      "top_z": 14.249,
+      "crown_diameter_m": 8.96,
+      "local_canopy_cells_1m": 63,
+      "local_canopy_height_p90_minus_p10_m": 6.56,
+      "aerial_context": "within cached Spring2026 image",
+      "candidate_id": "north-canopy-001",
+      "scene_eligible": true,
+      "review_status": "vegetation pattern consistent with 2026 aerial; trunk and species unverified"
+    },
+    {
+      "position": [
+        -4.5,
+        75.5
+      ],
+      "ground_z": -6.458,
+      "canopy_height": 8.231,
+      "top_z": 1.773,
+      "crown_diameter_m": 4.92,
+      "local_canopy_cells_1m": 19,
+      "local_canopy_height_p90_minus_p10_m": 1.74,
+      "aerial_context": "within cached Spring2026 image",
+      "candidate_id": "north-canopy-002",
+      "scene_eligible": true,
+      "review_status": "vegetation pattern consistent with 2026 aerial; trunk and species unverified"
+    },
+    {
+      "position": [
+        47.5,
+        77.5
+      ],
+      "ground_z": -5.447,
+      "canopy_height": 8.815,
+      "top_z": 3.367,
+      "crown_diameter_m": 9.3,
+      "local_canopy_cells_1m": 68,
+      "local_canopy_height_p90_minus_p10_m": 3.34,
+      "aerial_context": "within cached Spring2026 image",
+      "candidate_id": "north-canopy-003",
+      "scene_eligible": true,
+      "review_status": "vegetation pattern consistent with 2026 aerial; trunk and species unverified"
+    },
+    {
+      "position": [
+        -156.5,
+        78.5
+      ],
+      "ground_z": -10.841,
+      "canopy_height": 24.714,
+      "top_z": 13.873,
+      "crown_diameter_m": 10.16,
+      "local_canopy_cells_1m": 81,
+      "local_canopy_height_p90_minus_p10_m": 12.0,
+      "aerial_context": "within cached Spring2026 image",
+      "candidate_id": "north-canopy-004",
+      "scene_eligible": true,
+      "review_status": "vegetation pattern consistent with 2026 aerial; trunk and species unverified"
+    },
+    {
+      "position": [
+        -140.5,
+        85.5
+      ],
+      "ground_z": -10.222,
+      "canopy_height": 22.645,
+      "top_z": 12.423,
+      "crown_diameter_m": 10.16,
+      "local_canopy_cells_1m": 81,
+      "local_canopy_height_p90_minus_p10_m": 5.34,
+      "aerial_context": "within cached Spring2026 image",
+      "candidate_id": "north-canopy-005",
+      "scene_eligible": true,
+      "review_status": "vegetation pattern consistent with 2026 aerial; trunk and species unverified"
+    },
+    {
+      "position": [
+        74.5,
+        88.5
+      ],
+      "ground_z": -5.727,
+      "canopy_height": 7.724,
+      "top_z": 1.998,
+      "crown_diameter_m": 6.96,
+      "local_canopy_cells_1m": 38,
+      "local_canopy_height_p90_minus_p10_m": 3.35,
+      "aerial_context": "within cached Spring2026 image",
+      "candidate_id": "north-canopy-006",
+      "scene_eligible": true,
+      "review_status": "vegetation pattern consistent with 2026 aerial; trunk and species unverified"
+    },
+    {
+      "position": [
+        65.5,
+        90.5
+      ],
+      "ground_z": -6.434,
+      "canopy_height": 8.146,
+      "top_z": 1.712,
+      "crown_diameter_m": 9.1,
+      "local_canopy_cells_1m": 65,
+      "local_canopy_height_p90_minus_p10_m": 2.78,
+      "aerial_context": "within cached Spring2026 image",
+      "candidate_id": "north-canopy-007",
+      "scene_eligible": true,
+      "review_status": "vegetation pattern consistent with 2026 aerial; trunk and species unverified"
+    },
+    {
+      "position": [
+        115.5,
+        95.5
+      ],
+      "ground_z": -2.401,
+      "canopy_height": 12.018,
+      "top_z": 9.617,
+      "crown_diameter_m": 7.9,
+      "local_canopy_cells_1m": 49,
+      "local_canopy_height_p90_minus_p10_m": 4.34,
+      "aerial_context": "within cached Spring2026 image",
+      "candidate_id": "north-canopy-008",
+      "scene_eligible": true,
+      "review_status": "vegetation pattern consistent with 2026 aerial; trunk and species unverified"
+    },
+    {
+      "position": [
+        -135.5,
+        101.5
+      ],
+      "ground_z": -11.366,
+      "canopy_height": 15.941,
+      "top_z": 4.574,
+      "crown_diameter_m": 9.71,
+      "local_canopy_cells_1m": 74,
+      "local_canopy_height_p90_minus_p10_m": 5.94,
+      "aerial_context": "within cached Spring2026 image",
+      "candidate_id": "north-canopy-009",
+      "scene_eligible": true,
+      "review_status": "vegetation pattern consistent with 2026 aerial; trunk and species unverified"
+    },
+    {
+      "position": [
+        -122.5,
+        101.5
+      ],
+      "ground_z": -10.432,
+      "canopy_height": 9.771,
+      "top_z": -0.661,
+      "crown_diameter_m": 8.21,
+      "local_canopy_cells_1m": 53,
+      "local_canopy_height_p90_minus_p10_m": 4.89,
+      "aerial_context": "within cached Spring2026 image",
+      "candidate_id": "north-canopy-010",
+      "scene_eligible": true,
+      "review_status": "vegetation pattern consistent with 2026 aerial; trunk and species unverified"
+    },
+    {
+      "position": [
+        -147.5,
+        102.5
+      ],
+      "ground_z": -11.581,
+      "canopy_height": 12.828,
+      "top_z": 1.247,
+      "crown_diameter_m": 8.06,
+      "local_canopy_cells_1m": 51,
+      "local_canopy_height_p90_minus_p10_m": 3.12,
+      "aerial_context": "within cached Spring2026 image",
+      "candidate_id": "north-canopy-011",
+      "scene_eligible": true,
+      "review_status": "vegetation pattern consistent with 2026 aerial; trunk and species unverified"
+    },
+    {
+      "position": [
+        -154.5,
+        107.5
+      ],
+      "ground_z": -11.555,
+      "canopy_height": 11.335,
+      "top_z": -0.22,
+      "crown_diameter_m": 9.17,
+      "local_canopy_cells_1m": 66,
+      "local_canopy_height_p90_minus_p10_m": 5.36,
+      "aerial_context": "within cached Spring2026 image",
+      "candidate_id": "north-canopy-012",
+      "scene_eligible": true,
+      "review_status": "vegetation pattern consistent with 2026 aerial; trunk and species unverified"
+    },
+    {
+      "position": [
+        -161.5,
+        108.5
+      ],
+      "ground_z": -11.491,
+      "canopy_height": 10.731,
+      "top_z": -0.759,
+      "crown_diameter_m": 8.52,
+      "local_canopy_cells_1m": 57,
+      "local_canopy_height_p90_minus_p10_m": 4.07,
+      "aerial_context": "within cached Spring2026 image",
+      "candidate_id": "north-canopy-013",
+      "scene_eligible": true,
+      "review_status": "vegetation pattern consistent with 2026 aerial; trunk and species unverified"
+    },
+    {
+      "position": [
+        144.5,
+        110.5
+      ],
+      "ground_z": -0.28,
+      "canopy_height": 4.65,
+      "top_z": 4.37,
+      "crown_diameter_m": 6.96,
+      "local_canopy_cells_1m": 38,
+      "local_canopy_height_p90_minus_p10_m": 0.97,
+      "aerial_context": "within cached Spring2026 image",
+      "candidate_id": "north-canopy-014",
+      "scene_eligible": true,
+      "review_status": "vegetation pattern consistent with 2026 aerial; trunk and species unverified"
+    },
+    {
+      "position": [
+        -129.5,
+        118.5
+      ],
+      "ground_z": -11.467,
+      "canopy_height": 14.248,
+      "top_z": 2.782,
+      "crown_diameter_m": 9.64,
+      "local_canopy_cells_1m": 73,
+      "local_canopy_height_p90_minus_p10_m": 9.08,
+      "aerial_context": "within cached Spring2026 image",
+      "candidate_id": "north-canopy-015",
+      "scene_eligible": true,
+      "review_status": "vegetation pattern consistent with 2026 aerial; trunk and species unverified"
+    },
+    {
+      "position": [
+        -142.5,
+        126.5
+      ],
+      "ground_z": -11.46,
+      "canopy_height": 13.593,
+      "top_z": 2.133,
+      "crown_diameter_m": 10.16,
+      "local_canopy_cells_1m": 81,
+      "local_canopy_height_p90_minus_p10_m": 5.92,
+      "aerial_context": "within cached Spring2026 image",
+      "candidate_id": "north-canopy-016",
+      "scene_eligible": true,
+      "review_status": "vegetation pattern consistent with 2026 aerial; trunk and species unverified"
+    },
+    {
+      "position": [
+        -134.5,
+        128.5
+      ],
+      "ground_z": -11.433,
+      "canopy_height": 13.504,
+      "top_z": 2.071,
+      "crown_diameter_m": 10.16,
+      "local_canopy_cells_1m": 81,
+      "local_canopy_height_p90_minus_p10_m": 6.21,
+      "aerial_context": "within cached Spring2026 image",
+      "candidate_id": "north-canopy-017",
+      "scene_eligible": true,
+      "review_status": "vegetation pattern consistent with 2026 aerial; trunk and species unverified"
+    },
+    {
+      "position": [
+        -24.5,
+        129.5
+      ],
+      "ground_z": -9.914,
+      "canopy_height": 9.614,
+      "top_z": -0.299,
+      "crown_diameter_m": 10.16,
+      "local_canopy_cells_1m": 81,
+      "local_canopy_height_p90_minus_p10_m": 1.94,
+      "aerial_context": "within cached Spring2026 image",
+      "candidate_id": "north-canopy-018",
+      "scene_eligible": true,
+      "review_status": "vegetation pattern consistent with 2026 aerial; trunk and species unverified"
+    },
+    {
+      "position": [
+        -8.5,
+        129.5
+      ],
+      "ground_z": -9.86,
+      "canopy_height": 11.067,
+      "top_z": 1.207,
+      "crown_diameter_m": 9.77,
+      "local_canopy_cells_1m": 75,
+      "local_canopy_height_p90_minus_p10_m": 5.91,
+      "aerial_context": "within cached Spring2026 image",
+      "candidate_id": "north-canopy-019",
+      "scene_eligible": true,
+      "review_status": "vegetation pattern consistent with 2026 aerial; trunk and species unverified"
+    },
+    {
+      "position": [
+        -169.5,
+        131.5
+      ],
+      "ground_z": -11.469,
+      "canopy_height": 11.128,
+      "top_z": -0.341,
+      "crown_diameter_m": 7.57,
+      "local_canopy_cells_1m": 45,
+      "local_canopy_height_p90_minus_p10_m": 4.41,
+      "aerial_context": "within cached Spring2026 image",
+      "candidate_id": "north-canopy-020",
+      "scene_eligible": true,
+      "review_status": "vegetation pattern consistent with 2026 aerial; trunk and species unverified"
+    },
+    {
+      "position": [
+        -128.5,
+        131.5
+      ],
+      "ground_z": -11.418,
+      "canopy_height": 12.56,
+      "top_z": 1.142,
+      "crown_diameter_m": 10.16,
+      "local_canopy_cells_1m": 81,
+      "local_canopy_height_p90_minus_p10_m": 4.62,
+      "aerial_context": "within cached Spring2026 image",
+      "candidate_id": "north-canopy-021",
+      "scene_eligible": true,
+      "review_status": "vegetation pattern consistent with 2026 aerial; trunk and species unverified"
+    },
+    {
+      "position": [
+        -51.5,
+        134.5
+      ],
+      "ground_z": -10.04,
+      "canopy_height": 10.651,
+      "top_z": 0.611,
+      "crown_diameter_m": 10.16,
+      "local_canopy_cells_1m": 81,
+      "local_canopy_height_p90_minus_p10_m": 1.63,
+      "aerial_context": "within cached Spring2026 image",
+      "candidate_id": "north-canopy-022",
+      "scene_eligible": true,
+      "review_status": "vegetation pattern consistent with 2026 aerial; trunk and species unverified"
+    },
+    {
+      "position": [
+        -145.5,
+        135.5
+      ],
+      "ground_z": -11.323,
+      "canopy_height": 12.51,
+      "top_z": 1.187,
+      "crown_diameter_m": 10.16,
+      "local_canopy_cells_1m": 81,
+      "local_canopy_height_p90_minus_p10_m": 4.34,
+      "aerial_context": "within cached Spring2026 image",
+      "candidate_id": "north-canopy-023",
+      "scene_eligible": true,
+      "review_status": "vegetation pattern consistent with 2026 aerial; trunk and species unverified"
+    },
+    {
+      "position": [
+        -113.5,
+        143.5
+      ],
+      "ground_z": -10.316,
+      "canopy_height": 6.216,
+      "top_z": -4.101,
+      "crown_diameter_m": 6.68,
+      "local_canopy_cells_1m": 35,
+      "local_canopy_height_p90_minus_p10_m": 2.14,
+      "aerial_context": "within cached Spring2026 image",
+      "candidate_id": "north-canopy-024",
+      "scene_eligible": true,
+      "review_status": "vegetation pattern consistent with 2026 aerial; trunk and species unverified"
+    },
+    {
+      "position": [
+        -148.5,
+        145.5
+      ],
+      "ground_z": -11.46,
+      "canopy_height": 8.083,
+      "top_z": -3.377,
+      "crown_diameter_m": 10.16,
+      "local_canopy_cells_1m": 81,
+      "local_canopy_height_p90_minus_p10_m": 1.98,
+      "aerial_context": "within cached Spring2026 image",
+      "candidate_id": "north-canopy-025",
+      "scene_eligible": true,
+      "review_status": "vegetation pattern consistent with 2026 aerial; trunk and species unverified"
+    },
+    {
+      "position": [
+        -129.5,
+        145.5
+      ],
+      "ground_z": -11.214,
+      "canopy_height": 11.167,
+      "top_z": -0.047,
+      "crown_diameter_m": 10.16,
+      "local_canopy_cells_1m": 81,
+      "local_canopy_height_p90_minus_p10_m": 4.02,
+      "aerial_context": "within cached Spring2026 image",
+      "candidate_id": "north-canopy-026",
+      "scene_eligible": true,
+      "review_status": "vegetation pattern consistent with 2026 aerial; trunk and species unverified"
+    },
+    {
+      "position": [
+        45.5,
+        146.5
+      ],
+      "ground_z": -10.263,
+      "canopy_height": 9.703,
+      "top_z": -0.559,
+      "crown_diameter_m": 8.21,
+      "local_canopy_cells_1m": 53,
+      "local_canopy_height_p90_minus_p10_m": 4.96,
+      "aerial_context": "within cached Spring2026 image",
+      "candidate_id": "north-canopy-027",
+      "scene_eligible": true,
+      "review_status": "vegetation pattern consistent with 2026 aerial; trunk and species unverified"
+    },
+    {
+      "position": [
+        -49.5,
+        150.5
+      ],
+      "ground_z": -11.072,
+      "canopy_height": 14.165,
+      "top_z": 3.093,
+      "crown_diameter_m": 10.16,
+      "local_canopy_cells_1m": 81,
+      "local_canopy_height_p90_minus_p10_m": 4.86,
+      "aerial_context": "within cached Spring2026 image",
+      "candidate_id": "north-canopy-028",
+      "scene_eligible": true,
+      "review_status": "vegetation pattern consistent with 2026 aerial; trunk and species unverified"
+    },
+    {
+      "position": [
+        0.5,
+        152.5
+      ],
+      "ground_z": -11.006,
+      "canopy_height": 15.148,
+      "top_z": 4.141,
+      "crown_diameter_m": 10.16,
+      "local_canopy_cells_1m": 81,
+      "local_canopy_height_p90_minus_p10_m": 2.53,
+      "aerial_context": "within cached Spring2026 image",
+      "candidate_id": "north-canopy-029",
+      "scene_eligible": true,
+      "review_status": "vegetation pattern consistent with 2026 aerial; trunk and species unverified"
+    },
+    {
+      "position": [
+        9.5,
+        153.5
+      ],
+      "ground_z": -11.044,
+      "canopy_height": 14.353,
+      "top_z": 3.308,
+      "crown_diameter_m": 10.16,
+      "local_canopy_cells_1m": 81,
+      "local_canopy_height_p90_minus_p10_m": 3.91,
+      "aerial_context": "within cached Spring2026 image",
+      "candidate_id": "north-canopy-030",
+      "scene_eligible": true,
+      "review_status": "vegetation pattern consistent with 2026 aerial; trunk and species unverified"
+    },
+    {
+      "position": [
+        16.5,
+        154.5
+      ],
+      "ground_z": -11.024,
+      "canopy_height": 13.601,
+      "top_z": 2.577,
+      "crown_diameter_m": 9.24,
+      "local_canopy_cells_1m": 67,
+      "local_canopy_height_p90_minus_p10_m": 3.54,
+      "aerial_context": "within cached Spring2026 image",
+      "candidate_id": "north-canopy-031",
+      "scene_eligible": true,
+      "review_status": "vegetation pattern consistent with 2026 aerial; trunk and species unverified"
+    },
+    {
+      "position": [
+        -138.5,
+        155.5
+      ],
+      "ground_z": -11.477,
+      "canopy_height": 8.455,
+      "top_z": -3.022,
+      "crown_diameter_m": 10.16,
+      "local_canopy_cells_1m": 81,
+      "local_canopy_height_p90_minus_p10_m": 2.91,
+      "aerial_context": "within cached Spring2026 image",
+      "candidate_id": "north-canopy-032",
+      "scene_eligible": true,
+      "review_status": "vegetation pattern consistent with 2026 aerial; trunk and species unverified"
+    },
+    {
+      "position": [
+        -19.5,
+        155.5
+      ],
+      "ground_z": -11.038,
+      "canopy_height": 8.296,
+      "top_z": -2.742,
+      "crown_diameter_m": 7.4,
+      "local_canopy_cells_1m": 43,
+      "local_canopy_height_p90_minus_p10_m": 3.59,
+      "aerial_context": "within cached Spring2026 image",
+      "candidate_id": "north-canopy-033",
+      "scene_eligible": true,
+      "review_status": "vegetation pattern consistent with 2026 aerial; trunk and species unverified"
+    },
+    {
+      "position": [
+        -129.5,
+        157.5
+      ],
+      "ground_z": -11.28,
+      "canopy_height": 12.247,
+      "top_z": 0.967,
+      "crown_diameter_m": 10.16,
+      "local_canopy_cells_1m": 81,
+      "local_canopy_height_p90_minus_p10_m": 2.97,
+      "aerial_context": "within cached Spring2026 image",
+      "candidate_id": "north-canopy-034",
+      "scene_eligible": true,
+      "review_status": "vegetation pattern consistent with 2026 aerial; trunk and species unverified"
+    },
+    {
+      "position": [
+        31.5,
+        157.5
+      ],
+      "ground_z": -11.087,
+      "canopy_height": 12.534,
+      "top_z": 1.447,
+      "crown_diameter_m": 9.57,
+      "local_canopy_cells_1m": 72,
+      "local_canopy_height_p90_minus_p10_m": 6.72,
+      "aerial_context": "within cached Spring2026 image",
+      "candidate_id": "north-canopy-035",
+      "scene_eligible": true,
+      "review_status": "vegetation pattern consistent with 2026 aerial; trunk and species unverified"
+    },
+    {
+      "position": [
+        -39.5,
+        159.5
+      ],
+      "ground_z": -11.291,
+      "canopy_height": 14.255,
+      "top_z": 2.963,
+      "crown_diameter_m": 9.9,
+      "local_canopy_cells_1m": 77,
+      "local_canopy_height_p90_minus_p10_m": 7.98,
+      "aerial_context": "within cached Spring2026 image",
+      "candidate_id": "north-canopy-036",
+      "scene_eligible": true,
+      "review_status": "vegetation pattern consistent with 2026 aerial; trunk and species unverified"
+    },
+    {
+      "position": [
+        -122.5,
+        160.5
+      ],
+      "ground_z": -10.893,
+      "canopy_height": 11.755,
+      "top_z": 0.862,
+      "crown_diameter_m": 10.16,
+      "local_canopy_cells_1m": 81,
+      "local_canopy_height_p90_minus_p10_m": 4.31,
+      "aerial_context": "within cached Spring2026 image",
+      "candidate_id": "north-canopy-037",
+      "scene_eligible": true,
+      "review_status": "vegetation pattern consistent with 2026 aerial; trunk and species unverified"
+    },
+    {
+      "position": [
+        9.5,
+        160.5
+      ],
+      "ground_z": -11.276,
+      "canopy_height": 14.341,
+      "top_z": 3.066,
+      "crown_diameter_m": 9.64,
+      "local_canopy_cells_1m": 73,
+      "local_canopy_height_p90_minus_p10_m": 3.53,
+      "aerial_context": "within cached Spring2026 image",
+      "candidate_id": "north-canopy-038",
+      "scene_eligible": true,
+      "review_status": "vegetation pattern consistent with 2026 aerial; trunk and species unverified"
+    },
+    {
+      "position": [
+        49.5,
+        160.5
+      ],
+      "ground_z": -10.959,
+      "canopy_height": 10.925,
+      "top_z": -0.034,
+      "crown_diameter_m": 10.03,
+      "local_canopy_cells_1m": 79,
+      "local_canopy_height_p90_minus_p10_m": 3.77,
+      "aerial_context": "within cached Spring2026 image",
+      "candidate_id": "north-canopy-039",
+      "scene_eligible": true,
+      "review_status": "vegetation pattern consistent with 2026 aerial; trunk and species unverified"
+    },
+    {
+      "position": [
+        -65.5,
+        163.5
+      ],
+      "ground_z": -11.136,
+      "canopy_height": 13.061,
+      "top_z": 1.925,
+      "crown_diameter_m": 10.16,
+      "local_canopy_cells_1m": 81,
+      "local_canopy_height_p90_minus_p10_m": 6.7,
+      "aerial_context": "within cached Spring2026 image",
+      "candidate_id": "north-canopy-040",
+      "scene_eligible": true,
+      "review_status": "vegetation pattern consistent with 2026 aerial; trunk and species unverified"
+    },
+    {
+      "position": [
+        42.5,
+        163.5
+      ],
+      "ground_z": -11.141,
+      "canopy_height": 12.146,
+      "top_z": 1.005,
+      "crown_diameter_m": 10.03,
+      "local_canopy_cells_1m": 79,
+      "local_canopy_height_p90_minus_p10_m": 5.24,
+      "aerial_context": "within cached Spring2026 image",
+      "candidate_id": "north-canopy-041",
+      "scene_eligible": true,
+      "review_status": "vegetation pattern consistent with 2026 aerial; trunk and species unverified"
+    },
+    {
+      "position": [
+        35.5,
+        165.5
+      ],
+      "ground_z": -11.24,
+      "canopy_height": 14.324,
+      "top_z": 3.084,
+      "crown_diameter_m": 10.03,
+      "local_canopy_cells_1m": 79,
+      "local_canopy_height_p90_minus_p10_m": 7.38,
+      "aerial_context": "within cached Spring2026 image",
+      "candidate_id": "north-canopy-042",
+      "scene_eligible": true,
+      "review_status": "vegetation pattern consistent with 2026 aerial; trunk and species unverified"
+    },
+    {
+      "position": [
+        -67.5,
+        173.5
+      ],
+      "ground_z": -11.337,
+      "canopy_height": 10.779,
+      "top_z": -0.558,
+      "crown_diameter_m": 10.09,
+      "local_canopy_cells_1m": 80,
+      "local_canopy_height_p90_minus_p10_m": 6.13,
+      "aerial_context": "within cached Spring2026 image",
+      "candidate_id": "north-canopy-043",
+      "scene_eligible": true,
+      "review_status": "vegetation pattern consistent with 2026 aerial; trunk and species unverified"
+    },
+    {
+      "position": [
+        35.5,
+        173.5
+      ],
+      "ground_z": -11.376,
+      "canopy_height": 14.898,
+      "top_z": 3.523,
+      "crown_diameter_m": 10.16,
+      "local_canopy_cells_1m": 81,
+      "local_canopy_height_p90_minus_p10_m": 4.73,
+      "aerial_context": "within cached Spring2026 image",
+      "candidate_id": "north-canopy-044",
+      "scene_eligible": true,
+      "review_status": "vegetation pattern consistent with 2026 aerial; trunk and species unverified"
+    },
+    {
+      "position": [
+        -107.5,
+        175.5
+      ],
+      "ground_z": -11.172,
+      "canopy_height": 11.522,
+      "top_z": 0.35,
+      "crown_diameter_m": 9.84,
+      "local_canopy_cells_1m": 76,
+      "local_canopy_height_p90_minus_p10_m": 5.87,
+      "aerial_context": "within cached Spring2026 image",
+      "candidate_id": "north-canopy-045",
+      "scene_eligible": true,
+      "review_status": "vegetation pattern consistent with 2026 aerial; trunk and species unverified"
+    },
+    {
+      "position": [
+        -35.5,
+        176.5
+      ],
+      "ground_z": -11.38,
+      "canopy_height": 8.301,
+      "top_z": -3.078,
+      "crown_diameter_m": 7.23,
+      "local_canopy_cells_1m": 41,
+      "local_canopy_height_p90_minus_p10_m": 4.01,
+      "aerial_context": "within cached Spring2026 image",
+      "candidate_id": "north-canopy-046",
+      "scene_eligible": true,
+      "review_status": "vegetation pattern consistent with 2026 aerial; trunk and species unverified"
+    },
+    {
+      "position": [
+        51.5,
+        178.5
+      ],
+      "ground_z": -11.307,
+      "canopy_height": 14.346,
+      "top_z": 3.039,
+      "crown_diameter_m": 10.16,
+      "local_canopy_cells_1m": 81,
+      "local_canopy_height_p90_minus_p10_m": 2.61,
+      "aerial_context": "within cached Spring2026 image",
+      "candidate_id": "north-canopy-047",
+      "scene_eligible": true,
+      "review_status": "vegetation pattern consistent with 2026 aerial; trunk and species unverified"
+    },
+    {
+      "position": [
+        43.5,
+        180.5
+      ],
+      "ground_z": -11.408,
+      "canopy_height": 13.841,
+      "top_z": 2.433,
+      "crown_diameter_m": 8.21,
+      "local_canopy_cells_1m": 53,
+      "local_canopy_height_p90_minus_p10_m": 6.75,
+      "aerial_context": "within cached Spring2026 image",
+      "candidate_id": "north-canopy-048",
+      "scene_eligible": true,
+      "review_status": "vegetation pattern consistent with 2026 aerial; trunk and species unverified"
+    },
+    {
+      "position": [
+        -74.5,
+        181.5
+      ],
+      "ground_z": -11.238,
+      "canopy_height": 10.35,
+      "top_z": -0.887,
+      "crown_diameter_m": 9.64,
+      "local_canopy_cells_1m": 73,
+      "local_canopy_height_p90_minus_p10_m": 6.06,
+      "aerial_context": "within cached Spring2026 image",
+      "candidate_id": "north-canopy-049",
+      "scene_eligible": true,
+      "review_status": "vegetation pattern consistent with 2026 aerial; trunk and species unverified"
+    },
+    {
+      "position": [
+        -92.5,
+        184.5
+      ],
+      "ground_z": -11.345,
+      "canopy_height": 10.974,
+      "top_z": -0.37,
+      "crown_diameter_m": 10.09,
+      "local_canopy_cells_1m": 80,
+      "local_canopy_height_p90_minus_p10_m": 5.74,
+      "aerial_context": "within cached Spring2026 image",
+      "candidate_id": "north-canopy-050",
+      "scene_eligible": true,
+      "review_status": "vegetation pattern consistent with 2026 aerial; trunk and species unverified"
+    },
+    {
+      "position": [
+        -83.5,
+        186.5
+      ],
+      "ground_z": -11.2,
+      "canopy_height": 9.458,
+      "top_z": -1.742,
+      "crown_diameter_m": 8.74,
+      "local_canopy_cells_1m": 60,
+      "local_canopy_height_p90_minus_p10_m": 5.08,
+      "aerial_context": "within cached Spring2026 image",
+      "candidate_id": "north-canopy-051",
+      "scene_eligible": true,
+      "review_status": "vegetation pattern consistent with 2026 aerial; trunk and species unverified"
+    },
+    {
+      "position": [
+        65.5,
+        188.5
+      ],
+      "ground_z": -11.252,
+      "canopy_height": 11.209,
+      "top_z": -0.043,
+      "crown_diameter_m": 10.16,
+      "local_canopy_cells_1m": 81,
+      "local_canopy_height_p90_minus_p10_m": 4.5,
+      "aerial_context": "within cached Spring2026 image",
+      "candidate_id": "north-canopy-052",
+      "scene_eligible": true,
+      "review_status": "vegetation pattern consistent with 2026 aerial; trunk and species unverified"
+    },
+    {
+      "position": [
+        -67.5,
+        189.5
+      ],
+      "ground_z": -11.244,
+      "canopy_height": 11.51,
+      "top_z": 0.266,
+      "crown_diameter_m": 10.09,
+      "local_canopy_cells_1m": 80,
+      "local_canopy_height_p90_minus_p10_m": 5.38,
+      "aerial_context": "within cached Spring2026 image",
+      "candidate_id": "north-canopy-053",
+      "scene_eligible": true,
+      "review_status": "vegetation pattern consistent with 2026 aerial; trunk and species unverified"
+    },
+    {
+      "position": [
+        -86.5,
+        195.5
+      ],
+      "ground_z": -11.541,
+      "canopy_height": 4.978,
+      "top_z": -6.563,
+      "crown_diameter_m": 7.05,
+      "local_canopy_cells_1m": 39,
+      "local_canopy_height_p90_minus_p10_m": 1.26,
+      "aerial_context": "within cached Spring2026 image",
+      "candidate_id": "north-canopy-054",
+      "scene_eligible": true,
+      "review_status": "vegetation pattern consistent with 2026 aerial; trunk and species unverified"
+    },
+    {
+      "position": [
+        83.5,
+        195.5
+      ],
+      "ground_z": -10.872,
+      "canopy_height": 9.66,
+      "top_z": -1.212,
+      "crown_diameter_m": 9.84,
+      "local_canopy_cells_1m": 76,
+      "local_canopy_height_p90_minus_p10_m": 3.96,
+      "aerial_context": "within cached Spring2026 image",
+      "candidate_id": "north-canopy-055",
+      "scene_eligible": true,
+      "review_status": "vegetation pattern consistent with 2026 aerial; trunk and species unverified"
+    },
+    {
+      "position": [
+        -36.5,
+        199.5
+      ],
+      "ground_z": -11.391,
+      "canopy_height": 9.384,
+      "top_z": -2.007,
+      "crown_diameter_m": 7.05,
+      "local_canopy_cells_1m": 39,
+      "local_canopy_height_p90_minus_p10_m": 5.09,
+      "aerial_context": "within cached Spring2026 image",
+      "candidate_id": "north-canopy-056",
+      "scene_eligible": true,
+      "review_status": "vegetation pattern consistent with 2026 aerial; trunk and species unverified"
+    },
+    {
+      "position": [
+        -75.5,
+        200.5
+      ],
+      "ground_z": -11.323,
+      "canopy_height": 4.654,
+      "top_z": -6.669,
+      "crown_diameter_m": 8.44,
+      "local_canopy_cells_1m": 56,
+      "local_canopy_height_p90_minus_p10_m": 0.88,
+      "aerial_context": "within cached Spring2026 image",
+      "candidate_id": "north-canopy-057",
+      "scene_eligible": true,
+      "review_status": "vegetation pattern consistent with 2026 aerial; trunk and species unverified"
+    },
+    {
+      "position": [
+        -57.5,
+        200.5
+      ],
+      "ground_z": -11.337,
+      "canopy_height": 4.827,
+      "top_z": -6.509,
+      "crown_diameter_m": 5.53,
+      "local_canopy_cells_1m": 24,
+      "local_canopy_height_p90_minus_p10_m": 0.91,
+      "aerial_context": "within cached Spring2026 image",
+      "candidate_id": "north-canopy-058",
+      "scene_eligible": true,
+      "review_status": "vegetation pattern consistent with 2026 aerial; trunk and species unverified"
+    },
+    {
+      "position": [
+        203.5,
+        210.5
+      ],
+      "ground_z": -8.126,
+      "canopy_height": 19.541,
+      "top_z": 11.415,
+      "crown_diameter_m": 10.16,
+      "local_canopy_cells_1m": 81,
+      "local_canopy_height_p90_minus_p10_m": 12.48,
+      "aerial_context": "within cached Spring2026 image",
+      "candidate_id": "north-canopy-059",
+      "scene_eligible": true,
+      "review_status": "vegetation pattern consistent with 2026 aerial; trunk and species unverified"
+    },
+    {
+      "position": [
+        -73.5,
+        211.5
+      ],
+      "ground_z": -11.476,
+      "canopy_height": 4.63,
+      "top_z": -6.846,
+      "crown_diameter_m": 5.86,
+      "local_canopy_cells_1m": 27,
+      "local_canopy_height_p90_minus_p10_m": 0.82,
+      "aerial_context": "within cached Spring2026 image",
+      "candidate_id": "north-canopy-060",
+      "scene_eligible": true,
+      "review_status": "vegetation pattern consistent with 2026 aerial; trunk and species unverified"
+    },
+    {
+      "position": [
+        155.5,
+        211.5
+      ],
+      "ground_z": -8.865,
+      "canopy_height": 21.443,
+      "top_z": 12.577,
+      "crown_diameter_m": 9.51,
+      "local_canopy_cells_1m": 71,
+      "local_canopy_height_p90_minus_p10_m": 15.61,
+      "aerial_context": "within cached Spring2026 image",
+      "candidate_id": "north-canopy-061",
+      "scene_eligible": true,
+      "review_status": "vegetation pattern consistent with 2026 aerial; trunk and species unverified"
+    },
+    {
+      "position": [
+        107.5,
+        213.5
+      ],
+      "ground_z": -10.803,
+      "canopy_height": 19.251,
+      "top_z": 8.448,
+      "crown_diameter_m": 9.97,
+      "local_canopy_cells_1m": 78,
+      "local_canopy_height_p90_minus_p10_m": 6.05,
+      "aerial_context": "within cached Spring2026 image",
+      "candidate_id": "north-canopy-062",
+      "scene_eligible": true,
+      "review_status": "vegetation pattern consistent with 2026 aerial; trunk and species unverified"
+    },
+    {
+      "position": [
+        -56.5,
+        215.5
+      ],
+      "ground_z": -11.311,
+      "canopy_height": 8.388,
+      "top_z": -2.923,
+      "crown_diameter_m": 8.06,
+      "local_canopy_cells_1m": 51,
+      "local_canopy_height_p90_minus_p10_m": 3.85,
+      "aerial_context": "within cached Spring2026 image",
+      "candidate_id": "north-canopy-063",
+      "scene_eligible": true,
+      "review_status": "vegetation pattern consistent with 2026 aerial; trunk and species unverified"
+    },
+    {
+      "position": [
+        190.5,
+        215.5
+      ],
+      "ground_z": -9.412,
+      "canopy_height": 22.182,
+      "top_z": 12.77,
+      "crown_diameter_m": 10.09,
+      "local_canopy_cells_1m": 80,
+      "local_canopy_height_p90_minus_p10_m": 12.93,
+      "aerial_context": "within cached Spring2026 image",
+      "candidate_id": "north-canopy-064",
+      "scene_eligible": true,
+      "review_status": "vegetation pattern consistent with 2026 aerial; trunk and species unverified"
+    },
+    {
+      "position": [
+        229.5,
+        216.5
+      ],
+      "ground_z": -9.483,
+      "canopy_height": 23.189,
+      "top_z": 13.706,
+      "crown_diameter_m": 7.57,
+      "local_canopy_cells_1m": 45,
+      "local_canopy_height_p90_minus_p10_m": 6.73,
+      "aerial_context": "within cached Spring2026 image",
+      "candidate_id": "north-canopy-065",
+      "scene_eligible": true,
+      "review_status": "vegetation pattern consistent with 2026 aerial; trunk and species unverified"
+    },
+    {
+      "position": [
+        129.5,
+        220.5
+      ],
+      "ground_z": -10.46,
+      "canopy_height": 21.419,
+      "top_z": 10.959,
+      "crown_diameter_m": 10.16,
+      "local_canopy_cells_1m": 81,
+      "local_canopy_height_p90_minus_p10_m": 2.45,
+      "aerial_context": "beyond cached aerial extent; lidar envelope inference only",
+      "candidate_id": "north-canopy-066",
+      "scene_eligible": true,
+      "review_status": "lidar envelope only; object identity unverified"
+    },
+    {
+      "position": [
+        139.5,
+        220.5
+      ],
+      "ground_z": -10.205,
+      "canopy_height": 22.845,
+      "top_z": 12.64,
+      "crown_diameter_m": 10.16,
+      "local_canopy_cells_1m": 81,
+      "local_canopy_height_p90_minus_p10_m": 10.35,
+      "aerial_context": "beyond cached aerial extent; lidar envelope inference only",
+      "candidate_id": "north-canopy-067",
+      "scene_eligible": true,
+      "review_status": "lidar envelope only; object identity unverified"
+    },
+    {
+      "position": [
+        201.5,
+        221.5
+      ],
+      "ground_z": -9.971,
+      "canopy_height": 21.131,
+      "top_z": 11.16,
+      "crown_diameter_m": 10.16,
+      "local_canopy_cells_1m": 81,
+      "local_canopy_height_p90_minus_p10_m": 5.2,
+      "aerial_context": "beyond cached aerial extent; lidar envelope inference only",
+      "candidate_id": "north-canopy-068",
+      "scene_eligible": true,
+      "review_status": "lidar envelope only; object identity unverified"
+    },
+    {
+      "position": [
+        218.5,
+        221.5
+      ],
+      "ground_z": -9.868,
+      "canopy_height": 20.644,
+      "top_z": 10.776,
+      "crown_diameter_m": 10.16,
+      "local_canopy_cells_1m": 81,
+      "local_canopy_height_p90_minus_p10_m": 4.52,
+      "aerial_context": "beyond cached aerial extent; lidar envelope inference only",
+      "candidate_id": "north-canopy-069",
+      "scene_eligible": true,
+      "review_status": "lidar envelope only; object identity unverified"
+    },
+    {
+      "position": [
+        -39.5,
+        224.5
+      ],
+      "ground_z": -11.435,
+      "canopy_height": 11.543,
+      "top_z": 0.108,
+      "crown_diameter_m": 9.37,
+      "local_canopy_cells_1m": 69,
+      "local_canopy_height_p90_minus_p10_m": 7.07,
+      "aerial_context": "beyond cached aerial extent; lidar envelope inference only",
+      "candidate_id": "north-canopy-070",
+      "scene_eligible": true,
+      "review_status": "lidar envelope only; object identity unverified"
+    },
+    {
+      "position": [
+        211.5,
+        225.5
+      ],
+      "ground_z": -10.118,
+      "canopy_height": 20.797,
+      "top_z": 10.678,
+      "crown_diameter_m": 10.16,
+      "local_canopy_cells_1m": 81,
+      "local_canopy_height_p90_minus_p10_m": 6.13,
+      "aerial_context": "beyond cached aerial extent; lidar envelope inference only",
+      "candidate_id": "north-canopy-071",
+      "scene_eligible": true,
+      "review_status": "lidar envelope only; object identity unverified"
+    },
+    {
+      "position": [
+        181.5,
+        227.5
+      ],
+      "ground_z": -10.889,
+      "canopy_height": 16.131,
+      "top_z": 5.243,
+      "crown_diameter_m": 10.16,
+      "local_canopy_cells_1m": 81,
+      "local_canopy_height_p90_minus_p10_m": 4.56,
+      "aerial_context": "beyond cached aerial extent; lidar envelope inference only",
+      "candidate_id": "north-canopy-072",
+      "scene_eligible": true,
+      "review_status": "lidar envelope only; object identity unverified"
+    },
+    {
+      "position": [
+        159.5,
+        229.5
+      ],
+      "ground_z": -11.001,
+      "canopy_height": 20.516,
+      "top_z": 9.516,
+      "crown_diameter_m": 10.16,
+      "local_canopy_cells_1m": 81,
+      "local_canopy_height_p90_minus_p10_m": 10.27,
+      "aerial_context": "beyond cached aerial extent; lidar envelope inference only",
+      "candidate_id": "north-canopy-073",
+      "scene_eligible": true,
+      "review_status": "lidar envelope only; object identity unverified"
+    },
+    {
+      "position": [
+        134.5,
+        234.5
+      ],
+      "ground_z": -11.35,
+      "canopy_height": 22.79,
+      "top_z": 11.44,
+      "crown_diameter_m": 10.16,
+      "local_canopy_cells_1m": 81,
+      "local_canopy_height_p90_minus_p10_m": 10.92,
+      "aerial_context": "beyond cached aerial extent; lidar envelope inference only",
+      "candidate_id": "north-canopy-074",
+      "scene_eligible": true,
+      "review_status": "lidar envelope only; object identity unverified"
+    },
+    {
+      "position": [
+        229.5,
+        235.5
+      ],
+      "ground_z": -10.441,
+      "canopy_height": 19.031,
+      "top_z": 8.59,
+      "crown_diameter_m": 6.18,
+      "local_canopy_cells_1m": 30,
+      "local_canopy_height_p90_minus_p10_m": 14.96,
+      "aerial_context": "beyond cached aerial extent; lidar envelope inference only",
+      "candidate_id": "north-canopy-075",
+      "scene_eligible": true,
+      "review_status": "lidar envelope only; object identity unverified"
+    },
+    {
+      "position": [
+        192.5,
+        236.5
+      ],
+      "ground_z": -11.162,
+      "canopy_height": 18.978,
+      "top_z": 7.816,
+      "crown_diameter_m": 10.16,
+      "local_canopy_cells_1m": 81,
+      "local_canopy_height_p90_minus_p10_m": 7.51,
+      "aerial_context": "beyond cached aerial extent; lidar envelope inference only",
+      "candidate_id": "north-canopy-076",
+      "scene_eligible": true,
+      "review_status": "lidar envelope only; object identity unverified"
+    },
+    {
+      "position": [
+        -45.5,
+        237.5
+      ],
+      "ground_z": -11.52,
+      "canopy_height": 12.094,
+      "top_z": 0.575,
+      "crown_diameter_m": 9.84,
+      "local_canopy_cells_1m": 76,
+      "local_canopy_height_p90_minus_p10_m": 3.29,
+      "aerial_context": "beyond cached aerial extent; lidar envelope inference only",
+      "candidate_id": "north-canopy-077",
+      "scene_eligible": true,
+      "review_status": "lidar envelope only; object identity unverified"
+    },
+    {
+      "position": [
+        148.5,
+        239.5
+      ],
+      "ground_z": -11.257,
+      "canopy_height": 14.984,
+      "top_z": 3.727,
+      "crown_diameter_m": 9.97,
+      "local_canopy_cells_1m": 78,
+      "local_canopy_height_p90_minus_p10_m": 9.19,
+      "aerial_context": "beyond cached aerial extent; lidar envelope inference only",
+      "candidate_id": "north-canopy-078",
+      "scene_eligible": true,
+      "review_status": "lidar envelope only; object identity unverified"
+    },
+    {
+      "position": [
+        183.5,
+        242.5
+      ],
+      "ground_z": -11.423,
+      "canopy_height": 15.15,
+      "top_z": 3.727,
+      "crown_diameter_m": 8.96,
+      "local_canopy_cells_1m": 63,
+      "local_canopy_height_p90_minus_p10_m": 5.63,
+      "aerial_context": "beyond cached aerial extent; lidar envelope inference only",
+      "candidate_id": "north-canopy-079",
+      "scene_eligible": true,
+      "review_status": "lidar envelope only; object identity unverified"
+    },
+    {
+      "position": [
+        192.5,
+        243.5
+      ],
+      "ground_z": -11.336,
+      "canopy_height": 14.899,
+      "top_z": 3.563,
+      "crown_diameter_m": 8.44,
+      "local_canopy_cells_1m": 56,
+      "local_canopy_height_p90_minus_p10_m": 4.02,
+      "aerial_context": "beyond cached aerial extent; lidar envelope inference only",
+      "candidate_id": "north-canopy-080",
+      "scene_eligible": true,
+      "review_status": "lidar envelope only; object identity unverified"
+    },
+    {
+      "position": [
+        222.5,
+        244.5
+      ],
+      "ground_z": -10.829,
+      "canopy_height": 16.248,
+      "top_z": 5.419,
+      "crown_diameter_m": 9.51,
+      "local_canopy_cells_1m": 71,
+      "local_canopy_height_p90_minus_p10_m": 6.28,
+      "aerial_context": "beyond cached aerial extent; lidar envelope inference only",
+      "candidate_id": "north-canopy-081",
+      "scene_eligible": true,
+      "review_status": "lidar envelope only; object identity unverified"
+    },
+    {
+      "position": [
+        156.5,
+        245.5
+      ],
+      "ground_z": -11.543,
+      "canopy_height": 9.891,
+      "top_z": -1.652,
+      "crown_diameter_m": 7.98,
+      "local_canopy_cells_1m": 50,
+      "local_canopy_height_p90_minus_p10_m": 3.74,
+      "aerial_context": "beyond cached aerial extent; lidar envelope inference only",
+      "candidate_id": "north-canopy-082",
+      "scene_eligible": true,
+      "review_status": "lidar envelope only; object identity unverified"
+    },
+    {
+      "position": [
+        144.5,
+        246.5
+      ],
+      "ground_z": -11.399,
+      "canopy_height": 16.404,
+      "top_z": 5.005,
+      "crown_diameter_m": 10.03,
+      "local_canopy_cells_1m": 79,
+      "local_canopy_height_p90_minus_p10_m": 8.56,
+      "aerial_context": "beyond cached aerial extent; lidar envelope inference only",
+      "candidate_id": "north-canopy-083",
+      "scene_eligible": true,
+      "review_status": "lidar envelope only; object identity unverified"
+    },
+    {
+      "position": [
+        167.5,
+        248.5
+      ],
+      "ground_z": -11.497,
+      "canopy_height": 10.84,
+      "top_z": -0.657,
+      "crown_diameter_m": 7.82,
+      "local_canopy_cells_1m": 48,
+      "local_canopy_height_p90_minus_p10_m": 5.3,
+      "aerial_context": "beyond cached aerial extent; lidar envelope inference only",
+      "candidate_id": "north-canopy-084",
+      "scene_eligible": true,
+      "review_status": "lidar envelope only; object identity unverified"
+    },
+    {
+      "position": [
+        -23.5,
+        252.5
+      ],
+      "ground_z": -11.515,
+      "canopy_height": 13.746,
+      "top_z": 2.231,
+      "crown_diameter_m": 9.77,
+      "local_canopy_cells_1m": 75,
+      "local_canopy_height_p90_minus_p10_m": 8.64,
+      "aerial_context": "beyond cached aerial extent; lidar envelope inference only",
+      "candidate_id": "north-canopy-085",
+      "scene_eligible": true,
+      "review_status": "lidar envelope only; object identity unverified"
+    },
+    {
+      "position": [
+        36.5,
+        253.5
+      ],
+      "ground_z": -11.529,
+      "canopy_height": 5.71,
+      "top_z": -5.82,
+      "crown_diameter_m": 4.65,
+      "local_canopy_cells_1m": 17,
+      "local_canopy_height_p90_minus_p10_m": 1.92,
+      "aerial_context": "beyond cached aerial extent; lidar envelope inference only",
+      "candidate_id": "north-canopy-086",
+      "scene_eligible": false,
+      "review_status": "small isolated unverified object; omitted from scene"
+    },
+    {
+      "position": [
+        229.5,
+        253.5
+      ],
+      "ground_z": -10.931,
+      "canopy_height": 15.799,
+      "top_z": 4.868,
+      "crown_diameter_m": 6.86,
+      "local_canopy_cells_1m": 37,
+      "local_canopy_height_p90_minus_p10_m": 5.93,
+      "aerial_context": "beyond cached aerial extent; lidar envelope inference only",
+      "candidate_id": "north-canopy-087",
+      "scene_eligible": true,
+      "review_status": "lidar envelope only; object identity unverified"
+    },
+    {
+      "position": [
+        161.5,
+        257.5
+      ],
+      "ground_z": -11.389,
+      "canopy_height": 7.108,
+      "top_z": -4.282,
+      "crown_diameter_m": 4.22,
+      "local_canopy_cells_1m": 14,
+      "local_canopy_height_p90_minus_p10_m": 2.9,
+      "aerial_context": "beyond cached aerial extent; lidar envelope inference only",
+      "candidate_id": "north-canopy-088",
+      "scene_eligible": true,
+      "review_status": "lidar envelope only; object identity unverified"
+    },
+    {
+      "position": [
+        201.5,
+        259.5
+      ],
+      "ground_z": -11.108,
+      "canopy_height": 17.625,
+      "top_z": 6.517,
+      "crown_diameter_m": 9.64,
+      "local_canopy_cells_1m": 73,
+      "local_canopy_height_p90_minus_p10_m": 11.01,
+      "aerial_context": "beyond cached aerial extent; lidar envelope inference only",
+      "candidate_id": "north-canopy-089",
+      "scene_eligible": true,
+      "review_status": "lidar envelope only; object identity unverified"
+    },
+    {
+      "position": [
+        189.5,
+        261.5
+      ],
+      "ground_z": -11.376,
+      "canopy_height": 14.938,
+      "top_z": 3.562,
+      "crown_diameter_m": 7.65,
+      "local_canopy_cells_1m": 46,
+      "local_canopy_height_p90_minus_p10_m": 9.27,
+      "aerial_context": "beyond cached aerial extent; lidar envelope inference only",
+      "candidate_id": "north-canopy-090",
+      "scene_eligible": true,
+      "review_status": "lidar envelope only; object identity unverified"
+    },
+    {
+      "position": [
+        210.5,
+        262.5
+      ],
+      "ground_z": -11.076,
+      "canopy_height": 17.278,
+      "top_z": 6.202,
+      "crown_diameter_m": 9.24,
+      "local_canopy_cells_1m": 67,
+      "local_canopy_height_p90_minus_p10_m": 6.08,
+      "aerial_context": "beyond cached aerial extent; lidar envelope inference only",
+      "candidate_id": "north-canopy-091",
+      "scene_eligible": true,
+      "review_status": "lidar envelope only; object identity unverified"
+    },
+    {
+      "position": [
+        227.5,
+        262.5
+      ],
+      "ground_z": -10.639,
+      "canopy_height": 13.901,
+      "top_z": 3.262,
+      "crown_diameter_m": 8.06,
+      "local_canopy_cells_1m": 51,
+      "local_canopy_height_p90_minus_p10_m": 4.47,
+      "aerial_context": "beyond cached aerial extent; lidar envelope inference only",
+      "candidate_id": "north-canopy-092",
+      "scene_eligible": true,
+      "review_status": "lidar envelope only; object identity unverified"
+    },
+    {
+      "position": [
+        -14.5,
+        264.5
+      ],
+      "ground_z": -11.523,
+      "canopy_height": 14.797,
+      "top_z": 3.274,
+      "crown_diameter_m": 9.51,
+      "local_canopy_cells_1m": 71,
+      "local_canopy_height_p90_minus_p10_m": 5.75,
+      "aerial_context": "beyond cached aerial extent; lidar envelope inference only",
+      "candidate_id": "north-canopy-093",
+      "scene_eligible": true,
+      "review_status": "lidar envelope only; object identity unverified"
+    },
+    {
+      "position": [
+        180.5,
+        265.5
+      ],
+      "ground_z": -11.425,
+      "canopy_height": 10.976,
+      "top_z": -0.448,
+      "crown_diameter_m": 5.53,
+      "local_canopy_cells_1m": 24,
+      "local_canopy_height_p90_minus_p10_m": 3.67,
+      "aerial_context": "beyond cached aerial extent; lidar envelope inference only",
+      "candidate_id": "north-canopy-094",
+      "scene_eligible": true,
+      "review_status": "lidar envelope only; object identity unverified"
+    },
+    {
+      "position": [
+        203.5,
+        265.5
+      ],
+      "ground_z": -11.043,
+      "canopy_height": 16.679,
+      "top_z": 5.637,
+      "crown_diameter_m": 10.03,
+      "local_canopy_cells_1m": 79,
+      "local_canopy_height_p90_minus_p10_m": 9.65,
+      "aerial_context": "beyond cached aerial extent; lidar envelope inference only",
+      "candidate_id": "north-canopy-095",
+      "scene_eligible": true,
+      "review_status": "lidar envelope only; object identity unverified"
+    },
+    {
+      "position": [
+        229.5,
+        271.5
+      ],
+      "ground_z": -10.65,
+      "canopy_height": 17.579,
+      "top_z": 6.929,
+      "crown_diameter_m": 7.4,
+      "local_canopy_cells_1m": 43,
+      "local_canopy_height_p90_minus_p10_m": 8.62,
+      "aerial_context": "beyond cached aerial extent; lidar envelope inference only",
+      "candidate_id": "north-canopy-096",
+      "scene_eligible": true,
+      "review_status": "lidar envelope only; object identity unverified"
+    },
+    {
+      "position": [
+        210.5,
+        282.5
+      ],
+      "ground_z": -11.448,
+      "canopy_height": 9.453,
+      "top_z": -1.995,
+      "crown_diameter_m": 6.18,
+      "local_canopy_cells_1m": 30,
+      "local_canopy_height_p90_minus_p10_m": 2.88,
+      "aerial_context": "beyond cached aerial extent; lidar envelope inference only",
+      "candidate_id": "north-canopy-097",
+      "scene_eligible": true,
+      "review_status": "lidar envelope only; object identity unverified"
+    },
+    {
+      "position": [
+        -6.5,
+        283.5
+      ],
+      "ground_z": -11.577,
+      "canopy_height": 9.479,
+      "top_z": -2.098,
+      "crown_diameter_m": 5.17,
+      "local_canopy_cells_1m": 21,
+      "local_canopy_height_p90_minus_p10_m": 3.32,
+      "aerial_context": "beyond cached aerial extent; lidar envelope inference only",
+      "candidate_id": "north-canopy-098",
+      "scene_eligible": true,
+      "review_status": "lidar envelope only; object identity unverified"
+    },
+    {
+      "position": [
+        225.5,
+        286.5
+      ],
+      "ground_z": -11.506,
+      "canopy_height": 10.306,
+      "top_z": -1.2,
+      "crown_diameter_m": 6.48,
+      "local_canopy_cells_1m": 33,
+      "local_canopy_height_p90_minus_p10_m": 4.21,
+      "aerial_context": "beyond cached aerial extent; lidar envelope inference only",
+      "candidate_id": "north-canopy-099",
+      "scene_eligible": true,
+      "review_status": "lidar envelope only; object identity unverified"
+    },
+    {
+      "position": [
+        200.5,
+        293.5
+      ],
+      "ground_z": -11.447,
+      "canopy_height": 8.59,
+      "top_z": -2.857,
+      "crown_diameter_m": 6.86,
+      "local_canopy_cells_1m": 37,
+      "local_canopy_height_p90_minus_p10_m": 2.73,
+      "aerial_context": "beyond cached aerial extent; lidar envelope inference only",
+      "candidate_id": "north-canopy-100",
+      "scene_eligible": true,
+      "review_status": "lidar envelope only; object identity unverified"
+    },
+    {
+      "position": [
+        226.5,
+        297.5
+      ],
+      "ground_z": -11.448,
+      "canopy_height": 10.641,
+      "top_z": -0.807,
+      "crown_diameter_m": 6.77,
+      "local_canopy_cells_1m": 36,
+      "local_canopy_height_p90_minus_p10_m": 4.43,
+      "aerial_context": "beyond cached aerial extent; lidar envelope inference only",
+      "candidate_id": "north-canopy-101",
+      "scene_eligible": true,
+      "review_status": "lidar envelope only; object identity unverified"
+    },
+    {
+      "position": [
+        214.5,
+        305.5
+      ],
+      "ground_z": -11.387,
+      "canopy_height": 10.473,
+      "top_z": -0.914,
+      "crown_diameter_m": 5.41,
+      "local_canopy_cells_1m": 23,
+      "local_canopy_height_p90_minus_p10_m": 5.47,
+      "aerial_context": "beyond cached aerial extent; lidar envelope inference only",
+      "candidate_id": "north-canopy-102",
+      "scene_eligible": true,
+      "review_status": "lidar envelope only; object identity unverified"
+    },
+    {
+      "position": [
+        -0.5,
+        309.5
+      ],
+      "ground_z": -11.48,
+      "canopy_height": 6.172,
+      "top_z": -5.308,
+      "crown_diameter_m": 4.65,
+      "local_canopy_cells_1m": 17,
+      "local_canopy_height_p90_minus_p10_m": 2.28,
+      "aerial_context": "beyond cached aerial extent; lidar envelope inference only",
+      "candidate_id": "north-canopy-103",
+      "scene_eligible": false,
+      "review_status": "small isolated unverified object; omitted from scene"
+    },
+    {
+      "position": [
+        229.5,
+        314.5
+      ],
+      "ground_z": -11.419,
+      "canopy_height": 9.514,
+      "top_z": -1.905,
+      "crown_diameter_m": 4.51,
+      "local_canopy_cells_1m": 16,
+      "local_canopy_height_p90_minus_p10_m": 3.99,
+      "aerial_context": "beyond cached aerial extent; lidar envelope inference only",
+      "candidate_id": "north-canopy-104",
+      "scene_eligible": true,
+      "review_status": "lidar envelope only; object identity unverified"
+    },
+    {
+      "position": [
+        -25.5,
+        377.5
+      ],
+      "ground_z": -11.773,
+      "canopy_height": 5.128,
+      "top_z": -6.645,
+      "crown_diameter_m": 4.0,
+      "local_canopy_cells_1m": 12,
+      "local_canopy_height_p90_minus_p10_m": 0.95,
+      "aerial_context": "beyond cached aerial extent; lidar envelope inference only",
+      "candidate_id": "north-canopy-105",
+      "scene_eligible": false,
+      "review_status": "small isolated unverified object; omitted from scene"
+    }
+  ]
+}
