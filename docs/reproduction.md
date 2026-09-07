@@ -198,14 +198,14 @@ It writes:
 | --- | --- |
 | `scene/protolabs-campus.blend` | Editable master with named geometry, materials, evidence notes, and cameras |
 | `scene/protolabs-campus.glb` | Full-geometry GLB, when `--export` is supplied |
-| `scene/protolabs-campus-viewer.glb` | Browser GLB: normal full-tree meshes retain approximately 30% of leaf cards; existing 2000-card context meshes and solid canopy groups remain intact |
+| `scene/protolabs-campus-viewer.glb` | Browser GLB: campus/north trees retain approximately 30% of leaf cards; named distant card trees use fitted opaque crown proxies; existing solid distant/NLCD groups remain intact |
 | `scene/viewer-export.json` | Master/browser-GLB SHA-256 hashes, normal foliage-retention setting, preserved context-LOD instance count and before/after vegetation triangle counts |
 | `scene/cameras.json` | Saved camera definitions and reference associations |
 | `scene/materials.json` | Linear-color PBR fallback map for procedural materials that glTF does not reproduce directly |
 
 Both GLB exports use Y-up coordinates, apply export transforms, and omit Blender lights/cameras; the viewer creates its own lighting and reads camera/material JSON. They are not expected to reproduce all Cycles node materials exactly. Keep materials, cameras, both models, and the export metadata from the same generation.
 
-The reduced export retains branches and selects approximately 30% of leaf cards from unmarked full-tree meshes. Context meshes marked `context_leaf_cards` already contain 2000 cards and are preserved to avoid a second reduction; solid distant canopy groups also remain intact. `scripts/export_viewer.py` restores substituted in-memory meshes after export and does not save the master. The editable master, full GLB and Cycles renders keep their complete assigned geometry: full campus/north foliage plus the explicitly lighter distant representations. To regenerate only the browser export from a current saved master:
+The reduced export retains branches and selects approximately 30% of leaf cards from campus/north full-tree meshes. Leaf-card objects named `Distant woodland ...` instead use copies of the existing opaque crown meshes, fitted to their original local XYZ bounds with unchanged object transforms and belt layout. Existing solid distant and NLCD canopy groups remain intact; any other marked card LOD is preserved. [The browser performance receipt](viewer-performance.md) records the visual approximation, measured timing and package-size limit. `scripts/export_viewer.py` restores substituted in-memory meshes after export and does not save the master. The editable master, full GLB and Cycles renders keep their complete assigned geometry: full campus/north foliage plus the explicitly lighter distant representations. To regenerate only the browser export from a current saved master:
 
 ```bash
 "$PROTOLABS_BLENDER" --background "$PWD/scene/protolabs-campus.blend" \

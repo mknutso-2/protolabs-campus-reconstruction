@@ -1,0 +1,229 @@
+{
+  "scope": "Browser-only replacement of named Distant woodland leaf-card objects. Exact master/full-GLB data and transforms restored; master is never saved.",
+  "source_master_sha256": "7dd2ff5a1253f1153e70c4ba09a1bb7806c3d326b950d91c629635bb5cc43cc0",
+  "export_validation": {
+    "master_sha256": "7dd2ff5a1253f1153e70c4ba09a1bb7806c3d326b950d91c629635bb5cc43cc0",
+    "full_glb_sha256": "0e62654690caddb1368b1a1c7d7105b6e57fcf405d0ed6abd1d50808316e5b59",
+    "proxy_instances": 1139,
+    "proxy_unique_meshes": 6,
+    "max_local_bounds_error_m": 0,
+    "object_transforms_unchanged": true,
+    "existing_solid_distant_groups": 61,
+    "existing_nlcd_groups": 347,
+    "campus_north_objects_follow_existing_leaf_reduction": 182,
+    "non_distant_marked_lod_preserved": 0,
+    "master_and_full_glb_unchanged": true,
+    "all_object_data_and_transforms_restored": true,
+    "temporary_meshes_removed": true,
+    "elapsed_seconds": 50.73278660798678,
+    "viewer_export": {
+      "viewer_glb_sha256": "dfa8da7bf1902b936e5dee79053dbc14ae6279ea8a1e29761bd51bedda0ce82e",
+      "master_sha256": "7dd2ff5a1253f1153e70c4ba09a1bb7806c3d326b950d91c629635bb5cc43cc0",
+      "foliage_retention": 0.3,
+      "preserved_context_lod_instances": 0,
+      "visible_vegetation_triangles_before": 15737024,
+      "visible_vegetation_triangles_after": 2930804,
+      "distant_browser_proxies": {
+        "instances": 1139,
+        "unique_meshes": 6,
+        "triangles_before": 12279332,
+        "triangles_after": 1580932,
+        "triangles_per_proxy": [
+          1388
+        ],
+        "source": "Existing original closed Distant inferred canopy group meshes fitted to each source mesh local bounds",
+        "object_transforms_and_local_bounds_preserved": true,
+        "existing_solid_distant_groups_preserved": 61,
+        "existing_nlcd_groups_preserved": 347
+      },
+      "scope": "Campus/north full tree templates retain 30% of leaf cards. Only Distant woodland leaf-card objects use opaque crown proxies fitted to their original local footprint and height; inferred belt layout and existing remote/NLCD groups remain unchanged. Rendered stills, full GLB and master retain their complete source geometry."
+    },
+    "proxy_footprint_interpretation": "Original local XYZ bounds and object transforms are exact, preserving assigned oriented footprint/height envelope and belt placement. Detailed leafy silhouette is replaced by the existing closed crown approximation.",
+    "closed_mesh_check": "Every proxy edge has two incident faces; each proxy has positive signed total volume. Existing source template winding is preserved by positive-axis affine fitting."
+  },
+  "package_validation": {
+    "baseline": {
+      "source_glb_sha256": "b3b3f1fcc696eeff4d435b7ac89e78d67dd29573669f891d3cf5a7dadec11c83",
+      "prepared_glb_sha256": "58976cc2f4f6fcc2743a9a9d47fba7f018324791b3d57224962f3ec854ad2307",
+      "palette_sha256": "1d2bf0cde7655713e1be23f2eea214a35ebf3adf746e15ba327e9746afb3bac0",
+      "binary_chunks_sha256": [
+        "71dfa87f388697aacfe67b92a604ae658515ef3f38a6b2ac1be8f07e0342d71e"
+      ],
+      "binary_images_and_topology_unchanged": true,
+      "scope": "Known opaque palette materials use mean linear albedo once; unknown and alpha materials remain unchanged.",
+      "optimized_glb_sha256": "d865b4ae76c7d490534748eb192f889985939d1ed12abac130cc21ae5c6ea0ec",
+      "distinct_surface_albedos": {
+        "Weathered asphalt / metric noise": [
+          0.024000000208616257,
+          0.025200000032782555,
+          0.025200000032782555
+        ],
+        "Charcoal aggregate membrane": [
+          0.06700000166893005,
+          0.061000000685453415,
+          0.061000000685453415
+        ],
+        "Concrete curbs & walks": [
+          0.2800000011920929,
+          0.2800000011920929,
+          0.25
+        ],
+        "Warm umber precast / photo colour": [
+          0.0820000022649765,
+          0.03999999910593033,
+          0.029999999329447746
+        ],
+        "Mown summer grass": [
+          0.030249999836087227,
+          0.11025000363588333,
+          0.013500000350177288
+        ],
+        "Prairie meadow": [
+          0.0430000014603138,
+          0.09200000017881393,
+          0.01899999938905239
+        ]
+      },
+      "compression": {
+        "positionAccessors": 167,
+        "positionComponentType": 5126,
+        "decodedPositionsExact": true
+      },
+      "optimized_bytes": 26522252,
+      "optimized_mib": 25.293590545654297,
+      "below_25_mib": false,
+      "alpha_cutout_materials": [
+        "CampusVeg_DenseLeaf_v2_00",
+        "CampusVeg_DenseLeaf_v2_01",
+        "CampusVeg_DenseLeaf_v2_02",
+        "CampusVeg_DenseLeaf_v2_03",
+        "CampusVeg_DenseLeaf_v2_04"
+      ]
+    },
+    "proxy": {
+      "source_glb_sha256": "dfa8da7bf1902b936e5dee79053dbc14ae6279ea8a1e29761bd51bedda0ce82e",
+      "prepared_glb_sha256": "b1f412a4ac1d225ff18bc05dcba4b1d9c47cf22903d634f37d0074041a792c87",
+      "palette_sha256": "1d2bf0cde7655713e1be23f2eea214a35ebf3adf746e15ba327e9746afb3bac0",
+      "binary_chunks_sha256": [
+        "ff63fea5bc6f896fc8049f7ce1041921ebf8c9649c73b23bbb6703526c326b6f"
+      ],
+      "binary_images_and_topology_unchanged": true,
+      "scope": "Known opaque palette materials use mean linear albedo once; unknown and alpha materials remain unchanged.",
+      "optimized_glb_sha256": "7dab6fca5e77c012de1aba57bd5d66bbab7cc5159417c4ada7ed811e994b3edd",
+      "distinct_surface_albedos": {
+        "Weathered asphalt / metric noise": [
+          0.024000000208616257,
+          0.025200000032782555,
+          0.025200000032782555
+        ],
+        "Charcoal aggregate membrane": [
+          0.06700000166893005,
+          0.061000000685453415,
+          0.061000000685453415
+        ],
+        "Concrete curbs & walks": [
+          0.2800000011920929,
+          0.2800000011920929,
+          0.25
+        ],
+        "Warm umber precast / photo colour": [
+          0.0820000022649765,
+          0.03999999910593033,
+          0.029999999329447746
+        ],
+        "Mown summer grass": [
+          0.030249999836087227,
+          0.11025000363588333,
+          0.013500000350177288
+        ],
+        "Prairie meadow": [
+          0.0430000014603138,
+          0.09200000017881393,
+          0.01899999938905239
+        ]
+      },
+      "compression": {
+        "positionAccessors": 161,
+        "positionComponentType": 5126,
+        "decodedPositionsExact": true
+      },
+      "optimized_bytes": 25747644,
+      "optimized_mib": 24.554866790771484,
+      "below_25_mib": true,
+      "alpha_cutout_materials": [
+        "CampusVeg_DenseLeaf_v2_00",
+        "CampusVeg_DenseLeaf_v2_01",
+        "CampusVeg_DenseLeaf_v2_02",
+        "CampusVeg_DenseLeaf_v2_03",
+        "CampusVeg_DenseLeaf_v2_04"
+      ]
+    }
+  },
+  "baseline_benchmark": {
+    "finished_utc": "2026-09-07T22:38:43.614Z",
+    "source_master_sha256": "7dd2ff5a1253f1153e70c4ba09a1bb7806c3d326b950d91c629635bb5cc43cc0",
+    "model": "baseline",
+    "view": "reference_aerial",
+    "observer": "Owning root agent through visible CUA tab",
+    "rendered_frames": 52,
+    "duration_ms": 8010.3,
+    "mean_rendered_fps": 6.49,
+    "raf_interval_ms": {
+      "min": 16.7,
+      "median": 162.1,
+      "p95": 178
+    },
+    "draw_calls": 158,
+    "triangles": 12210107,
+    "device_pixel_ratio": 1,
+    "renderer_pixel_ratio": 1,
+    "drawing_buffer_px": [
+      1280,
+      680
+    ],
+    "preserveDrawingBuffer": true,
+    "webgl_renderer": "ANGLE (Intel, Mesa Intel(R) HD Graphics 4000 (IVB GT2), OpenGL 4.2)",
+    "errors_or_warnings_reported": false
+  },
+  "proxy_benchmark": {
+    "mode": "after",
+    "model": "proxy",
+    "model_path": "proxy-review/proxy.glb",
+    "view": "reference_aerial",
+    "status": "complete",
+    "duration_ms": 8038.97,
+    "rendered_frames": 143,
+    "interval_samples": 143,
+    "mean_rendered_fps": 17.79,
+    "raf_interval_ms": {
+      "min": 16.47,
+      "median": 56.9,
+      "p95": 67.8
+    },
+    "draw_calls": {
+      "min": 152,
+      "median": 152,
+      "max": 152
+    },
+    "triangles": {
+      "min": 5300347,
+      "median": 5300347,
+      "max": 5300347
+    },
+    "device_pixel_ratio": 1,
+    "renderer_pixel_ratio": 1,
+    "drawing_buffer_px": [
+      1280,
+      680
+    ],
+    "webgl_renderer": "ANGLE (Intel, Mesa Intel(R) HD Graphics 4000 (IVB GT2), OpenGL 4.2)",
+    "finished_utc": "2026-09-07T22:41:11.529Z",
+    "measurement": "Real requestAnimationFrame cadence while rendering each callback; uncapped, preserveDrawingBuffer=true; background workload was not independently isolated.",
+    "errors_or_warnings_reported": false,
+    "observer": "Owning root agent through CUA",
+    "appearance": "Aerial inspected: assigned woodland footprint/layout and nearby trees preserved, simpler opaque distant crown silhouettes remain coherent. Overview inspection remains separate.",
+    "acceptance": "Provisionally accepted for browser integration on measured interactive improvement. No 60fps, final-image or cross-device performance claim."
+  },
+  "mean_fps_ratio": 2.7411402157164866,
+  "pending": "Separate overview inspection and final v07c package/runtime check; this diagnostic uses preserved 7dd2 geometry."
+}
