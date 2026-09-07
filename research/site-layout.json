@@ -1,0 +1,4129 @@
+{
+  "title": "Protolabs HQ site layout from Hennepin County 2026 aerial",
+  "trace_method": "visual trace approximate",
+  "source_image": "../geospatial/aerial_2026.jpg",
+  "source_metadata": "../geospatial/aerial_2026_export.json",
+  "source_url": "https://gis.hennepin.us/arcgis/rest/directories/arcgisoutput/Imagery/UTM_Aerial_2026_MapServer/_ags_map4515d398d70d4c2caccf5a25e23d12a7.jpg",
+  "attribution": "Hennepin County GIS \u2014 Imagery/UTM_Aerial_2026 MapServer; visual tracing by reconstruction author",
+  "retrieved_at": "2026-09-07",
+  "image_size_px": [
+    3000,
+    2500
+  ],
+  "coordinate_origin": "top-left; x right, y down",
+  "crs": {
+    "wkid": 26915,
+    "latestWkid": 26915
+  },
+  "extent": {
+    "xmin": 447476.2229682535,
+    "ymin": 4984440.404081672,
+    "xmax": 447920.3911175426,
+    "ymax": 4984810.54420608,
+    "spatialReference": {
+      "wkid": 26915,
+      "latestWkid": 26915
+    }
+  },
+  "pixel_to_map_formula": {
+    "easting": "xmin + x_px / 3000 * (xmax-xmin)",
+    "northing": "ymax - y_px / 2500 * (ymax-ymin)"
+  },
+  "trace_reference_size_px": [
+    1727,
+    1440
+  ],
+  "precision_note": "Coordinates rounded to 0.1 px only for data handling; actual uncertainty typically 2\u20135 m and larger under tree shadows. This is a visual reconstruction aid, not survey/site engineering data. Parking counts and trees are approximate.",
+  "rendering_notes": [
+    "Main asphalt envelopes intentionally extend beneath buildings: GIS footprints/building mesh should overlay them.",
+    "Render grass and rock polygons slightly above asphalt. Use GIS terrain elevation rather than assuming physical flatness from this trace.",
+    "Water boundary follows visible dark open water; marsh/vegetation and shadows can obscure shoreline.",
+    "Parking row endpoints are estimated car centerlines. Convert bay_depth_px to ground scale; row-count estimates should not be presented as official capacity.",
+    "Tree centers approximate crowns/trunks; do not use long northwest shadows as canopies. Seasonal leaf-off imagery does not establish species.",
+    "East lot is mostly empty in reference. Use row suggested_aerial_occupancy_fraction to avoid filling all 660 inferred positions with cars. Capacity estimate is rough, includes uncertain strips and is not official."
+  ],
+  "polygons": [
+    {
+      "id": "hq_connected_pavement",
+      "material": "asphalt",
+      "points_px": [
+        [
+          660.1,
+          1140.6
+        ],
+        [
+          691.4,
+          1102.4
+        ],
+        [
+          927.6,
+          1053.8
+        ],
+        [
+          1066.6,
+          1031.2
+        ],
+        [
+          1127.4,
+          1027.8
+        ],
+        [
+          1129.1,
+          991.3
+        ],
+        [
+          1599.9,
+          1005.2
+        ],
+        [
+          1634.6,
+          986.1
+        ],
+        [
+          1669.4,
+          944.4
+        ],
+        [
+          1697.2,
+          921.9
+        ],
+        [
+          1728.4,
+          913.2
+        ],
+        [
+          1763.2,
+          911.5
+        ],
+        [
+          1801.4,
+          923.6
+        ],
+        [
+          1836.1,
+          951.4
+        ],
+        [
+          1858.7,
+          987.8
+        ],
+        [
+          1869.1,
+          1022.6
+        ],
+        [
+          1862.2,
+          1052.1
+        ],
+        [
+          1945.6,
+          1053.8
+        ],
+        [
+          2002.9,
+          1145.8
+        ],
+        [
+          2044.6,
+          1230.9
+        ],
+        [
+          2065.4,
+          1246.5
+        ],
+        [
+          2112.3,
+          1211.8
+        ],
+        [
+          2110.6,
+          951.4
+        ],
+        [
+          2117.5,
+          921.9
+        ],
+        [
+          2136.7,
+          897.6
+        ],
+        [
+          2164.4,
+          883.7
+        ],
+        [
+          2188.8,
+          876.7
+        ],
+        [
+          2235.7,
+          876.7
+        ],
+        [
+          2247.8,
+          835.1
+        ],
+        [
+          2864.5,
+          833.3
+        ],
+        [
+          2892.3,
+          842.0
+        ],
+        [
+          2911.4,
+          866.3
+        ],
+        [
+          2913.1,
+          1748.3
+        ],
+        [
+          2883.6,
+          1750.0
+        ],
+        [
+          2850.6,
+          1788.2
+        ],
+        [
+          2808.9,
+          1779.5
+        ],
+        [
+          2683.8,
+          1703.1
+        ],
+        [
+          2536.2,
+          1663.2
+        ],
+        [
+          2518.8,
+          1710.1
+        ],
+        [
+          2485.8,
+          1722.2
+        ],
+        [
+          2428.5,
+          1717.0
+        ],
+        [
+          1943.8,
+          1717.0
+        ],
+        [
+          1890.0,
+          1713.5
+        ],
+        [
+          840.8,
+          1713.5
+        ],
+        [
+          828.6,
+          1692.7
+        ],
+        [
+          832.1,
+          1651.0
+        ],
+        [
+          807.8,
+          1612.8
+        ],
+        [
+          785.2,
+          1560.8
+        ],
+        [
+          762.6,
+          1500.0
+        ],
+        [
+          738.3,
+          1430.6
+        ],
+        [
+          717.4,
+          1350.7
+        ],
+        [
+          696.6,
+          1269.1
+        ],
+        [
+          675.7,
+          1196.2
+        ]
+      ],
+      "confidence": "medium",
+      "notes": "Outer envelope for connected HQ lots and north service apron. Overlay GIS building footprint to cover pavement under building; overlay grass islands below. Boundary under trees/shadows inferred."
+    },
+    {
+      "id": "pioneer_creek_drive",
+      "material": "asphalt_road",
+      "points_px": [
+        [
+          0.0,
+          1941.0
+        ],
+        [
+          43.4,
+          1927.1
+        ],
+        [
+          104.2,
+          1980.9
+        ],
+        [
+          137.2,
+          1980.9
+        ],
+        [
+          206.7,
+          1958.3
+        ],
+        [
+          330.1,
+          1892.4
+        ],
+        [
+          469.0,
+          1819.4
+        ],
+        [
+          613.2,
+          1760.4
+        ],
+        [
+          727.9,
+          1725.7
+        ],
+        [
+          830.3,
+          1717.0
+        ],
+        [
+          2428.5,
+          1717.0
+        ],
+        [
+          2494.5,
+          1724.0
+        ],
+        [
+          2591.8,
+          1744.8
+        ],
+        [
+          2692.5,
+          1788.2
+        ],
+        [
+          2821.1,
+          1866.3
+        ],
+        [
+          3000.0,
+          1968.8
+        ],
+        [
+          3000.0,
+          2069.4
+        ],
+        [
+          2927.0,
+          2031.2
+        ],
+        [
+          2742.9,
+          1925.3
+        ],
+        [
+          2621.3,
+          1857.6
+        ],
+        [
+          2544.9,
+          1817.7
+        ],
+        [
+          2478.9,
+          1798.6
+        ],
+        [
+          2395.5,
+          1788.2
+        ],
+        [
+          2011.6,
+          1788.2
+        ],
+        [
+          1252.5,
+          1788.2
+        ],
+        [
+          851.2,
+          1788.2
+        ],
+        [
+          762.6,
+          1796.9
+        ],
+        [
+          703.5,
+          1822.9
+        ],
+        [
+          675.7,
+          1852.4
+        ],
+        [
+          661.8,
+          1887.2
+        ],
+        [
+          667.1,
+          1913.2
+        ],
+        [
+          715.7,
+          2038.2
+        ],
+        [
+          767.8,
+          2171.9
+        ],
+        [
+          774.8,
+          2500.0
+        ],
+        [
+          715.7,
+          2500.0
+        ],
+        [
+          705.3,
+          2274.3
+        ],
+        [
+          687.9,
+          2170.1
+        ],
+        [
+          647.9,
+          2043.4
+        ],
+        [
+          602.8,
+          1944.4
+        ],
+        [
+          581.9,
+          1935.8
+        ],
+        [
+          550.7,
+          1941.0
+        ],
+        [
+          484.7,
+          1961.8
+        ],
+        [
+          390.9,
+          2008.7
+        ],
+        [
+          309.2,
+          2046.9
+        ],
+        [
+          283.1,
+          2107.6
+        ],
+        [
+          260.6,
+          2144.1
+        ],
+        [
+          222.4,
+          2159.7
+        ],
+        [
+          192.8,
+          2159.7
+        ],
+        [
+          165.0,
+          2151.0
+        ],
+        [
+          137.2,
+          2131.9
+        ],
+        [
+          112.9,
+          2102.4
+        ],
+        [
+          102.5,
+          2067.7
+        ],
+        [
+          99.0,
+          2033.0
+        ],
+        [
+          60.8,
+          2013.9
+        ],
+        [
+          0.0,
+          1993.1
+        ]
+      ],
+      "confidence": "medium",
+      "notes": "Main road, west bulb and south-running branch included as one approximate outline. Tree shadows and driveway mouths softened."
+    },
+    {
+      "id": "west_neighbor_pavement",
+      "material": "asphalt",
+      "points_px": [
+        [
+          0.0,
+          1487.8
+        ],
+        [
+          149.4,
+          1364.6
+        ],
+        [
+          264.0,
+          1215.3
+        ],
+        [
+          338.7,
+          1116.3
+        ],
+        [
+          337.0,
+          1069.4
+        ],
+        [
+          330.1,
+          1015.6
+        ],
+        [
+          343.9,
+          982.6
+        ],
+        [
+          509.0,
+          937.5
+        ],
+        [
+          575.0,
+          1170.1
+        ],
+        [
+          635.8,
+          1378.5
+        ],
+        [
+          691.4,
+          1581.6
+        ],
+        [
+          687.9,
+          1644.1
+        ],
+        [
+          734.8,
+          1729.2
+        ],
+        [
+          680.9,
+          1756.9
+        ],
+        [
+          634.0,
+          1722.2
+        ],
+        [
+          646.2,
+          1682.3
+        ],
+        [
+          660.1,
+          1663.2
+        ],
+        [
+          654.9,
+          1640.6
+        ],
+        [
+          410.0,
+          1770.8
+        ],
+        [
+          238.0,
+          1875.0
+        ],
+        [
+          208.5,
+          1895.8
+        ],
+        [
+          184.1,
+          1942.7
+        ],
+        [
+          106.0,
+          1960.1
+        ],
+        [
+          0.0,
+          1906.2
+        ]
+      ],
+      "confidence": "medium-low",
+      "notes": "Neighbor building footprint must overlay this envelope. Far west boundary is image-clipped."
+    },
+    {
+      "id": "south_central_neighbor_pavement",
+      "material": "asphalt",
+      "points_px": [
+        [
+          745.2,
+          2039.9
+        ],
+        [
+          774.8,
+          2005.2
+        ],
+        [
+          802.5,
+          1951.4
+        ],
+        [
+          844.2,
+          1914.9
+        ],
+        [
+          899.8,
+          1887.2
+        ],
+        [
+          983.2,
+          1876.7
+        ],
+        [
+          1137.8,
+          1878.5
+        ],
+        [
+          1137.8,
+          1927.1
+        ],
+        [
+          1625.9,
+          1927.1
+        ],
+        [
+          1641.6,
+          1899.3
+        ],
+        [
+          1704.1,
+          1897.6
+        ],
+        [
+          1709.3,
+          1817.7
+        ],
+        [
+          1721.5,
+          1791.7
+        ],
+        [
+          1749.3,
+          1788.2
+        ],
+        [
+          1764.9,
+          1807.3
+        ],
+        [
+          1766.6,
+          2451.4
+        ],
+        [
+          1705.8,
+          2500.0
+        ],
+        [
+          792.1,
+          2500.0
+        ],
+        [
+          788.7,
+          2413.2
+        ],
+        [
+          793.9,
+          2373.3
+        ],
+        [
+          924.1,
+          2373.3
+        ],
+        [
+          924.1,
+          2076.4
+        ],
+        [
+          887.7,
+          2069.4
+        ],
+        [
+          868.6,
+          2083.3
+        ],
+        [
+          858.1,
+          2116.3
+        ],
+        [
+          821.7,
+          2131.9
+        ],
+        [
+          766.1,
+          2145.8
+        ]
+      ],
+      "confidence": "medium-low",
+      "notes": "South neighbor pavement envelope; include GIS footprint above it."
+    },
+    {
+      "id": "south_east_neighbor_pavement",
+      "material": "asphalt",
+      "points_px": [
+        [
+          1813.5,
+          1788.2
+        ],
+        [
+          1844.8,
+          1795.1
+        ],
+        [
+          1863.9,
+          1833.3
+        ],
+        [
+          1870.9,
+          1913.2
+        ],
+        [
+          1893.5,
+          1928.8
+        ],
+        [
+          2171.4,
+          1928.8
+        ],
+        [
+          2187.0,
+          1892.4
+        ],
+        [
+          2188.8,
+          1835.1
+        ],
+        [
+          2207.9,
+          1805.6
+        ],
+        [
+          2237.4,
+          1795.1
+        ],
+        [
+          2254.8,
+          1817.7
+        ],
+        [
+          2253.0,
+          1939.2
+        ],
+        [
+          2564.0,
+          1939.2
+        ],
+        [
+          2577.9,
+          1925.3
+        ],
+        [
+          2598.7,
+          1892.4
+        ],
+        [
+          2621.3,
+          1906.2
+        ],
+        [
+          2638.7,
+          1989.6
+        ],
+        [
+          2619.6,
+          2100.7
+        ],
+        [
+          2617.8,
+          2500.0
+        ],
+        [
+          1792.7,
+          2500.0
+        ],
+        [
+          1796.2,
+          2039.9
+        ]
+      ],
+      "confidence": "low",
+      "notes": "Envelope beneath multiple south-eastern neighboring footprints; grass overlays should reduce flat paving."
+    },
+    {
+      "id": "west_north_tip",
+      "material": "grass",
+      "points_px": [
+        [
+          760.9,
+          1173.6
+        ],
+        [
+          767.8,
+          1154.5
+        ],
+        [
+          780.0,
+          1138.9
+        ],
+        [
+          785.2,
+          1151.0
+        ],
+        [
+          795.6,
+          1189.2
+        ],
+        [
+          783.4,
+          1201.4
+        ],
+        [
+          767.8,
+          1203.1
+        ],
+        [
+          759.1,
+          1192.7
+        ]
+      ],
+      "confidence": "medium",
+      "notes": "Visual trace approximate; small curb geometry simplified."
+    },
+    {
+      "id": "west_north_long",
+      "material": "grass",
+      "points_px": [
+        [
+          795.6,
+          1128.5
+        ],
+        [
+          823.4,
+          1107.6
+        ],
+        [
+          885.9,
+          1095.5
+        ],
+        [
+          1035.3,
+          1081.6
+        ],
+        [
+          1130.9,
+          1085.1
+        ],
+        [
+          1170.8,
+          1099.0
+        ],
+        [
+          1210.8,
+          1118.1
+        ],
+        [
+          1212.5,
+          1135.4
+        ],
+        [
+          1177.8,
+          1128.5
+        ],
+        [
+          1057.9,
+          1128.5
+        ],
+        [
+          908.5,
+          1128.5
+        ],
+        [
+          825.1,
+          1144.1
+        ]
+      ],
+      "confidence": "medium",
+      "notes": "Visual trace approximate; small curb geometry simplified."
+    },
+    {
+      "id": "west_middle",
+      "material": "grass",
+      "points_px": [
+        [
+          792.1,
+          1277.8
+        ],
+        [
+          811.2,
+          1267.4
+        ],
+        [
+          825.1,
+          1276.0
+        ],
+        [
+          840.8,
+          1295.1
+        ],
+        [
+          1172.6,
+          1262.2
+        ],
+        [
+          1224.7,
+          1263.9
+        ],
+        [
+          1226.4,
+          1286.5
+        ],
+        [
+          832.1,
+          1342.0
+        ],
+        [
+          807.8,
+          1352.4
+        ],
+        [
+          802.5,
+          1329.9
+        ]
+      ],
+      "confidence": "medium",
+      "notes": "Visual trace approximate; small curb geometry simplified."
+    },
+    {
+      "id": "west_middle_tip",
+      "material": "grass",
+      "points_px": [
+        [
+          804.3,
+          1345.5
+        ],
+        [
+          823.4,
+          1343.8
+        ],
+        [
+          833.8,
+          1361.1
+        ],
+        [
+          833.8,
+          1373.3
+        ],
+        [
+          821.7,
+          1376.7
+        ],
+        [
+          811.2,
+          1366.3
+        ]
+      ],
+      "confidence": "medium",
+      "notes": "Visual trace approximate; small curb geometry simplified."
+    },
+    {
+      "id": "west_south_long",
+      "material": "grass",
+      "points_px": [
+        [
+          844.2,
+          1456.6
+        ],
+        [
+          1228.1,
+          1413.2
+        ],
+        [
+          1269.8,
+          1430.6
+        ],
+        [
+          1242.0,
+          1463.5
+        ],
+        [
+          1200.3,
+          1475.7
+        ],
+        [
+          1129.1,
+          1515.6
+        ],
+        [
+          1096.1,
+          1538.2
+        ],
+        [
+          1092.6,
+          1498.3
+        ],
+        [
+          880.7,
+          1500.0
+        ],
+        [
+          868.6,
+          1510.4
+        ],
+        [
+          854.7,
+          1484.4
+        ]
+      ],
+      "confidence": "medium",
+      "notes": "Visual trace approximate; small curb geometry simplified."
+    },
+    {
+      "id": "west_boundary_south",
+      "material": "grass",
+      "points_px": [
+        [
+          762.6,
+          1623.3
+        ],
+        [
+          816.4,
+          1626.7
+        ],
+        [
+          830.3,
+          1661.5
+        ],
+        [
+          828.6,
+          1697.9
+        ],
+        [
+          814.7,
+          1720.5
+        ],
+        [
+          790.4,
+          1729.2
+        ],
+        [
+          762.6,
+          1727.4
+        ],
+        [
+          741.7,
+          1711.8
+        ],
+        [
+          729.6,
+          1678.8
+        ],
+        [
+          722.6,
+          1644.1
+        ],
+        [
+          722.6,
+          1637.2
+        ]
+      ],
+      "confidence": "medium",
+      "notes": "Visual trace approximate; small curb geometry simplified."
+    },
+    {
+      "id": "south_west_island",
+      "material": "grass",
+      "points_px": [
+        [
+          892.9,
+          1605.9
+        ],
+        [
+          1033.6,
+          1605.9
+        ],
+        [
+          1061.4,
+          1623.3
+        ],
+        [
+          1075.3,
+          1661.5
+        ],
+        [
+          1070.1,
+          1689.2
+        ],
+        [
+          1054.4,
+          1710.1
+        ],
+        [
+          924.1,
+          1711.8
+        ],
+        [
+          901.6,
+          1704.9
+        ],
+        [
+          885.9,
+          1689.2
+        ],
+        [
+          880.7,
+          1645.8
+        ]
+      ],
+      "confidence": "medium",
+      "notes": "Visual trace approximate; small curb geometry simplified."
+    },
+    {
+      "id": "south_front_long",
+      "material": "grass",
+      "points_px": [
+        [
+          1130.9,
+          1600.7
+        ],
+        [
+          1151.7,
+          1588.5
+        ],
+        [
+          1224.7,
+          1588.5
+        ],
+        [
+          1226.4,
+          1623.3
+        ],
+        [
+          1320.2,
+          1626.7
+        ],
+        [
+          1328.9,
+          1592.0
+        ],
+        [
+          1676.3,
+          1592.0
+        ],
+        [
+          1704.1,
+          1600.7
+        ],
+        [
+          1726.7,
+          1621.5
+        ],
+        [
+          1884.8,
+          1621.5
+        ],
+        [
+          1888.2,
+          1592.0
+        ],
+        [
+          1903.9,
+          1592.0
+        ],
+        [
+          1903.9,
+          1684.0
+        ],
+        [
+          1893.5,
+          1706.6
+        ],
+        [
+          1874.3,
+          1711.8
+        ],
+        [
+          1160.4,
+          1711.8
+        ],
+        [
+          1136.1,
+          1704.9
+        ],
+        [
+          1122.2,
+          1682.3
+        ],
+        [
+          1118.7,
+          1625.0
+        ]
+      ],
+      "confidence": "medium",
+      "notes": "Visual trace approximate; small curb geometry simplified."
+    },
+    {
+      "id": "south_east_front_long",
+      "material": "grass",
+      "points_px": [
+        [
+          1973.4,
+          1625.0
+        ],
+        [
+          2173.1,
+          1626.7
+        ],
+        [
+          2183.6,
+          1595.5
+        ],
+        [
+          2247.8,
+          1592.0
+        ],
+        [
+          2308.6,
+          1597.2
+        ],
+        [
+          2315.6,
+          1625.0
+        ],
+        [
+          2425.0,
+          1626.7
+        ],
+        [
+          2437.2,
+          1605.9
+        ],
+        [
+          2442.4,
+          1604.2
+        ],
+        [
+          2444.1,
+          1684.0
+        ],
+        [
+          2435.4,
+          1708.3
+        ],
+        [
+          2414.6,
+          1715.3
+        ],
+        [
+          1983.8,
+          1715.3
+        ],
+        [
+          1968.2,
+          1706.6
+        ],
+        [
+          1959.5,
+          1689.2
+        ],
+        [
+          1959.5,
+          1630.2
+        ]
+      ],
+      "confidence": "medium",
+      "notes": "Visual trace approximate; small curb geometry simplified."
+    },
+    {
+      "id": "east_primary_median",
+      "material": "grass",
+      "points_px": [
+        [
+          2247.8,
+          930.6
+        ],
+        [
+          2293.0,
+          930.6
+        ],
+        [
+          2294.7,
+          1204.9
+        ],
+        [
+          2254.8,
+          1206.6
+        ],
+        [
+          2254.8,
+          1524.3
+        ],
+        [
+          2287.8,
+          1524.3
+        ],
+        [
+          2293.0,
+          1534.7
+        ],
+        [
+          2286.0,
+          1543.4
+        ],
+        [
+          2228.7,
+          1543.4
+        ],
+        [
+          2220.0,
+          1534.7
+        ],
+        [
+          2228.7,
+          1524.3
+        ],
+        [
+          2237.4,
+          1524.3
+        ],
+        [
+          2237.4,
+          1246.5
+        ],
+        [
+          2247.8,
+          1246.5
+        ]
+      ],
+      "confidence": "medium",
+      "notes": "Visual trace approximate; small curb geometry simplified."
+    },
+    {
+      "id": "east_row_end_nw",
+      "material": "grass",
+      "points_px": [
+        [
+          2392.0,
+          920.1
+        ],
+        [
+          2465.0,
+          921.9
+        ],
+        [
+          2470.2,
+          927.1
+        ],
+        [
+          2466.7,
+          935.8
+        ],
+        [
+          2393.7,
+          935.8
+        ],
+        [
+          2388.5,
+          930.6
+        ]
+      ],
+      "confidence": "medium",
+      "notes": "Visual trace approximate; small curb geometry simplified."
+    },
+    {
+      "id": "east_row_end_north_2",
+      "material": "grass",
+      "points_px": [
+        [
+          2515.3,
+          921.9
+        ],
+        [
+          2570.9,
+          921.9
+        ],
+        [
+          2576.1,
+          928.8
+        ],
+        [
+          2570.9,
+          935.8
+        ],
+        [
+          2515.3,
+          935.8
+        ],
+        [
+          2510.1,
+          928.8
+        ]
+      ],
+      "confidence": "medium",
+      "notes": "Visual trace approximate; small curb geometry simplified."
+    },
+    {
+      "id": "east_row_end_north_3",
+      "material": "grass",
+      "points_px": [
+        [
+          2631.7,
+          921.9
+        ],
+        [
+          2689.1,
+          921.9
+        ],
+        [
+          2692.5,
+          928.8
+        ],
+        [
+          2687.3,
+          935.8
+        ],
+        [
+          2631.7,
+          935.8
+        ],
+        [
+          2626.5,
+          928.8
+        ]
+      ],
+      "confidence": "medium",
+      "notes": "Visual trace approximate; small curb geometry simplified."
+    },
+    {
+      "id": "east_row_end_north_4",
+      "material": "grass",
+      "points_px": [
+        [
+          2751.6,
+          921.9
+        ],
+        [
+          2815.9,
+          921.9
+        ],
+        [
+          2821.1,
+          928.8
+        ],
+        [
+          2815.9,
+          935.8
+        ],
+        [
+          2751.6,
+          935.8
+        ],
+        [
+          2746.4,
+          928.8
+        ]
+      ],
+      "confidence": "medium",
+      "notes": "Visual trace approximate; small curb geometry simplified."
+    },
+    {
+      "id": "east_row_mid_1",
+      "material": "grass",
+      "points_px": [
+        [
+          2397.2,
+          1241.3
+        ],
+        [
+          2465.0,
+          1243.1
+        ],
+        [
+          2470.2,
+          1250.0
+        ],
+        [
+          2463.2,
+          1258.7
+        ],
+        [
+          2397.2,
+          1256.9
+        ],
+        [
+          2392.0,
+          1250.0
+        ]
+      ],
+      "confidence": "medium",
+      "notes": "Visual trace approximate; small curb geometry simplified."
+    },
+    {
+      "id": "east_row_mid_2",
+      "material": "grass",
+      "points_px": [
+        [
+          2515.3,
+          1243.1
+        ],
+        [
+          2570.9,
+          1243.1
+        ],
+        [
+          2576.1,
+          1250.0
+        ],
+        [
+          2570.9,
+          1256.9
+        ],
+        [
+          2515.3,
+          1256.9
+        ],
+        [
+          2510.1,
+          1250.0
+        ]
+      ],
+      "confidence": "medium",
+      "notes": "Visual trace approximate; small curb geometry simplified."
+    },
+    {
+      "id": "east_row_mid_3",
+      "material": "grass",
+      "points_px": [
+        [
+          2631.7,
+          1243.1
+        ],
+        [
+          2689.1,
+          1243.1
+        ],
+        [
+          2694.3,
+          1250.0
+        ],
+        [
+          2687.3,
+          1256.9
+        ],
+        [
+          2631.7,
+          1256.9
+        ],
+        [
+          2626.5,
+          1250.0
+        ]
+      ],
+      "confidence": "medium",
+      "notes": "Visual trace approximate; small curb geometry simplified."
+    },
+    {
+      "id": "east_row_mid_4",
+      "material": "grass",
+      "points_px": [
+        [
+          2751.6,
+          1243.1
+        ],
+        [
+          2815.9,
+          1243.1
+        ],
+        [
+          2822.8,
+          1250.0
+        ],
+        [
+          2815.9,
+          1256.9
+        ],
+        [
+          2751.6,
+          1256.9
+        ],
+        [
+          2746.4,
+          1250.0
+        ]
+      ],
+      "confidence": "medium",
+      "notes": "Visual trace approximate; small curb geometry simplified."
+    },
+    {
+      "id": "east_row_south_1",
+      "material": "grass",
+      "points_px": [
+        [
+          2393.7,
+          1524.3
+        ],
+        [
+          2465.0,
+          1524.3
+        ],
+        [
+          2470.2,
+          1533.0
+        ],
+        [
+          2463.2,
+          1543.4
+        ],
+        [
+          2393.7,
+          1543.4
+        ],
+        [
+          2388.5,
+          1534.7
+        ]
+      ],
+      "confidence": "medium",
+      "notes": "Visual trace approximate; small curb geometry simplified."
+    },
+    {
+      "id": "east_row_south_2",
+      "material": "grass",
+      "points_px": [
+        [
+          2515.3,
+          1524.3
+        ],
+        [
+          2570.9,
+          1524.3
+        ],
+        [
+          2576.1,
+          1533.0
+        ],
+        [
+          2569.2,
+          1543.4
+        ],
+        [
+          2515.3,
+          1543.4
+        ],
+        [
+          2510.1,
+          1534.7
+        ]
+      ],
+      "confidence": "medium",
+      "notes": "Visual trace approximate; small curb geometry simplified."
+    },
+    {
+      "id": "east_row_south_3",
+      "material": "grass",
+      "points_px": [
+        [
+          2638.7,
+          1539.9
+        ],
+        [
+          2669.9,
+          1539.9
+        ],
+        [
+          2671.7,
+          1520.8
+        ],
+        [
+          2690.8,
+          1520.8
+        ],
+        [
+          2690.8,
+          1581.6
+        ],
+        [
+          2682.1,
+          1590.3
+        ],
+        [
+          2626.5,
+          1553.8
+        ]
+      ],
+      "confidence": "medium",
+      "notes": "Visual trace approximate; small curb geometry simplified."
+    },
+    {
+      "id": "east_row_south_4",
+      "material": "grass",
+      "points_px": [
+        [
+          2751.6,
+          1612.8
+        ],
+        [
+          2777.6,
+          1612.8
+        ],
+        [
+          2779.4,
+          1647.6
+        ],
+        [
+          2796.8,
+          1663.2
+        ],
+        [
+          2751.6,
+          1642.4
+        ],
+        [
+          2744.6,
+          1631.9
+        ]
+      ],
+      "confidence": "medium",
+      "notes": "Visual trace approximate; small curb geometry simplified."
+    },
+    {
+      "id": "east_south_diagonal_grass",
+      "material": "grass",
+      "points_px": [
+        [
+          2515.3,
+          1661.5
+        ],
+        [
+          2560.5,
+          1671.9
+        ],
+        [
+          2633.5,
+          1694.4
+        ],
+        [
+          2697.7,
+          1727.4
+        ],
+        [
+          2802.0,
+          1788.2
+        ],
+        [
+          2840.2,
+          1802.1
+        ],
+        [
+          2888.8,
+          1807.3
+        ],
+        [
+          2921.8,
+          1833.3
+        ],
+        [
+          2911.4,
+          1880.2
+        ],
+        [
+          2852.3,
+          1866.3
+        ],
+        [
+          2779.4,
+          1828.1
+        ],
+        [
+          2704.7,
+          1784.7
+        ],
+        [
+          2635.2,
+          1748.3
+        ],
+        [
+          2558.8,
+          1718.8
+        ],
+        [
+          2513.6,
+          1708.3
+        ],
+        [
+          2492.8,
+          1691.0
+        ],
+        [
+          2498.0,
+          1663.2
+        ]
+      ],
+      "confidence": "medium",
+      "notes": "Visual trace approximate; small curb geometry simplified."
+    },
+    {
+      "id": "entry_flagpole_rock_island",
+      "material": "landscape_rock",
+      "points_px": [
+        [
+          1862.2,
+          1512.2
+        ],
+        [
+          1883.0,
+          1510.4
+        ],
+        [
+          1895.2,
+          1515.6
+        ],
+        [
+          1903.9,
+          1526.0
+        ],
+        [
+          1902.1,
+          1536.5
+        ],
+        [
+          1891.7,
+          1543.4
+        ],
+        [
+          1863.9,
+          1543.4
+        ],
+        [
+          1857.0,
+          1536.5
+        ],
+        [
+          1857.0,
+          1524.3
+        ]
+      ],
+      "confidence": "medium",
+      "notes": "Likely flagpole/rock island adjacent entrance based on aerial and ground photo; location approximate."
+    },
+    {
+      "id": "pond_open_water",
+      "material": "water",
+      "points_px": [
+        [
+          637.5,
+          479.2
+        ],
+        [
+          670.5,
+          489.6
+        ],
+        [
+          705.3,
+          526.0
+        ],
+        [
+          729.6,
+          566.0
+        ],
+        [
+          753.9,
+          588.5
+        ],
+        [
+          786.9,
+          592.0
+        ],
+        [
+          816.4,
+          607.6
+        ],
+        [
+          856.4,
+          652.8
+        ],
+        [
+          894.6,
+          694.4
+        ],
+        [
+          938.0,
+          720.5
+        ],
+        [
+          988.4,
+          734.4
+        ],
+        [
+          1070.1,
+          736.1
+        ],
+        [
+          1148.2,
+          732.6
+        ],
+        [
+          1233.4,
+          729.2
+        ],
+        [
+          1309.8,
+          715.3
+        ],
+        [
+          1400.1,
+          696.2
+        ],
+        [
+          1481.8,
+          671.9
+        ],
+        [
+          1540.8,
+          649.3
+        ],
+        [
+          1612.0,
+          612.8
+        ],
+        [
+          1672.8,
+          569.4
+        ],
+        [
+          1728.4,
+          519.1
+        ],
+        [
+          1784.0,
+          458.3
+        ],
+        [
+          1827.4,
+          399.3
+        ],
+        [
+          1872.6,
+          329.9
+        ],
+        [
+          1910.8,
+          265.6
+        ],
+        [
+          1968.2,
+          201.4
+        ],
+        [
+          2022.0,
+          164.9
+        ],
+        [
+          2074.1,
+          152.8
+        ],
+        [
+          2114.1,
+          161.5
+        ],
+        [
+          2145.3,
+          191.0
+        ],
+        [
+          2159.2,
+          237.8
+        ],
+        [
+          2155.8,
+          281.2
+        ],
+        [
+          2140.1,
+          342.0
+        ],
+        [
+          2119.3,
+          409.7
+        ],
+        [
+          2091.5,
+          474.0
+        ],
+        [
+          2051.5,
+          539.9
+        ],
+        [
+          2009.8,
+          592.0
+        ],
+        [
+          1961.2,
+          631.9
+        ],
+        [
+          1907.4,
+          666.7
+        ],
+        [
+          1851.8,
+          694.4
+        ],
+        [
+          1780.5,
+          717.0
+        ],
+        [
+          1704.1,
+          732.6
+        ],
+        [
+          1622.5,
+          743.1
+        ],
+        [
+          1542.6,
+          760.4
+        ],
+        [
+          1464.4,
+          776.0
+        ],
+        [
+          1381.0,
+          783.0
+        ],
+        [
+          1299.4,
+          795.1
+        ],
+        [
+          1212.5,
+          809.0
+        ],
+        [
+          1137.8,
+          812.5
+        ],
+        [
+          1064.9,
+          817.7
+        ],
+        [
+          990.2,
+          828.1
+        ],
+        [
+          917.2,
+          835.1
+        ],
+        [
+          852.9,
+          843.8
+        ],
+        [
+          788.7,
+          855.9
+        ],
+        [
+          731.3,
+          855.9
+        ],
+        [
+          689.6,
+          845.5
+        ],
+        [
+          675.7,
+          829.9
+        ],
+        [
+          682.7,
+          793.4
+        ],
+        [
+          700.1,
+          748.3
+        ],
+        [
+          719.2,
+          703.1
+        ],
+        [
+          726.1,
+          659.7
+        ],
+        [
+          715.7,
+          614.6
+        ],
+        [
+          694.8,
+          579.9
+        ],
+        [
+          668.8,
+          545.1
+        ],
+        [
+          649.7,
+          515.6
+        ]
+      ],
+      "confidence": "medium",
+      "notes": "Approximate visible waterline. Marsh vegetation and shadows obscure small inlet edges. Do not infer depth."
+    },
+    {
+      "id": "pond_southwest_inlet",
+      "material": "water",
+      "points_px": [
+        [
+          679.2,
+          835.1
+        ],
+        [
+          682.7,
+          861.1
+        ],
+        [
+          661.8,
+          878.5
+        ],
+        [
+          647.9,
+          916.7
+        ],
+        [
+          630.6,
+          951.4
+        ],
+        [
+          608.0,
+          970.5
+        ],
+        [
+          606.3,
+          939.2
+        ],
+        [
+          623.6,
+          902.8
+        ],
+        [
+          641.0,
+          871.5
+        ],
+        [
+          660.1,
+          843.8
+        ]
+      ],
+      "confidence": "low",
+      "notes": "Narrow shaded outlet/inlet at southwest pond edge; lower confidence."
+    }
+  ],
+  "polylines": [
+    {
+      "id": "pioneer_creek_drive_center",
+      "kind": "road_centerline",
+      "width_m": 10.8,
+      "points_px": [
+        [
+          0.0,
+          1965.3
+        ],
+        [
+          86.9,
+          2013.9
+        ],
+        [
+          172.0,
+          2066.0
+        ],
+        [
+          264.0,
+          2026.0
+        ],
+        [
+          439.5,
+          1934.0
+        ],
+        [
+          608.0,
+          1852.4
+        ],
+        [
+          719.2,
+          1783.0
+        ],
+        [
+          819.9,
+          1753.5
+        ],
+        [
+          1266.4,
+          1753.5
+        ],
+        [
+          1789.2,
+          1753.5
+        ],
+        [
+          2360.7,
+          1753.5
+        ],
+        [
+          2491.0,
+          1765.6
+        ],
+        [
+          2588.3,
+          1793.4
+        ],
+        [
+          2696.0,
+          1849.0
+        ],
+        [
+          2841.9,
+          1934.0
+        ],
+        [
+          3000.0,
+          2024.3
+        ]
+      ],
+      "notes": "Approximate center of paved road, not a cadastral alignment."
+    },
+    {
+      "id": "south_road_branch",
+      "kind": "road_centerline",
+      "width_m": 9.8,
+      "points_px": [
+        [
+          620.2,
+          1899.3
+        ],
+        [
+          675.7,
+          2027.8
+        ],
+        [
+          726.1,
+          2173.6
+        ],
+        [
+          747.0,
+          2314.2
+        ],
+        [
+          750.4,
+          2500.0
+        ]
+      ],
+      "notes": "Approximate continuation south at west of southern central neighbor."
+    }
+  ],
+  "parking_rows": [
+    {
+      "id": "hq_north_edge",
+      "car_centerline_px": [
+        [
+          1134.3,
+          1008.7
+        ],
+        [
+          1499.1,
+          1015.6
+        ]
+      ],
+      "estimated_bays": 22,
+      "vehicle_heading_image": [
+        0,
+        -1
+      ],
+      "bay_depth_px": 59.0,
+      "notes": "Visual trace approximate; count inferred from visible stripe rhythm, some spaces occluded by vehicles.",
+      "suggested_aerial_occupancy_fraction": 0.88,
+      "occupancy_note": "Visual impression from one aerial capture; use for scene dressing only, not an operational occupancy claim."
+    },
+    {
+      "id": "hq_west_row_1",
+      "car_centerline_px": [
+        [
+          830.3,
+          1156.2
+        ],
+        [
+          1209.0,
+          1144.1
+        ]
+      ],
+      "estimated_bays": 21,
+      "vehicle_heading_image": [
+        0,
+        -1
+      ],
+      "bay_depth_px": 59.0,
+      "notes": "Visual trace approximate; count inferred from visible stripe rhythm, some spaces occluded by vehicles.",
+      "suggested_aerial_occupancy_fraction": 0.88,
+      "occupancy_note": "Visual impression from one aerial capture; use for scene dressing only, not an operational occupancy claim."
+    },
+    {
+      "id": "hq_west_row_2",
+      "car_centerline_px": [
+        [
+          875.5,
+          1250.0
+        ],
+        [
+          1212.5,
+          1246.5
+        ]
+      ],
+      "estimated_bays": 20,
+      "vehicle_heading_image": [
+        0,
+        1
+      ],
+      "bay_depth_px": 59.0,
+      "notes": "Visual trace approximate; count inferred from visible stripe rhythm, some spaces occluded by vehicles.",
+      "suggested_aerial_occupancy_fraction": 0.88,
+      "occupancy_note": "Visual impression from one aerial capture; use for scene dressing only, not an operational occupancy claim."
+    },
+    {
+      "id": "hq_west_row_3",
+      "car_centerline_px": [
+        [
+          847.7,
+          1336.8
+        ],
+        [
+          1210.8,
+          1302.1
+        ]
+      ],
+      "estimated_bays": 20,
+      "vehicle_heading_image": [
+        0,
+        -1
+      ],
+      "bay_depth_px": 59.0,
+      "notes": "Visual trace approximate; count inferred from visible stripe rhythm, some spaces occluded by vehicles.",
+      "suggested_aerial_occupancy_fraction": 0.88,
+      "occupancy_note": "Visual impression from one aerial capture; use for scene dressing only, not an operational occupancy claim."
+    },
+    {
+      "id": "hq_west_row_4",
+      "car_centerline_px": [
+        [
+          879.0,
+          1432.3
+        ],
+        [
+          1184.7,
+          1401.0
+        ]
+      ],
+      "estimated_bays": 17,
+      "vehicle_heading_image": [
+        0,
+        1
+      ],
+      "bay_depth_px": 59.0,
+      "notes": "Visual trace approximate; count inferred from visible stripe rhythm, some spaces occluded by vehicles.",
+      "suggested_aerial_occupancy_fraction": 0.88,
+      "occupancy_note": "Visual impression from one aerial capture; use for scene dressing only, not an operational occupancy claim."
+    },
+    {
+      "id": "hq_west_row_5",
+      "car_centerline_px": [
+        [
+          880.7,
+          1517.4
+        ],
+        [
+          1085.7,
+          1515.6
+        ]
+      ],
+      "estimated_bays": 13,
+      "vehicle_heading_image": [
+        0,
+        -1
+      ],
+      "bay_depth_px": 59.0,
+      "notes": "Visual trace approximate; count inferred from visible stripe rhythm, some spaces occluded by vehicles.",
+      "suggested_aerial_occupancy_fraction": 0.88,
+      "occupancy_note": "Visual impression from one aerial capture; use for scene dressing only, not an operational occupancy claim."
+    },
+    {
+      "id": "hq_west_building_edge",
+      "car_centerline_px": [
+        [
+          1309.8,
+          1192.7
+        ],
+        [
+          1309.8,
+          1342.0
+        ]
+      ],
+      "estimated_bays": 9,
+      "vehicle_heading_image": [
+        -1,
+        0
+      ],
+      "bay_depth_px": 59.0,
+      "notes": "Visual trace approximate; count inferred from visible stripe rhythm, some spaces occluded by vehicles.",
+      "suggested_aerial_occupancy_fraction": 0.88,
+      "occupancy_note": "Visual impression from one aerial capture; use for scene dressing only, not an operational occupancy claim."
+    },
+    {
+      "id": "hq_west_boundary_south",
+      "car_centerline_px": [
+        [
+          757.4,
+          1458.3
+        ],
+        [
+          816.4,
+          1605.9
+        ]
+      ],
+      "estimated_bays": 9,
+      "vehicle_heading_image": [
+        1,
+        -0.25
+      ],
+      "bay_depth_px": 59.0,
+      "notes": "Visual trace approximate; count inferred from visible stripe rhythm, some spaces occluded by vehicles.",
+      "suggested_aerial_occupancy_fraction": 0.88,
+      "occupancy_note": "Visual impression from one aerial capture; use for scene dressing only, not an operational occupancy claim."
+    },
+    {
+      "id": "hq_front_west_island",
+      "car_centerline_px": [
+        [
+          915.5,
+          1621.5
+        ],
+        [
+          1023.2,
+          1621.5
+        ]
+      ],
+      "estimated_bays": 7,
+      "vehicle_heading_image": [
+        0,
+        1
+      ],
+      "bay_depth_px": 59.0,
+      "notes": "Visual trace approximate; count inferred from visible stripe rhythm, some spaces occluded by vehicles.",
+      "suggested_aerial_occupancy_fraction": 0.88,
+      "occupancy_note": "Visual impression from one aerial capture; use for scene dressing only, not an operational occupancy claim."
+    },
+    {
+      "id": "hq_front_long_a",
+      "car_centerline_px": [
+        [
+          1146.5,
+          1605.9
+        ],
+        [
+          1672.8,
+          1611.1
+        ]
+      ],
+      "estimated_bays": 32,
+      "vehicle_heading_image": [
+        0,
+        1
+      ],
+      "bay_depth_px": 59.0,
+      "notes": "Visual trace approximate; count inferred from visible stripe rhythm, some spaces occluded by vehicles.",
+      "suggested_aerial_occupancy_fraction": 0.88,
+      "occupancy_note": "Visual impression from one aerial capture; use for scene dressing only, not an operational occupancy claim."
+    },
+    {
+      "id": "hq_front_east",
+      "car_centerline_px": [
+        [
+          1987.3,
+          1609.4
+        ],
+        [
+          2171.4,
+          1611.1
+        ]
+      ],
+      "estimated_bays": 11,
+      "vehicle_heading_image": [
+        0,
+        1
+      ],
+      "bay_depth_px": 59.0,
+      "notes": "Visual trace approximate; count inferred from visible stripe rhythm, some spaces occluded by vehicles.",
+      "suggested_aerial_occupancy_fraction": 0.88,
+      "occupancy_note": "Visual impression from one aerial capture; use for scene dressing only, not an operational occupancy claim."
+    },
+    {
+      "id": "hq_entry_south_wall",
+      "car_centerline_px": [
+        [
+          1467.9,
+          1519.1
+        ],
+        [
+          1594.7,
+          1519.1
+        ]
+      ],
+      "estimated_bays": 8,
+      "vehicle_heading_image": [
+        0,
+        -1
+      ],
+      "bay_depth_px": 59.0,
+      "notes": "Visual trace approximate; count inferred from visible stripe rhythm, some spaces occluded by vehicles.",
+      "suggested_aerial_occupancy_fraction": 0.88,
+      "occupancy_note": "Visual impression from one aerial capture; use for scene dressing only, not an operational occupancy claim."
+    },
+    {
+      "id": "hq_entry_accessible",
+      "car_centerline_px": [
+        [
+          1912.6,
+          1354.2
+        ],
+        [
+          2056.7,
+          1274.3
+        ]
+      ],
+      "estimated_bays": 7,
+      "vehicle_heading_image": [
+        -0.48,
+        -0.88
+      ],
+      "bay_depth_px": 59.0,
+      "notes": "Accessible row beside east facade, diagonally aligned; include striped access aisles; count approximate.",
+      "suggested_aerial_occupancy_fraction": 0.3,
+      "occupancy_note": "Visual impression from one aerial capture; use for scene dressing only, not an operational occupancy claim."
+    },
+    {
+      "id": "entry_outer_row_1",
+      "car_centerline_px": [
+        [
+          1969.9,
+          1428.8
+        ],
+        [
+          1969.9,
+          1510.4
+        ]
+      ],
+      "estimated_bays": 6,
+      "vehicle_heading_image": [
+        -1,
+        0
+      ],
+      "bay_depth_px": 53.8,
+      "notes": "Visual trace approximate; count inferred from visible stripe rhythm, some spaces occluded by vehicles.",
+      "suggested_aerial_occupancy_fraction": 0.88,
+      "occupancy_note": "Visual impression from one aerial capture; use for scene dressing only, not an operational occupancy claim."
+    },
+    {
+      "id": "entry_outer_row_2",
+      "car_centerline_px": [
+        [
+          2011.6,
+          1414.9
+        ],
+        [
+          2011.6,
+          1510.4
+        ]
+      ],
+      "estimated_bays": 7,
+      "vehicle_heading_image": [
+        1,
+        0
+      ],
+      "bay_depth_px": 53.8,
+      "notes": "Visual trace approximate; count inferred from visible stripe rhythm, some spaces occluded by vehicles.",
+      "suggested_aerial_occupancy_fraction": 0.88,
+      "occupancy_note": "Visual impression from one aerial capture; use for scene dressing only, not an operational occupancy claim."
+    },
+    {
+      "id": "entry_outer_row_3",
+      "car_centerline_px": [
+        [
+          2093.2,
+          1359.4
+        ],
+        [
+          2093.2,
+          1510.4
+        ]
+      ],
+      "estimated_bays": 10,
+      "vehicle_heading_image": [
+        -1,
+        0
+      ],
+      "bay_depth_px": 53.8,
+      "notes": "Visual trace approximate; count inferred from visible stripe rhythm, some spaces occluded by vehicles.",
+      "suggested_aerial_occupancy_fraction": 0.88,
+      "occupancy_note": "Visual impression from one aerial capture; use for scene dressing only, not an operational occupancy claim."
+    },
+    {
+      "id": "entry_outer_row_4",
+      "car_centerline_px": [
+        [
+          2136.7,
+          1345.5
+        ],
+        [
+          2136.7,
+          1510.4
+        ]
+      ],
+      "estimated_bays": 11,
+      "vehicle_heading_image": [
+        1,
+        0
+      ],
+      "bay_depth_px": 53.8,
+      "notes": "Visual trace approximate; count inferred from visible stripe rhythm, some spaces occluded by vehicles.",
+      "suggested_aerial_occupancy_fraction": 0.88,
+      "occupancy_note": "Visual impression from one aerial capture; use for scene dressing only, not an operational occupancy claim."
+    },
+    {
+      "id": "east_lot_north",
+      "car_centerline_px": [
+        [
+          2266.9,
+          852.4
+        ],
+        [
+          2857.6,
+          852.4
+        ]
+      ],
+      "estimated_bays": 33,
+      "vehicle_heading_image": [
+        0,
+        -1
+      ],
+      "bay_depth_px": 59.0,
+      "notes": "Visual trace approximate; count inferred from visible stripe rhythm, some spaces occluded by vehicles.",
+      "suggested_aerial_occupancy_fraction": 0.12,
+      "occupancy_note": "Visual impression from one aerial capture; use for scene dressing only, not an operational occupancy claim."
+    },
+    {
+      "id": "east_lot_west_edge",
+      "car_centerline_px": [
+        [
+          2133.2,
+          953.1
+        ],
+        [
+          2133.2,
+          1197.9
+        ]
+      ],
+      "estimated_bays": 14,
+      "vehicle_heading_image": [
+        -1,
+        0
+      ],
+      "bay_depth_px": 59.0,
+      "notes": "Visual trace approximate; count inferred from visible stripe rhythm, some spaces occluded by vehicles.",
+      "suggested_aerial_occupancy_fraction": 0.9,
+      "occupancy_note": "Visual impression from one aerial capture; use for scene dressing only, not an operational occupancy claim."
+    },
+    {
+      "id": "east_lot_median_west_north",
+      "car_centerline_px": [
+        [
+          2221.8,
+          953.1
+        ],
+        [
+          2221.8,
+          1197.9
+        ]
+      ],
+      "estimated_bays": 14,
+      "vehicle_heading_image": [
+        1,
+        0
+      ],
+      "bay_depth_px": 59.0,
+      "notes": "Visual trace approximate; count inferred from visible stripe rhythm, some spaces occluded by vehicles.",
+      "suggested_aerial_occupancy_fraction": 0.9,
+      "occupancy_note": "Visual impression from one aerial capture; use for scene dressing only, not an operational occupancy claim."
+    },
+    {
+      "id": "east_lot_median_east_north",
+      "car_centerline_px": [
+        [
+          2299.9,
+          956.6
+        ],
+        [
+          2299.9,
+          1196.2
+        ]
+      ],
+      "estimated_bays": 14,
+      "vehicle_heading_image": [
+        -1,
+        0
+      ],
+      "bay_depth_px": 59.0,
+      "notes": "Visual trace approximate; count inferred from visible stripe rhythm, some spaces occluded by vehicles.",
+      "suggested_aerial_occupancy_fraction": 0.9,
+      "occupancy_note": "Visual impression from one aerial capture; use for scene dressing only, not an operational occupancy claim."
+    },
+    {
+      "id": "east_lot_median_west_south",
+      "car_centerline_px": [
+        [
+          2221.8,
+          1234.4
+        ],
+        [
+          2221.8,
+          1510.4
+        ]
+      ],
+      "estimated_bays": 16,
+      "vehicle_heading_image": [
+        1,
+        0
+      ],
+      "bay_depth_px": 59.0,
+      "notes": "Visual trace approximate; count inferred from visible stripe rhythm, some spaces occluded by vehicles.",
+      "suggested_aerial_occupancy_fraction": 0.9,
+      "occupancy_note": "Visual impression from one aerial capture; use for scene dressing only, not an operational occupancy claim."
+    },
+    {
+      "id": "east_lot_median_east_south",
+      "car_centerline_px": [
+        [
+          2299.9,
+          1272.6
+        ],
+        [
+          2299.9,
+          1510.4
+        ]
+      ],
+      "estimated_bays": 14,
+      "vehicle_heading_image": [
+        -1,
+        0
+      ],
+      "bay_depth_px": 59.0,
+      "notes": "Visual trace approximate; count inferred from visible stripe rhythm, some spaces occluded by vehicles.",
+      "suggested_aerial_occupancy_fraction": 0.9,
+      "occupancy_note": "Visual impression from one aerial capture; use for scene dressing only, not an operational occupancy claim."
+    },
+    {
+      "id": "east_lot_strip1_west_north",
+      "car_centerline_px": [
+        [
+          2392.0,
+          947.9
+        ],
+        [
+          2392.0,
+          1225.7
+        ]
+      ],
+      "estimated_bays": 16,
+      "vehicle_heading_image": [
+        1,
+        0
+      ],
+      "bay_depth_px": 59.0,
+      "notes": "Visual trace approximate; count inferred from visible stripe rhythm, some spaces occluded by vehicles.",
+      "suggested_aerial_occupancy_fraction": 0.7,
+      "occupancy_note": "Visual impression from one aerial capture; use for scene dressing only, not an operational occupancy claim."
+    },
+    {
+      "id": "east_lot_strip1_east_north",
+      "car_centerline_px": [
+        [
+          2465.0,
+          947.9
+        ],
+        [
+          2465.0,
+          1225.7
+        ]
+      ],
+      "estimated_bays": 16,
+      "vehicle_heading_image": [
+        -1,
+        0
+      ],
+      "bay_depth_px": 59.0,
+      "notes": "Visual trace approximate; count inferred from visible stripe rhythm, some spaces occluded by vehicles.",
+      "suggested_aerial_occupancy_fraction": 0,
+      "occupancy_note": "Visual impression from one aerial capture; use for scene dressing only, not an operational occupancy claim."
+    },
+    {
+      "id": "east_lot_strip2_west_north",
+      "car_centerline_px": [
+        [
+          2511.9,
+          947.9
+        ],
+        [
+          2511.9,
+          1225.7
+        ]
+      ],
+      "estimated_bays": 16,
+      "vehicle_heading_image": [
+        1,
+        0
+      ],
+      "bay_depth_px": 59.0,
+      "notes": "Visual trace approximate; count inferred from visible stripe rhythm, some spaces occluded by vehicles.",
+      "suggested_aerial_occupancy_fraction": 0,
+      "occupancy_note": "Visual impression from one aerial capture; use for scene dressing only, not an operational occupancy claim."
+    },
+    {
+      "id": "east_lot_strip2_east_north",
+      "car_centerline_px": [
+        [
+          2581.4,
+          947.9
+        ],
+        [
+          2581.4,
+          1225.7
+        ]
+      ],
+      "estimated_bays": 16,
+      "vehicle_heading_image": [
+        -1,
+        0
+      ],
+      "bay_depth_px": 59.0,
+      "notes": "Visual trace approximate; count inferred from visible stripe rhythm, some spaces occluded by vehicles.",
+      "suggested_aerial_occupancy_fraction": 0,
+      "occupancy_note": "Visual impression from one aerial capture; use for scene dressing only, not an operational occupancy claim."
+    },
+    {
+      "id": "east_lot_strip3_west_north",
+      "car_centerline_px": [
+        [
+          2635.2,
+          947.9
+        ],
+        [
+          2635.2,
+          1225.7
+        ]
+      ],
+      "estimated_bays": 16,
+      "vehicle_heading_image": [
+        1,
+        0
+      ],
+      "bay_depth_px": 59.0,
+      "notes": "Visual trace approximate; count inferred from visible stripe rhythm, some spaces occluded by vehicles.",
+      "suggested_aerial_occupancy_fraction": 0,
+      "occupancy_note": "Visual impression from one aerial capture; use for scene dressing only, not an operational occupancy claim."
+    },
+    {
+      "id": "east_lot_strip3_east_north",
+      "car_centerline_px": [
+        [
+          2704.7,
+          947.9
+        ],
+        [
+          2704.7,
+          1225.7
+        ]
+      ],
+      "estimated_bays": 16,
+      "vehicle_heading_image": [
+        -1,
+        0
+      ],
+      "bay_depth_px": 59.0,
+      "notes": "Visual trace approximate; count inferred from visible stripe rhythm, some spaces occluded by vehicles.",
+      "suggested_aerial_occupancy_fraction": 0,
+      "occupancy_note": "Visual impression from one aerial capture; use for scene dressing only, not an operational occupancy claim."
+    },
+    {
+      "id": "east_lot_strip4_west_north",
+      "car_centerline_px": [
+        [
+          2756.8,
+          947.9
+        ],
+        [
+          2756.8,
+          1225.7
+        ]
+      ],
+      "estimated_bays": 16,
+      "vehicle_heading_image": [
+        1,
+        0
+      ],
+      "bay_depth_px": 59.0,
+      "notes": "Visual trace approximate; count inferred from visible stripe rhythm, some spaces occluded by vehicles.",
+      "suggested_aerial_occupancy_fraction": 0,
+      "occupancy_note": "Visual impression from one aerial capture; use for scene dressing only, not an operational occupancy claim."
+    },
+    {
+      "id": "east_lot_strip4_east_north",
+      "car_centerline_px": [
+        [
+          2826.3,
+          947.9
+        ],
+        [
+          2826.3,
+          1225.7
+        ]
+      ],
+      "estimated_bays": 16,
+      "vehicle_heading_image": [
+        -1,
+        0
+      ],
+      "bay_depth_px": 59.0,
+      "notes": "Visual trace approximate; count inferred from visible stripe rhythm, some spaces occluded by vehicles.",
+      "suggested_aerial_occupancy_fraction": 0,
+      "occupancy_note": "Visual impression from one aerial capture; use for scene dressing only, not an operational occupancy claim."
+    },
+    {
+      "id": "east_lot_east_edge",
+      "car_centerline_px": [
+        [
+          2897.5,
+          897.6
+        ],
+        [
+          2897.5,
+          1717.0
+        ]
+      ],
+      "estimated_bays": 46,
+      "vehicle_heading_image": [
+        1,
+        0
+      ],
+      "bay_depth_px": 59.0,
+      "notes": "Visual trace approximate; count inferred from visible stripe rhythm, some spaces occluded by vehicles.",
+      "suggested_aerial_occupancy_fraction": 0,
+      "occupancy_note": "Visual impression from one aerial capture; use for scene dressing only, not an operational occupancy claim."
+    },
+    {
+      "id": "east_lot_strip1_west_south",
+      "car_centerline_px": [
+        [
+          2392.0,
+          1272.6
+        ],
+        [
+          2392.0,
+          1510.4
+        ]
+      ],
+      "estimated_bays": 14,
+      "vehicle_heading_image": [
+        1,
+        0
+      ],
+      "bay_depth_px": 59.0,
+      "notes": "Visual trace approximate; count inferred from visible stripe rhythm, some spaces occluded by vehicles.",
+      "suggested_aerial_occupancy_fraction": 0.7,
+      "occupancy_note": "Visual impression from one aerial capture; use for scene dressing only, not an operational occupancy claim."
+    },
+    {
+      "id": "east_lot_strip1_east_south",
+      "car_centerline_px": [
+        [
+          2465.0,
+          1272.6
+        ],
+        [
+          2465.0,
+          1510.4
+        ]
+      ],
+      "estimated_bays": 14,
+      "vehicle_heading_image": [
+        -1,
+        0
+      ],
+      "bay_depth_px": 59.0,
+      "notes": "Visual trace approximate; count inferred from visible stripe rhythm, some spaces occluded by vehicles.",
+      "suggested_aerial_occupancy_fraction": 0,
+      "occupancy_note": "Visual impression from one aerial capture; use for scene dressing only, not an operational occupancy claim."
+    },
+    {
+      "id": "east_lot_strip2_west_south",
+      "car_centerline_px": [
+        [
+          2511.9,
+          1272.6
+        ],
+        [
+          2511.9,
+          1510.4
+        ]
+      ],
+      "estimated_bays": 14,
+      "vehicle_heading_image": [
+        1,
+        0
+      ],
+      "bay_depth_px": 59.0,
+      "notes": "Visual trace approximate; count inferred from visible stripe rhythm, some spaces occluded by vehicles.",
+      "suggested_aerial_occupancy_fraction": 0,
+      "occupancy_note": "Visual impression from one aerial capture; use for scene dressing only, not an operational occupancy claim."
+    },
+    {
+      "id": "east_lot_strip2_east_south",
+      "car_centerline_px": [
+        [
+          2581.4,
+          1272.6
+        ],
+        [
+          2581.4,
+          1510.4
+        ]
+      ],
+      "estimated_bays": 14,
+      "vehicle_heading_image": [
+        -1,
+        0
+      ],
+      "bay_depth_px": 59.0,
+      "notes": "Visual trace approximate; count inferred from visible stripe rhythm, some spaces occluded by vehicles.",
+      "suggested_aerial_occupancy_fraction": 0,
+      "occupancy_note": "Visual impression from one aerial capture; use for scene dressing only, not an operational occupancy claim."
+    },
+    {
+      "id": "east_lot_strip3_west_south",
+      "car_centerline_px": [
+        [
+          2635.2,
+          1272.6
+        ],
+        [
+          2635.2,
+          1548.6
+        ]
+      ],
+      "estimated_bays": 16,
+      "vehicle_heading_image": [
+        1,
+        0
+      ],
+      "bay_depth_px": 59.0,
+      "notes": "Visual trace approximate; count inferred from visible stripe rhythm, some spaces occluded by vehicles.",
+      "suggested_aerial_occupancy_fraction": 0,
+      "occupancy_note": "Visual impression from one aerial capture; use for scene dressing only, not an operational occupancy claim."
+    },
+    {
+      "id": "east_lot_strip3_east_south",
+      "car_centerline_px": [
+        [
+          2704.7,
+          1272.6
+        ],
+        [
+          2704.7,
+          1592.0
+        ]
+      ],
+      "estimated_bays": 18,
+      "vehicle_heading_image": [
+        -1,
+        0
+      ],
+      "bay_depth_px": 59.0,
+      "notes": "Visual trace approximate; count inferred from visible stripe rhythm, some spaces occluded by vehicles.",
+      "suggested_aerial_occupancy_fraction": 0,
+      "occupancy_note": "Visual impression from one aerial capture; use for scene dressing only, not an operational occupancy claim."
+    },
+    {
+      "id": "east_lot_strip4_west_south",
+      "car_centerline_px": [
+        [
+          2756.8,
+          1272.6
+        ],
+        [
+          2756.8,
+          1637.2
+        ]
+      ],
+      "estimated_bays": 21,
+      "vehicle_heading_image": [
+        1,
+        0
+      ],
+      "bay_depth_px": 59.0,
+      "notes": "Visual trace approximate; count inferred from visible stripe rhythm, some spaces occluded by vehicles.",
+      "suggested_aerial_occupancy_fraction": 0,
+      "occupancy_note": "Visual impression from one aerial capture; use for scene dressing only, not an operational occupancy claim."
+    },
+    {
+      "id": "east_lot_strip4_east_south",
+      "car_centerline_px": [
+        [
+          2826.3,
+          1272.6
+        ],
+        [
+          2826.3,
+          1692.7
+        ]
+      ],
+      "estimated_bays": 24,
+      "vehicle_heading_image": [
+        -1,
+        0
+      ],
+      "bay_depth_px": 59.0,
+      "notes": "Visual trace approximate; count inferred from visible stripe rhythm, some spaces occluded by vehicles.",
+      "suggested_aerial_occupancy_fraction": 0,
+      "occupancy_note": "Visual impression from one aerial capture; use for scene dressing only, not an operational occupancy claim."
+    },
+    {
+      "id": "east_lot_south_diagonal",
+      "car_centerline_px": [
+        [
+          2555.3,
+          1633.7
+        ],
+        [
+          2810.7,
+          1776.0
+        ]
+      ],
+      "estimated_bays": 16,
+      "vehicle_heading_image": [
+        -0.48,
+        0.88
+      ],
+      "bay_depth_px": 59.0,
+      "notes": "Visual trace approximate; count inferred from visible stripe rhythm, some spaces occluded by vehicles.",
+      "suggested_aerial_occupancy_fraction": 0,
+      "occupancy_note": "Visual impression from one aerial capture; use for scene dressing only, not an operational occupancy claim."
+    }
+  ],
+  "trees": [
+    {
+      "id": "tree_001",
+      "center_px": [
+        658.4,
+        1059.0
+      ],
+      "crown_radius_px": 26.0,
+      "type": "deciduous_or_mixed_unresolved",
+      "confidence": "medium-low"
+    },
+    {
+      "id": "tree_002",
+      "center_px": [
+        644.5,
+        1197.9
+      ],
+      "crown_radius_px": 13.9,
+      "type": "deciduous_or_mixed_unresolved",
+      "confidence": "medium-low"
+    },
+    {
+      "id": "tree_003",
+      "center_px": [
+        667.1,
+        1291.7
+      ],
+      "crown_radius_px": 17.4,
+      "type": "deciduous_or_mixed_unresolved",
+      "confidence": "medium-low"
+    },
+    {
+      "id": "tree_004",
+      "center_px": [
+        679.2,
+        1369.8
+      ],
+      "crown_radius_px": 17.4,
+      "type": "deciduous_or_mixed_unresolved",
+      "confidence": "medium-low"
+    },
+    {
+      "id": "tree_005",
+      "center_px": [
+        707.0,
+        1453.1
+      ],
+      "crown_radius_px": 17.4,
+      "type": "deciduous_or_mixed_unresolved",
+      "confidence": "medium-low"
+    },
+    {
+      "id": "tree_006",
+      "center_px": [
+        727.9,
+        1539.9
+      ],
+      "crown_radius_px": 17.4,
+      "type": "deciduous_or_mixed_unresolved",
+      "confidence": "medium-low"
+    },
+    {
+      "id": "tree_007",
+      "center_px": [
+        738.3,
+        1590.3
+      ],
+      "crown_radius_px": 15.6,
+      "type": "deciduous_or_mixed_unresolved",
+      "confidence": "medium-low"
+    },
+    {
+      "id": "tree_008",
+      "center_px": [
+        482.9,
+        1843.8
+      ],
+      "crown_radius_px": 20.8,
+      "type": "deciduous_or_mixed_unresolved",
+      "confidence": "medium-low"
+    },
+    {
+      "id": "tree_009",
+      "center_px": [
+        981.5,
+        1652.8
+      ],
+      "crown_radius_px": 22.6,
+      "type": "deciduous_or_mixed_unresolved",
+      "confidence": "medium-low"
+    },
+    {
+      "id": "tree_010",
+      "center_px": [
+        1163.9,
+        1651.0
+      ],
+      "crown_radius_px": 20.8,
+      "type": "deciduous_or_mixed_unresolved",
+      "confidence": "medium-low"
+    },
+    {
+      "id": "tree_011",
+      "center_px": [
+        1283.7,
+        1652.8
+      ],
+      "crown_radius_px": 19.1,
+      "type": "deciduous_or_mixed_unresolved",
+      "confidence": "medium-low"
+    },
+    {
+      "id": "tree_012",
+      "center_px": [
+        1429.6,
+        1654.5
+      ],
+      "crown_radius_px": 19.1,
+      "type": "deciduous_or_mixed_unresolved",
+      "confidence": "medium-low"
+    },
+    {
+      "id": "tree_013",
+      "center_px": [
+        1566.9,
+        1654.5
+      ],
+      "crown_radius_px": 19.1,
+      "type": "deciduous_or_mixed_unresolved",
+      "confidence": "medium-low"
+    },
+    {
+      "id": "tree_014",
+      "center_px": [
+        1686.7,
+        1652.8
+      ],
+      "crown_radius_px": 19.1,
+      "type": "deciduous_or_mixed_unresolved",
+      "confidence": "medium-low"
+    },
+    {
+      "id": "tree_015",
+      "center_px": [
+        1799.7,
+        1654.5
+      ],
+      "crown_radius_px": 22.6,
+      "type": "deciduous_or_mixed_unresolved",
+      "confidence": "medium-low"
+    },
+    {
+      "id": "tree_016",
+      "center_px": [
+        2171.4,
+        1666.7
+      ],
+      "crown_radius_px": 20.8,
+      "type": "deciduous_or_mixed_unresolved",
+      "confidence": "medium-low"
+    },
+    {
+      "id": "tree_017",
+      "center_px": [
+        2397.2,
+        1664.9
+      ],
+      "crown_radius_px": 17.4,
+      "type": "deciduous_or_mixed_unresolved",
+      "confidence": "medium-low"
+    },
+    {
+      "id": "tree_018",
+      "center_px": [
+        2624.8,
+        1706.6
+      ],
+      "crown_radius_px": 20.8,
+      "type": "deciduous_or_mixed_unresolved",
+      "confidence": "medium-low"
+    },
+    {
+      "id": "tree_019",
+      "center_px": [
+        2769.0,
+        1793.4
+      ],
+      "crown_radius_px": 19.1,
+      "type": "deciduous_or_mixed_unresolved",
+      "confidence": "medium-low"
+    },
+    {
+      "id": "tree_020",
+      "center_px": [
+        2828.0,
+        1822.9
+      ],
+      "crown_radius_px": 17.4,
+      "type": "deciduous_or_mixed_unresolved",
+      "confidence": "medium-low"
+    },
+    {
+      "id": "tree_021",
+      "center_px": [
+        2880.1,
+        1843.8
+      ],
+      "crown_radius_px": 17.4,
+      "type": "deciduous_or_mixed_unresolved",
+      "confidence": "medium-low"
+    },
+    {
+      "id": "tree_022",
+      "center_px": [
+        2925.3,
+        876.7
+      ],
+      "crown_radius_px": 17.4,
+      "type": "deciduous_or_mixed_unresolved",
+      "confidence": "medium-low"
+    },
+    {
+      "id": "tree_023",
+      "center_px": [
+        2925.3,
+        994.8
+      ],
+      "crown_radius_px": 20.8,
+      "type": "deciduous_or_mixed_unresolved",
+      "confidence": "medium-low"
+    },
+    {
+      "id": "tree_024",
+      "center_px": [
+        2927.0,
+        1125.0
+      ],
+      "crown_radius_px": 24.3,
+      "type": "deciduous_or_mixed_unresolved",
+      "confidence": "medium-low"
+    },
+    {
+      "id": "tree_025",
+      "center_px": [
+        2927.0,
+        1237.8
+      ],
+      "crown_radius_px": 24.3,
+      "type": "deciduous_or_mixed_unresolved",
+      "confidence": "medium-low"
+    },
+    {
+      "id": "tree_026",
+      "center_px": [
+        2932.3,
+        1359.4
+      ],
+      "crown_radius_px": 24.3,
+      "type": "deciduous_or_mixed_unresolved",
+      "confidence": "medium-low"
+    },
+    {
+      "id": "tree_027",
+      "center_px": [
+        2923.6,
+        1472.2
+      ],
+      "crown_radius_px": 26.0,
+      "type": "deciduous_or_mixed_unresolved",
+      "confidence": "medium-low"
+    },
+    {
+      "id": "tree_028",
+      "center_px": [
+        2934.0,
+        1581.6
+      ],
+      "crown_radius_px": 24.3,
+      "type": "deciduous_or_mixed_unresolved",
+      "confidence": "medium-low"
+    },
+    {
+      "id": "tree_029",
+      "center_px": [
+        2939.2,
+        1689.2
+      ],
+      "crown_radius_px": 20.8,
+      "type": "deciduous_or_mixed_unresolved",
+      "confidence": "medium-low"
+    },
+    {
+      "id": "tree_030",
+      "center_px": [
+        2371.2,
+        803.8
+      ],
+      "crown_radius_px": 27.8,
+      "type": "deciduous_or_mixed_unresolved",
+      "confidence": "medium-low"
+    },
+    {
+      "id": "tree_031",
+      "center_px": [
+        2011.6,
+        826.4
+      ],
+      "crown_radius_px": 31.3,
+      "type": "deciduous_or_mixed_unresolved",
+      "confidence": "medium-low"
+    },
+    {
+      "id": "tree_032",
+      "center_px": [
+        1725.0,
+        833.3
+      ],
+      "crown_radius_px": 31.3,
+      "type": "deciduous_or_mixed_unresolved",
+      "confidence": "medium-low"
+    },
+    {
+      "id": "tree_033",
+      "center_px": [
+        1678.1,
+        845.5
+      ],
+      "crown_radius_px": 17.4,
+      "type": "deciduous_or_mixed_unresolved",
+      "confidence": "medium-low"
+    },
+    {
+      "id": "tree_034",
+      "center_px": [
+        1622.5,
+        932.3
+      ],
+      "crown_radius_px": 17.4,
+      "type": "deciduous_or_mixed_unresolved",
+      "confidence": "medium-low"
+    },
+    {
+      "id": "tree_035",
+      "center_px": [
+        1361.9,
+        897.6
+      ],
+      "crown_radius_px": 22.6,
+      "type": "deciduous_or_mixed_unresolved",
+      "confidence": "medium-low"
+    },
+    {
+      "id": "tree_036",
+      "center_px": [
+        1165.6,
+        906.2
+      ],
+      "crown_radius_px": 24.3,
+      "type": "deciduous_or_mixed_unresolved",
+      "confidence": "medium-low"
+    },
+    {
+      "id": "tree_037",
+      "center_px": [
+        993.6,
+        904.5
+      ],
+      "crown_radius_px": 24.3,
+      "type": "deciduous_or_mixed_unresolved",
+      "confidence": "medium-low"
+    },
+    {
+      "id": "tree_038",
+      "center_px": [
+        328.3,
+        112.8
+      ],
+      "crown_radius_px": 31.3,
+      "type": "deciduous_or_mixed_unresolved",
+      "confidence": "medium-low"
+    },
+    {
+      "id": "tree_039",
+      "center_px": [
+        495.1,
+        79.9
+      ],
+      "crown_radius_px": 31.3,
+      "type": "deciduous_or_mixed_unresolved",
+      "confidence": "medium-low"
+    },
+    {
+      "id": "tree_040",
+      "center_px": [
+        696.6,
+        102.4
+      ],
+      "crown_radius_px": 38.2,
+      "type": "deciduous_or_mixed_unresolved",
+      "confidence": "medium-low"
+    },
+    {
+      "id": "tree_041",
+      "center_px": [
+        872.0,
+        100.7
+      ],
+      "crown_radius_px": 34.7,
+      "type": "deciduous_or_mixed_unresolved",
+      "confidence": "medium-low"
+    },
+    {
+      "id": "tree_042",
+      "center_px": [
+        905.0,
+        295.1
+      ],
+      "crown_radius_px": 39.9,
+      "type": "deciduous_or_mixed_unresolved",
+      "confidence": "medium-low"
+    },
+    {
+      "id": "tree_043",
+      "center_px": [
+        1162.1,
+        381.9
+      ],
+      "crown_radius_px": 34.7,
+      "type": "deciduous_or_mixed_unresolved",
+      "confidence": "medium-low"
+    },
+    {
+      "id": "tree_044",
+      "center_px": [
+        1269.8,
+        409.7
+      ],
+      "crown_radius_px": 29.5,
+      "type": "deciduous_or_mixed_unresolved",
+      "confidence": "medium-low"
+    },
+    {
+      "id": "tree_045",
+      "center_px": [
+        1445.3,
+        321.2
+      ],
+      "crown_radius_px": 31.3,
+      "type": "deciduous_or_mixed_unresolved",
+      "confidence": "medium-low"
+    },
+    {
+      "id": "tree_046",
+      "center_px": [
+        1471.3,
+        232.6
+      ],
+      "crown_radius_px": 38.2,
+      "type": "deciduous_or_mixed_unresolved",
+      "confidence": "medium-low"
+    },
+    {
+      "id": "tree_047",
+      "center_px": [
+        1620.7,
+        298.6
+      ],
+      "crown_radius_px": 33.0,
+      "type": "deciduous_or_mixed_unresolved",
+      "confidence": "medium-low"
+    },
+    {
+      "id": "tree_048",
+      "center_px": [
+        1665.9,
+        244.8
+      ],
+      "crown_radius_px": 27.8,
+      "type": "deciduous_or_mixed_unresolved",
+      "confidence": "medium-low"
+    },
+    {
+      "id": "tree_049",
+      "center_px": [
+        1540.8,
+        378.5
+      ],
+      "crown_radius_px": 29.5,
+      "type": "deciduous_or_mixed_unresolved",
+      "confidence": "medium-low"
+    },
+    {
+      "id": "tree_050",
+      "center_px": [
+        1471.3,
+        434.0
+      ],
+      "crown_radius_px": 26.0,
+      "type": "deciduous_or_mixed_unresolved",
+      "confidence": "medium-low"
+    },
+    {
+      "id": "tree_051",
+      "center_px": [
+        1384.5,
+        427.1
+      ],
+      "crown_radius_px": 29.5,
+      "type": "deciduous_or_mixed_unresolved",
+      "confidence": "medium-low"
+    },
+    {
+      "id": "tree_052",
+      "center_px": [
+        1518.2,
+        508.7
+      ],
+      "crown_radius_px": 26.0,
+      "type": "deciduous_or_mixed_unresolved",
+      "confidence": "medium-low"
+    },
+    {
+      "id": "tree_053",
+      "center_px": [
+        1671.1,
+        102.4
+      ],
+      "crown_radius_px": 27.8,
+      "type": "deciduous_or_mixed_unresolved",
+      "confidence": "medium-low"
+    },
+    {
+      "id": "tree_054",
+      "center_px": [
+        743.5,
+        414.9
+      ],
+      "crown_radius_px": 29.5,
+      "type": "deciduous_or_mixed_unresolved",
+      "confidence": "medium-low"
+    },
+    {
+      "id": "tree_055",
+      "center_px": [
+        814.7,
+        413.2
+      ],
+      "crown_radius_px": 26.0,
+      "type": "deciduous_or_mixed_unresolved",
+      "confidence": "medium-low"
+    },
+    {
+      "id": "tree_056",
+      "center_px": [
+        922.4,
+        442.7
+      ],
+      "crown_radius_px": 27.8,
+      "type": "deciduous_or_mixed_unresolved",
+      "confidence": "medium-low"
+    },
+    {
+      "id": "tree_057",
+      "center_px": [
+        986.7,
+        491.3
+      ],
+      "crown_radius_px": 29.5,
+      "type": "deciduous_or_mixed_unresolved",
+      "confidence": "medium-low"
+    },
+    {
+      "id": "tree_058",
+      "center_px": [
+        1099.6,
+        489.6
+      ],
+      "crown_radius_px": 26.0,
+      "type": "deciduous_or_mixed_unresolved",
+      "confidence": "medium-low"
+    },
+    {
+      "id": "tree_059",
+      "center_px": [
+        1295.9,
+        593.8
+      ],
+      "crown_radius_px": 29.5,
+      "type": "deciduous_or_mixed_unresolved",
+      "confidence": "medium-low"
+    },
+    {
+      "id": "tree_060",
+      "center_px": [
+        1108.3,
+        647.6
+      ],
+      "crown_radius_px": 26.0,
+      "type": "deciduous_or_mixed_unresolved",
+      "confidence": "medium-low"
+    },
+    {
+      "id": "tree_061",
+      "center_px": [
+        1031.8,
+        651.0
+      ],
+      "crown_radius_px": 24.3,
+      "type": "deciduous_or_mixed_unresolved",
+      "confidence": "medium-low"
+    },
+    {
+      "id": "tree_062",
+      "center_px": [
+        1202.1,
+        631.9
+      ],
+      "crown_radius_px": 22.6,
+      "type": "deciduous_or_mixed_unresolved",
+      "confidence": "medium-low"
+    },
+    {
+      "id": "tree_063",
+      "center_px": [
+        1085.7,
+        783.0
+      ],
+      "crown_radius_px": 24.3,
+      "type": "deciduous_or_mixed_unresolved",
+      "confidence": "medium-low"
+    },
+    {
+      "id": "tree_064",
+      "center_px": [
+        1273.3,
+        803.8
+      ],
+      "crown_radius_px": 20.8,
+      "type": "deciduous_or_mixed_unresolved",
+      "confidence": "medium-low"
+    },
+    {
+      "id": "tree_065",
+      "center_px": [
+        851.2,
+        560.8
+      ],
+      "crown_radius_px": 22.6,
+      "type": "deciduous_or_mixed_unresolved",
+      "confidence": "medium-low"
+    },
+    {
+      "id": "tree_066",
+      "center_px": [
+        277.9,
+        765.6
+      ],
+      "crown_radius_px": 33.0,
+      "type": "deciduous_or_mixed_unresolved",
+      "confidence": "medium-low"
+    },
+    {
+      "id": "tree_067",
+      "center_px": [
+        416.9,
+        765.6
+      ],
+      "crown_radius_px": 34.7,
+      "type": "deciduous_or_mixed_unresolved",
+      "confidence": "medium-low"
+    },
+    {
+      "id": "tree_068",
+      "center_px": [
+        474.2,
+        717.0
+      ],
+      "crown_radius_px": 29.5,
+      "type": "deciduous_or_mixed_unresolved",
+      "confidence": "medium-low"
+    },
+    {
+      "id": "tree_069",
+      "center_px": [
+        420.4,
+        590.3
+      ],
+      "crown_radius_px": 36.5,
+      "type": "deciduous_or_mixed_unresolved",
+      "confidence": "medium-low"
+    },
+    {
+      "id": "tree_070",
+      "center_px": [
+        430.8,
+        494.8
+      ],
+      "crown_radius_px": 27.8,
+      "type": "deciduous_or_mixed_unresolved",
+      "confidence": "medium-low"
+    },
+    {
+      "id": "tree_071",
+      "center_px": [
+        302.3,
+        555.6
+      ],
+      "crown_radius_px": 31.3,
+      "type": "deciduous_or_mixed_unresolved",
+      "confidence": "medium-low"
+    },
+    {
+      "id": "tree_072",
+      "center_px": [
+        232.8,
+        590.3
+      ],
+      "crown_radius_px": 36.5,
+      "type": "deciduous_or_mixed_unresolved",
+      "confidence": "medium-low"
+    },
+    {
+      "id": "tree_073",
+      "center_px": [
+        199.8,
+        732.6
+      ],
+      "crown_radius_px": 38.2,
+      "type": "deciduous_or_mixed_unresolved",
+      "confidence": "medium-low"
+    },
+    {
+      "id": "tree_074",
+      "center_px": [
+        180.7,
+        968.8
+      ],
+      "crown_radius_px": 34.7,
+      "type": "deciduous_or_mixed_unresolved",
+      "confidence": "medium-low"
+    },
+    {
+      "id": "tree_075",
+      "center_px": [
+        201.5,
+        1213.5
+      ],
+      "crown_radius_px": 34.7,
+      "type": "deciduous_or_mixed_unresolved",
+      "confidence": "medium-low"
+    },
+    {
+      "id": "tree_076",
+      "center_px": [
+        97.3,
+        1248.3
+      ],
+      "crown_radius_px": 29.5,
+      "type": "deciduous_or_mixed_unresolved",
+      "confidence": "medium-low"
+    },
+    {
+      "id": "tree_077",
+      "center_px": [
+        2833.2,
+        338.5
+      ],
+      "crown_radius_px": 33.0,
+      "type": "deciduous_or_mixed_unresolved",
+      "confidence": "medium-low"
+    },
+    {
+      "id": "tree_078",
+      "center_px": [
+        2765.5,
+        638.9
+      ],
+      "crown_radius_px": 38.2,
+      "type": "deciduous_or_mixed_unresolved",
+      "confidence": "medium-low"
+    },
+    {
+      "id": "tree_079",
+      "center_px": [
+        2586.6,
+        642.4
+      ],
+      "crown_radius_px": 31.3,
+      "type": "deciduous_or_mixed_unresolved",
+      "confidence": "medium-low"
+    },
+    {
+      "id": "tree_080",
+      "center_px": [
+        2452.8,
+        472.2
+      ],
+      "crown_radius_px": 22.6,
+      "type": "deciduous_or_mixed_unresolved",
+      "confidence": "medium-low"
+    },
+    {
+      "id": "tree_081",
+      "center_px": [
+        2914.9,
+        562.5
+      ],
+      "crown_radius_px": 33.0,
+      "type": "deciduous_or_mixed_unresolved",
+      "confidence": "medium-low"
+    },
+    {
+      "id": "tree_082",
+      "center_px": [
+        988.4,
+        1932.3
+      ],
+      "crown_radius_px": 20.8,
+      "type": "deciduous_or_mixed_unresolved",
+      "confidence": "medium-low"
+    },
+    {
+      "id": "tree_083",
+      "center_px": [
+        1087.4,
+        1925.3
+      ],
+      "crown_radius_px": 17.4,
+      "type": "deciduous_or_mixed_unresolved",
+      "confidence": "medium-low"
+    },
+    {
+      "id": "tree_084",
+      "center_px": [
+        1584.3,
+        1939.2
+      ],
+      "crown_radius_px": 20.8,
+      "type": "deciduous_or_mixed_unresolved",
+      "confidence": "medium-low"
+    },
+    {
+      "id": "tree_085",
+      "center_px": [
+        1695.4,
+        2029.5
+      ],
+      "crown_radius_px": 19.1,
+      "type": "deciduous_or_mixed_unresolved",
+      "confidence": "medium-low"
+    },
+    {
+      "id": "tree_086",
+      "center_px": [
+        1627.7,
+        1875.0
+      ],
+      "crown_radius_px": 20.8,
+      "type": "deciduous_or_mixed_unresolved",
+      "confidence": "medium-low"
+    },
+    {
+      "id": "tree_087",
+      "center_px": [
+        849.4,
+        2185.8
+      ],
+      "crown_radius_px": 19.1,
+      "type": "deciduous_or_mixed_unresolved",
+      "confidence": "medium-low"
+    },
+    {
+      "id": "tree_088",
+      "center_px": [
+        847.7,
+        2256.9
+      ],
+      "crown_radius_px": 19.1,
+      "type": "deciduous_or_mixed_unresolved",
+      "confidence": "medium-low"
+    },
+    {
+      "id": "tree_089",
+      "center_px": [
+        844.2,
+        2333.3
+      ],
+      "crown_radius_px": 19.1,
+      "type": "deciduous_or_mixed_unresolved",
+      "confidence": "medium-low"
+    },
+    {
+      "id": "tree_090",
+      "center_px": [
+        852.9,
+        2416.7
+      ],
+      "crown_radius_px": 20.8,
+      "type": "deciduous_or_mixed_unresolved",
+      "confidence": "medium-low"
+    },
+    {
+      "id": "tree_091",
+      "center_px": [
+        2770.7,
+        2199.7
+      ],
+      "crown_radius_px": 27.8,
+      "type": "deciduous_or_mixed_unresolved",
+      "confidence": "medium-low"
+    },
+    {
+      "id": "tree_092",
+      "center_px": [
+        2841.9,
+        2326.4
+      ],
+      "crown_radius_px": 24.3,
+      "type": "deciduous_or_mixed_unresolved",
+      "confidence": "medium-low"
+    }
+  ],
+  "site_objects": [
+    {
+      "id": "entry_flagpole",
+      "kind": "flagpole",
+      "center_px": [
+        1879.6,
+        1529.5
+      ],
+      "confidence": "medium",
+      "notes": "Ground reference identifies flagpole in entrance island; aerial point approximate."
+    },
+    {
+      "id": "main_monument_sign",
+      "kind": "monument_sign",
+      "center_px": [
+        1957.7,
+        1678.8
+      ],
+      "confidence": "medium",
+      "notes": "Dark rectangular sign on north side of road near east entrance driveway; interpretation cross-checked with ground images."
+    }
+  ]
+}
