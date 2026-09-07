@@ -410,6 +410,8 @@ if not opt.no_trees:
  from distant_context import add_distant_context
  distant_report=add_distant_context(ROOT,COL['Context | approximate'],assets)
  bpy.context.scene['Distant context report']=json.dumps(distant_report)
+ from nlcd_context import add_nlcd_context
+ bpy.context.scene['NLCD context report']=json.dumps(add_nlcd_context(ROOT,COL['Context | approximate']))
 
 # Base world is replaced below by the licensed reference-oriented low-sun sky.
 world=bpy.data.worlds.new('Physical daylight') if not bpy.data.worlds else bpy.data.worlds[0];bpy.context.scene.world=world;world.use_nodes=True
