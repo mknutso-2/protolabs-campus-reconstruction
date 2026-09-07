@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "family": "DejaVu Sans",
+  "style": "Book",
+  "upstream_version": "2.37",
+  "file": "assets/fonts/DejaVuSans.ttf",
+  "bytes": 759720,
+  "sha256": "ae7b7855e115a5966d8b1b3f80f254ccc117ec86f9965e202ee2940453837280",
+  "license": {
+    "name": "Bitstream Vera font license; DejaVu changes are public domain",
+    "file": "docs/DEJAVU-FONT-LICENSE.txt",
+    "sha256": "63d3ba759d12804c5b31a9d5940d855c1820d1f5999e6b0872eb1c7ff045fbc9",
+    "distribution": "Unmodified font included with the required copyright, trademark and permission notice. It is not sold by itself.",
+    "scope": "The Bitstream Vera stanza covers the font. The separate GPL-2+ stanza describes Debian packaging files."
+  },
+  "acquisition": {
+    "method": "Byte-for-byte copy of the existing system font used by the inspected reconstruction",
+    "system_path": "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",
+    "observed_package": "fonts-dejavu-core",
+    "observed_package_version": "2.37-8",
+    "observed_date": "2026-09-07",
+    "upstream_site_from_license": "https://dejavu-fonts.github.io/",
+    "network_download_performed": false,
+    "modified": false
+  },
+  "reproduction": {
+    "storage": "Small tracked source asset; ordinary Git checkout includes exact bytes for offline scene generation",
+    "selection": "Verify the bundled file and license; reuse the Linux system font only if its size and SHA256 match, otherwise load the verified bundled copy",
+    "verification_command": "python3 scripts/font_asset.py",
+    "restoration_command": "python3 scripts/font_asset.py --restore-from-system",
+    "restoration_limit": "Only a matching system file can restore a missing bundle. Existing mismatching files are preserved and rejected; otherwise restore the tracked asset from the source revision.",
+    "blender_loader": "from font_asset import load_blender_font; project_font = load_blender_font(ROOT); assign project_font to every generated text curve",
+    "no_silent_fallback": true
+  },
+  "limitations": [
+    "Pinning font bytes preserves the chosen substitute's outlines and metrics; DejaVu Sans is still an approximation to the photographed corporate typography.",
+    "Exact font bytes do not guarantee identical pixels across different Blender versions, render engines or display settings.",
+    "The font is stored under source assets, separately from generated models and third-party reference-image caches."
+  ]
+}

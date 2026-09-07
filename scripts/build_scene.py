@@ -6,6 +6,8 @@ from pathlib import Path
 from mathutils import Vector
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT/'scripts'))
+from font_asset import load_blender_font
+PROJECT_FONT = load_blender_font(ROOT)
 args = sys.argv[sys.argv.index('--')+1:] if '--' in sys.argv else []
 p = argparse.ArgumentParser(); p.add_argument('--render', default=''); p.add_argument('--width', type=int, default=1440); p.add_argument('--samples',type=int,default=40); p.add_argument('--export',action='store_true'); p.add_argument('--no-trees',action='store_true')
 opt = p.parse_args(args)
@@ -90,8 +92,7 @@ def line(name,pts,rad,ma):
 
 def text(name,txt,loc,size,ma,rotation=(math.pi/2,0,0),align='CENTER'):
  cv=bpy.data.curves.new(name,'FONT');cv.body=txt;cv.size=size;cv.align_x=align;cv.extrude=.014;cv.bevel_depth=.003
- font='/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf'
- if Path(font).exists():cv.font=bpy.data.fonts.load(font)
+ cv.font=PROJECT_FONT
  o=bpy.data.objects.new(name,cv);COL[active].objects.link(o);o.location=loc;o.rotation_euler=rotation;o.data.materials.append(ma);return o
 
 def glazing(name,a,b,z0,z1,spacing=1.45,lower=True):
@@ -434,7 +435,7 @@ scene.view_settings.view_transform='AgX';scene.view_settings.look='AgX - Medium 
 scene.render.fps=24;scene.frame_end=288
 (ROOT/'scene').mkdir(exist_ok=True);(ROOT/'deliverables').mkdir(exist_ok=True)
 (ROOT/'scene/cameras.json').write_text(json.dumps(cameras,indent=2)+'\n')
-scene['Fidelity status']='Reference-led work in progress; GIS plan plus photo-interpreted dimensions. See accuracy report.'
+scene['Fidelity status']='Reference-led exterior reconstruction; measured constraints plus photo-interpreted details. See accuracy report for inspection status and limitations.'
 scene['Origin UTM EPSG26915']=[447671.8750643735,4984591.8364606025]
 from visual_finish import apply_visual_finish
 apply_visual_finish()

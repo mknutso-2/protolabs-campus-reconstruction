@@ -465,7 +465,7 @@ function Walkthrough({
       <div className="viewer-top">
         <span className="pill">
           <span className="live-dot" />
-          Editable exterior study
+          Exterior walkthrough
         </span>
         <button
           className="icon-button"
@@ -668,6 +668,9 @@ export default function Home() {
         </div>
         <TabsContent value="explore">
           <Walkthrough view={view} resetToken={viewReset} />
+          <p className="comparison-note">
+            Explore the geometry here. Still views show the rendered lighting and surface detail.
+          </p>
           <div className="view-strip">
             {views.map((v) => (
               <button

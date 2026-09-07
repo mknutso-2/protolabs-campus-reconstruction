@@ -14,7 +14,7 @@ The v06 master, both models, four stills, camera/material metadata and snapshot 
 | FFmpeg with libx264 | Separate executable for `scripts/encode_video.py`; select with `--ffmpeg` or the `FFMPEG` environment variable |
 | Git | Source and reproducible input history; private repository access requires authentication |
 
-Blender includes its own Python and `bpy`. Run scene scripts through Blender, not ordinary `python3`. The examples pass absolute script paths using `$PWD` and `--python-exit-code 1` so a Python exception fails the command. The original procedural vegetation and vehicle modules require no downloaded model geometry. V07 additionally requires the small CC0 surface/HDRI cache acquired below. Blender packs used scan images, generated leaf textures, the active HDRI and available fonts into the master when saving. The generator uses DejaVu Sans when found at its Linux system path, otherwise Blender's built-in font; typography can differ on another workstation and remains an approximation to the sign.
+Blender includes its own Python and `bpy`. Run scene scripts through Blender, not ordinary `python3`. The examples pass absolute script paths using `$PWD` and `--python-exit-code 1` so a Python exception fails the command. The original procedural vegetation and vehicle modules require no downloaded model geometry. V07 additionally requires the small CC0 surface/HDRI cache acquired below. Blender packs used scan images, generated leaf textures, the active HDRI and loaded fonts into the master when saving. The exact DejaVu Sans font used by the inspected reconstruction is now bundled with its license and verified by the loader below; typography remains an approximation to the photographed identity.
 
 ### Portable Blender on Linux x86-64
 
@@ -47,6 +47,40 @@ export PROTOLABS_PYTHON="$PWD/work/package-venv/bin/python"
 ```
 
 No Python geospatial stack is required to build from the checked-in derived constraints. Reprocessing raw lidar is a different workflow described under [research inputs](#research-inputs).
+
+### Pinned font for offline reproduction
+
+`assets/fonts/DejaVuSans.ttf` contains the **unmodified 759,720-byte DejaVu Sans Book 2.37** used by the inspected scene, copied from the build host's `fonts-dejavu-core 2.37-8` package. Its SHA-256 is **`ae7b7855e115a5966d8b1b3f80f254ccc117ec86f9965e202ee2940453837280`**. It is a small source asset intended for ordinary Git, so an offline checkout includes the exact outlines and metrics. This is separate from generated model binaries and licensed reference-photo caches.
+
+[research/font-asset.json](../research/font-asset.json) pins the font and [required license notice](DEJAVU-FONT-LICENSE.txt). The included Bitstream Vera license permits distribution with its copyright/trademark/permission notice; DejaVu changes are public domain. The font is unmodified and is distributed as part of this project. Preserve the notice with the font, including in source and delivery archives. The Debian-packaging GPL stanza in the notice describes packaging files, not a replacement license for the font.
+
+Verify the bundle and notice with ordinary Python; no dependency installation or download is needed:
+
+```bash
+python3 "$PWD/scripts/font_asset.py"
+python3 "$PWD/scripts/font_asset.py" --bundled-only
+```
+
+The first command also selects the Linux system font when its byte size and SHA-256 match exactly. An absent or different system font selects the verified bundled file. The second command explicitly selects the bundle, as on another operating system. A missing or mismatching bundled file or license causes an error; the loader never silently substitutes Blender's built-in font. Restore damaged/missing source assets from the recorded Git revision. A missing bundle can also be recreated from an exact matching local system file without overwriting an existing file:
+
+```bash
+python3 "$PWD/scripts/font_asset.py" --restore-from-system
+```
+
+`--system-font /absolute/path/to/DejaVuSans.ttf` can select another local restoration candidate, but its hash must still match. No newer vendor build is substituted based solely on its family name or version string. This project uses the bundled bytes as its reproducible acquisition route.
+
+The generator integration loads one verified font after defining `ROOT`, then assigns it to every text curve:
+
+```python
+from font_asset import load_blender_font
+PROJECT_FONT = load_blender_font(ROOT)
+# In text(), after creating the FONT curve:
+cv.font = PROJECT_FONT
+```
+
+The generator's normal `bpy.ops.file.pack_all()` retains the loaded font in the saved master. Pinning the font removes the former operating-system-dependent typeface fallback; Blender version, renderer and display settings can still affect final pixels.
+
+An isolated verification checked exact-system reuse, bundle selection when a system font is absent or different, restoration of a missing bundle, and rejection/preservation of a corrupt bundle. Blender 4.2.9 produced identical geometry for three representative sign strings using the system and bundled paths, and packed identical font bytes. No campus master was saved or rendered. Workspace receipts are `work/motion-review/font-asset-validation.json` and `work/motion-review/font-geometry-validation.json`.
 
 ### Required v07 material acquisition
 
@@ -177,10 +211,10 @@ This rebuilds the scene and writes `deliverables/reference_aerial.png`. `--no-tr
 "$PROTOLABS_BLENDER" --background "$PWD/scene/protolabs-campus.blend" \
   --python-exit-code 1 --python "$PWD/scripts/render_views.py" -- \
   --views entrance_detail,arrival,campus_overview \
-  --width 1600 --samples 48 --out deliverables/stills
+  --width 1600 --samples 64 --out deliverables/stills
 ```
 
-Available names are `reference_aerial`, `entrance_detail`, `arrival`, and `campus_overview`. Render a subset with a comma-separated `--views` argument. **The current target is 1600 × 1067**, using 64 samples for the aerial and 48 for the other three views; the commands above specify those settings explicitly. V06 completed and inspected this set, now preserved in `deliverables/iterations/v06/`; its synthetic surface response prompted the v07 probe. The v07 four-view set must follow successful probe review. The script's fallback defaults remain all four, 1920 × 1280, and 96 samples. `--out` is relative to the repository root.
+Available names are `reference_aerial`, `entrance_detail`, `arrival`, and `campus_overview`. Render a subset with a comma-separated `--views` argument. **The current target is 1600 × 1067 at 64 Cycles samples for every view**; the commands above specify those settings explicitly. The preserved, inspected v06 set in `deliverables/iterations/v06/` used an earlier sample budget; its synthetic surface response prompted the v07 probe. The v07 four-view set must follow successful probe review. The script's fallback defaults remain all four, 1920 × 1280, and 96 samples. `--out` is relative to the repository root.
 
 Each final PNG has a matching JSON receipt recording its camera, saved-master and image SHA-256 hashes, dimensions, samples, Blender version, camera matrix and lens. All four final views, including `reference_aerial.png`, belong in `deliverables/stills/`. The separate `deliverables/reference_aerial.png` is an iteration probe. The render receipt starts with `inspection: "pending"`; actual final inspection is recorded separately in `deliverables/delivery-review.json` as described below.
 
