@@ -17,3 +17,10 @@ viewer/dist/
 viewer/.next/
 viewer/.wrangler/
 work/
+# Generated viewer payloads; acquire/package locally before building
+viewer/public/models/
+viewer/public/renders/
+viewer/public/references/
+viewer/out/
+viewer/.vite/
+scripts/research/.venv/

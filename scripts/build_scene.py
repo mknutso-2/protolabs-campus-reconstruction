@@ -399,6 +399,7 @@ scene.render.fps=24;scene.frame_end=288
 (ROOT/'scene/cameras.json').write_text(json.dumps(cameras,indent=2)+'\n')
 scene['Fidelity status']='Reference-led work in progress; GIS plan plus photo-interpreted dimensions. See accuracy report.'
 scene['Origin UTM EPSG26915']=[447671.8750643735,4984591.8364606025]
+exec(compile((ROOT/'scripts/export_materials.py').read_text(),str(ROOT/'scripts/export_materials.py'),'exec'))
 # Pack reference-independent asset textures and fonts into editable master.
 bpy.ops.file.pack_all()
 bpy.ops.wm.save_as_mainfile(filepath=str(ROOT/'scene/protolabs-campus.blend'))

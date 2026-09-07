@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "source_ledger": "research/architecture-sources.json",
+  "manifest_created_date": "2026-09-07",
+  "rights_note": "Images downloaded for reconstruction reference. Public accessibility does not establish a redistribution license; preserve publisher attribution and original source links. No private or restricted premises information collected.",
+  "cache_directory": "research/images",
+  "references": [
+    {
+      "source_id": "official-drone",
+      "filename": "protolabs-official-hq-drone.jpg",
+      "cache_path": "research/images/protolabs-official-hq-drone.jpg",
+      "viewer_path": "viewer/public/references/hq.jpg",
+      "asset_url": "https://www.protolabs.com/media/s4dignhf/hq-drone.jpg",
+      "source_page_url": "https://www.protolabs.com/about-us/locations/",
+      "publisher": "Proto Labs, Inc.",
+      "source_date": "Undated; image search indexed under official locations; same photographic setup as 2024 file, wider view.",
+      "acquired_date": "2026-09-07",
+      "sha256": "d63946a04d11b20ae3cc026b06cf07e0a58deb7d46b8ece8bd305912a60f47a9",
+      "size_bytes": 155607,
+      "image_dimensions": [
+        1200,
+        800
+      ],
+      "image_format": "JPEG",
+      "max_download_bytes": 20000000
+    },
+    {
+      "source_id": "business-journal-2018",
+      "filename": "businessjournal-entrance-2018.jpg",
+      "cache_path": "research/images/businessjournal-entrance-2018.jpg",
+      "viewer_path": "viewer/public/references/entrance.jpg",
+      "asset_url": "https://media.bizj.us/view/img/11107152/proto-labs-hq%2A900xx2016-1134-0-189.jpg",
+      "source_page_url": "https://www.bizjournals.com/twincities/news/2018/12/06/2018-business-of-manufacturing-proto-labs-inc.html",
+      "publisher": "Minneapolis / St. Paul Business Journal; photographer not independently verified",
+      "source_date": "Article December 6, 2018; exact photograph date unknown",
+      "acquired_date": "2026-09-07",
+      "sha256": "f32689f94544e5d477a29bf6d4832609bce9f6ef4971c1bd64cd72bee7093d60",
+      "size_bytes": 78923,
+      "image_dimensions": [
+        900,
+        506
+      ],
+      "image_format": "JPEG",
+      "max_download_bytes": 20000000
+    },
+    {
+      "source_id": "machine-design-2024",
+      "filename": "machine-design-frontage-2024.png",
+      "cache_path": "research/images/machine-design-frontage-2024.png",
+      "viewer_path": "viewer/public/references/arrival.png",
+      "asset_url": "https://img.machinedesign.com/files/base/ebm/machinedesign/image/2024/01/65b3eaaec31141001e691630-1fc1be36e61e4974bed45b9d85c6f450.png?auto=format%2Ccompress&fit=max&q=85&w=1600",
+      "source_page_url": "https://www.machinedesign.com/automation-iiot/article/21281562/protolabs-qa-protolabs-rebranded-manufacturing-partner-network-expands-capabilities",
+      "publisher": "Machine Design; image credited Protolabs",
+      "source_date": "Article January 26, 2024; exact image capture date unknown",
+      "acquired_date": "2026-09-07",
+      "sha256": "d5fbb19417bdef49a362e166602ffededde84336ef3b5749c81546be92d9c83b",
+      "size_bytes": 80862,
+      "image_dimensions": [
+        770,
+        513
+      ],
+      "image_format": "JPEG",
+      "max_download_bytes": 20000000
+    }
+  ]
+}
