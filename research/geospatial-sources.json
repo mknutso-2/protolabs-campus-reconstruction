@@ -127,5 +127,27 @@
     "basis": "measured lidar, manually selected bounded samples and robust plane fits",
     "attribution": "USGS 3DEP; Woolpert/NV5; Minnesota Geospatial Information Office",
     "license": "US Government lidar public domain; retain source attribution"
+  },
+  {
+    "id": "usgs-regional-ground-50m",
+    "url": "https://elevation.nationalmap.gov/arcgis/rest/services/3DEPElevation/ImageServer",
+    "acquired": "2026-09-07",
+    "date_of_source": "Service mosaic publication through2026-08-24; individual terrain acquisition dates not returned by exportImage.",
+    "confidence": "medium for broad regional relief;50m resampling does not resolve individual banks/berms.",
+    "local_files": [
+      "research/regional_context_ground_grid.json",
+      "scripts/regional_ground.py",
+      "scripts/research/acquire_regional_ground.py",
+      "docs/distant-context.md"
+    ],
+    "source_sha256": "45ca8bd77a0456db03de55dc9a785d0325d7572a7dbf8eae64df4e2195045fa0",
+    "source_bytes": 263355,
+    "observations": [
+      "One181x181 F32 TIFF export supplies32761 valid samples on a50m grid covering local x/y\u22124500..4500m.",
+      "EPSG26915; NAVD88 assumed from USGS CONUS3DEP convention, with per-source geoid/date not returned. Elevation range279.520..324.559m.",
+      "Scene uses the committed derived grid outside existing near lidar meshes; a75m external seam transition preserves the original measured boundaries.",
+      "Full request, response extent, publication statement, hash, acquisition timestamp and uncertainty are recorded in the grid JSON and linked context documentation."
+    ],
+    "basis": "Official USGS3DEP bare-earth elevation ImageServer; bounded raw float export, not hillshade or aerial texture."
   }
 ]
