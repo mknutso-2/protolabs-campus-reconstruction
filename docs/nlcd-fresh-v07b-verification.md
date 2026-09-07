@@ -16,4 +16,14 @@ All four actual saved cameras—`reference_aerial`, `entrance_detail`, `arrival`
 
 The audit loaded the master with Blender 4.2.9 and one thread. It performed no render or save, and verified that the master file hash remained unchanged. Scratch evidence and reproduction scripts are under `work/nlcd-context/fresh-v07b/`: `audit_master.py`, `audit-master.log`, `master-audit.json`, `audit_glbs.py` and `glb-audit.json`. The production artifact directory is `work/final-source-v07b/scene/`.
 
-The [land-cover evidence and geometric limits](nlcd-context-evidence.md) still apply. The isolated preview showed a thin irregular far woodland improvement while broad open ground remained; the audit does not establish source-like continuous woodland or final photographic acceptance. The four production stills were rendering when this note was written, and motion had not been verified.
+The [land-cover evidence and geometric limits](nlcd-context-evidence.md) still apply. The isolated preview showed a thin irregular far woodland improvement while broad open ground remained; the audit does not establish source-like continuous woodland or final photographic acceptance. The later full-size still review is recorded below; motion has not been verified by this audit.
+
+
+The independent review opened both completed 1600×1067 PNGs and verified their image hashes against receipts bound to this master:
+
+| Still | SHA-256 | Land/water observation |
+|---|---|---|
+| `reference_aerial` | `f2a5d3eccf0be2fd8729271dcf6e46ab3d8caee185d01e7362c07c0a7b41f495` | Far forest additions agree with the accepted isolated preview. Broad tan ground and gaps remain. No new major woodland platform or near-tree crowding was detected. The pond is mostly roof-occluded. |
+| `campus_overview` | `7d3f30d46cc277bf2eb16443555e2542820791ba69c750ef0f972d962880eebe` | The pond is visibly flat and the former folded/raised western tip is gone; the shoreline remains coarse. A thin dark line at the main/north terrain join needs a bounded correction. |
+
+The overview's line begins near pixel `(606,35)` and follows the projected shared `y=220` boundary. A read-only check of the full GLB found **81 matching boundary vertices with the north surface 0.119908–0.120754 m above the main surface**. Source inspection identifies the cause: the main mesh uses `tz−0.12`, while the north mesh starts its existing 10 m blend at unlowered `ground()`. The root task was notified to use the actual rendered main-edge elevation at that blend's start; no geometry was changed by this review. This issue is distinct from the verified NLCD layer and prevents an unqualified landscape acceptance of this particular master. Receipts: `work/nlcd-context/fresh-v07b/still-review.json` and `ground-join-audit.json`.
