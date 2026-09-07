@@ -112,6 +112,7 @@ function Walkthrough({ view }: { view: ViewName }) {
           renderer.dispose();
           renderer.domElement.remove();
         };
+        let needsRender=true;
         const scene = new THREE.Scene();
         scene.background = new THREE.Color('#a9c3d3');
         scene.fog = new THREE.Fog('#a9c3d3', 420, 1100);
@@ -125,6 +126,7 @@ function Walkthrough({ view }: { view: ViewName }) {
         cam.position.set(166, 31, 108);
         const orbit = new OrbitControls(cam, renderer.domElement);
         orbit.target.set(50, 3.6, -19);
+        orbit.addEventListener('change',()=>{needsRender=true;});
         orbit.enableDamping = true;
         orbit.dampingFactor = 0.09;
         orbit.maxPolarAngle = Math.PI * 0.485;
@@ -184,6 +186,7 @@ function Walkthrough({ view }: { view: ViewName }) {
           const v = cameras[id];
           if (!v) return;
           currentLens = v.lens;
+          needsRender=true;
           cam.position.set(v.position[0], v.position[2], -v.position[1]);
           orbit.target.set(v.target[0], v.target[2], -v.target[1]);
           cam.fov =
@@ -296,6 +299,7 @@ function Walkthrough({ view }: { view: ViewName }) {
             .copy(cam.position)
             .add(new THREE.Vector3().setFromSpherical(spherical));
           cam.lookAt(orbit.target);
+          needsRender=true;
           lastX = e.clientX;
           lastY = e.clientY;
         };
@@ -307,6 +311,7 @@ function Walkthrough({ view }: { view: ViewName }) {
         renderer.domElement.addEventListener('pointerup', pointerup);
         const toggle = (value: boolean) => {
           isWalk = value;
+          needsRender=true;
           orbit.enabled = !value;
           if (value) {
             cam.position.set(97, ground(97, 17) + 1.7, 17);
@@ -315,7 +320,7 @@ function Walkthrough({ view }: { view: ViewName }) {
           }
         };
         runtime.current = { setView, toggle };
-        let prev = performance.now(),
+        let prev = performance.now(), lastDraw=0,
           raf = 0;
         const tick = (now: number) => {
           const dt = Math.min((now - prev) / 1000, 0.05);
@@ -355,16 +360,18 @@ function Walkthrough({ view }: { view: ViewName }) {
                 cam.position.y += dy;
                 orbit.target.add(delta);
                 orbit.target.y += dy;
+                needsRender=true;
               }
             }
           } else orbit.update();
-          renderer.render(scene, cam);
+          if(needsRender && now-lastDraw>=1000/30){renderer.render(scene,cam);needsRender=false;lastDraw=now;}
           raf = requestAnimationFrame(tick);
         };
         raf = requestAnimationFrame(tick);
         const resize = new ResizeObserver(() => {
           if (el.clientWidth && el.clientHeight) {
             renderer.setSize(el.clientWidth, el.clientHeight);
+            needsRender=true;
             cam.aspect = el.clientWidth / el.clientHeight;
             cam.fov =
               (2 * Math.atan(36 / (2 * currentLens * cam.aspect)) * 180) /
@@ -425,6 +432,7 @@ function Walkthrough({ view }: { view: ViewName }) {
         className="canvas"
         aria-label="Interactive exterior model"
         role="application"
+        aria-busy={!!status}
       />
       {status && <output className="load-state">{status}</output>}
       <div className="viewer-top">
