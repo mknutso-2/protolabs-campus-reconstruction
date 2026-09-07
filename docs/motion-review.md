@@ -2,7 +2,7 @@
 
 ## v05 preliminary sample, 7 September 2026
 
-The v05 sample is an engineering and appearance check, not an accepted final cinematic. Its forest placement is being replaced with lidar-derived vegetation constraints in v06. A revised-geometry sample and native-speed playback review are required before final acceptance.
+The v05 sample is an engineering and appearance check, not an accepted final cinematic. Its oversized forest band was rejected and replaced by lidar-derived vegetation constraints in v06. A revised-geometry sample and native-speed playback review are required before final acceptance.
 
 The encoded sample is `deliverables/iterations/v05/motion-sample.mp4`: 24 contiguous, distinct frames at 1280 × 720 and 24 fps, lasting exactly 1.00 second. The source is frames 1–24 of a six-second, 144-frame camera path. Rendering used Cycles CPU, 16 samples, denoising, a fixed sampling seed, and a 0.35-frame shutter. Encoding used H.264/libx264, CRF 18, yuv420p, and fast-start MP4. Encoding preserved every frame and the original resolution; it applied no interpolation, scaling, looping, or missing-frame substitution. FFmpeg decoded all 24 encoded frames without an error.
 
@@ -24,4 +24,29 @@ A separate test loaded the v05 master without saving it and changed exposure fro
 
 Visual comparison of the baseline and probe favors −0.85 for the next scene test. It modestly improves the distinction between white roof and fascia surfaces and reduces the bright, washed appearance of paving and vegetation. It also darkens glazing and sheltered entrance areas, which still need inspection in the close entrance view. The change alone does not make the scene photographic and does not correct geometry, forest placement, repetitive assets, or material accuracy. No master, generator, or material was modified by this review.
 
-Probe inputs and metadata remain in the intermediate `work/assets/exposure_probe_*` files. Final exposure must be recorded in the generator and delivery manifest after the revised scene is visually checked.
+Probe inputs and metadata remain in the intermediate `work/assets/exposure_probe_*` files. That historical test informed the −0.85 exposure used in v06. V07 changes the illumination environment and material response, so the earlier exposure result cannot accept the new lighting. Final exposure must be recorded in the generator and delivery manifest after the revised scene is visually checked.
+
+## v06 still review and early v07 probe
+
+The preserved v06 aerial, entrance, arrival and campus-overview stills were all inspected and rejected as a final visual finish. The lidar-based north-context revision retains open ground/pond context, but its materials, glazing, repeated scenery and bare far horizon remained visibly schematic. **No v06 motion was rendered.** The earlier v05 sample cannot establish v06 or v07 motion quality.
+
+The early v07 reference aerial was rendered at 1200 × 800 and 32 Cycles samples and visually compared with v06 and the official photo. Low-sun lighting, surface scans, an empty foreground lot and small entrance/flag corrections improve the result. Its straight bare far-ground horizon, dark entrance/sign and relatively uniform gray glazing still need attention. Distant woodland research is ongoing and is not represented by the inspected probe. All four full production v07 views remain pending. See [visual-accuracy.md](visual-accuracy.md) for the probe hash and detailed assessment.
+
+No full film or delivery-resolution sample has been accepted. The final motion resolution and path duration must be selected explicitly after the visual corrections. A new sample must cover the faster middle section and endpoint as well as the slow start, and it must be inspected at native size and speed for foliage shimmer, roof/truss edge crawling, denoiser pulsing, camera smoothness and clipping. The full film remains deferred until those checks pass.
+
+## Resume and file-integrity verification
+
+The rendering pipeline now checks a SHA-256 fingerprint of **every generated frame's camera location, Euler rotation, scale and lens**, alongside the source master hash and render/PNG settings, before reusing any existing frame. This covers parts of the path outside the selected render range. The camera equations, 24 fps, fixed Cycles seed 5540 and disabled animated seed remain unchanged. Seed continuity helps reproducibility; it is not itself a temporal-quality pass.
+
+[frame_integrity.py](../scripts/frame_integrity.py) validates chunk CRCs throughout each PNG, complete chunk framing, matching dimensions, the terminal IEND, the zlib image stream, decoded scanline lengths and scanline filter bytes. Standard and Adam7 layouts are supported. A damaged PNG with a compatible manifest is rendered again. An unreadable/incompatible manifest, including a legacy one without the full-path fingerprint, is rejected before its frames are reused. Manifest and progress JSON are replaced atomically. [render_motion.py](../scripts/render_motion.py) accepts `--output-dir` for isolated frame/manifest output, and both single-frame and range resume use the same checks. Default output directories and camera path are unchanged.
+
+Actual Blender 4.2.9 tests used a separate one-cube master at **96 × 54, one Cycles sample**, without touching the production master or rendering into production frame directories. They demonstrated:
+
+- A valid completed frame was skipped with unchanged file hash and modification time.
+- A byte flipped inside IDAT, with the original PNG header/dimensions/IEND intact, caused CRC rejection and rerendering.
+- A changed lens at generated frame 13 prevented reuse of requested frame 1, confirming full-path coverage.
+- Corrupt JSON, incompatible render settings and a legacy manifest lacking the fingerprint were rejected before overwriting the existing frame or manifest.
+- A bad zlib stream with a recomputed chunk CRC, truncated data, trailing bytes and mismatched dimensions were rejected.
+- A preserved 1280 × 720 campus frame passed validation without alteration; small Adam7 and 16-bit RGBA fixtures also passed.
+
+The fixed-seed rerender had identical decoded image scanlines. Its full PNG hash differed because Blender embeds Date and RenderTime text metadata; that difference was verified rather than treated as a pixel change. The fixture master was unchanged. Workspace receipts are retained under `work/motion-review/` in `motion-resume-receipt.md`, `motion-resume-validation.json`, `png-integrity-additional-checks.json`, and the per-case Blender logs. These are successful resume/integrity checks, not acceptance of visual finish or motion. Start the revised production sequence with a fresh compatible manifest; do not mix historical v05/v06 images with v07 frames.
