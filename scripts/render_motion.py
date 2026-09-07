@@ -58,20 +58,21 @@ cam = bpy.data.objects['reference_aerial']
 cam.animation_data_clear()
 cam.data.animation_data_clear()
 s.camera = cam
-# Single continuous southeast arc, slow approach; no invented interior access.
+# Continuous southeast arc; the shorter angle and wider lens keep the building,
+# flag and monument within5% image margins. See docs/motion-review.md.
 # Preserve the camera equations and the fixed Cycles seed when resuming.
 keyframes = []
 path_frames = []
 for f in range(1, total_frames + 1):
     t = (f - 1) / (total_frames - 1)
     u = t * t * (3 - 2 * t)
-    theta = math.radians(-56 + 43 * u)
-    radius = 115 - 33 * u
+    theta = math.radians(-52 + 22 * u)
+    radius = 145 - 26 * u
     target = Vector((55, 16, 3.5))
-    pos = Vector((55 + radius * math.cos(theta), 16 + radius * math.sin(theta), 29 - 20 * u))
+    pos = Vector((55 + radius * math.cos(theta), 16 + radius * math.sin(theta), 29 - 13 * u))
     cam.location = pos
     cam.rotation_euler = (target - pos).to_track_quat('-Z', 'Y').to_euler()
-    cam.data.lens = 32 + 4 * u
+    cam.data.lens = 28 + 2 * u
     cam.keyframe_insert(data_path='location', frame=f)
     cam.keyframe_insert(data_path='rotation_euler', frame=f)
     cam.data.keyframe_insert(data_path='lens', frame=f)

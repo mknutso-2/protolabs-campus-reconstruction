@@ -50,3 +50,12 @@ Actual Blender 4.2.9 tests used a separate one-cube master at **96 × 54, one Cy
 - A preserved 1280 × 720 campus frame passed validation without alteration; small Adam7 and 16-bit RGBA fixtures also passed.
 
 The fixed-seed rerender had identical decoded image scanlines. Its full PNG hash differed because Blender embeds Date and RenderTime text metadata; that difference was verified rather than treated as a pixel change. The fixture master was unchanged. Workspace receipts are retained under `work/motion-review/` in `motion-resume-receipt.md`, `motion-resume-validation.json`, `png-integrity-additional-checks.json`, and the per-case Blender logs. These are successful resume/integrity checks, not acceptance of visual finish or motion. Start the revised production sequence with a fresh compatible manifest; do not mix historical v05/v06 images with v07 frames.
+
+
+## v07 framing correction before the complete sample
+
+Only two middle frames (61 and 62) were rendered from master `7dd2ff5a` before the job was stopped to correct a visible main/north terrain join. They remain preserved in the workspace as an incomplete, unaccepted study. Native inspection of frame 61 also showed the northeastern wing crossing the right edge and the monument base crossing the bottom edge.
+
+The revised six-second path keeps the existing smoothstep timing and target `(55,16,3.5)`, but uses a shorter **−52° to −30°** arc, **145 to 119 m** radius, **29 to 16 m** camera height and **28 to 30 mm** lens. The saved fixed-view cameras are unchanged. A read-only analysis of 1,154 evaluated architectural, entrance, flag and monument objects (140,147 vertices) checked all 144 frames, with projection calibrated against Blender. Every selected feature retains at least 5% image margin; the limiting endpoint northeastern fascia has **64.95 pixels / 5.074%** right margin at 1280 × 720. Vegetation, paving and adjacent context were excluded from this conservative architectural framing check.
+
+[The framing receipt](../research/motion-framing-review.json) identifies the source master, selected geometry, alternatives and projected bounds. The subsequent northern terrain correction does not move the selected objects. This is a framing check, not playback or temporal-quality acceptance. Render a complete new frames 61–84 sample and endpoint views from the revised master/path; the paused two frames cannot be reused. The full camera-path hash in each render manifest prevents accidental mixing with the earlier path.
