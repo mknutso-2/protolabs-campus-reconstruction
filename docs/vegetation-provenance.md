@@ -12,20 +12,26 @@
 - Species: generic deciduous trees and shrubs. These are artistic planting
   assets; exact campus species, leaf shape, pruning, and individual tree sizes
   have not been established by these assets.
-- Intended use: medium-distance architectural exterior views. The 6,352
-  triangle tree budget limits leaf curvature and twig detail for close-up views.
+- Intended use: medium-distance architectural exterior views. The current mature tree assets have 18,212 triangles and 8,000 individual
+  leaf cards each, below a 20,000-triangle budget. Leaf curvature and twig detail
+  remain simplified for close-up views.
 - Reproducibility: seed controls every random decision; Blender 4.2.9 LTS.
 - Object origin: ground-level trunk base, local Z up, sizes in metres.
 - Variants: broad, upright, spreading; nominal height and crown configurable.
 - Materials: six shared node materials, reusable by linked mesh instances.
-- Validation: test fixture generates all three variants, verifies triangle
-  count and linked mesh identity, then renders a 1,200 × 700 Cycles preview.
+- Current density: 6,300 leaves in branch sprays plus 1,700 crown-infill leaves.
+  Lower foliage and bounded twig tips produce fuller mature silhouettes.
+- Validation: the revised broad, upright and spreading variants were checked
+  at nominal 12 m height and 7 m crown diameter; each has 18,212 triangles and
+  8,000 leaves. A 900 × 600 Cycles preview was visually inspected. Roots extend
+  approximately 0.06 m below ground. The earlier test fixture expected the old
+  density; its 6,352-triangle/2,070-leaf results do not describe the current asset.
 
 Example:
 
 ```python
 from vegetation import create_tree_asset, create_tree_instance, create_shrub_asset
-tree = create_tree_asset('BroadTree_01', seed=21, height=7.2, crown=4.8, variant='broad')
+tree = create_tree_asset('BroadTree_01', seed=21, height=12.0, crown=7.0, variant='broad')
 tree.location = (10, 5, 0)
 create_tree_instance(tree, 'BroadTree_02', (18, 7, 0), scale=.93, rotation=1.8)
 shrub = create_shrub_asset('Shrub_01', seed=101, height=.95, width=1.5)
