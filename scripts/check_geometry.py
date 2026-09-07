@@ -126,7 +126,8 @@ def main():
             if obj.name.startswith('North canopy envelope '):
                 actual=max(float((obj.matrix_world@v.co).z) for v in obj.data.vertices)
                 expected=obj['canopy_top_local_z']
-                if abs(actual-expected)>.001:report['scene_boxes'].append({'object':obj.name,'passed':False,'actual_top':actual,'expected_top':expected})
+                # Independent 3-decimal rounding of ground, height and top permits 1.5 mm plus float storage error.
+                if abs(actual-expected)>.0016:report['scene_boxes'].append({'object':obj.name,'passed':False,'actual_top':actual,'expected_top':expected})
     report['passed'] = source['passed'] and all(result['passed'] for result in report.get('scene_boxes', []))
     encoded = json.dumps(report, indent=2) + '\n'
     if args.output:
