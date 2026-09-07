@@ -1,16 +1,24 @@
 """Prepare locally cached references, Blender glTF and stills for browser preview."""
 from pathlib import Path
-import shutil,json,subprocess,hashlib
+import shutil,json,subprocess,hashlib,argparse
 from PIL import Image
 root=Path(__file__).resolve().parents[1];pub=root/'viewer/public'
-for n in ['renders','models','references']:(pub/n).mkdir(parents=True,exist_ok=True)
-for src,dst in [('scene/cameras.json','models/cameras.json'),('scene/materials.json','models/materials.json'),('research/terrain_grid.json','models/terrain.json')]:shutil.copyfile(root/src,pub/dst)
+p=argparse.ArgumentParser();p.add_argument('--require-film',action='store_true');args=p.parse_args()
+master_hash=hashlib.sha256((root/'scene/protolabs-campus.blend').read_bytes()).hexdigest()
+metadata=json.loads((root/'scene/viewer-export.json').read_text())
+if metadata['master_sha256']!=master_hash:raise RuntimeError('Browser export is stale. Run scripts/export_viewer.py with the current master.')
+if metadata.get('viewer_glb_sha256')!=hashlib.sha256((root/'scene/protolabs-campus-viewer.glb').read_bytes()).hexdigest():raise RuntimeError('Browser GLB differs from its export receipt.')
 cameras=json.loads((root/'scene/cameras.json').read_text())
 for name in cameras:
+ src=root/'deliverables/stills'/f'{name}.png';receipt=json.loads(src.with_suffix('.json').read_text())
+ if receipt['master_sha256']!=master_hash or receipt['image_sha256']!=hashlib.sha256(src.read_bytes()).hexdigest():raise RuntimeError(f'Stale fixed-view render: {name}')
+film=root/'deliverables/flythrough.mp4'
+if args.require_film and not film.is_file():raise RuntimeError('Final viewer requires the encoded flythrough')
+for n in ['renders','models','references']:(pub/n).mkdir(parents=True,exist_ok=True)
+for src,dst in [('scene/cameras.json','models/cameras.json'),('scene/materials.json','models/materials.json'),('research/terrain_grid.json','models/terrain.json')]:shutil.copyfile(root/src,pub/dst)
+for name in cameras:
  src=root/'deliverables/stills'/f'{name}.png'
- if not src.exists():src=root/'deliverables'/f'{name}.png'
- if src.exists():Image.open(src).convert('RGB').save(pub/'renders'/f'{name}.jpg',quality=94)
- else:print('Still pending:',name)
+ Image.open(src).convert('RGB').save(pub/'renders'/f'{name}.jpg',quality=94)
 refs={'protolabs-official-hq-drone.jpg':'hq.jpg','businessjournal-entrance-2018.jpg':'entrance.jpg','machine-design-frontage-2024.png':'arrival.png'}
 for src,dst in refs.items():
  path=root/'research/images'/src
@@ -18,7 +26,6 @@ for src,dst in refs.items():
  else:print('Reference pending:',src)
 film=root/'deliverables/flythrough.mp4'
 if film.exists():shutil.copyfile(film,pub/'renders/flythrough.mp4')
+else:(pub/'renders/flythrough.mp4').unlink(missing_ok=True)
 
-metadata=json.loads((root/'scene/viewer-export.json').read_text())
-if metadata['master_sha256']!=hashlib.sha256((root/'scene/protolabs-campus.blend').read_bytes()).hexdigest():raise RuntimeError('Browser export is stale. Run scripts/export_viewer.py in Blender with the current master.')
 subprocess.run(['npx','gltf-transform','optimize','../scene/protolabs-campus-viewer.glb','public/models/campus.glb','--compress','meshopt','--simplify','false','--palette','false','--texture-compress','false'],cwd=root/'viewer',check=True)

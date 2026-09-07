@@ -38,7 +38,7 @@ try:
             after+=sum(len(f.vertices)-2 for f in lods[data.name].polygons)
         originals[obj.name]=data;obj.data=lods[data.name]
     bpy.ops.export_scene.gltf(filepath=str(ROOT/'scene/protolabs-campus-viewer.glb'),export_format='GLB',use_visible=True,export_cameras=False,export_lights=False,export_yup=True,export_apply=True)
-    metadata={'master_sha256':hashlib.sha256((ROOT/'scene/protolabs-campus.blend').read_bytes()).hexdigest(),'foliage_retention':.30,'visible_vegetation_triangles_before':before,'visible_vegetation_triangles_after':after,'scope':'Reduced foliage only for browser navigation; rendered stills and master retain all leaves.'}
+    metadata={'viewer_glb_sha256':hashlib.sha256((ROOT/'scene/protolabs-campus-viewer.glb').read_bytes()).hexdigest(),'master_sha256':hashlib.sha256((ROOT/'scene/protolabs-campus.blend').read_bytes()).hexdigest(),'foliage_retention':.30,'visible_vegetation_triangles_before':before,'visible_vegetation_triangles_after':after,'scope':'Reduced foliage only for browser navigation; rendered stills and master retain all leaves.'}
     (ROOT/'scene/viewer-export.json').write_text(json.dumps(metadata,indent=2)+'\n');print(json.dumps(metadata))
 finally:
     for name,data in originals.items():bpy.data.objects[name].data=data

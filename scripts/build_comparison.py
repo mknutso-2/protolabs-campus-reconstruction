@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Build an offline comparison from existing reference and render files.
 
-Run: python3 scripts/build_comparison.py --latest-version v06
+Run: python3 scripts/build_comparison.py --latest-version v07
 The latest image is pending review unless --reviewed-latest is explicitly used
 AFTER full-image inspection. Existing iteration snapshots are read-only inputs;
 this script never creates, copies, refreshes, or overwrites them.
@@ -32,12 +32,22 @@ def record(path):
             'file_modified_utc':dt.datetime.fromtimestamp(path.stat().st_mtime,dt.timezone.utc).isoformat()}
 
 parser=argparse.ArgumentParser(description=__doc__)
-parser.add_argument('--latest-version',default='v06',help='Version assigned to the current working images (default: v06)')
+parser.add_argument('--latest-version',default='v07',help='Version assigned to the current working images (default: v07)')
 parser.add_argument('--reviewed-latest',action='store_true',help='Use only after inspecting the latest aerial and all three latest saved stills; this records inspection, not photographic equivalence')
 args=parser.parse_args()
 if not re.fullmatch(r'v[0-9]{2,}',args.latest_version):
     parser.error('--latest-version must look like v06 or v12')
 current=ROOT/'deliverables/reference_aerial.png'
+current_url='../reference_aerial.png'
+if args.reviewed_latest:
+    current=ROOT/'deliverables/stills/reference_aerial.png'
+    current_url='../stills/reference_aerial.png'
+    master_hash=hashlib.sha256((ROOT/'scene/protolabs-campus.blend').read_bytes()).hexdigest()
+    for name in ('reference_aerial','entrance_detail','arrival','campus_overview'):
+        path=ROOT/f'deliverables/stills/{name}.png'
+        receipt=json.loads(path.with_suffix('.json').read_text())
+        if receipt['master_sha256']!=master_hash or receipt['image_sha256']!=hashlib.sha256(path.read_bytes()).hexdigest():
+            raise SystemExit('Reviewed gallery requires all four renders from the current master: '+name)
 if not current.exists(): raise SystemExit('Missing current aerial: '+str(current))
 if not (ROOT/'scene/cameras.json').exists(): raise SystemExit('Missing current camera record')
 fit=json.loads((ROOT/'research/reference_drone_camera_fit.json').read_text())
@@ -47,7 +57,8 @@ notes={
  'v03':'Revised framing and generic parked vehicles. Sparse foliage and dark glazing are still visible.',
  'v04':'Preserved reviewed iteration. Fitted aerial camera, dense procedural crowns, revised glazing and entrance roof treatment. Photographic realism remains incomplete.',
  'v05':'Preserved rejected landscape iteration. The oversized continuous forest band placed trees across pond and open ground. Its scene, stills and one-second motion sample remain available as a historical record, not an accepted landscape solution.',
- 'v06':'North context revised using 102 eligible canopy-envelope candidates and a ground grid derived from the cached 2022 lidar tile. Candidate centers are inferred envelope peaks, not surveyed trunks; crown shape and species remain procedural. The 2026 aerial cross-check only covers the southern portion.'}
+ 'v06':'North context revised using 102 eligible canopy-envelope candidates and a ground grid derived from the cached 2022 lidar tile. Candidate centers are inferred envelope peaks, not surveyed trunks; crown shape and species remain procedural. The 2026 aerial cross-check only covers the southern portion.',
+ 'v07':'Licensed metric textures and reference-oriented sunset lighting; corrected campus canopy heights and aerial crown widths; fitted monument assembly, refined glazing, doors, flag and vehicle geometry. Far woodland belts are aerial-traced with inferred heights. Species, detailed landscaping and unseen elevations remain approximate.'}
 versions=[]
 iteration_root=ROOT/'deliverables/iterations'
 snapshots=sorted((p for p in iteration_root.iterdir() if p.is_dir() and re.fullmatch(r'v[0-9]{2,}',p.name)),key=lambda p:int(p.name[1:])) if iteration_root.exists() else []
@@ -69,7 +80,7 @@ if versions and int(args.latest_version[1:])<=max(int(v['id'][1:]) for v in vers
 latest_status='reviewed_with_limitations' if args.reviewed_latest else 'pending_review'
 latest_suffix='visually inspected; limitations remain' if args.reviewed_latest else 'pending full-image review'
 latest_note=notes.get(args.latest_version,'Latest working reconstruction; fidelity and motion acceptance require separate checks.')+' '+latest_suffix.capitalize()+'.'
-latest={'id':args.latest_version,'label':args.latest_version.upper()+' · latest','url':'../reference_aerial.png',
+latest={'id':args.latest_version,'label':args.latest_version.upper()+' · latest','url':current_url,
     'camera':'../../scene/cameras.json','note':latest_note,'preserved':False,'review_status':latest_status,
     'caption':args.latest_version.upper()+' · '+latest_suffix,**record(current)}
 versions.append(latest)
