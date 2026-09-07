@@ -8,9 +8,10 @@
 - [x] Correct the inward-facing cube normals found in the earlier clean checkout. The v06 fresh generation/export and outward-volume checks pass; retain the original failure and subsequent correction in [fresh source verification](fresh-checkout-verification.md).
 - [x] Replace the unsupported uniform northern forest band with the bounded lidar ground grid and 102 eligible canopy-envelope placements. Reproduce the constraints, verify placement heights, and retain uncertainty about trunk location, species and context beyond the aerial.
 - [x] Prepare v07 CC0 texture/HDRI acquisition with checksums, the material-quality module, visual-finish module and revised original vehicle assets. Node/packing and isolated asset checks pass; integrated visual acceptance remains open.
-- [ ] Inspect the v07 integrated reference-camera probe. Assess low-sun lighting, scanned surface response, restrained glazing/mullions, worn paint, entrance finish and the empty foreground court; do not treat successful execution as a resemblance pass.
-- [ ] Continue matching entrance canopy, sloping roof, facade/window rhythm and glazing depth against attributed references. M2 visual acceptance remains open.
-- [ ] After the v07 probe passes, render and inspect all four views. Resolve the straight far-ground horizon and landscape transitions without implying that an unregistered HDRI backdrop is measured site context. M3 campus-wide consistency remains open.
+- [x] Inspect repeated v07 probes and the clean frontage build. Correct the largest visible discrepancies in glazing, tree scale, fascia, lettering and material tone; preserve rejected studies and bounded findings.
+- [x] Correct the low entrance return after full-resolution close-view inspection. The hidden lower-right aerial pick is superseded by a continuous photographed header; other-view acceptance still follows below.
+- [x] Replace distant per-belt terrain shelves with a continuous regional DEM; flatten pond water to a documented lidar-derived level; correct overlapping entrance bays and access paint crossing the apron. Individual previews and bounded geometry checks pass.
+- [ ] Render and inspect all four final integrated v07 views from clean source `e9ed871`. M2/M3 remain pending this combined visual review.
 
 ## P1 • environment and delivery
 
@@ -31,7 +32,7 @@
 ## GitHub project
 
 - [x] Create the [private repository](https://github.com/mknutso-2/protolabs-campus-reconstruction), prioritized issues and [draft PR #7](https://github.com/mknutso-2/protolabs-campus-reconstruction/pull/7). Authenticated connector mirroring is working and records equal source trees.
-- [ ] Mirror the current local `feat/reference-lighting` branch and its v07 changes, with exact source-tree mappings and visual-check notes. It is not yet published at this update. Keep substantial changes synchronized with the appropriate draft PR. Normal Git CLI authentication/history reconciliation is documented; it does not prevent connector mirroring.
+- [ ] Mirror the current local `feat/reference-lighting` branch and its v07 changes, with exact source-tree mappings and visual-check notes. Source through the earlier font-pinning change has been mirrored; the latest correction sequence is being synchronized. Keep substantial changes synchronized with the appropriate draft PR. Normal Git CLI authentication/history reconciliation is documented; it does not prevent connector mirroring.
 
 ## P2 • later fidelity gaps
 
