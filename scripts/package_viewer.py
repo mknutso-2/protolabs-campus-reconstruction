@@ -1,7 +1,8 @@
 """Prepare locally cached references, Blender glTF and stills for browser preview."""
 from pathlib import Path
-import shutil,json,subprocess,hashlib,argparse
+import shutil,json,subprocess,hashlib,argparse,tempfile
 from PIL import Image
+from prepare_viewer_materials import prepare_viewer_materials,verify_optimized_materials
 root=Path(__file__).resolve().parents[1];pub=root/'viewer/public'
 p=argparse.ArgumentParser();p.add_argument('--require-film',action='store_true');args=p.parse_args()
 master_hash=hashlib.sha256((root/'scene/protolabs-campus.blend').read_bytes()).hexdigest()
@@ -28,4 +29,13 @@ film=root/'deliverables/flythrough.mp4'
 if film.exists():shutil.copyfile(film,pub/'renders/flythrough.mp4')
 else:(pub/'renders/flythrough.mp4').unlink(missing_ok=True)
 
-subprocess.run(['npx','gltf-transform','optimize','../scene/protolabs-campus-viewer.glb','public/models/campus.glb','--compress','meshopt','--simplify','false','--palette','false','--texture-compress','false'],cwd=root/'viewer',check=True)
+with tempfile.TemporaryDirectory(prefix='campus-viewer-materials-') as temporary:
+ prepared=Path(temporary)/'campus-materials.glb'
+ joined=Path(temporary)/'campus-joined.glb'
+ report=prepare_viewer_materials(root/'scene/protolabs-campus-viewer.glb',root/'scene/materials.json',prepared)
+ subprocess.run(['npx','gltf-transform','optimize',str(prepared),str(joined),'--compress','false','--simplify','false','--palette','false','--texture-compress','false'],cwd=root/'viewer',check=True)
+ compression=subprocess.run(['node',str(root/'scripts/compress_viewer_lossless.mjs'),str(joined),str(pub/'models/campus.glb')],cwd=root/'viewer',check=True,capture_output=True,text=True)
+ report['position_compression']=json.loads(compression.stdout.strip().splitlines()[-1])
+ report.update(verify_optimized_materials(pub/'models/campus.glb',report))
+ report['master_sha256']=master_hash
+ (root/'scene/viewer-package.json').write_text(json.dumps(report,indent=2)+'\n')

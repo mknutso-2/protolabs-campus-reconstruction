@@ -1,0 +1,143 @@
+{
+  "source_glb_sha256": "82ef1a95a6f9691b65bb63c41f6904e77529c18f52430c8f953fce23a8f5d7ef",
+  "prepared_glb_sha256": "463e9bb56e079668498baf20f24f174898ad84476e90e1e54597504789823d69",
+  "palette_sha256": "1d2bf0cde7655713e1be23f2eea214a35ebf3adf746e15ba327e9746afb3bac0",
+  "binary_chunks_sha256": [
+    "3d20ab6cfe488902433a97c7827459a972582804b863e1cb1223132cb1a2506d"
+  ],
+  "binary_images_and_topology_unchanged": true,
+  "scope": "Known opaque palette materials use mean linear albedo once; unknown and alpha materials remain unchanged.",
+  "optimized_glb_sha256": "59a202ccb44a8ea6fce75978eb2a91919710145e0995a28ce27b8bca87ad0c4b",
+  "distinct_surface_albedos": {
+    "Weathered asphalt / metric noise": [
+      0.024000000208616257,
+      0.025200000032782555,
+      0.025200000032782555
+    ],
+    "Charcoal aggregate membrane": [
+      0.06700000166893005,
+      0.061000000685453415,
+      0.061000000685453415
+    ],
+    "Concrete curbs & walks": [
+      0.2800000011920929,
+      0.2800000011920929,
+      0.25
+    ],
+    "Warm umber precast / photo colour": [
+      0.0820000022649765,
+      0.03999999910593033,
+      0.029999999329447746
+    ],
+    "Mown summer grass": [
+      0.030249999836087227,
+      0.11025000363588333,
+      0.013500000350177288
+    ],
+    "Prairie meadow": [
+      0.0430000014603138,
+      0.09200000017881393,
+      0.01899999938905239
+    ]
+  },
+  "prepared_nonmaterial_json_exact": true,
+  "prepared_binary_chunks_exact": true,
+  "unknown_or_alpha_materials_unchanged": 19,
+  "known_opaque_materials_prepared": 30,
+  "position_compression": {
+    "positionAccessors": 164,
+    "positionComponentType": 5126,
+    "decodedPositionsExact": true
+  },
+  "source_master_sha256": "a6632753e411a1b63d9bef90614a80a259ffd2620021107668b1f8a0ac8c0155",
+  "world_coordinate_checks": {
+    "Concrete curbs & walks": {
+      "sourceToOptimized": {
+        "samples": 4960,
+        "maxNearestDifferenceM": 0,
+        "missing": 0
+      },
+      "optimizedToSource": {
+        "samples": 4960,
+        "maxNearestDifferenceM": 0,
+        "missing": 0
+      }
+    },
+    "Charcoal aggregate membrane": {
+      "sourceToOptimized": {
+        "samples": 150,
+        "maxNearestDifferenceM": 6.035434777139308e-06,
+        "missing": 0
+      },
+      "optimizedToSource": {
+        "samples": 150,
+        "maxNearestDifferenceM": 6.035434777139308e-06,
+        "missing": 0
+      }
+    },
+    "Prairie meadow": {
+      "sourceToOptimized": {
+        "samples": 102217,
+        "maxNearestDifferenceM": 0,
+        "missing": 0
+      },
+      "optimizedToSource": {
+        "samples": 102217,
+        "maxNearestDifferenceM": 0,
+        "missing": 0
+      }
+    },
+    "Weathered asphalt / metric noise": {
+      "sourceToOptimized": {
+        "samples": 296133,
+        "maxNearestDifferenceM": 0,
+        "missing": 0
+      },
+      "optimizedToSource": {
+        "samples": 296133,
+        "maxNearestDifferenceM": 0,
+        "missing": 0
+      }
+    },
+    "Mown summer grass": {
+      "sourceToOptimized": {
+        "samples": 249846,
+        "maxNearestDifferenceM": 0,
+        "missing": 0
+      },
+      "optimizedToSource": {
+        "samples": 249846,
+        "maxNearestDifferenceM": 0,
+        "missing": 0
+      }
+    },
+    "Faded parking paint": {
+      "sourceToOptimized": {
+        "samples": 26525,
+        "maxNearestDifferenceM": 0,
+        "missing": 0
+      },
+      "optimizedToSource": {
+        "samples": 26449,
+        "maxNearestDifferenceM": 0,
+        "missing": 0
+      }
+    }
+  },
+  "optimized_bytes": 20394360,
+  "source_bytes": 42253288,
+  "prepared_bytes": 42253928,
+  "visual_review": {
+    "observer": "Owning root agent through CUA, separate tab 5",
+    "utc": "2026-09-07 22:06\u201322:07 UTC",
+    "views": [
+      "http://localhost:3107/?mode=after",
+      "http://localhost:3107/?mode=before&view=campus_overview",
+      "http://localhost:3107/?mode=after&view=campus_overview"
+    ],
+    "observations": "Large jagged grass/asphalt patches disappeared; gray roofs distinct from asphalt, lighter concrete, leaf alpha cutouts retained; no browser warnings/errors. Plain Lambert preview keeps dark pond, no physical glass reflections, some distant thin-edge aliasing.",
+    "saved_screenshots": false,
+    "status": "Accepted for the bounded geometry walkthrough; final geometry/stills/movie/site not accepted by this check."
+  },
+  "validation_source": "Early v07 a663 master; subsequent source geometry changes are outside this diagnostic package."
+}

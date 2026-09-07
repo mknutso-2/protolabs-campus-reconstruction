@@ -4,7 +4,6 @@
 import type { Mesh, MeshStandardMaterial, Material } from 'three';
 type CameraData = { position: number[]; target: number[]; lens: number };
 type TerrainData = { x: number[]; y: number[]; z: number[][] };
-type PaletteData = Record<string, { linearColor: [number, number, number] }>;
 type CampusTool = {
   name: string;
   description: string;
@@ -146,9 +145,9 @@ function Walkthrough({
         orbit.maxPolarAngle = Math.PI * 0.485;
         orbit.minDistance = 3;
         orbit.maxDistance = 420;
-        scene.add(new THREE.AmbientLight(0xffffff, 1.6));
-        scene.add(new THREE.HemisphereLight(0xe0efff, 0x53623c, 1.2));
-        const sun = new THREE.DirectionalLight(0xfff1d7, 2.0);
+        scene.add(new THREE.AmbientLight(0xffffff, 0.8));
+        scene.add(new THREE.HemisphereLight(0xe0efff, 0x53623c, 1.0));
+        const sun = new THREE.DirectionalLight(0xfff1d7, 2.2);
         sun.position.set(-30, 120, 90);
         sun.castShadow = true;
         sun.shadow.mapSize.set(2048, 2048);
@@ -164,10 +163,6 @@ function Walkthrough({
         const resp = await fetch('/models/cameras.json');
         if (!resp.ok) throw Error('Saved cameras are unavailable');
         const cameras = (await resp.json()) as Record<ViewName, CameraData>;
-        const paletteResp = await fetch('/models/materials.json');
-        const palette: PaletteData = paletteResp.ok
-          ? ((await paletteResp.json()) as PaletteData)
-          : {};
         const groundResp = await fetch('/models/terrain.json');
         const terrain: TerrainData | null = groundResp.ok
           ? ((await groundResp.json()) as TerrainData)
@@ -221,6 +216,8 @@ function Walkthrough({
             const convert = (material: Material) => {
               const m = material as MeshStandardMaterial;
 
+              // Packaging has already applied known opaque mean albedos before
+              // optimization. Use each glTF factor once; preserve leaf maps/alpha.
               const simple = new THREE.MeshLambertMaterial({
                 name: m.name,
                 color:
@@ -228,13 +225,7 @@ function Walkthrough({
                     ? new THREE.Color().setRGB(0.03, 0.075, 0.095)
                     : m.name === 'CampusVeg_Bark'
                       ? new THREE.Color().setRGB(0.19, 0.15, 0.1)
-                      : palette[m.name]
-                        ? new THREE.Color().setRGB(
-                            palette[m.name].linearColor[0] * 1.7,
-                            palette[m.name].linearColor[1] * 1.7,
-                            palette[m.name].linearColor[2] * 1.7,
-                          )
-                        : m.color,
+                      : m.color,
                 map: m.map,
                 alphaMap: m.alphaMap,
                 alphaTest: m.alphaTest,
@@ -669,7 +660,8 @@ export default function Home() {
         <TabsContent value="explore">
           <Walkthrough view={view} resetToken={viewReset} />
           <p className="comparison-note">
-            Explore the geometry here. Still views show the rendered lighting and surface detail.
+            Explore the geometry here. Still views show the rendered lighting
+            and surface detail.
           </p>
           <div className="view-strip">
             {views.map((v) => (
