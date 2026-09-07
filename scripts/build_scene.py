@@ -61,7 +61,7 @@ water=mat('Wetland pond',(.06,.09,.074),.2,.25,noise=.14,scale=.4)
 
 def cube(name,loc,size,ma,bevel=0):
  sx,sy,sz=[v/2 for v in size];v=[(x*sx,y*sy,z*sz) for x,y,z in [(-1,-1,-1),(-1,-1,1),(-1,1,-1),(-1,1,1),(1,-1,-1),(1,-1,1),(1,1,-1),(1,1,1)]]
- o=mesh(name,v,[(0,4,6,2),(1,3,7,5),(0,1,5,4),(2,6,7,3),(0,2,3,1),(4,5,7,6)],ma);o.location=loc
+ o=mesh(name,v,[tuple(reversed(face)) for face in [(0,4,6,2),(1,3,7,5),(0,1,5,4),(2,6,7,3),(0,2,3,1),(4,5,7,6)]],ma);o.location=loc
  if bevel:
   m=o.modifiers.new('Light-catching edge','BEVEL');m.width=bevel;m.segments=2
   o.modifiers.new('Weighted normals','WEIGHTED_NORMAL')
@@ -361,7 +361,7 @@ if not opt.no_trees:
   poses=[pixel(t['center_px']) for t in layout['trees']]
   poses += [(random.uniform(-180,230),random.uniform(73,155)) for _ in range(230)]
   for j,(x,y) in enumerate(poses):
-   src=assets[j%3];o=bpy.data.objects.new('Mature deciduous tree',src.data);COL[active].objects.link(o);o.location=(x,y,ground(x,y));s=random.uniform(.78,1.35);o.scale=(s,s,s);o.rotation_euler.z=random.random()*6.283
+   src=assets[j%3];o=bpy.data.objects.new('Mature deciduous tree',src.data);COL[active].objects.link(o);o.location=(x,y,ground(x,y));s=random.uniform(.78,1.35);forest=j>=len(layout['trees']);o.scale=(s*(1.3 if forest else 1),s*(1.3 if forest else 1),s*(1.65 if forest else 1));o.rotation_euler.z=random.random()*6.283
   shrub=create_shrub_asset('Landscape shrub asset',seed=444,height=1.0,width=1.4)
   for c in list(shrub.users_collection):c.objects.unlink(shrub)
   COL[active].objects.link(shrub);shrub.hide_render=True;shrub.hide_viewport=True
