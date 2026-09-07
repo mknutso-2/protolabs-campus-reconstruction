@@ -430,7 +430,7 @@ for name,cfg in cameras.items():
  c.data.clip_end=1500;c.data.clip_start=.1;c['reference']=cfg['reference'];cfg['rotation_euler']=list(c.rotation_euler)
 scene=bpy.context.scene;scene.camera=bpy.data.objects['reference_aerial'];scene.render.engine='CYCLES';scene.cycles.device='CPU';scene.cycles.samples=opt.samples;scene.cycles.use_denoising=True;scene.cycles.adaptive_threshold=.035;scene.cycles.max_bounces=6;scene.cycles.transparent_max_bounces=6;scene.render.threads_mode='FIXED';scene.render.threads=6
 scene.render.resolution_x=opt.width;scene.render.resolution_y=round(opt.width*2/3);scene.render.resolution_percentage=100;scene.render.image_settings.file_format='PNG';scene.render.film_transparent=False
-scene.view_settings.view_transform='AgX';scene.view_settings.look='AgX - Medium Low Contrast';scene.view_settings.exposure=-.35;scene.view_settings.gamma=1.15
+scene.view_settings.view_transform='AgX';scene.view_settings.look='AgX - Medium High Contrast';scene.view_settings.exposure=-.35;scene.view_settings.gamma=1.05
 scene.render.fps=24;scene.frame_end=288
 (ROOT/'scene').mkdir(exist_ok=True);(ROOT/'deliverables').mkdir(exist_ok=True)
 (ROOT/'scene/cameras.json').write_text(json.dumps(cameras,indent=2)+'\n')
@@ -438,6 +438,8 @@ scene['Fidelity status']='Reference-led work in progress; GIS plan plus photo-in
 scene['Origin UTM EPSG26915']=[447671.8750643735,4984591.8364606025]
 from visual_finish import apply_visual_finish
 apply_visual_finish()
+from frontage_finish import apply_frontage_finish
+apply_frontage_finish()
 from monument_finish import apply_monument_finish
 apply_monument_finish(ROOT)
 from material_quality import apply_material_quality

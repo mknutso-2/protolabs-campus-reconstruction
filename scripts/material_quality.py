@@ -238,9 +238,9 @@ def apply_material_quality(root=ROOT, environment='qwantani_sunset_puresky',
     root = Path(root)
     assets = {a['asset_id']: a for a in _manifest(root)['assets']}
     settings = [
-        ('Weathered asphalt / metric noise', 'asphalt_01', (.040, .042, .042), 2.1, .004, .14),
-        ('Mown summer grass', 'leafy_grass', (.055, .105, .030), 2.0, .017, .16),
-        ('Prairie meadow', 'leafy_grass', (.077, .100, .037), 2.0, .022, .22),
+        ('Weathered asphalt / metric noise', 'asphalt_01', (.024, .0252, .0252), 2.1, .004, .24),
+        ('Mown summer grass', 'leafy_grass', (.03025, .11025, .0135), 2.0, .017, .16),
+        ('Prairie meadow', 'leafy_grass', (.043, .092, .019), 2.0, .022, .22),
         ('Warm umber precast / photo colour', 'rough_concrete', (.082, .040, .030), 1.23, .0012, .07),
         ('Muted burgundy precast', 'rough_concrete', (.091, .044, .035), 1.23, .0012, .07),
         ('Light brown panel bands', 'rough_concrete', (.107, .061, .044), 1.23, .0012, .07),

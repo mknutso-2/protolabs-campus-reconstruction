@@ -17,8 +17,8 @@ Every tree asset is one mesh object, with real tapered branches and individual f
 leaf cards (two triangles each). Original packed procedural textures define
 leaf outlines and veins. Linked instances reuse the same mesh data.
 Tree crown is the overall diameter in metres, height includes the foliage.
-Supported variants: broad, upright, spreading. Mature crowns use 8,000 packed
-alpha leaf cards and remain below 20,000 triangles per reusable tree.
+Supported variants: broad, upright, spreading. Mature crowns use 10,000 packed
+alpha leaf cards and remain below 24,000 triangles per reusable tree.
 """
 
 import math
@@ -224,7 +224,9 @@ def create_tree_asset(name, seed=21, height=12.0, crown=7.0, variant=None):
     rng = random.Random(seed)
     b = _MeshBuilder()
     radius = crown * 0.5
-    bottom = {'broad': .28, 'upright': .25, 'spreading': .30}[variant] * height
+    # Leaf-on lower boughs reach beneath the main crown body. The previous
+    # quarter-height envelope and upward-only twigs exposed overly long stems.
+    bottom = {'broad': .17, 'upright': .20, 'spreading': .15}[variant] * height
     top = height * .98
     middle = (bottom + top) * .5
     vertical_radius = (top-bottom) * .5
@@ -266,13 +268,13 @@ def create_tree_asset(name, seed=21, height=12.0, crown=7.0, variant=None):
         return point
 
     leaf_sites = []
-    # Ten asymmetrical scaffold branches, each with three secondary branches
-    # and three tertiary twigs, produce 90 distinct sprays of real leaf planes.
-    for primary in range(10):
+    # Fourteen asymmetrical scaffold branches carry 126 smaller, overlapping
+    # sprays. Lower boughs droop; upper twigs grow upward through the crown.
+    for primary in range(14):
         angle = primary * 2.399963 + rng.uniform(-.26,.26)
-        f = primary/9
-        attach_z = height * (.28 + f*.46)
-        end_z = bottom + vertical_radius*(.57+f*.92) + rng.uniform(-.18,.18)*vertical_radius
+        f = primary/13
+        attach_z = height * (.18 + f*.52)
+        end_z = bottom + vertical_radius*(.42+f*1.24) + rng.uniform(-.14,.14)*vertical_radius
         radial_envelope = math.sqrt(max(.14, 1-((end_z-middle)/vertical_radius)**2))
         spread = radius*radial_envelope*rng.uniform(.62,.86)
         if variant == 'upright':
@@ -304,7 +306,7 @@ def create_tree_asset(name, seed=21, height=12.0, crown=7.0, variant=None):
                 twig_length = radius*rng.uniform(.14,.22)
                 delta = Vector((math.cos(twig_angle)*twig_length,
                                 math.sin(twig_angle)*twig_length,
-                                height*rng.uniform(.012,.055)))
+                                height*rng.uniform(-.047+.055*f,.026+.035*f)))
                 tip = crown_clip(origin + delta)
                 b.branch([origin,tip], [.0045,.0009], 3)
                 leaf_sites.append((origin,tip))
@@ -316,24 +318,26 @@ def create_tree_asset(name, seed=21, height=12.0, crown=7.0, variant=None):
     for index,(origin,tip) in enumerate(leaf_sites):
         axis = (tip-origin).normalized()
         u,v = _basis(axis)
-        for leaf in range(70):
+        for leaf in range(60):
             along = rng.uniform(-.07,1.15)
-            sideways = rng.gauss(0, radius*.095)
-            radial = rng.gauss(0, radius*.081)
+            sideways = rng.gauss(0, radius*.115)
+            radial = rng.gauss(0, radius*.100)
             point = crown_clip(origin.lerp(tip,along) + u*sideways + v*radial, jitter=True)
             # Keep the crown within the requested height, while retaining an
             # irregular silhouette rather than clipping to a geometric sphere.
             if point.z > height-leaf_length*.3:
                 point.z = height-leaf_length*.3-rng.uniform(0,leaf_length*.5)
             length = leaf_length*rng.uniform(.78,1.38)
-            width = length*rng.uniform(.43,.63)
-            normal = Vector((rng.uniform(-1,1),rng.uniform(-1,1),rng.uniform(.12,1.3)))
+            width = length*rng.uniform(.50,.72)
+            # A broader range of leaf inclinations keeps the canopy legible
+            # from the saved low aerial view as well as from above.
+            normal = Vector((rng.uniform(-1,1),rng.uniform(-1,1),rng.uniform(-.25,.95)))
             b.leaf(point,length,width,normal,rng.uniform(0,math.tau),
                    rng.choices([1,2,3,4,5],[17,32,26,10,15])[0])
     # Interior/surface foliage connects sprays into a substantially closed crown.
-    # 6,300 twig-attached leaves + 1,700 infill leaves = 8,000 cards, 16k tris.
+    # 7,560 twig-attached leaves + 2,440 infill leaves = 10,000 cards, 20k tris.
     # The scaffold remains visible below the crown and through small openings.
-    for leaf in range(1700):
+    for leaf in range(2440):
         theta = rng.uniform(0,math.tau)
         unit_z = rng.uniform(-1,1)
         radial = math.sqrt(max(0,1-unit_z*unit_z))
@@ -344,8 +348,8 @@ def create_tree_asset(name, seed=21, height=12.0, crown=7.0, variant=None):
                                  math.sin(theta)*radius*radial*shell,0))
         point = crown_clip(point, jitter=True)
         length = leaf_length*rng.uniform(.80,1.35)
-        normal = Vector((rng.uniform(-1,1),rng.uniform(-1,1),rng.uniform(.03,1.3)))
-        b.leaf(point,length,length*rng.uniform(.47,.65),normal,
+        normal = Vector((rng.uniform(-1,1),rng.uniform(-1,1),rng.uniform(-.25,.95)))
+        b.leaf(point,length,length*rng.uniform(.50,.72),normal,
                rng.uniform(0,math.tau),rng.choices([1,2,3,4,5],[23,31,22,7,17])[0])
     obj = b.object(name, {'seed': seed, 'vegetation_variant': variant,
                          'nominal_height_m': height, 'nominal_crown_m': crown})
@@ -361,7 +365,7 @@ def create_tree_asset(name, seed=21, height=12.0, crown=7.0, variant=None):
         vertex.co.y *= horizontal_scale
         vertex.co.z *= vertical_scale
     obj.data.update()
-    assert obj['triangle_count'] < 20000, 'Tree triangle budget exceeded'
+    assert obj['triangle_count'] < 24000, 'Tree triangle budget exceeded'
     return obj
 
 

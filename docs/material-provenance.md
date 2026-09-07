@@ -26,6 +26,21 @@ The raw file directory `research/material-assets/` is excluded by the repository
 
 The three warm facade materials use tinted fine concrete relief. They remain precast, without a brick pattern. The roof aggregate borrows the asphalt scan's grain as a surface-detail proxy, which is an approximation rather than a claim about the installed roofing product. The grass scan contains flattened blades, leaves and twigs; recoloring and tiling do not turn it into an exact representation of the site's lawn.
 
+Current scan-normalization targets are **linear RGB albedos**, distinct from the sRGB plain-material color inputs below. These target means retain the source scan contrast and broad procedural variation; they are artist-selected values rather than site measurements.
+
+| Surface | Linear RGB target | Scan repeat |
+| --- | --- | --- |
+| Asphalt | `(0.024, 0.0252, 0.0252)` | 2.1 m |
+| Mown grass | `(0.03025, 0.11025, 0.0135)` | 2.0 m |
+| Prairie meadow | `(0.043, 0.092, 0.019)` | 2.0 m |
+| Warm umber precast | `(0.082, 0.040, 0.030)` | 1.23 m |
+| Muted burgundy precast | `(0.091, 0.044, 0.035)` | 1.23 m |
+| Light brown panel bands | `(0.107, 0.061, 0.044)` | 1.23 m |
+| Concrete curbs and walks | `(0.28, 0.28, 0.25)` | 1.23 m |
+| Aggregate membrane | `(0.067, 0.061, 0.061)` | 1.0 m |
+
+The latest isolated frontage study selected the darker asphalt target and greener mown grass above. Compared with their previous targets, asphalt RGB was multiplied by `(0.6, 0.6, 0.6)` and mown grass by `(0.55, 1.05, 0.45)`. Bump distances remain 0.004 m and 0.017 m respectively; their broad-variation amounts remain 0.24 and 0.16. This is a shader change, with no image retouching or terrain displacement.
+
 Coated pale aluminum and painted structural steel receive restrained dielectric finishes. Mullions become pale silver/blue-gray, with much less saturation. The first v07 probe used glazing transmission 0.70 and read as opaque gray panels. The revised thin-pane response uses neutral cool sRGB `(0.90, 0.95, 0.975)`, IOR 1.52, roughness 0.045 and transmission 1.0. A restrained dielectric coat (weight 0.65, IOR 1.7, roughness 0.035) increases reflections without metallic blue. The unmeasured interior depth remains neutral and dark; neither the glass coating nor interior is an accurate product specification. Pale fascia and mullion values were lifted after the same probe. Their sRGB targets are `(0.82, 0.845, 0.845)` and `(0.62, 0.70, 0.735)`, with metallic weights 0.05 and 0.35 respectively. The photo-interpreted cyan identity color uses sRGB `(0.015, 0.48, 0.65)`, metallic weight 0 and no emission. All these display-referred color inputs are converted to linear light in the shader helper.
 
 Existing parking-paint geometry receives warm off-white color, high roughness, and soft patchy transparency so local wear reveals the pavement beneath it. This introduces no parking spaces, markings, layout changes or claims about specific cracks. It also does not establish the exact wear of any individual painted line.
@@ -36,7 +51,7 @@ The module does not alter foliage, camera placement, ground extent, geometry, ob
 
 The wider official reference shows a sun near image pixel (288,245) in its 1200 by 800 image. A ray through that manually observed point using the fitted reference camera implies an elevation of approximately **5.46°** and local XY azimuth **156.06°**, where x is east and y is north. This is a photographic inference, not an ephemeris calculation, verified capture date or precise light survey. The previous 32° Nishita sun gives a substantially different direction and shadow length.
 
-The downloaded Qwantani pure-sky HDRI's high-luminance solar region is centered at UV approximately (0.600050,0.533797), corresponding to an elevation of **6.08°**. It supplies a close low-sun approximation without importing landscape. Its world lookup rotates around z by **−192.075924°** to align its native sun azimuth with the reference. No horizon tilt and no second artificial sun are added. One environment supplies the background, reflections and illumination, so their directions stay coherent. Its default strength remains 1.0. The first integrated probe retained AgX Medium High Contrast, exposure −0.85 and gamma 1.0; the current generator now uses the tested Medium Low Contrast / −0.35 / 1.15 settings described below. Neither adjustment rotates or tilts the HDRI.
+The downloaded Qwantani pure-sky HDRI's high-luminance solar region is centered at UV approximately (0.600050,0.533797), corresponding to an elevation of **6.08°**. It supplies a close low-sun approximation without importing landscape. Its world lookup rotates around z by **−192.075924°** to align its native sun azimuth with the reference. No horizon tilt and no second artificial sun are added. One environment supplies the background, reflections and illumination, so their directions stay coherent. Its default strength remains 1.0. The first integrated probe retained AgX Medium High Contrast, exposure −0.85 and gamma 1.0. After the historical low-contrast study and latest fascia comparison below, the current generator uses **Medium High Contrast / −0.35 / 1.05**. These display adjustments do not rotate or tilt the HDRI.
 
 The spherical mapping follows [Cycles' equirectangular coordinate implementation](https://github.com/blender/blender/blob/main/intern/cycles/kernel/camera/projection.h): native azimuth is `180° − 360° × u`. The lookup vector rotation is native azimuth minus the target scene azimuth. Bright-region positions were calculated from the downloaded floating-point HDR data, not its tonemapped thumbnail.
 
@@ -69,20 +84,24 @@ The source passes Python compilation and the acquisition command verifies all ac
 
 Two isolated 900 × 600, 20-sample Cycles renders with three CPU threads used the preserved first v07 master (SHA256 `d9df348a833ca58acf88706daffe429203f9ee8fa8cc1c66187476d220f03c0c`). The first radiance render compared three AgX display settings with full-transmission glass. The second tested the current glass coat, pale trim and nonmetallic identity shader values. Each run verified that the loaded master file remained unchanged. No geometry, world direction, camera transform, scene save or GLB export occurred. Scripts, images and receipts are retained under the build workspace's `work/v07-glass-tone/`; they are study outputs, not delivery renders.
 
-The coated case with `view_transform='AgX'`, `look='AgX - Medium Low Contrast'`, `exposure=-0.35`, and `gamma=1.15` improves dark-pane separation and frontage readability. This is a global display-transform shadow lift, without hue retouching or image compositing. It also lifts asphalt and does not reproduce the official photograph's richer sky color or all reflected detail. The material module now uses the tested shader values and leaves view settings to the generator. The current `build_scene.py` explicitly applies the same tested display transform:
+The historical coated case with `view_transform='AgX'`, `look='AgX - Medium Low Contrast'`, `exposure=-0.35`, and `gamma=1.15` improved dark-pane separation and frontage readability, but lifted asphalt and reduced contrast too far in the later integrated image. The coated glass shader is retained. The material module leaves display settings to the generator.
+
+A subsequent 1200 × 800, 32-sample isolated render tested the fitted lower fascia together with darker asphalt and greener grass. Three saved display variants under `work/frontage-refinement/` were inspected: `low` used Medium Low Contrast / −0.35 / 1.15; `base` used Medium High Contrast / −0.35 / 1.05; `warm` used Medium High Contrast / −0.65 / 1.05. The variant name `warm` does not indicate a white-balance change: it only lowered exposure. **Base was selected** for its stronger surface separation while retaining entrance legibility. Its SHA-256 is `7536323bf41f832022ae04fd393634301b3456fc10f08c4150384d046597c7ec`. All three variants derive from the same radiance render, with no source-photo retouching or compositing. The current `build_scene.py` applies:
 
 ```python
 scene.view_settings.view_transform = 'AgX'
-scene.view_settings.look = 'AgX - Medium Low Contrast'
+scene.view_settings.look = 'AgX - Medium High Contrast'
 scene.view_settings.exposure = -0.35
-scene.view_settings.gamma = 1.15
+scene.view_settings.gamma = 1.05
 ```
 
-This records source integration, not acceptance of a newly generated master or production image set. Distant-context integration, four-camera inspection and motion review remain separate steps.
+The prior integrated probe was inspected and rejected for its sparse distant horizon and oversized lower entrance canopy. The isolated base variant improves that canopy's screen extent and apparent height, but retains the deficient horizon. Subsequent lettering placement/scale, panel joints and the narrow secondary door have not yet appeared in a completed integrated render. Fuller 10,000-card tree assets passed isolated checks but are also awaiting integration; expanded distant woodland research is ongoing. These source changes and small previews do not accept the next master, all four production stills or motion.
 
 
 ## Monument geometry is a separate fit
 
 Frontage/sign readability involved both shader response and an incorrectly oriented sign. [monument-sign-fit.json](../research/monument-sign-fit.json) documents the separately inferred panel corners, fixed-camera fit, terrain anchor and uncertainty. Its nominal +83.82° yaw and 3.52 × 2.26 m panel reverse the incorrect top-edge screen slope; they are image-derived dimensions, not a physical measurement. The alternate left-edge interpretation and conditional perturbation ranges are retained rather than suppressed by the nominal 2.12-pixel corner RMS.
 
-`monument_finish.apply_monument_finish(ROOT)` applies the same transform to the panel, all lettering/logo parts and base after geometry and the fixed cameras exist, before saving/exporting; the current generator now invokes it. It does not change their materials, the world, camera or view transform. The material helper does not move the sign. The isolated transform/projection check preserved the source master; combined rendered acceptance remains pending. See [visual accuracy](visual-accuracy.md#monument-sign-bounded-image-corner-fit) for the full distinction between fit residuals, implementation checks and visual fidelity.
+`monument_finish.apply_monument_finish(ROOT)` applies the same transform to the panel, all lettering/logo parts and base after geometry and the fixed cameras exist, before saving/exporting; the current generator invokes it. It does not change their materials, the world, camera or view transform. The material helper does not move the sign. The fitted sign has appeared in the inspected integrated probe and isolated fascia variants; newer typography and other-view acceptance remain pending. See [visual accuracy](visual-accuracy.md#monument-sign-bounded-image-corner-fit) for the distinction between fit residuals, implementation checks and visual fidelity.
+
+The separate [frontage helper](../scripts/frontage_finish.py) now consumes [frontage-fascia-fit.json](../research/frontage-fascia-fit.json), whose optional [research script](../scripts/research/fit_frontage_fascia.py) reproduces the nominal dimensions, corner uncertainty and conditional alternatives. It corrects the lower fascia and adds interpreted shallow joints, lettering placement and a secondary door. Its 3 m depth and hidden return are assumptions; the helper holds the camera and main lidar roof planes fixed. Geometry integration remains subject to the next render and all four production views at 1600 × 1067, 64 samples each, with hash-bound per-view receipts in `deliverables/stills/`.

@@ -12,20 +12,46 @@
 - Species: generic deciduous trees and shrubs. These are artistic planting
   assets; exact campus species, leaf shape, pruning, and individual tree sizes
   have not been established by these assets.
-- Intended use: medium-distance architectural exterior views. The current mature tree assets have 18,212 triangles and 8,000 individual
-  leaf cards each, below a 20,000-triangle budget. Leaf curvature and twig detail
+- Intended use: medium-distance architectural exterior views. The current mature tree assets have 22,988 triangles and 10,000 individual
+  leaf cards each, below a 24,000-triangle budget. Leaf curvature and twig detail
   remain simplified for close-up views.
 - Reproducibility: seed controls every random decision; Blender 4.2.9 LTS.
 - Object origin: ground-level trunk base, local Z up, sizes in metres.
 - Variants: broad, upright, spreading; nominal height and crown configurable.
 - Materials: six shared node materials, reusable by linked mesh instances.
-- Current density: 6,300 leaves in branch sprays plus 1,700 crown-infill leaves.
-  Lower foliage and bounded twig tips produce fuller mature silhouettes.
-- Validation: the revised broad, upright and spreading variants were checked
-  at nominal 12 m height and 7 m crown diameter; each has 18,212 triangles and
-  8,000 leaves. A 900 × 600 Cycles preview was visually inspected. Roots extend
-  approximately 0.06 m below ground. The earlier test fixture expected the old
-  density; its 6,352-triangle/2,070-leaf results do not describe the current asset.
+- Current density: 7,560 leaves in 126 overlapping branch sprays plus 2,440
+  crown-infill leaves. Fourteen asymmetrical scaffold branches, lower drooping
+  twigs, wider leaf cards, and varied leaf inclinations give the crown a more
+  continuous leafy silhouette from the saved low aerial angle. This is a 25%
+  increase in leaf cards from the preceding 8,000-card asset.
+- Dimension convention: the larger horizontal mesh extent is fitted to the
+  requested crown diameter, and the highest vertex is fitted to the requested
+  height. Shallow roots remain approximately 0.06 m below the origin. Downstream
+  measured-canopy placement should continue fitting the actual mesh bounds;
+  asset nominal dimensions do not establish an individual campus tree's size.
+- Validation: before/after 1100 × 620 Cycles previews with identical camera,
+  lighting, and 16 samples were visually inspected on 2026-09-07. The broad,
+  upright, and spreading assets use the actual scene seeds 900, 901, and 902 at
+  nominal heights 12, 13, and 14 m and crown widths 7, 7.35, and 7.7 m. All three
+  keep those height and maximum-width conventions to within 0.00001 m. Their
+  lowest leaf-face centers are approximately 2.17, 2.72, and 2.34 m, compared
+  with 3.50, 3.44, and 4.37 m in the preceding asset. These are geometry checks,
+  not surveyed foliage-bottom observations.
+- The comparison visibly reduces open holes and exposed lower branching. It
+  does not establish tree species, exact pruning, integrated scene fidelity,
+  close-up realism, or motion quality. Materials and the original packed leaf
+  textures were retained; the comparison isolates crown structure and density.
+- The isolated API check confirmed finite coordinates, unchanged unrelated
+  objects, shared mesh instances, and exact deterministic geometry on repeated
+  construction. A three-asset GLB export passed its header/length and mesh checks;
+  its five packed leaf materials export as alpha-mask materials. The existing
+  browser reducer retained 2,984 cards and 8,956 triangles per tree for the 30%
+  setting while leaving each original 10,000-card mesh unchanged. Full-scene
+  viewer and motion checks remain separate integration work.
+- Local comparison and validation receipts are in `work/vegetation-v07` in the
+  enclosing workspace: `before.png`, `after.png`, `before.json`, `after.json`,
+  and `validation.json`. The earlier 18,212-triangle/8,000-leaf and original
+  6,352-triangle/2,070-leaf fixtures describe historical assets only.
 
 Example:
 

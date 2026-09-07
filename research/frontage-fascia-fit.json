@@ -1,0 +1,436 @@
+{
+  "schema_version": 1,
+  "status": "Proposed photo-inferred lower fascia; four-view acceptance remains pending",
+  "source": {
+    "path": "research/images/protolabs-official-hq-drone.jpg",
+    "url": "https://www.protolabs.com/media/s4dignhf/hq-drone.jpg",
+    "sha256": "d63946a04d11b20ae3cc026b06cf07e0a58deb7d46b8ece8bd305912a60f47a9",
+    "attribution": "Proto Labs, Inc.; undated official image",
+    "size_px": [
+      1200,
+      800
+    ]
+  },
+  "camera": "research/reference_drone_camera_fit.json",
+  "camera_constraints": {
+    "sha256": "b0802291c54746cf07c69597596e0c43abf6a83868b3cfb8acc746412a81b47c",
+    "held_fixed": true,
+    "position": [
+      122.2179957382899,
+      -41.42428315068638,
+      13.573699988177284
+    ],
+    "rotation_euler_xyz_radians": [
+      1.4900175028888165,
+      0.011439290773957111,
+      0.8103691719963717
+    ],
+    "focal_length_pixels": 862.4060079332687,
+    "original_landmark_rms_px_unweighted": 7.8704776426456,
+    "projection": "q = (point - camera_position) @ Rotation.from_euler(xyz).as_matrix(); pixel = [600 + f*q.x/-q.z, 400 - f*q.y/-q.z]"
+  },
+  "coordinate_system": "Metres; X east, Y north, Z NAVD88 minus 303.6 m",
+  "manual_corners_px": [
+    [
+      436.0,
+      430.0
+    ],
+    [
+      644.0,
+      441.0
+    ],
+    [
+      644.0,
+      468.0
+    ],
+    [
+      436.0,
+      453.0
+    ]
+  ],
+  "corners_order": [
+    "top_left",
+    "top_right",
+    "bottom_right",
+    "bottom_left"
+  ],
+  "annotation_uncertainty_px_for_sensitivity": [
+    2,
+    5,
+    5,
+    2
+  ],
+  "annotation_review": [
+    "The left vertical silhouette near x436 and y430..453 is directly visible; an independent image review supports these picks to a few pixels.",
+    "The front-panel upper/lower edges slope slightly downward toward image right. Top-right and bottom-right are inferred continuations through truss/entrance-awnings occlusion, not confidently observed physical endpoints.",
+    "The four points describe a single vertical front plane and do not measure the top surface, depth, hidden returns, lettering or exact panel topology."
+  ],
+  "method": {
+    "model": "Vertical front rectangle with endpoint XY, common top Z and height; no camera or lidar-roof changes",
+    "parameter_order": [
+      "x1",
+      "y1",
+      "x2",
+      "y2",
+      "top",
+      "height"
+    ],
+    "initial": [
+      61.0,
+      0.0,
+      77.0,
+      8.0,
+      5.1,
+      1.8
+    ],
+    "solver": "scipy.optimize.least_squares with default settings and no bounds",
+    "nominal_residual": "Concatenate 8 unweighted projected-minus-annotated image coordinates in pixels with [(x1-61)*1, (x2-77)*1, (y2-8)*1]",
+    "endpoint_priors": "Weak interpreted connector-plan priors x1=61 m, x2=77 m, y2=8 m; not new measured constraints",
+    "rms_definition": "coordinate_rms_px averages eight squared scalar coordinates; corner_rms_px averages four squared Euclidean corner distances and equals sqrt(2) times coordinate RMS",
+    "reproduction": "python3 scripts/research/fit_frontage_fascia.py (optional NumPy/SciPy research dependencies)"
+  },
+  "fit": {
+    "a_xy": [
+      59.080277257898246,
+      -0.9707596195248936
+    ],
+    "b_xy": [
+      77.33313450643064,
+      5.7475033588874105
+    ],
+    "top_z": 5.165668221256392,
+    "height": 2.035406826159799,
+    "bottom_z": 3.130261395096593,
+    "front_edge_length_m": 19.4499834237052,
+    "yaw_degrees": 20.206964450258642,
+    "inferred_depth_m": 3.0,
+    "coordinate_rms_px": 0.42715834807964426,
+    "corner_rms_px": 0.6040931291351203,
+    "projected_corners_px": [
+      [
+        435.74635396259896,
+        430.27938852498187
+      ],
+      [
+        643.9501852626403,
+        440.7591593010724
+      ],
+      [
+        644.1460650937829,
+        467.3018625420514
+      ],
+      [
+        436.3801420898928,
+        453.7769138265299
+      ]
+    ],
+    "corner_error_px": [
+      0.3773516399603878,
+      0.24593850922164745,
+      0.7132537569566035,
+      0.8649295360671724
+    ],
+    "world_corners_xyz_m": [
+      [
+        59.080277257898246,
+        -0.9707596195248936,
+        5.165668221256392
+      ],
+      [
+        77.33313450643064,
+        5.7475033588874105,
+        5.165668221256392
+      ],
+      [
+        77.33313450643064,
+        5.7475033588874105,
+        3.130261395096593
+      ],
+      [
+        59.080277257898246,
+        -0.9707596195248936,
+        3.130261395096593
+      ]
+    ],
+    "image_coordinate_weights_by_corner": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "prior_weight_px_per_m": 1
+  },
+  "right_occlusion_weighted_alternative": {
+    "method": "Multiply each image-coordinate residual at both right corners by 0.5, leave left residuals and the original endpoint priors unchanged",
+    "adopted": false,
+    "fit": {
+      "a_xy": [
+        59.36332502754578,
+        -1.1528633679632736
+      ],
+      "b_xy": [
+        77.14248500900878,
+        5.964714726427196
+      ],
+      "top_z": 5.198932832390031,
+      "height": 2.005059657865454,
+      "bottom_z": 3.193873174524577,
+      "front_edge_length_m": 19.15093855601345,
+      "yaw_degrees": 21.817837776973434,
+      "inferred_depth_m": 3.0,
+      "coordinate_rms_px": 0.9079756097065002,
+      "corner_rms_px": 1.2840714215509126,
+      "projected_corners_px": [
+        [
+          435.7402443896021,
+          430.331631551136
+        ],
+        [
+          644.0958625719077,
+          439.8400199647171
+        ],
+        [
+          644.2876400690393,
+          465.8775202785838
+        ],
+        [
+          436.3674237336118,
+          453.5835278122114
+        ]
+      ],
+      "corner_error_px": [
+        0.4212510686539236,
+        1.1639344117894574,
+        2.1418816440550383,
+        0.6895686388210166
+      ],
+      "world_corners_xyz_m": [
+        [
+          59.36332502754578,
+          -1.1528633679632736,
+          5.198932832390031
+        ],
+        [
+          77.14248500900878,
+          5.964714726427196,
+          5.198932832390031
+        ],
+        [
+          77.14248500900878,
+          5.964714726427196,
+          3.193873174524577
+        ],
+        [
+          59.36332502754578,
+          -1.1528633679632736,
+          3.193873174524577
+        ]
+      ],
+      "image_coordinate_weights_by_corner": [
+        1,
+        0.5,
+        0.5,
+        1
+      ],
+      "prior_weight_px_per_m": 1
+    },
+    "reason": "Tests reduced confidence in occluded endpoints; does not establish a superior physical reconstruction from this one image"
+  },
+  "prior_sensitivity": {
+    "warning": "Holding the same pixels and camera, change all endpoint prior weights together; these alternatives expose depth/scale dependence on inferred priors",
+    "weaker_prior": {
+      "a_xy": [
+        58.815119417826736,
+        -0.8053868349448398
+      ],
+      "b_xy": [
+        77.52014151642453,
+        5.54568400381722
+      ],
+      "top_z": 5.170394885706071,
+      "height": 2.0344242525101106,
+      "bottom_z": 3.1359706331959605,
+      "front_edge_length_m": 19.753833868593855,
+      "yaw_degrees": 18.754316014557375,
+      "inferred_depth_m": 3.0,
+      "coordinate_rms_px": 0.21241984602388686,
+      "corner_rms_px": 0.3004070271641854,
+      "projected_corners_px": [
+        [
+          435.68910504893904,
+          429.82266062227865
+        ],
+        [
+          643.904944611375,
+          441.1637274662153
+        ],
+        [
+          644.1016643175673,
+          467.8038325461171
+        ],
+        [
+          436.32012407357365,
+          453.21385431111406
+        ]
+      ],
+      "corner_error_px": [
+        0.35791748418566083,
+        0.18932039007970752,
+        0.22094638134468295,
+        0.38498453068072613
+      ],
+      "world_corners_xyz_m": [
+        [
+          58.815119417826736,
+          -0.8053868349448398,
+          5.170394885706071
+        ],
+        [
+          77.52014151642453,
+          5.54568400381722,
+          5.170394885706071
+        ],
+        [
+          77.52014151642453,
+          5.54568400381722,
+          3.1359706331959605
+        ],
+        [
+          58.815119417826736,
+          -0.8053868349448398,
+          3.1359706331959605
+        ]
+      ],
+      "image_coordinate_weights_by_corner": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "prior_weight_px_per_m": 0.25
+    },
+    "stronger_prior": {
+      "a_xy": [
+        60.34435182649176,
+        -1.759879245902119
+      ],
+      "b_xy": [
+        76.5117339956139,
+        6.693109287782409
+      ],
+      "top_z": 5.155178023723146,
+      "height": 2.0372032265203917,
+      "bottom_z": 3.1179747972027547,
+      "front_edge_length_m": 18.243828034517605,
+      "yaw_degrees": 27.602464195646814,
+      "inferred_depth_m": 3.0,
+      "coordinate_rms_px": 2.0272838218135267,
+      "corner_rms_px": 2.86701227558825,
+      "projected_corners_px": [
+        [
+          436.0144787085345,
+          432.36811942699154
+        ],
+        [
+          644.6703748780966,
+          438.8171815738821
+        ],
+        [
+          644.8610137545372,
+          464.8942409378093
+        ],
+        [
+          436.66089462587206,
+          456.35154797027104
+        ]
+      ],
+      "corner_error_px": [
+        2.368163688070479,
+        2.2834401149543524,
+        3.2228999422696996,
+        3.416087748219374
+      ],
+      "world_corners_xyz_m": [
+        [
+          60.34435182649176,
+          -1.759879245902119,
+          5.155178023723146
+        ],
+        [
+          76.5117339956139,
+          6.693109287782409,
+          5.155178023723146
+        ],
+        [
+          76.5117339956139,
+          6.693109287782409,
+          3.1179747972027547
+        ],
+        [
+          60.34435182649176,
+          -1.759879245902119,
+          3.1179747972027547
+        ]
+      ],
+      "image_coordinate_weights_by_corner": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "prior_weight_px_per_m": 4
+    }
+  },
+  "conditional_sensitivity": {
+    "samples": 128,
+    "seed": 20260907,
+    "percentiles": [
+      5,
+      95
+    ],
+    "method": "Independent Gaussian corner-coordinate jitter with 2 px left and 5 px occluded-right scales; original nominal objective, fixed camera and endpoint priors",
+    "ranges": {
+      "a_x_m": [
+        57.938953924853095,
+        60.48182740537078
+      ],
+      "a_y_m": [
+        -1.978447140353281,
+        -0.33447692335743134
+      ],
+      "b_x_m": [
+        76.24880455403178,
+        78.12339644525325
+      ],
+      "b_y_m": [
+        4.758259080424193,
+        6.736041104501769
+      ],
+      "top_z_m": [
+        4.891419538473332,
+        5.528098014769828
+      ],
+      "height_m": [
+        1.4424118847144891,
+        2.5078497439152962
+      ],
+      "front_edge_length_m": [
+        17.969973829386692,
+        20.796707733352736
+      ],
+      "yaw_degrees": [
+        14.264104759507891,
+        28.89403910209889
+      ]
+    },
+    "warning": "Conditional perturbation ranges, not confidence intervals for true building dimensions; approximate camera calibration, photo date and endpoint-prior errors are excluded"
+  },
+  "limits": [
+    "Right corners are occluded by truss/entrance elements. A subpixel fit residual measures consistency with these approximate picks, not physical accuracy.",
+    "Weak endpoint priors reduce single-view depth and scale ambiguity. Camera landmark residuals are several pixels and are not refitted here.",
+    "The 3 m depth, lettering, roof surface and hidden return are interpretations. Main lidar-constrained roof planes, massing and saved cameras remain unchanged.",
+    "The 2022 lidar camera correspondences and the undated company photo are not contemporaneous measured fascia geometry.",
+    "Nominal geometry is retained because isolated visual inspection confirms a better left extent and apparent height; uncertain right-edge weighting provides no compelling visual replacement.",
+    "Other-view intersection, soffit and entrance checks remain required before accepting the integrated assembly."
+  ]
+}
