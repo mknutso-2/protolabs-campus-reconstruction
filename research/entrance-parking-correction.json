@@ -1,0 +1,253 @@
+{
+  "title": "Entrance parking stripe correction from visible aerial bay boundaries",
+  "created_at": "2026-09-07",
+  "coordinate_space": "Top-left pixels of the 3000 x 2500 county aerial used by site-layout.json",
+  "source_layout": "research/site-layout.json",
+  "source_layout_sha256": "3752a7613121be3909e6c461eee6bd09a14a11addd34a49d3f908691b945fc21",
+  "source_aerial": {
+    "local_research_cache": "work/geospatial/aerial_2026.jpg",
+    "sha256": "9676510b54e9ec80df2046c9ba6d7b1c349cb6bb890b03eadf5bd6449066a251",
+    "image_size_px": [
+      3000,
+      2500
+    ],
+    "service_url": "https://gis.hennepin.us/arcgis/rest/services/Imagery/UTM_Aerial_2026/MapServer",
+    "capture": "Spring 2026; exact flight date unconfirmed",
+    "acquisition": "2026-09-07",
+    "rights": "Research comparison only; not used as a scene texture or redistributed with geometry."
+  },
+  "cross_check": {
+    "reference": "research/images/protolabs-official-hq-drone.jpg",
+    "sha256": "d63946a04d11b20ae3cc026b06cf07e0a58deb7d46b8ece8bd305912a60f47a9",
+    "observation": "Visible shorter paired bays, central divide and hatched rounded end areas; capture date may differ from 2026 aerial."
+  },
+  "diagnosis": {
+    "old_single_bay_depth_px": 53.8,
+    "old_single_bay_depth_m": 7.965415477251067,
+    "opposing_row_1_2_overlap_m": 1.791476202131668,
+    "problem": "Overlong single-bay depth overlaps opposing rows; generic count rhythm adds one division per row and omits central/end paint. Conversion formula is correct; coarse source depth/count interpretation is not consistent with visible entrance boundaries."
+  },
+  "trace_uncertainty_px": 3,
+  "uncertainty_note": "Manual boundary/corner reading, some paint obscured by cars and shadows; approximately 0.44 m from pixel annotation alone. Source georegistration, terrain and temporal differences are additional. Rendered bay count is not official site capacity.",
+  "scope": "Correct entry_outer_row_1 through entry_outer_row_4 paint and observed hatched ends; clip the ten separate inferred access-aisle hatches outside the existing Entry concrete apron footprint and conform retained paint to terrain. No cars, curbs, accessible symbols, drainage or other parking rows change.",
+  "rows": [
+    {
+      "source_row_id": "entry_outer_row_1",
+      "boundary_x_px": [
+        1958,
+        1995
+      ],
+      "first_divider_y_px": 1424.0,
+      "last_divider_y_px": 1518.0,
+      "bay_count": 5
+    },
+    {
+      "source_row_id": "entry_outer_row_2",
+      "boundary_x_px": [
+        1995,
+        2034
+      ],
+      "first_divider_y_px": 1405.0,
+      "last_divider_y_px": 1518.0,
+      "bay_count": 6
+    },
+    {
+      "source_row_id": "entry_outer_row_3",
+      "boundary_x_px": [
+        2073,
+        2114
+      ],
+      "first_divider_y_px": 1349.0,
+      "last_divider_y_px": 1518.0,
+      "bay_count": 9
+    },
+    {
+      "source_row_id": "entry_outer_row_4",
+      "boundary_x_px": [
+        2114,
+        2155
+      ],
+      "first_divider_y_px": 1330.0,
+      "last_divider_y_px": 1518.0,
+      "bay_count": 10
+    }
+  ],
+  "center_lines_px": [
+    [
+      [
+        1995,
+        1405
+      ],
+      [
+        1995,
+        1518
+      ]
+    ],
+    [
+      [
+        2114,
+        1330
+      ],
+      [
+        2114,
+        1518
+      ]
+    ]
+  ],
+  "hatched_ends": [
+    {
+      "id": "west_north",
+      "points_px": [
+        [
+          1958,
+          1407
+        ],
+        [
+          2017,
+          1382
+        ],
+        [
+          2027,
+          1382
+        ],
+        [
+          2034,
+          1388
+        ],
+        [
+          2034,
+          1405
+        ],
+        [
+          1995,
+          1405
+        ],
+        [
+          1995,
+          1424
+        ],
+        [
+          1964,
+          1424
+        ],
+        [
+          1958,
+          1419
+        ]
+      ],
+      "corner_rounding_px": 3.5
+    },
+    {
+      "id": "west_south",
+      "points_px": [
+        [
+          1958,
+          1518
+        ],
+        [
+          2034,
+          1518
+        ],
+        [
+          2034,
+          1532
+        ],
+        [
+          2028,
+          1538
+        ],
+        [
+          1964,
+          1538
+        ],
+        [
+          1958,
+          1532
+        ]
+      ],
+      "corner_rounding_px": 3.5
+    },
+    {
+      "id": "east_north",
+      "points_px": [
+        [
+          2073,
+          1332
+        ],
+        [
+          2136,
+          1317
+        ],
+        [
+          2147,
+          1317
+        ],
+        [
+          2155,
+          1322
+        ],
+        [
+          2155,
+          1330
+        ],
+        [
+          2114,
+          1330
+        ],
+        [
+          2114,
+          1349
+        ],
+        [
+          2073,
+          1349
+        ]
+      ],
+      "corner_rounding_px": 3.5
+    },
+    {
+      "id": "east_south",
+      "points_px": [
+        [
+          2073,
+          1518
+        ],
+        [
+          2155,
+          1518
+        ],
+        [
+          2155,
+          1532
+        ],
+        [
+          2149,
+          1538
+        ],
+        [
+          2079,
+          1538
+        ],
+        [
+          2073,
+          1532
+        ]
+      ],
+      "corner_rounding_px": 3.5
+    }
+  ],
+  "paint_width_m": 0.1,
+  "paint_ground_offset_m": 0.04,
+  "hatch_direction_image": [
+    0.62,
+    -1.0
+  ],
+  "hatch_normal_spacing_px": 5.8,
+  "paint_notes": "Existing faded parking material reused. Line width, corner rounding, evenly spaced interpolation and hatch rhythm are restrained approximations of worn visible paint; no compliance claim.",
+  "access_aisle_clipping": {
+    "source": "Ten builder curves named Accessible access aisle hatch at constant z=0.05",
+    "diagnosis": "Their XY segments cross the existing Entry concrete apron. Paint for an inferred parking aisle should stop at its curb.",
+    "method": "Read the actual current apron mesh footprint; split source segments at its edges; retain only outside intervals with 0.08 m clearance, and sample the existing terrain grid plus the paint offset.",
+    "evidence_status": "Construction correction using existing modeled apron, not a newly measured accessible-parking layout. Original builder inputs are retained unchanged."
+  }
+}
