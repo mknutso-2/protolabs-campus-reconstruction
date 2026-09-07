@@ -18,8 +18,13 @@ type CampusContext = {
 import { useEffect, useRef, useState } from 'react';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import { Button } from '@/components/ui/button';
+import { canWalkTo } from '@/lib/campus-navigation';
 import {
   Compass,
+  ArrowUp,
+  ArrowDown,
+  ArrowLeft,
+  ArrowRight,
   Move,
   RotateCcw,
   Maximize,
@@ -74,6 +79,7 @@ function Walkthrough({ view }: { view: ViewName }) {
   const runtime = useRef<{
     setView: (view: ViewName) => void;
     toggle: (walk: boolean) => void;
+    step: (forward: number, sideways: number) => void;
   } | null>(null);
   const [status, setStatus] = useState('Loading the exterior scene…');
   const [walk, setWalk] = useState(false);
@@ -311,6 +317,7 @@ function Walkthrough({ view }: { view: ViewName }) {
         renderer.domElement.addEventListener('pointerup', pointerup);
         const toggle = (value: boolean) => {
           isWalk = value;
+          keys.clear();
           needsRender=true;
           orbit.enabled = !value;
           if (value) {
@@ -319,7 +326,25 @@ function Walkthrough({ view }: { view: ViewName }) {
             cam.lookAt(orbit.target);
           }
         };
-        runtime.current = { setView, toggle };
+        const move = (delta: import('three').Vector3) => {
+          const next = cam.position.clone().add(delta);
+          if (!canWalkTo(next.x, -next.z)) return;
+          const dy = ground(next.x, next.z) + 1.7 - cam.position.y;
+          cam.position.copy(next);
+          cam.position.y += dy;
+          orbit.target.add(delta);
+          orbit.target.y += dy;
+          needsRender = true;
+        };
+        const step = (forward: number, sideways: number) => {
+          if (!isWalk) return;
+          cam.getWorldDirection(direction);
+          direction.y = 0;
+          direction.normalize();
+          const right = new THREE.Vector3().crossVectors(direction, cam.up).normalize();
+          move(direction.clone().multiplyScalar(forward).addScaledVector(right, sideways));
+        };
+        runtime.current = { setView, toggle, step };
         let prev = performance.now(), lastDraw=0,
           raf = 0;
         const tick = (now: number) => {
@@ -341,27 +366,7 @@ function Walkthrough({ view }: { view: ViewName }) {
               delta
                 .normalize()
                 .multiplyScalar(dt * (keys.has('Shift') ? 9 : 3.2));
-              const next = cam.position.clone().add(delta);
-              // Keep navigation outside the measured building footprint and within exterior bounds.
-              const inBrick =
-                next.x > 2 && next.x < 62 && next.z < -0.5 && next.z > -55;
-              const inWing =
-                next.x > 62 && next.x < 106 && next.z < -9 && next.z > -64;
-              if (
-                !inBrick &&
-                !inWing &&
-                next.x > -160 &&
-                next.x < 230 &&
-                next.z > -200 &&
-                next.z < 150
-              ) {
-                const dy = ground(next.x, next.z) + 1.7 - cam.position.y;
-                cam.position.add(delta);
-                cam.position.y += dy;
-                orbit.target.add(delta);
-                orbit.target.y += dy;
-                needsRender=true;
-              }
+              move(delta);
             }
           } else orbit.update();
           if(needsRender && now-lastDraw>=1000/30){renderer.render(scene,cam);needsRender=false;lastDraw=now;}
@@ -450,6 +455,14 @@ function Walkthrough({ view }: { view: ViewName }) {
           <Maximize size={18} />
         </button>
       </div>
+      {walk && !status && (
+        <fieldset className="walk-pad" aria-label="Walk in one metre steps">
+          <Button className="walk-forward" variant="secondary" aria-label="Step forward" onClick={() => runtime.current?.step(1, 0)}><ArrowUp size={20} /></Button>
+          <Button variant="secondary" aria-label="Step left" onClick={() => runtime.current?.step(0, -1)}><ArrowLeft size={20} /></Button>
+          <Button variant="secondary" aria-label="Step backward" onClick={() => runtime.current?.step(-1, 0)}><ArrowDown size={20} /></Button>
+          <Button variant="secondary" aria-label="Step right" onClick={() => runtime.current?.step(0, 1)}><ArrowRight size={20} /></Button>
+        </fieldset>
+      )}
       <div className="viewer-bottom">
         <div className="navigation-toggle">
           <Button
@@ -475,7 +488,7 @@ function Walkthrough({ view }: { view: ViewName }) {
         </div>
         <span>
           {walk
-            ? 'Drag to look · WASD / arrows to walk · Shift for speed'
+            ? 'Drag to look · Arrow pad or WASD to walk · Shift for speed'
             : 'Drag to orbit · Scroll to approach · Right-drag to pan'}
         </span>
         <span className="north">
