@@ -1,0 +1,46 @@
+{
+  "source": "research/nlcd_context_selection.json",
+  "source_sha256": "eed4cc179acd5c420c7fddf5a0a72ace5ace960370df4ddad9c0b4e0703e1211",
+  "grid_sha256": "f6d4bfc948c5813a1ce7d9ee18ad248a867d027b015f5865a60de6fb8eedba4e",
+  "seed": 20250907,
+  "representation": "Inferred unresolved multi-crown groups on conservative dated30m forest interiors; not tree count or measured height.",
+  "height_range_m": [
+    12,
+    18
+  ],
+  "width_range_m": [
+    26,
+    28
+  ],
+  "ground_object": "Regional context ground | USGS3DEP50m",
+  "ground_source": "research/regional_context_ground_grid.json",
+  "ground_source_sha256": "c13d7099da22662f5879229656bbc4c0397523eca05bc04eff1e81d2c7a28874",
+  "scope": "Only new merged patches; existing campus/north vegetation, eight manual belts, materials and terrain remain unchanged.",
+  "group_count": 347,
+  "patch_object_count": 36,
+  "triangles": 481636,
+  "minimum_cell_footprint_clearance_m": 1.004180394929108,
+  "generation_seconds": 3.8727225349866785,
+  "source_master_sha256": "a6632753e411a1b63d9bef90614a80a259ffd2620021107668b1f8a0ac8c0155",
+  "protected_mesh_coordinate_and_topology_hashes_unchanged": true,
+  "all_original_object_transforms_and_data_links_unchanged": true,
+  "all_original_material_values_unchanged": true,
+  "minimum_stored_vertex_cell_clearance_m": 1.004150390625,
+  "maximum_stored_height_error_m": 9.439843537961679e-07,
+  "maximum_stored_root_error_m": 0.0,
+  "duplicate_call_rejected_without_changes": true,
+  "render_seconds": 53.12857358600013,
+  "source_file_hash_unchanged": true,
+  "preview_image_sha256": "2cf2ec7d3890e55c7dd644a621f7e13c218f3dfeb8ed6bed37b6e7424680d4fb",
+  "preview_image_size_px": [
+    900,
+    600
+  ],
+  "preview_cycles_samples": 24,
+  "preview_threads": 3,
+  "independent_review": {
+    "receipt": "work/motion-review/nlcd-selection-code-review.json",
+    "result": "347unique cells/36patches, allselected41 and all3x3neighbors forest; rotatedAABB fitting keepswholefootprintinsideeligiblecell. Input/transform audit only."
+  },
+  "visual_assessment": "Thin irregular far woodland improves several bare horizon stretches. Broad open ground and gaps remain. Bounded correction accepted for integration; finaldeliverables notverifiedbythisisolatedpreview."
+}
