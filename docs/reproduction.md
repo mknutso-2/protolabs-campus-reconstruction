@@ -1,8 +1,8 @@
 # Reproduction and delivery guide
 
-Run the commands below from the repository root unless a block explicitly changes directory. They describe the current scripts. **V06 clean master/export verification and four-view inspection are complete; v07 integrated material/lighting acceptance and the full delivery remain open.** Do not interpret the presence of a command or output file as proof that its result has passed inspection.
+Run the commands below from the repository root unless a block explicitly changes directory. They describe the scene source at `e9ed871`, including the regional terrain, flat water and corrected entrance parking. **Earlier clean-build checks and bounded v07 correction reviews are complete; verification of the final combined build, its production stills and the full delivery remains pending.** A command or output file does not establish that its result has passed inspection.
 
-The v06 master, both models, four stills, camera/material metadata and snapshot hashes are preserved in `deliverables/iterations/v06/`. Motion was deliberately not rendered for v06 because the reviewed stills exposed synthetic materials and lighting. The current v07 probe is pending visual acceptance; the current-revision motion sample, full film, private hosted site and versioned delivery archive are not complete.
+The v06 master, both models, four stills, camera/material metadata and snapshot hashes are preserved in `deliverables/iterations/v06/`. Motion was deliberately not rendered for v06 because the reviewed stills exposed synthetic materials and lighting. The earlier [v07 frontage checkpoint](fresh-checkout-v07.md) and isolated regional-ground, water and parking corrections have their own evidence records. They do not accept the final combined production stills, current-revision motion sample, full film, private hosted site or versioned delivery archive; those remain pending.
 
 ## Dependencies
 
@@ -98,19 +98,29 @@ The build workspace has a portable **FFmpeg 7.0.2-static** executable acquired f
 
 ## Research inputs
 
-`scripts/build_scene.py` reads these small derived inputs directly:
+`scripts/build_scene.py` and its finishing helpers consume these source-controlled inputs:
 
-- `research/terrain_grid.json`: local terrain elevations.
-- `research/lidar_roof_constraints.json`: roof polygons and fitted planes.
-- `research/site-layout.json`: site extent, roads, parking, and landscape traces.
-- `research/reference_drone_camera_fit.json`: fitted reference camera information.
-- `research/north_context_ground_grid.json`: 5 m ground grid for the northern context.
-- `research/north_context_canopy_constraints.json`: 105 inferred canopy-envelope candidates, of which 102 are eligible for scene placement.
-- `research/material-assets.json` and the acquired `research/material-assets/` files: v07 scanned surface and low-sun lighting proxies, consumed by `material_quality.py`.
+- `research/terrain_grid.json` and `research/north_context_ground_grid.json`: the original 5 m local and northern ground grids.
+- `research/lidar_roof_constraints.json`: measured roof constraints and fitted planes.
+- `research/site-layout.json`: site extent, roads, original parking rows and landscape/water traces. Preserve it alongside the separate corrections below.
+- `research/reference_drone_camera_fit.json`: the fixed reference-camera fit.
+- `research/north_context_canopy_constraints.json`: 105 inferred canopy-envelope candidates, of which 102 are eligible; `research/campus-tree-constraints.json` supplies the separately reviewed campus placements and omissions.
+- `research/distant-woodland.json` and `research/regional_context_ground_grid.json`: eight eligible wooded interiors and the bounded 50 m USGS regional DEM. See [distant context and DEM provenance](distant-context.md).
+- `research/water-surface-constraints.json`: the dated class 2-derived flat pond level and footprint/basin limits. See [water evidence](water-surface-evidence.md).
+- `research/entrance-parking-correction.json`: the four corrected entrance rows, end hatching and exclusion of access paint from the entry apron. See [parking markings](parking-markings.md).
+- `research/frontage-fascia-fit.json` and `research/monument-sign-fit.json`: interpreted frontage/sign fits consumed by their finishing helpers; see [visual accuracy](visual-accuracy.md).
+- `research/font-asset.json`, the bundled font and its license: verified portable typography.
+- `research/material-assets.json` and the acquired `research/material-assets/` files: scanned surface and lighting proxies consumed by `material_quality.py`.
+
+The regional DEM, water and parking additions are pinned derived JSON in Git. **They add no mandatory network acquisition, raw-lidar processing or research-library installation to a normal scene build.** Once Blender and the required material cache are available, these helpers run with Blender's bundled Python. Pillow is used by packaging and optional DEM reacquisition; NumPy, laspy, rasterio and the other research dependencies are not required by the scene generator.
 
 Keep the source ledgers alongside those inputs. They record confidence, dates, attribution, and conflicts. The scene uses metres, X east / Y north / Z up. Its local origin is NAD83 UTM15N `(447671.8750643735, 4984591.8364606025)`. Measured NAVD88 elevations are offset by **303.6 m** for the scene. Roof-plane equations return absolute NAVD88 metres; subtract 303.6 when constructing scene geometry. The lidar/aerial datum distinction is documented in `research/geospatial-findings.md`; this is not a claim of survey-grade alignment.
 
 The northern context replaces the earlier uniform forest interpretation with constraints derived from the cached northern LAZ tile. Class 2 returns support the ground grid; filtered class 1 elevated returns support canopy envelopes. Candidate positions are envelope peaks, not measured trunks. Class 1 is not a verified vegetation classification, and height, species, crown shape, and context beyond the cached aerial remain uncertain. The constraints include eligibility decisions and source hashes; retain those qualifications when inspecting the landscape.
+
+The separate regional surface covers local x/y = −4500…4500 m, with holes preserving the existing measured ground and an outside-only 75 m seam transition. The underlay lies 0.5 m below the minimum of all three ground grids, and Blender camera clipping extends to 4500 m. Distant crowns stay inside traced woodland; open marsh is retained. The fixed pond level is 292.49 m NAVD88 (scene z = −11.11 m), inferred from 2022 class 2 returns without class 9 water classification. Its flat mesh is clipped to the modeled basin and dated waterline. These constraints do not establish current hydrology or complete regional scenery.
+
+Optional source research is distinct from regeneration. `scripts/research/acquire_regional_ground.py` reacquires one bounded F32 TIFF and rewrites the regional JSON, using Python and Pillow; it is **not** part of the required build commands. Its `--from-cache` option reprocesses an existing receipt/metadata/TIFF directory without network access. Preserve the committed snapshot when investigating a newer USGS mosaic, and compare its actual source hash and values before adopting it. The detailed DEM, water and parking evidence documents above retain acquisition, derivation and uncertainty notes.
 
 Reference photographs are not needed to generate geometry but are needed to evaluate resemblance and populate comparisons. `scripts/acquire_references.py` downloads exactly the three photographs pinned by `research/reference-cache-manifest.json` into `research/images/`. It checks byte sizes and SHA-256 hashes, reuses matching files, and rejects changed or mismatching files without overwriting them. Preserve source attribution and capture-date uncertainty from the manifest and architecture ledger:
 
@@ -161,12 +171,26 @@ Keep the default one-million-point chunk size when reproducing the recorded grid
 ```bash
 "$PROTOLABS_BLENDER" --background --python-exit-code 1 \
   --python "$PWD/scripts/build_scene.py" -- --export
+"$PROTOLABS_BLENDER" --background "$PWD/scene/protolabs-campus.blend" \
+  --threads 1 --python-exit-code 1 --python "$PWD/scripts/check_geometry.py" -- \
+  --root "$PWD" --output "$PWD/scene/geometry-check.json"
 "$PROTOLABS_BLENDER" "$PWD/scene/protolabs-campus.blend"
 ```
 
-The generator creates a new scene and overwrites the generated master and camera JSON. Preserve an edited master or earlier iteration before regenerating. Its current sequence builds the geometry and original assets, applies `visual_finish.apply_visual_finish()`, applies `material_quality.apply_material_quality(ROOT)`, exports camera/material fallbacks, packs used images/fonts, and saves before exporting the GLBs. Missing or mismatching required scan/HDRI files cause an error rather than silently falling back to the former surfaces.
+The generator creates a new scene and overwrites generated scene files and metadata. Preserve an edited master or earlier iteration before regenerating. It constructs the base geometry, original assets, campus/north vegetation and distant context first. `distant_context.add_distant_context()` creates the continuous regional terrain through `regional_ground.py`; it does not add isolated flat woodland platforms. The generator then creates the saved cameras and writes their definitions.
 
-`visual_finish.py` adds the verified 13-stripe/50-star flag pattern, smooth cylinder shading and an inferred pale paired entrance portal while preserving measured massing, terrain, flagpole location and cameras. Portal dimensions and static cloth pose remain interpreted. The revised `vehicles.py` supplies original generic sedan/SUV geometry with curved bodies, real wheel apertures and corrected materials; isolated construction/export and asset-preview checks are documented in [vehicle provenance](vehicle-provenance.md). Vehicle occupancy remains inferred. The generator leaves the reference-visible foreground court empty rather than recreating the earlier repeated bright car rows. These module-level checks do not constitute acceptance of the integrated v07 image.
+The final finishing order is explicit in `build_scene.py`:
+
+1. `visual_finish.apply_visual_finish()` applies the flag, cylinder and entrance-detail finish.
+2. `frontage_finish.apply_frontage_finish()` applies the fitted fascia, its vestibule termination and photo-interpreted frontage details.
+3. `monument_finish.apply_monument_finish(ROOT)` transforms the complete fitted monument-sign assembly.
+4. `water_finish.apply_water_finish(ROOT)` replaces only the two water meshes with the flat, basin-clipped surfaces.
+5. `parking_finish.apply_parking_finish(ROOT)` replaces the selected parking/access paint after the apron and original curves exist.
+6. `material_quality.apply_material_quality(ROOT)` applies the final shared materials and environment.
+
+The generator retains water, parking, campus-tree and distant-context reports in scene properties, exports material fallbacks, packs used images/fonts, and saves the master before GLB export. The finishing helpers need their existing geometry prerequisites and should normally be invoked through this generator. Missing required source inputs or mismatching scan/HDRI files fail instead of silently substituting an earlier scene. The checker command above opens the saved master for bounded geometry checks and writes a report without saving it; visual inspection remains separate.
+
+Current color management is AgX Medium High Contrast, exposure −0.35 and gamma 1.05. The pinned lighting/material proxy and interpreted entrance details preserve the measured massing; their physical and photographic limits remain documented in [material provenance](material-provenance.md) and [visual accuracy](visual-accuracy.md). The revised `vehicles.py` supplies original generic sedan/SUV geometry; vehicle occupancy remains inferred, and the reference-visible foreground court is empty. See [vehicle provenance](vehicle-provenance.md). None of these source-feature descriptions replaces final production-image inspection.
 
 It writes:
 
@@ -174,14 +198,14 @@ It writes:
 | --- | --- |
 | `scene/protolabs-campus.blend` | Editable master with named geometry, materials, evidence notes, and cameras |
 | `scene/protolabs-campus.glb` | Full-geometry GLB, when `--export` is supplied |
-| `scene/protolabs-campus-viewer.glb` | Browser GLB with approximately 30% of leaf cards retained; automatically exported with `--export` |
-| `scene/viewer-export.json` | Master SHA-256, foliage-retention setting, and before/after visible vegetation triangle counts |
+| `scene/protolabs-campus-viewer.glb` | Browser GLB: normal full-tree meshes retain approximately 30% of leaf cards; existing 2000-card context meshes and solid canopy groups remain intact |
+| `scene/viewer-export.json` | Master/browser-GLB SHA-256 hashes, normal foliage-retention setting, preserved context-LOD instance count and before/after vegetation triangle counts |
 | `scene/cameras.json` | Saved camera definitions and reference associations |
 | `scene/materials.json` | Linear-color PBR fallback map for procedural materials that glTF does not reproduce directly |
 
 Both GLB exports use Y-up coordinates, apply export transforms, and omit Blender lights/cameras; the viewer creates its own lighting and reads camera/material JSON. They are not expected to reproduce all Cycles node materials exactly. Keep materials, cameras, both models, and the export metadata from the same generation.
 
-The reduced export retains branches and deterministically selects approximately 30% of leaf cards for browser navigation. `scripts/export_viewer.py` restores the original in-memory meshes after export and does not save changes to the master. The packed editable master, full GLB, and Cycles renders retain complete foliage. To regenerate only the browser export from a current saved master:
+The reduced export retains branches and selects approximately 30% of leaf cards from unmarked full-tree meshes. Context meshes marked `context_leaf_cards` already contain 2000 cards and are preserved to avoid a second reduction; solid distant canopy groups also remain intact. `scripts/export_viewer.py` restores substituted in-memory meshes after export and does not save the master. The editable master, full GLB and Cycles renders keep their complete assigned geometry: full campus/north foliage plus the explicitly lighter distant representations. To regenerate only the browser export from a current saved master:
 
 ```bash
 "$PROTOLABS_BLENDER" --background "$PWD/scene/protolabs-campus.blend" \
@@ -190,7 +214,7 @@ The reduced export retains branches and deterministically selects approximately 
 
 `scene/viewer-export.json` records SHA-256 hashes for the saved master and browser GLB. Packaging verifies both files before optimization and rejects missing or mismatching hashes. The preserved v06 receipt predates the browser-GLB hash and intentionally cannot pass this newer packaging gate; regenerate a current export and receipt together. Run the command above after deliberately editing and saving a master before staging its updated browser model.
 
-The clean v06 archive at `1f8b4b9` generated 2,303 objects and both GLBs in 226.347 seconds. Reopened inspection verified all 102 eligible canopy placements, unchanged camera/material JSON baselines, and 8,000 leaves/18,212 triangles in each complete source tree mesh. The reduced foliage did not leak into the saved master. The corrected checker from `6208e82` passed against that unchanged master; its 1.6 mm comparison tolerance accounts for independently rounded research top values. The original 1 mm false failure and the earlier real inward-normal defect are preserved in [fresh source verification](fresh-checkout-verification.md). V07 changes require a new generation/inspection and are not covered by that v06 pass.
+The clean v06 archive at `1f8b4b9` generated 2,303 objects and both GLBs in 226.347 seconds. Reopened inspection verified all 102 eligible canopy placements, unchanged camera/material JSON baselines, and 8,000 leaves/18,212 triangles in each complete source tree mesh. The reduced foliage did not leak into the saved master. The corrected checker from `6208e82` passed against that unchanged master; its 1.6 mm comparison tolerance accounts for independently rounded research top values. The original 1 mm false failure and the earlier real inward-normal defect are preserved in [fresh source verification](fresh-checkout-verification.md). The separate [clean v07 frontage checkpoint](fresh-checkout-v07.md) verifies `cd7cf70`, before the latest regional-ground, water and parking changes. Neither earlier checkpoint substitutes for the final combined-source generation and inspection, which remain pending.
 
 For a quick single-view iteration:
 
@@ -200,7 +224,7 @@ For a quick single-view iteration:
   --render reference_aerial --width 1440 --samples 40
 ```
 
-This rebuilds the scene and writes `deliverables/reference_aerial.png`. `--no-trees` is available for geometry diagnosis; such a render cannot establish completed landscape quality. Build defaults are 1440 pixels wide and 40 Cycles samples. The height is two-thirds the width.
+This rebuilds the scene and writes `deliverables/reference_aerial.png`. `--no-trees` is available for geometry diagnosis and also bypasses the distant woodland/regional-ground helper; such a render cannot establish completed landscape quality. Build defaults are 1440 pixels wide and 40 Cycles samples. The height is two-thirds the width.
 
 ## Render fixed views and compare
 
@@ -214,7 +238,7 @@ This rebuilds the scene and writes `deliverables/reference_aerial.png`. `--no-tr
   --width 1600 --samples 64 --out deliverables/stills
 ```
 
-Available names are `reference_aerial`, `entrance_detail`, `arrival`, and `campus_overview`. Render a subset with a comma-separated `--views` argument. **The current target is 1600 × 1067 at 64 Cycles samples for every view**; the commands above specify those settings explicitly. The preserved, inspected v06 set in `deliverables/iterations/v06/` used an earlier sample budget; its synthetic surface response prompted the v07 probe. The v07 four-view set must follow successful probe review. The script's fallback defaults remain all four, 1920 × 1280, and 96 samples. `--out` is relative to the repository root.
+Available names are `reference_aerial`, `entrance_detail`, `arrival`, and `campus_overview`. Render a subset with a comma-separated `--views` argument. **The current target is 1600 × 1067 at 64 Cycles samples for every view**; the commands above specify those settings explicitly. The preserved, inspected v06 set in `deliverables/iterations/v06/` used an earlier sample budget; its synthetic surface response prompted the v07 probe. The final combined v07 four-view set remains pending production rendering and inspection; earlier isolated correction previews do not replace it. The script's fallback defaults remain all four, 1920 × 1280, and 96 samples. `--out` is relative to the repository root.
 
 Each final PNG has a matching JSON receipt recording its camera, saved-master and image SHA-256 hashes, dimensions, samples, Blender version, camera matrix and lens. All four final views, including `reference_aerial.png`, belong in `deliverables/stills/`. The separate `deliverables/reference_aerial.png` is an iteration probe. The render receipt starts with `inspection: "pending"`; actual final inspection is recorded separately in `deliverables/delivery-review.json` as described below.
 
@@ -378,4 +402,4 @@ The script verifies the review, per-view PNG integrity and master/image hashes, 
 
 The packaging implementation passed an isolated 64 × 36 synthetic fixture covering a valid release, stale reviewed image, mismatching still/master receipt, accidental probe substitution, truncated film, existing-sidecar preservation and publication-failure rollback. Its workspace receipt is `work/motion-review/release-packaging-validation.json`. That fixture did not package or approve the unfinished production assets.
 
-The v06 clean master/export checks, preserved four-view inspection and tested viewer installation/build/navigation are completed evidence. They do not constitute a complete v07 delivery run. That requires a clean directory to acquire the now-required material inputs, regenerate the updated master and both exports, render and inspect the saved views, pass the motion gate, stage matching viewer assets, build and inspect them, and verify the final archive after extraction. Private site publication and the complete encoded film also remain pending. The raw-lidar scripts are included, but a complete rerun of the packaged 174 MB pipeline and a validated UE5 application remain separate documented checks. Until those checks and visual acceptance are recorded, report the project as a reconstruction in progress.
+The v06 checks, the earlier v07 frontage checkpoint, bounded correction previews and tested viewer installation/build/navigation are completed evidence. They do not constitute verification of the final combined v07 build or a complete delivery. That requires a clean directory with the pinned source/derived JSON, bundled font and verified material cache, followed by master/export generation and geometry checks, production-view inspection, the motion gate, matching viewer staging/build/navigation, and archive verification after extraction. The final clean source at `e9ed871` is being evaluated separately; its build, still and delivery status must come from the resulting receipts and inspection, not from this guide. Private site publication and the complete encoded film also remain pending. The raw-lidar scripts are included, but a complete rerun of the packaged 174 MB pipeline and a validated UE5 application remain separate documented checks. Until those checks and visual acceptance are recorded, report the project as a reconstruction in progress.
