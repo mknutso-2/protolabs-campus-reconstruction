@@ -11,7 +11,7 @@
 - [x] Inspect repeated v07 probes and the clean frontage build. Correct the largest visible discrepancies in glazing, tree scale, fascia, lettering and material tone; preserve rejected studies and bounded findings.
 - [x] Correct the low entrance return after full-resolution close-view inspection. The hidden lower-right aerial pick is superseded by a continuous photographed header; other-view acceptance still follows below.
 - [x] Replace distant per-belt terrain shelves with a continuous regional DEM; flatten pond water to a documented lidar-derived level; correct overlapping entrance bays and access paint crossing the apron. Individual previews and bounded geometry checks pass.
-- [ ] Render and inspect all four final integrated v07 views from clean source `e9ed871`. M2/M3 remain pending this combined visual review.
+- [x] Render and inspect all four final integrated v07c views from clean source `e29ad4b9`, including independent overview inspection. M2/M3 static inspection is complete; [the current record](fresh-checkout-v07c.md) preserves exact artifact hashes and limitations.
 
 ## P1 • environment and delivery
 
@@ -19,7 +19,7 @@
 - [ ] Refine roof equipment, facade depth, materials and small features where the reviewed views show discrepancies; preserve uncertainty for weakly evidenced rear/service areas.
 - [x] Save the fixed cameras and generate the editable master and GLB.
 - [x] Check the local viewer at `5bf2a27`: lint, clean npm dependency installation, production build, orbit/walk navigation, visible walk controls, rotated exterior footprints and saved-view selection. Offline installation used an existing package cache.
-- [ ] Refresh and inspect the standalone reference gallery for the accepted current version, including attribution, saved transforms, preserved earlier versions and the current accuracy report.
+- [ ] Inspect the refreshed v07 comparison gallery in the browser, including attribution, saved transforms, six preserved earlier versions and the current accuracy account. Its generated image hashes match the inspected static set.
 - [ ] Refresh viewer assets after the v07 scene is accepted and check visibility, navigation, new material fallbacks, reference assets and saved-view correspondence.
 - [x] Preserve the v05 preliminary opening motion sample and its bounded engineering diagnostics. It does not approve later scene revisions or full-path playback quality.
 - [ ] Complete and inspect the current-revision 24-frame middle sample (frames 61–84) at 1280 × 720 / 24 fps, plus endpoint frames 1 and 144. Check leaf edges, shadows, reflections, continuity and clipping before the six-second cinematic. V06 motion was deliberately not run because its reviewed synthetic surfaces prompted v07.
@@ -32,7 +32,7 @@
 ## GitHub project
 
 - [x] Create the [private repository](https://github.com/mknutso-2/protolabs-campus-reconstruction), prioritized issues and [draft PR #7](https://github.com/mknutso-2/protolabs-campus-reconstruction/pull/7). Authenticated connector mirroring is working and records equal source trees.
-- [ ] Mirror the current local `feat/reference-lighting` branch and its v07 changes, with exact source-tree mappings and visual-check notes. Source through the earlier font-pinning change has been mirrored; the latest correction sequence is being synchronized. Keep substantial changes synchronized with the appropriate draft PR. Normal Git CLI authentication/history reconciliation is documented; it does not prevent connector mirroring.
+- [ ] Mirror the current local `feat/reference-lighting` branch and its v07 changes, with exact source-tree mappings and visual-check notes. Source through the gentler motion path `69a7594` has been mirrored with exact source-tree mappings; subsequent documentation and final delivery changes are being synchronized. Keep substantial changes synchronized with the appropriate draft PR. Normal Git CLI authentication/history reconciliation is documented; it does not prevent connector mirroring.
 
 ## P2 • later fidelity gaps
 

@@ -772,8 +772,10 @@ export default function Home() {
               <source src="/renders/flythrough.mp4" type="video/mp4" />
             </video>
             <p>
-              Exterior camera study. Delivery status and motion inspection notes
-              are recorded in the project accuracy report.
+              A six-second approach to the southeast frontage.{' '}
+              <a href="https://github.com/mknutso-2/protolabs-campus-reconstruction/blob/main/docs/accuracy-summary.md">
+                Read the accuracy account.
+              </a>
             </p>
           </div>
         </TabsContent>

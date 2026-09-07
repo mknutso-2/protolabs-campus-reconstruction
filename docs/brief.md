@@ -7,8 +7,8 @@ Recognizable exterior reconstruction with architectural visualization quality, g
 
 - [x] M0: environment inspected; dedicated local Git repository, private GitHub repository and draft PR created; headquarters address verified.
 - [x] M1: ownership/context boundaries, measured roof/terrain constraints, dated source ledgers and acquisition records established; first frontage and fitted aerial reference camera implemented.
-- [ ] M2: inspect the final integrated v07 frontage. Materials, glazing, lettering, tree heights and fascia revisions have been inspected; close-view review prompted a canopy-return correction, now verified in a cropped render.
-- [ ] M3: inspect all four final v07 stills. Continuous regional terrain, flat basin-clipped water and corrected entrance parking have passed bounded geometry and visual checks; their combined production images are rendering.
+- [x] M2: inspect the integrated v07c frontage. The corrected entrance return, glazing, signs and apron have been checked in actual full-resolution images; remaining material/detail approximations are documented.
+- [x] M3: inspect all four final v07c stills at 1600 × 1067 / 64 samples. The overview independently confirms the corrected terrain join and flat pond; this records image inspection, not photographic equivalence.
 - [x] M4: baseline master/GLB generation, local interactive orbit/walk navigation and saved camera views work. Refresh and recheck the viewer with the final v07 scene as part of delivery verification.
 - [ ] M5: complete and inspect the delivery-resolution motion sample; correct temporal or camera defects before rendering and accepting the cinematic.
 - [ ] M6: finish the reference gallery, repeat the full fresh-source workflow after corrections, and verify the complete versioned delivery. Instructions and provenance exist; complete fresh-checkout and artifact acceptance remain pending.
@@ -17,7 +17,7 @@ Recognizable exterior reconstruction with architectural visualization quality, g
 
 Earlier iterations through v06 are preserved, including rejected visual treatments and the original cube-normal failure. The winding error has been corrected and checked in later clean builds. V07 combines licensed surface scans, coherent low-sun lighting, coated glazing, revised generic assets and better constrained campus planting. Inspection continues to identify and correct visible discrepancies; source checks do not substitute for visual acceptance.
 
-The clean source at `e9ed871` is generating an editable master, full/reduced GLBs and four production stills after the latest canopy-return, parking, regional-ground and pond corrections. The [accuracy record](visual-accuracy.md) retains individual studies and remaining approximations. Final integrated images and motion are not yet accepted.
+The clean source at `e29ad4b9` generated the final static artifacts. [Fresh v07c verification](fresh-checkout-v07c.md) binds the master, exports and all four inspected stills to their hashes. The [accuracy account](accuracy-summary.md) summarizes current limits; the [long review record](visual-accuracy.md) retains earlier rejected studies. The gentler camera path is committed, and its new delivery-resolution sample is rendering.
 
 The current delivery targets are 1600 × 1067 stills and a 1280 × 720, 24 fps, six-second exterior film. A 24-frame middle sample, endpoint checks and the full film remain pending inspection/completion. The project is managed in the [private GitHub repository](https://github.com/mknutso-2/protolabs-campus-reconstruction) and [draft PR #7](https://github.com/mknutso-2/protolabs-campus-reconstruction/pull/7); repository access is no longer a blocker.
 

@@ -1,5 +1,11 @@
 # Visual accuracy record
 
+The current **v07c** master and all four **1600 × 1067 / 64-sample** stills were inspected on 7 September 2026. The corrected entrance return, parking/apron layering, flat pond and northern terrain join are present in the combined images. The overview also received an independent full-size review. See [current static verification](fresh-checkout-v07c.md) for exact source/artifact identifiers and the [concise accuracy account](accuracy-summary.md) for the remaining limits. Current motion inspection and final delivery are still pending.
+
+The entries below are dated development evidence; their pending or rejected states describe those earlier artifacts, not the latest static set.
+
+## Earlier visual studies
+
 Updated 7 September 2026. The preserved **v06 aerial and all three saved stills have now been visually inspected**. Its lidar-based north-context placement is better supported than v05's rejected continuous forest band, but v06 was rejected as a final visual finish: the flat distant horizon, bright generic materials, saturated glazing, faceted entrance supports and repeated vehicles remained conspicuous.
 
 An early **v07 aerial probe at 1200 × 800 and 32 Cycles samples** has also been inspected beside v06 and the official reference. Its low-sun environment, surface materials, empty foreground parking and small entrance/flag corrections improve the image. Later material/tone studies and the monument fit improved frontage readability, but the subsequent integrated probe was rejected for its sparse distant horizon and oversized lower entrance canopy. An isolated fascia correction and three global tone variants were then inspected, with the base variant selected. Updated lettering, panel joints and a narrow secondary door still await the next integrated render. Fuller tree assets have passed isolated checks; distant woodland research is ongoing. V07 remains **pending all four full production views and a new delivery-resolution motion review**. No full film or motion sample has been accepted.
