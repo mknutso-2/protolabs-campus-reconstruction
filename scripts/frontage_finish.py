@@ -3,6 +3,67 @@ import math,json,hashlib
 from pathlib import Path
 
 
+def trim_frontage_return(root=Path(__file__).resolve().parents[1]):
+    """Stop the low fascia and rear return at the existing vestibule header.
+
+    The 2018 entrance photograph shows a continuous header above the glazed
+    vestibule, not the deep downstand created by extruding the aerial-fit front
+    rectangle unchanged through the door volume. Depth and this hidden junction
+    are interpreted. The occluded lower-right aerial pick is superseded by
+    this close-view evidence; the top edge, visible branded span, lettering,
+    main roofs and cameras are unchanged. Separate closed boxes preserve QA.
+    """
+    import bpy
+    from mathutils import Vector
+    canopy=bpy.data.objects['Long lower logo canopy']
+    if canopy.get('Frontage return correction'):
+        return json.loads(canopy['Frontage return correction'])
+    if not canopy.get('Photo frontage fit'):
+        raise RuntimeError('Apply the fitted front panel before trimming its hidden return')
+    record=json.loads((root/'research/frontage-fascia-fit.json').read_text());fit=record['fit']
+    a=Vector((*fit['a_xy'],0));b=Vector((*fit['b_xy'],0))
+    edge=(b-a).normalized();inward=Vector((-edge.y,edge.x,0));length=(b-a).length
+    depth=fit['inferred_depth_m'];top=fit['top_z'];bottom=top-fit['height']
+    vestibule=bpy.data.objects['Vestibule white fascia']
+    header_bottom=min((vestibule.matrix_world@v.co).z for v in vestibule.data.vertices)
+    # The existing east-facing vestibule plane supplies a termination anchor;
+    # it is not a new surveyed corner. The last low segment must rise with
+    # the hidden return, rather than leave a plate hanging across the glass.
+    panel_depth=.18
+    run=(vestibule.location.x-a.x)/edge.x
+    if not .2<run<length-.2 or not bottom<header_bottom<top or not panel_depth<depth:
+        raise RuntimeError('Unexpected fascia/vestibule relationship; review the return junction')
+    yaw=math.atan2(edge.y,edge.x);collection=canopy.users_collection[0]
+    def body(name,start,span,width,center_v,z0,z1):
+        ob=canopy.copy();ob.data=canopy.data.copy();ob.name=name;collection.objects.link(ob)
+        ob.location=a+edge*(start+span/2)+inward*center_v+Vector((0,0,(z0+z1)/2))
+        ob.rotation_euler=(0,0,yaw);ob.scale=(span/27,width/4.5,(z1-z0)/1.2)
+        ob['evidence']='Close-view interpreted fascia termination at existing vestibule header; occluded aerial lower-right pick superseded; top edge and branded span retained'
+        return ob
+    rear_depth=depth-panel_depth;rear_center=panel_depth+rear_depth/2
+    body('Lower fascia main rear return',0,run,rear_depth,rear_center,bottom,top)
+    body('Lower fascia return above vestibule header',run,length-run,rear_depth,rear_center,header_bottom,top)
+    body('Lower fascia front panel above vestibule header',run,length-run,panel_depth,panel_depth/2,header_bottom,top)
+    canopy.location=a+edge*run/2+inward*panel_depth/2+Vector((0,0,(top+bottom)/2))
+    canopy.scale=(run/27,panel_depth/4.5,(top-bottom)/1.2)
+    soffit=bpy.data.objects['Under canopy dark soffit']
+    terminal=soffit.copy();terminal.data=soffit.data.copy();terminal.name='Fascia return soffit above vestibule';collection.objects.link(terminal)
+    terminal.location=a+edge*((run+length)/2)+inward*depth/2+Vector((0,0,header_bottom-.045))
+    terminal.rotation_euler=(0,0,yaw);terminal.scale=((length-run-.15)/26.8,(depth-.12)/4.3,1)
+    terminal['evidence']='Interpreted soffit termination at existing vestibule fascia bottom; no measured roof change'
+    soffit.location=a+edge*run/2+inward*depth/2+Vector((0,0,bottom-.045))
+    soffit.scale=((run-.15)/26.8,(depth-.12)/4.3,1)
+    result={'front_panel_depth_m':panel_depth,'low_return_length_m':run,
+            'raised_terminal_length_m':length-run,'terminal_bottom_z_m':header_bottom,
+            'previous_terminal_bottom_z_m':bottom,
+            'reference':'research/images/businessjournal-entrance-2018.jpg',
+            'superseded_aerial_constraint':'Occluded lower-right front-face corner; last fascia segment raised to continuous close-view header',
+            'interpretation':'Return depth and junction inferred from continuous photographed entrance header; fitted front plane/top edge, visible branded span, mark, main roofs and cameras retained'}
+    canopy['Frontage return correction']=json.dumps(result)
+    bpy.context.view_layer.update()
+    return result
+
+
 def apply_frontage_finish(root=Path(__file__).resolve().parents[1]):
     import bpy
     from mathutils import Vector
@@ -67,4 +128,5 @@ def apply_frontage_finish(root=Path(__file__).resolve().parents[1]):
     bpy.data.objects['Monument tagline'].data.size=.24
     bpy.data.objects['Monument address'].data.size=.34
     bpy.context.view_layer.update()
-    return {'front_edge_a':list(a),'front_edge_b':list(b),'top_z':top,'height':height,'depth':depth,'yaw_degrees':math.degrees(yaw)}
+    return_geometry=trim_frontage_return(root)
+    return {'front_edge_a':list(a),'front_edge_b':list(b),'top_z':top,'height':height,'depth':depth,'yaw_degrees':math.degrees(yaw),'return_correction':return_geometry}

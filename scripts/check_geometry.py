@@ -78,7 +78,14 @@ def scene_box_checks():
     from mathutils import Vector
 
     results = []
-    for name in CLOSED_BOX_NAMES:
+    names = list(CLOSED_BOX_NAMES)
+    canopy = bpy.data.objects.get('Long lower logo canopy')
+    if canopy is not None and canopy.get('Frontage return correction'):
+        names.extend(('Lower fascia main rear return',
+                      'Lower fascia return above vestibule header',
+                      'Lower fascia front panel above vestibule header',
+                      'Fascia return soffit above vestibule'))
+    for name in names:
         obj = bpy.data.objects.get(name)
         if obj is None or obj.type != 'MESH':
             results.append({'object': name, 'passed': False, 'error': 'Required closed mesh is missing'})
