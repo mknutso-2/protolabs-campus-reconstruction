@@ -27,18 +27,25 @@ def reduced_leaves(data, fraction=.30):
             for dl,sl in zip(dst.loop_indices,src.loop_indices):target.data[dl].uv=uv.data[sl].uv
     return lod
 
-originals={};lods={};before=after=0
+originals={};lods={};before=after=0;preserved_context_instances=0
 try:
     for obj in bpy.data.objects:
         if obj.type!='MESH' or not any(m and m.name.startswith('CampusVeg_') for m in obj.data.materials):continue
         data=obj.data
+        # Distant assets already retain only 2000 stratified cards. Reducing
+        # these again creates visibly sparse crowns and saves little payload.
+        if data.get('context_leaf_cards'):
+            if not obj.hide_render:
+                triangles=sum(len(f.vertices)-2 for f in data.polygons)
+                before+=triangles;after+=triangles;preserved_context_instances+=1
+            continue
         if data.name not in lods:lods[data.name]=reduced_leaves(data)
         if not obj.hide_render:
             before+=sum(len(f.vertices)-2 for f in data.polygons)
             after+=sum(len(f.vertices)-2 for f in lods[data.name].polygons)
         originals[obj.name]=data;obj.data=lods[data.name]
     bpy.ops.export_scene.gltf(filepath=str(ROOT/'scene/protolabs-campus-viewer.glb'),export_format='GLB',use_visible=True,export_cameras=False,export_lights=False,export_yup=True,export_apply=True)
-    metadata={'viewer_glb_sha256':hashlib.sha256((ROOT/'scene/protolabs-campus-viewer.glb').read_bytes()).hexdigest(),'master_sha256':hashlib.sha256((ROOT/'scene/protolabs-campus.blend').read_bytes()).hexdigest(),'foliage_retention':.30,'visible_vegetation_triangles_before':before,'visible_vegetation_triangles_after':after,'scope':'Reduced foliage only for browser navigation; rendered stills and master retain all leaves.'}
+    metadata={'viewer_glb_sha256':hashlib.sha256((ROOT/'scene/protolabs-campus-viewer.glb').read_bytes()).hexdigest(),'master_sha256':hashlib.sha256((ROOT/'scene/protolabs-campus.blend').read_bytes()).hexdigest(),'foliage_retention':.30,'preserved_context_lod_instances':preserved_context_instances,'visible_vegetation_triangles_before':before,'visible_vegetation_triangles_after':after,'scope':'Full tree templates retain 30% of leaves for browser navigation; existing distant 2000-card LOD and solid canopy groups stay intact. Rendered stills and master retain their complete source geometry.'}
     (ROOT/'scene/viewer-export.json').write_text(json.dumps(metadata,indent=2)+'\n');print(json.dumps(metadata))
 finally:
     for name,data in originals.items():bpy.data.objects[name].data=data

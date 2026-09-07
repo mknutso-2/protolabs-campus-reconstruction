@@ -287,9 +287,11 @@ for j in range(len(rows)-1):
  for i in range(len(nx)-1):
   a=j*len(nx)+i;f.append((a,a+1,a+len(nx)+1,a+len(nx)))
 mesh('North context ground | lidar',v,f,meadow)
-# The far surround must remain below every measured point, including the pond basin.
-surround_z=min(min(row) for row in tz+nz)-.5
-polygon('Distant ground surround',[(-2000,-2000),(2000,-2000),(2000,2000),(-2000,2000)],surround_z,meadow)
+# Keep the support sheet below both measured near terrain and the continuous
+# regional DEM. The visible regional relief is created by distant_context.
+regional_grid=json.loads((ROOT/'research/regional_context_ground_grid.json').read_text())
+surround_z=min(min(row) for row in tz+nz+regional_grid['z'])-.5
+polygon('Distant ground surround',[(-4500,-4500),(4500,-4500),(4500,4500),(-4500,4500)],surround_z,meadow)
 layout=json.loads((ROOT/'research/site-layout.json').read_text());extent=layout['extent']
 def pixel(pt):return (extent['xmin']+pt[0]/3000*(extent['xmax']-extent['xmin'])-447671.8750643735,extent['ymax']-pt[1]/2500*(extent['ymax']-extent['ymin'])-4984591.8364606025)
 for poly in layout['polygons']:
@@ -428,7 +430,7 @@ cameras['arrival'].update(position=[115,-39,2.0],target=[72,13,4.4],lens=27)
 for name,cfg in cameras.items():
  bpy.ops.object.camera_add(location=cfg['position']);c=finish(bpy.context.object,name);c.rotation_euler=(Vector(cfg['target'])-c.location).to_track_quat('-Z','Y').to_euler();c.data.lens=cfg['lens'];c.data.sensor_fit='HORIZONTAL';c.data.sensor_width=36;
  if name=='reference_aerial':c.rotation_euler=fit['rotation_euler_xyz_radians']
- c.data.clip_end=1500;c.data.clip_start=.1;c['reference']=cfg['reference'];cfg['rotation_euler']=list(c.rotation_euler)
+ c.data.clip_end=4500;c.data.clip_start=.1;c['reference']=cfg['reference'];cfg['rotation_euler']=list(c.rotation_euler)
 scene=bpy.context.scene;scene.camera=bpy.data.objects['reference_aerial'];scene.render.engine='CYCLES';scene.cycles.device='CPU';scene.cycles.samples=opt.samples;scene.cycles.use_denoising=True;scene.cycles.adaptive_threshold=.035;scene.cycles.max_bounces=6;scene.cycles.transparent_max_bounces=6;scene.render.threads_mode='FIXED';scene.render.threads=6
 scene.render.resolution_x=opt.width;scene.render.resolution_y=round(opt.width*2/3);scene.render.resolution_percentage=100;scene.render.image_settings.file_format='PNG';scene.render.film_transparent=False
 scene.view_settings.view_transform='AgX';scene.view_settings.look='AgX - Medium High Contrast';scene.view_settings.exposure=-.35;scene.view_settings.gamma=1.05
