@@ -1,0 +1,633 @@
+{
+  "description": "Conservative distant woodland belts visually traced from a bounded Spring2026 county ortho. Context only; not campus property or individual tree locations.",
+  "source": {
+    "service_url": "https://gis.hennepin.us/arcgis/rest/services/Imagery/UTM_Aerial_2026/MapServer",
+    "request_url": "https://gis.hennepin.us/arcgis/rest/services/Imagery/UTM_Aerial_2026/MapServer/export?bbox=446671.8750643735%2C4984841.8364606025%2C448371.8750643735%2C4985791.8364606025&bboxSR=26915&imageSR=26915&size=2550%2C1425&format=jpg&f=json",
+    "request_parameters": {
+      "bbox": "446671.8750643735,4984841.8364606025,448371.8750643735,4985791.8364606025",
+      "bboxSR": 26915,
+      "imageSR": 26915,
+      "size": "2550,1425",
+      "format": "jpg",
+      "f": "json"
+    },
+    "layer_name": "HennepinCounty_MN_Nearmap_Sp26_6in.sid",
+    "source_date": "Spring2026; exact flight date not exposed",
+    "acquired_utc": "2026-09-07T19:21:21.006360+00:00",
+    "image_size_px": [
+      2550,
+      1425
+    ],
+    "requested_ground_sample_m": 0.6666666666666666,
+    "image_bytes": 1985437,
+    "image_sha256": "7550f9a618c7c5ae612ee0a34e134ecef44b3e70bea2123fb00c9ccb30da6e5e",
+    "cache_file": "research/images/distant-woodland-aerial-2026.jpg",
+    "attribution": "Hennepin County / Nearmap",
+    "rights": "Image cached as an attributed research reference only. Public availability does not establish a redistribution or texture license; do not paint this image into the scene."
+  },
+  "horizontal_crs": "EPSG26915 NAD83 / UTM zone15N",
+  "origin_utm_m": [
+    447671.8750643735,
+    4984591.8364606025
+  ],
+  "axes": "X east, Y north, metres",
+  "source_extent_local_xy_m": [
+    -1000,
+    250,
+    700,
+    1200
+  ],
+  "reference_navd88_m": 303.6,
+  "minimum_context_y_m": 405,
+  "trace_method": "Manual conservative outline of visible woody cover in a 2048x1144 inspection view of the 2550x1425 georeferenced ortho. Polygons approximate the interior of woodland and exclude obvious clearings; no automatic vegetation classification or surveyed boundary is claimed.",
+  "interpretation_rules": [
+    "Instantiate only within polygons, preferably inset8m; do not fill outside them.",
+    "Keep immediate pond/open marsh and all y<405m under the existing detailed evidence. These belts do not replace that geometry.",
+    "Large marsh areas and a lake separate the traced belts. A continuous distant forest wall would contradict the source.",
+    "Ground elevations are separate point-query evidence where available; canopy heights, species and crowns remain inferred.",
+    "Use low-detail irregular silhouettes only for distant context. This is neither a current tree inventory nor a property ownership delineation."
+  ],
+  "polygons": [
+    {
+      "id": "wood-01",
+      "label": "Northwest woodland south of curved road",
+      "polygon_xy_m": [
+        [
+          -374.12,
+          624.52
+        ],
+        [
+          -328.47,
+          639.47
+        ],
+        [
+          -274.51,
+          642.79
+        ],
+        [
+          -227.2,
+          636.98
+        ],
+        [
+          -195.65,
+          619.54
+        ],
+        [
+          -181.54,
+          577.19
+        ],
+        [
+          -160.79,
+          547.29
+        ],
+        [
+          -181.54,
+          485.01
+        ],
+        [
+          -243.8,
+          489.16
+        ],
+        [
+          -306.05,
+          474.21
+        ],
+        [
+          -348.39,
+          451.79
+        ],
+        [
+          -374.95,
+          475.04
+        ],
+        [
+          -365.82,
+          523.21
+        ],
+        [
+          -377.44,
+          549.78
+        ],
+        [
+          -379.93,
+          582.17
+        ]
+      ],
+      "representative_point_xy_m": [
+        -294.43,
+        573.03
+      ],
+      "estimated_plan_area_m2": 31136,
+      "horizontal_boundary_uncertainty_m": 12,
+      "land_cover_confidence": "medium",
+      "canopy_height_range_m": [
+        12,
+        20
+      ],
+      "canopy_height_basis": "Inferred mature woodland presentation range; no lidar height measurement beyond y405m.",
+      "recommended_edge_inset_m": 8,
+      "density_note": "Discontinuous crowns within the traced belt; retain gaps, do not turn it into a solid wall.",
+      "scene_eligible": true,
+      "exclusion_reason": null,
+      "ground_elevation": {
+        "provider": "USGS Elevation Point Query Service / 3DEP dynamic elevation service",
+        "query_url": "https://epqs.nationalmap.gov/v1/json?x=-93.66787823330202&y=45.017981521773635&units=Meters&wkid=4326&includeDate=true",
+        "acquired_utc": "2026-09-07T19:28:15.925874+00:00",
+        "query_xy_local_m": [
+          -294.43,
+          573.03
+        ],
+        "query_longitude_latitude_wgs84": [
+          -93.66787823330202,
+          45.017981521773635
+        ],
+        "elevation_m": 296.320678711,
+        "scene_ground_z_m": -7.2793,
+        "reported_resolution_m": 1,
+        "reported_raster_id": 115595,
+        "reported_acquisition_date": "4/3/2023",
+        "vertical_datum": "Interpreted as NAVD88 from USGS CONUS 3DEP convention; datum/geoid is not stated in this individual EPQS response.",
+        "confidence": "medium for the sampled point; low for applying one point uniformly across an entire belt",
+        "limitations": "An interpolated DEM point, not a surveyed elevation. Source acquisition-date attribute is preserved verbatim and is not equated to a lidar flight date. Resolution is not vertical accuracy. Terrain variation within the polygon is not sampled.",
+        "raw_response": {
+          "location": {
+            "x": -93.66787823330202,
+            "y": 45.017981521773635,
+            "spatialReference": {
+              "wkid": 4326,
+              "latestWkid": 4326
+            }
+          },
+          "locationId": 0,
+          "value": "296.320678711",
+          "rasterId": 115595,
+          "resolution": 1,
+          "attributes": {
+            "AcquisitionDate": "4/3/2023"
+          }
+        }
+      }
+    },
+    {
+      "id": "wood-02",
+      "label": "Western woodland between residential clearings",
+      "polygon_xy_m": [
+        [
+          -892.09,
+          732.47
+        ],
+        [
+          -853.08,
+          742.44
+        ],
+        [
+          -809.08,
+          729.15
+        ],
+        [
+          -791.65,
+          696.77
+        ],
+        [
+          -760.11,
+          684.31
+        ],
+        [
+          -751.81,
+          647.77
+        ],
+        [
+          -770.9,
+          617.88
+        ],
+        [
+          -817.38,
+          608.74
+        ],
+        [
+          -859.72,
+          602.93
+        ],
+        [
+          -889.6,
+          617.88
+        ],
+        [
+          -907.86,
+          638.64
+        ],
+        [
+          -899.56,
+          668.53
+        ],
+        [
+          -912.01,
+          680.99
+        ],
+        [
+          -900.39,
+          695.1
+        ]
+      ],
+      "representative_point_xy_m": [
+        -848.1,
+        721.68
+      ],
+      "estimated_plan_area_m2": 15872,
+      "horizontal_boundary_uncertainty_m": 20,
+      "land_cover_confidence": "medium-low",
+      "canopy_height_range_m": [
+        10,
+        18
+      ],
+      "canopy_height_basis": "Inferred mature woodland presentation range; no lidar height measurement beyond y405m.",
+      "recommended_edge_inset_m": 8,
+      "density_note": "Discontinuous crowns within the traced belt; retain gaps, do not turn it into a solid wall.",
+      "scene_eligible": true,
+      "exclusion_reason": null,
+      "ground_elevation": {
+        "provider": "USGS Elevation Point Query Service / 3DEP dynamic elevation service",
+        "query_url": "https://epqs.nationalmap.gov/v1/json?x=-93.67492057061355&y=45.01927825140431&units=Meters&wkid=4326&includeDate=true",
+        "acquired_utc": "2026-09-07T19:28:15.938576+00:00",
+        "query_xy_local_m": [
+          -848.1,
+          721.68
+        ],
+        "query_longitude_latitude_wgs84": [
+          -93.67492057061355,
+          45.01927825140431
+        ],
+        "elevation_m": 296.50970459,
+        "scene_ground_z_m": -7.0903,
+        "reported_resolution_m": 1,
+        "reported_raster_id": 115595,
+        "reported_acquisition_date": "4/3/2023",
+        "vertical_datum": "Interpreted as NAVD88 from USGS CONUS 3DEP convention; datum/geoid is not stated in this individual EPQS response.",
+        "confidence": "medium for the sampled point; low for applying one point uniformly across an entire belt",
+        "limitations": "An interpolated DEM point, not a surveyed elevation. Source acquisition-date attribute is preserved verbatim and is not equated to a lidar flight date. Resolution is not vertical accuracy. Terrain variation within the polygon is not sampled.",
+        "raw_response": {
+          "location": {
+            "x": -93.67492057061355,
+            "y": 45.01927825140431,
+            "spatialReference": {
+              "wkid": 4326,
+              "latestWkid": 4326
+            }
+          },
+          "locationId": 0,
+          "value": "296.509704590",
+          "rasterId": 115595,
+          "resolution": 1,
+          "attributes": {
+            "AcquisitionDate": "4/3/2023"
+          }
+        }
+      }
+    },
+    {
+      "id": "wood-03",
+      "label": "Northern creek island woodland",
+      "polygon_xy_m": [
+        [
+          -226.37,
+          1039.73
+        ],
+        [
+          -183.2,
+          1060.49
+        ],
+        [
+          -96.04,
+          1046.37
+        ],
+        [
+          -46.24,
+          1013.99
+        ],
+        [
+          -17.19,
+          964.16
+        ],
+        [
+          -12.21,
+          925.96
+        ],
+        [
+          -33.79,
+          897.73
+        ],
+        [
+          -38.77,
+          857.04
+        ],
+        [
+          -72.8,
+          834.62
+        ],
+        [
+          -108.5,
+          844.58
+        ],
+        [
+          -143.36,
+          836.28
+        ],
+        [
+          -171.58,
+          868.66
+        ],
+        [
+          -185.69,
+          908.52
+        ],
+        [
+          -189.84,
+          961.67
+        ],
+        [
+          -213.92,
+          1000.7
+        ]
+      ],
+      "representative_point_xy_m": [
+        -109.33,
+        949.21
+      ],
+      "estimated_plan_area_m2": 32987,
+      "horizontal_boundary_uncertainty_m": 12,
+      "land_cover_confidence": "medium",
+      "canopy_height_range_m": [
+        12,
+        20
+      ],
+      "canopy_height_basis": "Inferred mature woodland presentation range; no lidar height measurement beyond y405m.",
+      "recommended_edge_inset_m": 8,
+      "density_note": "Discontinuous crowns within the traced belt; retain gaps, do not turn it into a solid wall.",
+      "scene_eligible": true,
+      "exclusion_reason": null,
+      "ground_elevation": {
+        "provider": "USGS Elevation Point Query Service / 3DEP dynamic elevation service",
+        "query_url": "https://epqs.nationalmap.gov/v1/json?x=-93.66556835828605&y=45.021381340088865&units=Meters&wkid=4326&includeDate=true",
+        "acquired_utc": "2026-09-07T19:28:15.954327+00:00",
+        "query_xy_local_m": [
+          -109.33,
+          949.21
+        ],
+        "query_longitude_latitude_wgs84": [
+          -93.66556835828605,
+          45.021381340088865
+        ],
+        "elevation_m": 294.170043945,
+        "scene_ground_z_m": -9.43,
+        "reported_resolution_m": 1,
+        "reported_raster_id": 115595,
+        "reported_acquisition_date": "4/3/2023",
+        "vertical_datum": "Interpreted as NAVD88 from USGS CONUS 3DEP convention; datum/geoid is not stated in this individual EPQS response.",
+        "confidence": "medium for the sampled point; low for applying one point uniformly across an entire belt",
+        "limitations": "An interpolated DEM point, not a surveyed elevation. Source acquisition-date attribute is preserved verbatim and is not equated to a lidar flight date. Resolution is not vertical accuracy. Terrain variation within the polygon is not sampled.",
+        "raw_response": {
+          "location": {
+            "x": -93.66556835828605,
+            "y": 45.021381340088865,
+            "spatialReference": {
+              "wkid": 4326,
+              "latestWkid": 4326
+            }
+          },
+          "locationId": 0,
+          "value": "294.170043945",
+          "rasterId": 115595,
+          "resolution": 1,
+          "attributes": {
+            "AcquisitionDate": "4/3/2023"
+          }
+        }
+      }
+    },
+    {
+      "id": "wood-04",
+      "label": "Northeast creek-side woody belt",
+      "polygon_xy_m": [
+        [
+          4.39,
+          916.83
+        ],
+        [
+          90.72,
+          917.66
+        ],
+        [
+          162.11,
+          926.79
+        ],
+        [
+          226.03,
+          936.76
+        ],
+        [
+          240.97,
+          922.64
+        ],
+        [
+          229.35,
+          892.74
+        ],
+        [
+          210.25,
+          882.78
+        ],
+        [
+          144.68,
+          882.78
+        ],
+        [
+          86.57,
+          887.76
+        ],
+        [
+          7.71,
+          896.9
+        ]
+      ],
+      "representative_point_xy_m": [
+        129.74,
+        903.54
+      ],
+      "estimated_plan_area_m2": 8262,
+      "horizontal_boundary_uncertainty_m": 12,
+      "land_cover_confidence": "medium",
+      "canopy_height_range_m": [
+        10,
+        17
+      ],
+      "canopy_height_basis": "Inferred mature woodland presentation range; no lidar height measurement beyond y405m.",
+      "recommended_edge_inset_m": 8,
+      "density_note": "Discontinuous crowns within the traced belt; retain gaps, do not turn it into a solid wall.",
+      "scene_eligible": true,
+      "exclusion_reason": null,
+      "ground_elevation": {
+        "provider": "USGS Elevation Point Query Service / 3DEP dynamic elevation service",
+        "query_url": "https://epqs.nationalmap.gov/v1/json?x=-93.66252939740816&y=45.02098789425798&units=Meters&wkid=4326&includeDate=true",
+        "acquired_utc": "2026-09-07T19:28:16.695921+00:00",
+        "query_xy_local_m": [
+          129.74,
+          903.54
+        ],
+        "query_longitude_latitude_wgs84": [
+          -93.66252939740816,
+          45.02098789425798
+        ],
+        "elevation_m": 293.173126221,
+        "scene_ground_z_m": -10.4269,
+        "reported_resolution_m": 1,
+        "reported_raster_id": 115595,
+        "reported_acquisition_date": "4/3/2023",
+        "vertical_datum": "Interpreted as NAVD88 from USGS CONUS 3DEP convention; datum/geoid is not stated in this individual EPQS response.",
+        "confidence": "medium for the sampled point; low for applying one point uniformly across an entire belt",
+        "limitations": "An interpolated DEM point, not a surveyed elevation. Source acquisition-date attribute is preserved verbatim and is not equated to a lidar flight date. Resolution is not vertical accuracy. Terrain variation within the polygon is not sampled.",
+        "raw_response": {
+          "location": {
+            "x": -93.66252939740816,
+            "y": 45.02098789425798,
+            "spatialReference": {
+              "wkid": 4326,
+              "latestWkid": 4326
+            }
+          },
+          "locationId": 0,
+          "value": "293.173126221",
+          "rasterId": 115595,
+          "resolution": 1,
+          "attributes": {
+            "AcquisitionDate": "4/3/2023"
+          }
+        }
+      }
+    },
+    {
+      "id": "wood-05",
+      "label": "Far western woodland south of local road",
+      "polygon_xy_m": [
+        [
+          -1000.0,
+          518.23
+        ],
+        [
+          -956.84,
+          508.26
+        ],
+        [
+          -913.67,
+          497.47
+        ],
+        [
+          -891.26,
+          477.53
+        ],
+        [
+          -873.0,
+          463.42
+        ],
+        [
+          -852.25,
+          433.52
+        ],
+        [
+          -877.98,
+          416.91
+        ],
+        [
+          -923.63,
+          426.05
+        ],
+        [
+          -959.33,
+          440.17
+        ],
+        [
+          -1000.0,
+          440.17
+        ]
+      ],
+      "representative_point_xy_m": [
+        -931.93,
+        469.23
+      ],
+      "estimated_plan_area_m2": 9137,
+      "horizontal_boundary_uncertainty_m": 20,
+      "land_cover_confidence": "medium-low",
+      "canopy_height_range_m": [
+        10,
+        18
+      ],
+      "canopy_height_basis": "Inferred mature woodland presentation range; no lidar height measurement beyond y405m.",
+      "recommended_edge_inset_m": 8,
+      "density_note": "Discontinuous crowns within the traced belt; retain gaps, do not turn it into a solid wall.",
+      "scene_eligible": false,
+      "exclusion_reason": "Residential structures and lawns remain mixed within this coarse candidate; omitted after overlay inspection.",
+      "ground_elevation": {
+        "provider": "USGS Elevation Point Query Service / 3DEP dynamic elevation service",
+        "query_url": "https://epqs.nationalmap.gov/v1/json?x=-93.67595774193312&y=45.016999588023616&units=Meters&wkid=4326&includeDate=true",
+        "acquired_utc": "2026-09-07T19:28:16.718620+00:00",
+        "query_xy_local_m": [
+          -931.93,
+          469.23
+        ],
+        "query_longitude_latitude_wgs84": [
+          -93.67595774193312,
+          45.016999588023616
+        ],
+        "elevation_m": 295.688476562,
+        "scene_ground_z_m": -7.9115,
+        "reported_resolution_m": 1,
+        "reported_raster_id": 115595,
+        "reported_acquisition_date": "4/3/2023",
+        "vertical_datum": "Interpreted as NAVD88 from USGS CONUS 3DEP convention; datum/geoid is not stated in this individual EPQS response.",
+        "confidence": "medium for the sampled point; low for applying one point uniformly across an entire belt",
+        "limitations": "An interpolated DEM point, not a surveyed elevation. Source acquisition-date attribute is preserved verbatim and is not equated to a lidar flight date. Resolution is not vertical accuracy. Terrain variation within the polygon is not sampled.",
+        "raw_response": {
+          "location": {
+            "x": -93.67595774193312,
+            "y": 45.016999588023616,
+            "spatialReference": {
+              "wkid": 4326,
+              "latestWkid": 4326
+            }
+          },
+          "locationId": 0,
+          "value": "295.688476562",
+          "rasterId": 115595,
+          "resolution": 1,
+          "attributes": {
+            "AcquisitionDate": "4/3/2023"
+          }
+        }
+      }
+    }
+  ],
+  "elevation_source_notes": {
+    "service": "https://epqs.nationalmap.gov/v1/json",
+    "queries_made": 5,
+    "official_description": "https://apps.nationalmap.gov/epqs/",
+    "accuracy_documentation": "https://www.usgs.gov/faqs/how-accurate-are-elevations-generated-elevation-point-query-service-national-map",
+    "datum_documentation": "https://www.usgs.gov/faqs/what-projection-horizontal-datum-vertical-datum-and-resolution-a-usgs-digital-elevation-model",
+    "interpretation": "USGS describes EPQS as interpolated elevations from multiple-resolution 3DEP DEMs. Typical CONUS vertical datum is NAVD88. Exact local source accuracy and geoid realization are not established by these five queries."
+  },
+  "validation": {
+    "review_date": "2026-09-07",
+    "source_ortho_and_trace_overlay_visually_inspected": true,
+    "revisions_after_overlay_inspection": [
+      "Trimmed wood-01 northern lawn/road margin and western residential edge.",
+      "Trimmed wood-02 to the southern woody interior, excluding visible residential structures and their clearings.",
+      "Marked wood-05 ineligible because its coarse outline still mixes residential structures and lawns."
+    ],
+    "candidate_count": 5,
+    "eligible_count": 4,
+    "checks": [
+      "All coordinates finite; all polygons strictly north of y405m; each representative query point lies inside its candidate polygon.",
+      "Five bounded EPQS point responses returned plausible1m-resolution DEM elevations; raw values and source attributes preserved.",
+      "No additional lidar tile downloaded; no source imagery used as a scene texture."
+    ],
+    "scope": "Research geometry only. No scene integration, terrain interpolation, rendered silhouette or camera-view validation is implied."
+  }
+}

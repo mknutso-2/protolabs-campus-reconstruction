@@ -161,7 +161,13 @@ for i in range(11):
 
 # Central connector below sculptural roof, open reception court.
 connector=[(55.9,0),(72.5,8.5),(76.5,11.3),(76.5,24.15),(65.65,50.03),(56,47)]
-polygon('Central low connector',connector,-4.5,interior,7.75)
+connector_obj=polygon('Central low connector',connector,-4.5,interior,7.75)
+# The photo-visible opaque south return continues the precast treatment;
+# dark backing is retained behind glazing, rather than applied to the exposed wall.
+connector_obj.data.materials.append(brick)
+connector_obj.data.materials.append(roof)
+connector_obj.data.polygons[2].material_index=1
+connector_obj.data.polygons[1].material_index=2
 # Replace visible facade with opaque shadow-backed glazing surfaces forward of volume.
 glazing('Angled atrium', (72.8,7.9),(76.85,10.0),.20,4.85,1.15)
 glazing('Atrium east',(76.88,10),(76.88,24.12),.20,3.4,1.4)
@@ -310,8 +316,10 @@ try:
   for j in range(n):
    if random.random()>row['suggested_aerial_occupancy_fraction']*.45:continue
    pos=a.lerp(b,j/max(1,n-1));
-   if (pos-Vector((122,-41))).length<36:continue
-   src=vehicles[j%5];o=bpy.data.objects.new('Parked generic vehicle',src.data);COL[active].objects.link(o);o.location=(pos.x,pos.y,ground(pos.x,pos.y)+.06);o.rotation_euler.z=math.atan2(-hd.x,hd.y)
+   # The official matched aerial shows an empty arrival court. Vehicles remain
+   # generic context dressing in distant lots, never claimed current occupancy.
+   if -5 < pos.x < 180 and -60 < pos.y < 67:continue
+   src=vehicles[random.randrange(len(vehicles))];o=bpy.data.objects.new('Parked generic vehicle',src.data);COL[active].objects.link(o);o.location=(pos.x,pos.y,ground(pos.x,pos.y)+.06);o.rotation_euler.z=math.atan2(-hd.x,hd.y)
 except ImportError:print('Vehicle assets pending')
 # Terrain-conform initial facade paving.
 for ob in list(COL[active].objects):
@@ -374,11 +382,9 @@ if not opt.no_trees:
    COL[active].objects.link(o);o.hide_render=True;o.hide_viewport=True
   canopy=json.loads((ROOT/'research/north_context_canopy_constraints.json').read_text())
   measured=[row for row in canopy['rows'] if row.get('scene_eligible',True)]
-  # Retain aerial-traced campus planting; prefer measured envelopes where traces overlap.
-  poses=[pixel(t['center_px']) for t in layout['trees']]
-  poses=[(x,y) for x,y in poses if not (y>=70 and any((x-r['position'][0])**2+(y-r['position'][1])**2<36 for r in measured))]
-  for j,(x,y) in enumerate(poses):
-   src=assets[j%3];o=bpy.data.objects.new('Aerial-traced campus tree',src.data);COL[active].objects.link(o);o.location=(x,y,ground(x,y));scale=random.uniform(.78,1.35);o.scale=(scale,scale,scale);o.rotation_euler.z=random.random()*6.283
+  from campus_trees import add_campus_trees
+  campus_report=add_campus_trees(ROOT,COL[active],assets,ground,pixel,measured)
+  bpy.context.scene['Campus tree report']=json.dumps(campus_report)
   bounds=[]
   for src in assets:
    low=[min(v.co[k] for v in src.data.vertices) for k in range(3)];high=[max(v.co[k] for v in src.data.vertices) for k in range(3)];bounds.append((low,high))
@@ -395,7 +401,14 @@ if not opt.no_trees:
    o=bpy.data.objects.new('Foundation shrub',shrub.data);COL[active].objects.link(o);o.location=(x,y,ground(x,y)+.13);o.rotation_euler.z=random.random()*6.28
  except ImportError:print('Vegetation module pending; no placeholder trees substituted')
 
-# Lighting: readable late-afternoon daylight without geometry-hiding sunset glare.
+# Distant wooded belts are separate inferred context, never a substitute for
+# the measured immediate pond terrain and canopy envelopes.
+if not opt.no_trees:
+ from distant_context import add_distant_context
+ distant_report=add_distant_context(ROOT,COL['Context | approximate'],assets)
+ bpy.context.scene['Distant context report']=json.dumps(distant_report)
+
+# Base world is replaced below by the licensed reference-oriented low-sun sky.
 world=bpy.data.worlds.new('Physical daylight') if not bpy.data.worlds else bpy.data.worlds[0];bpy.context.scene.world=world;world.use_nodes=True
 n=world.node_tree.nodes;n.clear();sky=n.new('ShaderNodeTexSky');sky.sky_type='NISHITA';sky.sun_elevation=math.radians(32);sky.sun_rotation=math.radians(135);sky.altitude=.3;sky.air_density=1;sky.dust_density=.55;sky.sun_disc=True
 bg=n.new('ShaderNodeBackground');bg.inputs['Strength'].default_value=.3;out=n.new('ShaderNodeOutputWorld');world.node_tree.links.new(sky.outputs[0],bg.inputs[0]);world.node_tree.links.new(bg.outputs[0],out.inputs[0])
@@ -417,12 +430,18 @@ for name,cfg in cameras.items():
  c.data.clip_end=1500;c.data.clip_start=.1;c['reference']=cfg['reference'];cfg['rotation_euler']=list(c.rotation_euler)
 scene=bpy.context.scene;scene.camera=bpy.data.objects['reference_aerial'];scene.render.engine='CYCLES';scene.cycles.device='CPU';scene.cycles.samples=opt.samples;scene.cycles.use_denoising=True;scene.cycles.adaptive_threshold=.035;scene.cycles.max_bounces=6;scene.cycles.transparent_max_bounces=6;scene.render.threads_mode='FIXED';scene.render.threads=6
 scene.render.resolution_x=opt.width;scene.render.resolution_y=round(opt.width*2/3);scene.render.resolution_percentage=100;scene.render.image_settings.file_format='PNG';scene.render.film_transparent=False
-scene.view_settings.view_transform='AgX';scene.view_settings.look='AgX - Medium High Contrast';scene.view_settings.exposure=-.85
+scene.view_settings.view_transform='AgX';scene.view_settings.look='AgX - Medium Low Contrast';scene.view_settings.exposure=-.35;scene.view_settings.gamma=1.15
 scene.render.fps=24;scene.frame_end=288
 (ROOT/'scene').mkdir(exist_ok=True);(ROOT/'deliverables').mkdir(exist_ok=True)
 (ROOT/'scene/cameras.json').write_text(json.dumps(cameras,indent=2)+'\n')
 scene['Fidelity status']='Reference-led work in progress; GIS plan plus photo-interpreted dimensions. See accuracy report.'
 scene['Origin UTM EPSG26915']=[447671.8750643735,4984591.8364606025]
+from visual_finish import apply_visual_finish
+apply_visual_finish()
+from monument_finish import apply_monument_finish
+apply_monument_finish(ROOT)
+from material_quality import apply_material_quality
+apply_material_quality(ROOT)
 exec(compile((ROOT/'scripts/export_materials.py').read_text(),str(ROOT/'scripts/export_materials.py'),'exec'))
 # Pack reference-independent asset textures and fonts into editable master.
 bpy.ops.file.pack_all()

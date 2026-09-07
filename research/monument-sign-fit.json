@@ -1,0 +1,349 @@
+{
+  "schema_version": 1,
+  "status": "Bounded photo-based correction; not a surveyed sign specification",
+  "reference": {
+    "path": "research/images/protolabs-official-hq-drone.jpg",
+    "url": "https://www.protolabs.com/media/s4dignhf/hq-drone.jpg",
+    "attribution": "Proto Labs, Inc.; undated public company photograph, acquired 2026-09-07",
+    "sha256": "d63946a04d11b20ae3cc026b06cf07e0a58deb7d46b8ece8bd305912a60f47a9",
+    "size_px": [
+      1200,
+      800
+    ],
+    "corner_order": [
+      "top_left",
+      "top_right",
+      "bottom_right",
+      "bottom_left"
+    ],
+    "annotated_panel_corners_px": [
+      [
+        295.0,
+        680.0
+      ],
+      [
+        391.0,
+        652.0
+      ],
+      [
+        391.0,
+        715.0
+      ],
+      [
+        295.0,
+        740.0
+      ]
+    ],
+    "annotation_uncertainty_px": [
+      3,
+      2,
+      5,
+      5
+    ],
+    "annotation_notes": [
+      "Manual dark-panel interpretation, excluding gravel base. Lower corners are partly obscured by grass/shadow.",
+      "The illuminated top edge begins near (295,680); continuous left dark boundary is near x295. The cyan logo begins around x307.",
+      "An independent full-image reading placed the left front-plane edge near x306, possibly separating a side return. This unresolved interpretation is retained as an alternate fit.",
+      "Numeric boundary support: median two-pixel RGB absolute change across y686..733 is 120 at x295 versus 15 at x306; this is an edge cue, not proof of front/side topology."
+    ]
+  },
+  "coordinate_system": "Metres; X east, Y north, Z NAVD88 minus 303.6 m",
+  "camera": {
+    "path": "research/reference_drone_camera_fit.json",
+    "sha256": "b0802291c54746cf07c69597596e0c43abf6a83868b3cfb8acc746412a81b47c",
+    "position": [
+      122.2179957382899,
+      -41.42428315068638,
+      13.573699988177284
+    ],
+    "rotation_euler_xyz_radians": [
+      1.4900175028888165,
+      0.011439290773957111,
+      0.8103691719963717
+    ],
+    "lens_mm": 25.872180237998062,
+    "sensor_width_mm": 36,
+    "focal_length_pixels": 862.4060079332687,
+    "held_fixed": true,
+    "original_landmark_rms_px_unweighted": 7.8704776426456
+  },
+  "terrain": {
+    "path": "research/terrain_grid.json",
+    "sha256": "560d3a528b43f1ffd212113b6092e150004d4b2aa29da2c77a1390aa5cbae939",
+    "method": "Same bilinear sampling of the committed 5 m ground grid as build_scene.py"
+  },
+  "method": {
+    "model": "Vertical planar front rectangle; yaw only, width and height; depth retained at 0.27 m",
+    "objective": "Eight image-coordinate residuals / 2 px, plus dx and dy / 0.75 m anchor prior",
+    "xy_anchor_m": [
+      94.39,
+      -27.81
+    ],
+    "xy_bounds_relative_to_anchor_m": [
+      -1.5,
+      1.5
+    ],
+    "ground_constraint": "Panel bottom 0.10 m above local ground; no independent camera-fit z=1.0 constraint",
+    "source_panel": {
+      "width_m": 5.8,
+      "height_m": 2.75,
+      "depth_m": 0.27,
+      "yaw_degrees": 0,
+      "center_xy_m": [
+        94.39,
+        -27.81
+      ],
+      "center_z_above_ground_m": 1.5
+    },
+    "reproduction": "python3 scripts/research/fit_monument_sign.py (NumPy and SciPy required only for refitting)"
+  },
+  "fit": {
+    "yaw_degrees": 83.8185463470383,
+    "yaw_radians": 1.462909607991284,
+    "panel_width_m": 3.516986032055056,
+    "panel_height_m": 2.2609775197782067,
+    "panel_depth_m": 0.27,
+    "center_xy_m": [
+      94.07899558346703,
+      -27.557408531793612
+    ],
+    "anchor_delta_xy_m": [
+      -0.3110044165329667,
+      0.2525914682063853
+    ],
+    "anchor_displacement_m": 0.4006572062420298,
+    "ground_z_m": -0.5869756513189279,
+    "panel_bottom_above_ground_m": 0.1,
+    "panel_center_z_m": 0.6435131085701754,
+    "corner_world_xyz_m": [
+      [
+        94.02386045893036,
+        -29.320213911142087,
+        1.7740018684592789
+      ],
+      [
+        94.40256089309837,
+        -25.82367609054993,
+        1.7740018684592789
+      ],
+      [
+        94.40256089309837,
+        -25.82367609054993,
+        -0.48697565131892795
+      ],
+      [
+        94.02386045893036,
+        -29.320213911142087,
+        -0.48697565131892795
+      ]
+    ],
+    "projected_corners_px": [
+      [
+        293.69875326581234,
+        678.1877619725486
+      ],
+      [
+        390.0626937788258,
+        654.0251369992932
+      ],
+      [
+        391.95969922893033,
+        713.4067090141095
+      ],
+      [
+        296.3205055041348,
+        741.6549648293735
+      ]
+    ],
+    "corner_error_px": [
+      2.2310198859209844,
+      2.231529255501268,
+      1.8599996708949378,
+      2.1172253949246023
+    ],
+    "corner_rms_px": 2.1153849944026644
+  },
+  "fixed_xy_alternative": {
+    "yaw_degrees": 83.93843982802122,
+    "yaw_radians": 1.4650021439861132,
+    "panel_width_m": 3.4499777344880953,
+    "panel_height_m": 2.4034864612914997,
+    "panel_depth_m": 0.27,
+    "center_xy_m": [
+      94.39,
+      -27.81
+    ],
+    "anchor_delta_xy_m": [
+      0,
+      0
+    ],
+    "anchor_displacement_m": 0.0,
+    "ground_z_m": -0.5741251840000001,
+    "panel_bottom_above_ground_m": 0.1,
+    "panel_center_z_m": 0.7276180466457497,
+    "corner_world_xyz_m": [
+      [
+        94.34209166293238,
+        -29.539600064568486,
+        1.9293612772914996
+      ],
+      [
+        94.70639877059901,
+        -26.108911110470903,
+        1.9293612772914996
+      ],
+      [
+        94.70639877059901,
+        -26.108911110470903,
+        -0.47412518400000014
+      ],
+      [
+        94.34209166293238,
+        -29.539600064568486,
+        -0.47412518400000014
+      ]
+    ],
+    "projected_corners_px": [
+      [
+        291.30936077145896,
+        678.2492826075896
+      ],
+      [
+        387.2226626551742,
+        654.1571508889576
+      ],
+      [
+        389.2833360088223,
+        718.1143910528194
+      ],
+      [
+        294.14822983015875,
+        746.591001336353
+      ]
+    ],
+    "corner_error_px": [
+      4.084829164522573,
+      4.34989394978158,
+      3.5561730678480616,
+      6.64581154096609
+    ],
+    "corner_rms_px": 4.806781267236074
+  },
+  "alternate_left_edge": {
+    "annotated_corners_px": [
+      [
+        306.0,
+        677.0
+      ],
+      [
+        391.0,
+        653.0
+      ],
+      [
+        391.0,
+        715.0
+      ],
+      [
+        306.0,
+        739.0
+      ]
+    ],
+    "fit": {
+      "yaw_degrees": 84.71538766030568,
+      "yaw_radians": 1.4785624417757097,
+      "panel_width_m": 3.14546290977762,
+      "panel_height_m": 2.2811625837685288,
+      "panel_depth_m": 0.27,
+      "center_xy_m": [
+        94.2066081740732,
+        -27.425151783230774
+      ],
+      "anchor_delta_xy_m": [
+        -0.1833918259268043,
+        0.3848482167692262
+      ],
+      "anchor_displacement_m": 0.4263105813455967,
+      "ground_z_m": -0.5740252902117535,
+      "panel_bottom_above_ground_m": 0.1,
+      "panel_center_z_m": 0.6665560016725108,
+      "corner_world_xyz_m": [
+        [
+          94.19618080469373,
+          -29.00363222313635,
+          1.8071372935567749
+        ],
+        [
+          94.48588790030209,
+          -25.871539198409774,
+          1.8071372935567749
+        ],
+        [
+          94.48588790030209,
+          -25.871539198409774,
+          -0.4740252902117533
+        ],
+        [
+          94.19618080469373,
+          -29.00363222313635,
+          -0.4740252902117533
+        ]
+      ],
+      "projected_corners_px": [
+        [
+          304.71435567149814,
+          676.0534555763052
+        ],
+        [
+          390.03717514299694,
+          654.091944059081
+        ],
+        [
+          391.95691937755294,
+          714.1803017366851
+        ],
+        [
+          307.28362607712154,
+          739.9041531468239
+        ]
+      ],
+      "corner_error_px": [
+        1.596504834141375,
+        1.4558068324558997,
+        1.2599999754038578,
+        1.570091977808297
+      ],
+      "corner_rms_px": 1.4765661156597214
+    }
+  },
+  "conditional_sensitivity": {
+    "samples": 128,
+    "seed": 20260907,
+    "method": "Gaussian corner jitter at stated pixel scales and uniform 0.05..0.20 m panel-bottom clearance; camera and terrain grid held fixed",
+    "percentiles": [
+      5,
+      95
+    ],
+    "yaw_degrees": [
+      75.06311530023177,
+      93.16139642082554
+    ],
+    "panel_width_m": [
+      3.248205298108301,
+      3.7679710694318613
+    ],
+    "panel_height_m": [
+      2.038446943538176,
+      2.4464952216803644
+    ],
+    "warning": "These are conditional perturbation ranges, not confidence intervals for true dimensions; camera/datum and source-date errors are excluded"
+  },
+  "limitations": [
+    "One photograph and an approximate fitted camera cannot uniquely establish physical dimensions, depth, or ground elevation.",
+    "The 5 m ground grid does not resolve the monument foundation. Image edges are only a few pixels thick and lower corners blend into planting.",
+    "Aerial XY is an approximate anchor; the nominal fit moves its center by less than half a metre.",
+    "The old camera-fit monument center z=1.0 m was itself a manual approximation and is not an independent survey constraint.",
+    "Yaw reverses the incorrect top-edge screen slope. Reduced foreshortening makes the sign wider in the image even though fitted physical width decreases.",
+    "All existing lettering, logo parts and base share the same transform; no new text, logo topology, or measured sign-content claim is introduced.",
+    "Full rendered visual acceptance and other-view checks remain required."
+  ]
+}
