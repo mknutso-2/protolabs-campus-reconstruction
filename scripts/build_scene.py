@@ -282,7 +282,10 @@ v=[];f=[]
 for j in rows:
  for i,x in enumerate(nx):
   blend=min(1,max(0,(ny[j]-ty[-1])/10))
-  v.append((x,ny[j],ground(x,ty[-1])*(1-blend)+nz[j][i]*blend))
+  # Match the actual rendered final main-grid row, including its surface offset.
+  # The clamped terrain sampler omits that offset and leaves a visible12cm lip.
+  main_edge_z=tz[-1][tx.index(x)]-.12
+  v.append((x,ny[j],main_edge_z*(1-blend)+nz[j][i]*blend))
 for j in range(len(rows)-1):
  for i in range(len(nx)-1):
   a=j*len(nx)+i;f.append((a,a+1,a+len(nx)+1,a+len(nx)))
