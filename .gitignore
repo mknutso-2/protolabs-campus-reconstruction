@@ -1,0 +1,19 @@
+# Reproducible generated artifacts and licensed reference caches
+.blender-cache/
+__pycache__/
+*.blend1
+*.blend2
+*.log
+.env*
+!.env.example
+node_modules/
+scene/*.blend
+scene/*.glb
+scene/*.gltf
+scene/*.bin
+deliverables/
+research/images/
+viewer/dist/
+viewer/.next/
+viewer/.wrangler/
+work/
