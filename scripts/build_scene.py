@@ -447,6 +447,8 @@ from monument_finish import apply_monument_finish
 apply_monument_finish(ROOT)
 from water_finish import apply_water_finish
 scene['Water surface report']=json.dumps(apply_water_finish(ROOT))
+from apron_finish import apply_apron_finish
+scene['Apron joint report']=json.dumps(apply_apron_finish(ROOT))
 from parking_finish import apply_parking_finish
 scene['Parking correction report']=json.dumps(apply_parking_finish(ROOT))
 from material_quality import apply_material_quality
