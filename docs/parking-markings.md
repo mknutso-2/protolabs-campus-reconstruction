@@ -38,10 +38,31 @@ entrance. These are separate from the four aerial-traced rows.
 The helper reads the actual current apron mesh footprint, splits those existing
 segments at its edges, and retains only their outside portions. The retained
 paint stops 0.08 m along each segment before the boundary to keep its full width
-off the apron. It follows the existing bilinear terrain at ground + 0.04 m,
-instead of retaining a fixed elevation. No new accessible-parking layout is
+off the apron. Its final height follows the actual rendered asphalt, using the
+small rendering clearance described below. No new accessible-parking layout is
 invented: the remaining hatch is explicitly inferred from the old construction,
 and its real-world position still needs a dedicated source review.
+
+## Actual pavement conformance
+
+The first integrated final aerial exposed an additional construction error:
+matching paint to the bilinear terrain grid did not match the independently
+triangulated asphalt mesh. Some paint lay as much as 47 mm beneath the pavement,
+so the shared row divisions disappeared while raised end caps remained visible.
+
+`asphalt_surface_sampler` builds a temporary raycast index from evaluated mesh
+faces using the existing `Weathered asphalt / metric noise` material. It samples
+the highest downward intersection at each paint coordinate. Final paint vertices
+sit 12 mm above that rendered surface. This is a modest rendering separation,
+not a claim about physical paint thickness. The old ground + 0.04 m value remains
+only as an initial construction scaffold and historical record.
+
+`conform_parking_paint` subdivides the existing triangles in XY to edges no longer
+than 0.20 m. It checks edge midpoints, face centers and additional interior points,
+subdividing further if sampled clearance drops below 3 mm. The current site has
+at least 9 mm clearance in a denser independent audit. This preserves XY coverage,
+paint width, shared center lines and the existing apron exclusion. The asphalt,
+curb, apron and measured terrain are never edited by this helper.
 
 ## Integration
 
@@ -57,7 +78,7 @@ The helper matches all 38 legacy curves for the four selected rows by their
 world-space endpoints, rather than by unstable numeric name suffixes. It also
 requires the ten existing access-aisle curves and actual apron footprint.
 Missing or changed prerequisites raise an error before removing old geometry.
-It replaces those 48 curves with one terrain-following paint mesh; all other
+It replaces those 48 curves with one asphalt-following paint mesh; all other
 scene objects are preserved. A repeated call with the same evidence hash does
 nothing. A changed evidence hash requires rebuilding the scene.
 
@@ -75,17 +96,30 @@ terrain offset, upward paint faces, apron exclusion, repeated-call behavior,
 and preservation of unrelated objects and the saved master. It also projects
 the old/new paths through the unchanged fitted aerial camera for inspection.
 
-That check passed: exactly 38 row stripes and ten separate access-aisle curves
-were replaced by a 1,660-triangle paint mesh. Maximum terrain-offset error was
-below 0.000001 m, all paint faces point upward, and no retained access-paint
-vertex lies inside the apron. Other objects and the saved master remained
-unchanged; the repeated helper call added nothing. The projected overlay has
-the correct paired-row and capped-end organization, with visible residual
-pixel offsets from the reference. The dated plan trace, terrain and camera
-were not adjusted to force its paint to coincide with photographic pixels.
+The original grid-based check passed its limited assertions: exactly 38 row
+stripes and ten separate access-aisle curves became a 1,660-triangle mesh, with
+terrain-offset error below 0.000001 m. The integrated image subsequently showed
+that this was insufficient: 834 of 3,320 paint vertices and 1,597 edge/face samples
+were below the actual asphalt. The deepest measured penetration was 46.96 mm.
 
-Local diagnostics are retained in the enclosing workspace's `work/parking-review`:
-`before-aerial-overlay.png`, `after-aerial-overlay.png`, `projection.json`, and
-`validation.json`, with `after-projection-overlay.png` for the camera check.
-These overlays and geometry checks do not substitute for
-inspection of the integrated final stills or motion.
+The repaired helper was then checked both on that final master in memory and
+through the full replacement API on the clean frontage master. Both produce a
+13,228-triangle paint mesh. All 10,072 vertices and 251,332 independently sampled
+edge/interior points clear the asphalt; their minimum gaps are 12.00 mm and
+8.99 mm respectively. Paint XY area differs by less than 0.000003 m² from float
+storage, all faces point upward, and no retained access-paint vertex lies inside
+the apron. All unrelated object data/transforms, asphalt mesh coordinates and
+saved master files remain unchanged. Repeating the complete helper is a no-op.
+A native-scale crop of the 1600-pixel aerial, rendered at 24 samples, was compared
+with the integrated still: the previously missing dividers and shared center
+lines are continuous, while the original faded paint material remains intact.
+
+The projected overlay has the correct paired-row and capped-end organization,
+with visible residual pixel offsets from the reference. The dated plan trace,
+terrain and camera were not adjusted to force paint onto photographic pixels.
+
+Local diagnostics are retained in the enclosing workspace's `work/parking-review`
+for the original plan/projection review, and `work/parking-surface-review` for the
+actual-asphalt correction: `validation.json`, `apply-validation.json` and the
+bounded `after-parking-crop.png` render. These checks concern this paint correction;
+they do not establish final acceptance of the overall stills or motion.

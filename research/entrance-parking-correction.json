@@ -29,7 +29,7 @@
   },
   "trace_uncertainty_px": 3,
   "uncertainty_note": "Manual boundary/corner reading, some paint obscured by cars and shadows; approximately 0.44 m from pixel annotation alone. Source georegistration, terrain and temporal differences are additional. Rendered bay count is not official site capacity.",
-  "scope": "Correct entry_outer_row_1 through entry_outer_row_4 paint and observed hatched ends; clip the ten separate inferred access-aisle hatches outside the existing Entry concrete apron footprint and conform retained paint to terrain. No cars, curbs, accessible symbols, drainage or other parking rows change.",
+  "scope": "Correct entry_outer_row_1 through entry_outer_row_4 paint and observed hatched ends; clip the ten separate inferred access-aisle hatches outside the existing Entry concrete apron footprint and conform retained paint to the actual rendered asphalt. No cars, curbs, accessible symbols, drainage or other parking rows change.",
   "rows": [
     {
       "source_row_id": "entry_outer_row_1",
@@ -247,7 +247,11 @@
   "access_aisle_clipping": {
     "source": "Ten builder curves named Accessible access aisle hatch at constant z=0.05",
     "diagnosis": "Their XY segments cross the existing Entry concrete apron. Paint for an inferred parking aisle should stop at its curb.",
-    "method": "Read the actual current apron mesh footprint; split source segments at its edges; retain only outside intervals with 0.08 m clearance, and sample the existing terrain grid plus the paint offset.",
+    "method": "Read actual apron footprint; split source segments at its edges; retain outside intervals with 0.08 m curb clearance. Final paint heights conform to rendered asphalt plus the recorded small clearance; the bilinear terrain is only an initial scaffold.",
     "evidence_status": "Construction correction using existing modeled apron, not a newly measured accessible-parking layout. Original builder inputs are retained unchanged."
-  }
+  },
+  "paint_asphalt_clearance_m": 0.012,
+  "paint_max_triangle_edge_m": 0.2,
+  "paint_min_sampled_clearance_m": 0.003,
+  "paint_surface_note": "Final paint uses downward raycasts onto actual evaluated asphalt faces plus 0.012 m rendering clearance. The older ground+.04 field is retained only as the initial scaffold/history. Adaptive XY triangulation preserves painted coverage while checking edge and face samples. This small separation prevents mesh occlusion and does not claim physical paint thickness."
 }

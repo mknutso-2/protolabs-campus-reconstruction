@@ -123,6 +123,87 @@ def _clip_outside(a, b, polygons, clearance):
         if end>start:yield [_mix(a,b,start),_mix(a,b,end)]
 
 
+def asphalt_surface_sampler():
+    """Sample the top of actual evaluated asphalt faces, without editing them."""
+    import bpy
+    from mathutils import Vector
+    from mathutils.bvhtree import BVHTree
+    depsgraph=bpy.context.evaluated_depsgraph_get()
+    vertices=[];faces=[];names=[]
+    for obj in bpy.context.scene.objects:
+        if obj.type!='MESH' or obj.hide_render:continue
+        indices={i for i,m in enumerate(obj.data.materials) if m and m.name=='Weathered asphalt / metric noise'}
+        if not indices:continue
+        evaluated=obj.evaluated_get(depsgraph);mesh=evaluated.to_mesh()
+        try:
+            offset=len(vertices)
+            vertices.extend(evaluated.matrix_world@v.co for v in mesh.vertices)
+            faces.extend(tuple(offset+i for i in p.vertices) for p in mesh.polygons if p.material_index in indices)
+            names.append(obj.name)
+        finally:evaluated.to_mesh_clear()
+    if not faces:raise ValueError('No rendered asphalt surface is available for paint conformance')
+    bvh=BVHTree.FromPolygons(vertices,faces,all_triangles=False)
+    top=max(v.z for v in vertices)+10.;bottom=min(v.z for v in vertices)-10.
+    def sample(x,y):
+        hit=bvh.ray_cast(Vector((x,y,top)),Vector((0,0,-1)),top-bottom)[0]
+        if hit is None:raise ValueError(f'Parking paint lies outside rendered asphalt at ({x:.4f}, {y:.4f})')
+        return float(hit.z)
+    return sample,{'objects':names,'faces':len(faces),'source':'Evaluated rendered asphalt faces; highest downward ray intersection'}
+
+
+def conform_parking_paint(root, obj):
+    """Conform only this paint mesh to rendered asphalt; never save or edit paving.
+
+    Thin ribbons are triangulated and subdivided in XY, then sampled at corners,
+    edges and face interiors. XY coverage, width, and existing apron clipping stay
+    unchanged. This also permits an isolated repair preview of an older master.
+    """
+    import bpy
+    from mathutils import Vector
+    record=json.loads((Path(root)/'research/entrance-parking-correction.json').read_text())
+    clearance=record['paint_asphalt_clearance_m'];max_edge=record['paint_max_triangle_edge_m']
+    minimum=record['paint_min_sampled_clearance_m']
+    surface,source=asphalt_surface_sampler();cache={}
+    def z(point):
+        if point not in cache:cache[point]=surface(*point)+clearance
+        return cache[point]
+    weights=((1/3,1/3,1/3),(.5,.5,0),(.5,0,.5),(0,.5,.5),
+             (.5,.25,.25),(.25,.5,.25),(.25,.25,.5))
+    coordinates=[];faces=[];indices={};margins=[]
+    def emit(tri,depth=0):
+        lengths=[math.dist(tri[i],tri[(i+1)%3]) for i in range(3)]
+        heights=[z(p) for p in tri]
+        gaps=[]
+        if max(lengths)<=max_edge:
+            for w in weights:
+                x,y=[sum(w[i]*tri[i][k] for i in range(3)) for k in range(2)]
+                gaps.append(sum(w[i]*heights[i] for i in range(3))-surface(x,y))
+        if max(lengths)>max_edge or min(gaps)<minimum:
+            if depth>=18:raise ValueError('Asphalt surface is discontinuous beneath a paint face')
+            i=max(range(3),key=lambda i:lengths[i]);a,b,c=tri[i],tri[(i+1)%3],tri[(i+2)%3]
+            mid=_mix(a,b,.5);emit((a,mid,c),depth+1);emit((mid,b,c),depth+1);return
+        face=[]
+        for p,height in zip(tri,heights):
+            if p not in indices:
+                indices[p]=len(coordinates);coordinates.append((p[0],p[1],height))
+            face.append(indices[p])
+        faces.append(tuple(face));margins.extend(gaps)
+    original=obj.data;original.calc_loop_triangles()
+    for triangle in original.loop_triangles:
+        emit(tuple(tuple((obj.matrix_world@original.vertices[i].co)[:2]) for i in triangle.vertices))
+    inverse=obj.matrix_world.inverted()
+    mesh=bpy.data.meshes.new(original.name+' asphalt conforming')
+    mesh.from_pydata([inverse@Vector(p) for p in coordinates],[],faces)
+    for material in original.materials:mesh.materials.append(material)
+    mesh.update();obj.data=mesh
+    if original.users==0:bpy.data.meshes.remove(original)
+    obj['paint_surface_basis']='Actual rendered asphalt mesh, not the bilinear terrain grid'
+    obj['paint_asphalt_clearance_m']=clearance
+    return {'surface':source,'clearance_m':clearance,'minimum_sampled_clearance_m':min(margins),
+            'max_triangle_edge_m':max_edge,'triangles':len(faces),'surface_samples':len(cache),
+            'interior_edge_checks':len(margins),'xy_width_and_apron_clipping_preserved':True}
+
+
 def apply_parking_finish(root):
     """Replace 38 matched row stripes and clip 10 legacy aisle hatches at the apron.
 
@@ -213,13 +294,15 @@ def apply_parking_finish(root):
     obj=bpy.data.objects.new('Evidence-corrected entrance parking paint',mesh);collection.objects.link(obj)
     obj[TAG]=True;obj['parking_record_sha256']=source_hash
     obj['evidence']='Manual aerial paint trace; four entrance rows only; approximate worn geometry, not a site survey'
+    conformance=conform_parking_paint(root,obj)
     removed=[o.name for o in matched.values()]
     for old in matched.values():bpy.data.objects.remove(old,do_unlink=True)
     aisle_names=[o.name for o in aisle_sources]
     for old in aisle_sources:bpy.data.objects.remove(old,do_unlink=True)
     return {'status':'applied','source':'research/entrance-parking-correction.json','source_sha256':source_hash,
             'removed_legacy_stripes':removed,'removed_count':len(removed),'replacement_object':obj.name,
-            'paint_paths':len(local_paths),'paint_triangles':len(faces)*2,'rendered_bays':[r['bay_count'] for r in record['rows']],
+            'paint_paths':len(local_paths),'paint_triangles':conformance['triangles'],'asphalt_conformance':conformance,
+            'rendered_bays':[r['bay_count'] for r in record['rows']],
             'access_aisle':{'source_curve_names':aisle_names,'clip_footprint_object':apron.name,
                             'retained_paths_xy_m':[p for _,p in aisle_paths],'curb_clearance_m':half+.03,
                             'status':'Original inferred hatch outside actual apron footprint; no surveyed access-aisle claim'},
