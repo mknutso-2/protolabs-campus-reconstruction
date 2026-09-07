@@ -1,4 +1,4 @@
-"""Clip interpreted sidewalk joints to the actual evaluated concrete surface.
+"""Conform sidewalk joints and remove the rock slab overlapping the apron.
 
 Original geometry correction; MIT. No terrain-grid approximation, rendering,
 master save, or changes to the apron, curb, roof or cameras.
@@ -7,6 +7,7 @@ import json
 import math
 
 TAG = 'protolabs_apron_joint_finish'
+ROCK_TAG = 'protolabs_rock_bed_apron_subtraction'
 MARGIN = .025
 MAX_STEP = .10
 CENTER_OFFSET = -.008  # Existing 10 mm radius exposes a 2 mm dark cap.
@@ -46,15 +47,148 @@ def _events(a, b, p, q, margin=0.):
     return [t for t in values if 0.<t<1.]
 
 
+def _subtract_rock_bed(apron):
+    """Subtract a vertical prism of the evaluated apron outline from the rock slab.
+
+    The source slabs both used nominal top Z .16 before different terrain
+    triangulations, so they intersect. Keep the apron and every exposed rock
+    triangle plane; the difference only removes rock inside the apron footprint.
+    Temporary Boolean objects never persist in the generated scene.
+    """
+    import bpy
+    import bmesh
+    from mathutils import Vector
+
+    rock=bpy.data.objects.get('Facade landscape river stones')
+    if rock is None or rock.type!='MESH':raise ValueError('Expected original rock-bed slab')
+    if rock.get(ROCK_TAG):return json.loads(rock[ROCK_TAG])
+    deps=bpy.context.evaluated_depsgraph_get()
+    evaluated=apron.evaluated_get(deps);data=evaluated.to_mesh()
+    try:
+        data.calc_loop_triangles();world=[evaluated.matrix_world@v.co for v in data.vertices]
+        edges={}
+        for tri in data.loop_triangles:
+            a,b,c=[world[i] for i in tri.vertices]
+            if (b-a).cross(c-a).normalized().z<=.5:continue
+            face=tuple(tri.vertices)
+            for i,j in zip(face,face[1:]+face[:1]):
+                key=tuple(sorted((i,j)));edges[key]=edges.get(key,0)+1
+        links={}
+        for (i,j),count in edges.items():
+            if count==1:links.setdefault(i,[]).append(j);links.setdefault(j,[]).append(i)
+        if not links or any(len(v)!=2 for v in links.values()):raise ValueError('Apron outline is not one closed loop')
+        first=min(links);loop=[first];previous=None;current=first
+        while True:
+            nxt=next(v for v in links[current] if v!=previous)
+            if nxt==first:break
+            if nxt in loop:raise ValueError('Apron boundary loops require explicit review')
+            loop.append(nxt);previous,current=current,nxt
+        if len(loop)!=len(links):raise ValueError('Multiple apron boundaries require explicit review')
+        outline=[list(world[i][:2]) for i in loop]
+        area=sum(_cross(a,b) for a,b in zip(outline,outline[1:]+outline[:1]))/2
+        if area<0:outline.reverse()
+    finally:
+        evaluated.to_mesh_clear()
+
+    evaluated=rock.evaluated_get(deps);data=evaluated.to_mesh()
+    try:
+        if data.uv_layers:raise ValueError('Rock UV mapping changed; preserve it explicitly before subtraction')
+        data.calc_loop_triangles()
+        # Use the exact existing tessellation, so exposed warped n-gons cannot
+        # acquire different diagonals/elevations merely from Boolean processing.
+        vertices=[tuple(v.co) for v in data.vertices]
+        faces=[tuple(t.vertices) for t in data.loop_triangles]
+        material_indices=[data.polygons[t.polygon_index].material_index for t in data.loop_triangles]
+        materials=list(rock.data.materials)
+        zs=[(rock.matrix_world@v.co).z for v in data.vertices]
+    finally:
+        evaluated.to_mesh_clear()
+    prepared=bpy.data.meshes.new('Rock bed exact original tessellation')
+    prepared.from_pydata(vertices,[],faces)
+    for material in materials:prepared.materials.append(material)
+    for face,index in zip(prepared.polygons,material_indices):face.material_index=index
+    prepared.update()
+    bm=bmesh.new();bm.from_mesh(prepared)
+    original_volume=bm.calc_volume(signed=True)
+    original_closed=all(e.is_manifold and e.is_contiguous for e in bm.edges);bm.free()
+    if not original_closed or original_volume<=0:
+        bpy.data.meshes.remove(prepared)
+        raise ValueError('Original rock slab must be closed and outward-facing')
+    low,high=min(zs)-1.,max(zs)+1.;n=len(outline)
+    cutter_data=bpy.data.meshes.new('Temporary apron footprint prism')
+    cutter_data.from_pydata([(x,y,z) for z in (low,high) for x,y in outline],[],
+        [tuple(range(n-1,-1,-1)),tuple(range(n,2*n))]+[(i,(i+1)%n,(i+1)%n+n,i+n) for i in range(n)])
+    cutter_data.update()
+    collection=rock.users_collection[0]
+    cutter=bpy.data.objects.new('Temporary apron footprint subtraction',cutter_data);collection.objects.link(cutter)
+    temporary=bpy.data.objects.new('Temporary exact rock difference',prepared);collection.objects.link(temporary)
+    temporary.matrix_world=rock.matrix_world
+    result_data=None
+    try:
+        modifier=temporary.modifiers.new('Subtract actual apron footprint','BOOLEAN')
+        modifier.operation='DIFFERENCE';modifier.solver='EXACT';modifier.object=cutter
+        bpy.context.view_layer.update()
+        result_data=bpy.data.meshes.new_from_object(temporary.evaluated_get(bpy.context.evaluated_depsgraph_get()))
+        result_data.name='Rock bed outside actual apron footprint'
+        result_data.materials.clear()
+        for material in materials:result_data.materials.append(material)
+        bm=bmesh.new();bm.from_mesh(result_data)
+        closed=bool(bm.faces) and all(e.is_manifold and e.is_contiguous for e in bm.edges)
+        volume=bm.calc_volume(signed=True)
+        components=[];unseen=set(bm.faces)
+        while unseen:
+            pending=[unseen.pop()];component=[]
+            while pending:
+                face=pending.pop();component.append(face)
+                for edge in face.edges:
+                    for neighbor in edge.link_faces:
+                        if neighbor in unseen:unseen.remove(neighbor);pending.append(neighbor)
+            # Closed components must each retain positive signed volume.
+            signed=0.
+            for face in component:
+                points=[v.co for v in face.verts]
+                for i in range(1,len(points)-1):signed+=points[0].dot(points[i].cross(points[i+1]))/6
+            components.append(signed)
+        bm.free()
+        if not closed or not 0<volume<original_volume or any(v<=0 for v in components):
+            raise ValueError('Rock subtraction failed closed/outward/removed-volume checks')
+        report={'status':'applied','rock_object':rock.name,'apron_object':apron.name,
+            'outline_xy_m':outline,'method':'Exact Boolean difference of existing rock triangles and vertical evaluated-apron outline prism',
+            'original_volume_local_m3':original_volume,'retained_volume_local_m3':volume,
+            'closed_outward_components':len(components),'component_signed_volumes_local_m3':components,
+            'vertices':len(result_data.vertices),'polygons':len(result_data.polygons),
+            'scope':'Rock slab inside apron footprint removed; apron and exposed rock triangle planes/materials/transforms retained; no global lowering'}
+        rock.data=result_data;rock[ROCK_TAG]=json.dumps(report)
+        rock['evidence']='Original inferred rock bed minus existing apron footprint; resolves intersecting coplanar slabs without relocating exposed planting'
+    except Exception:
+        if result_data is not None and result_data.users==0:bpy.data.meshes.remove(result_data)
+        raise
+    finally:
+        temporary.modifiers.clear()
+        bpy.context.view_layer.update()
+        bpy.data.objects.remove(temporary,do_unlink=True);bpy.data.objects.remove(cutter,do_unlink=True)
+        # Flush evaluated Boolean dependencies before freeing their source meshes.
+        # Blender 4.2 can still reference these meshes until relations update.
+        bpy.context.view_layer.update()
+        if prepared.users==0:bpy.data.meshes.remove(prepared)
+        if cutter_data.users==0:bpy.data.meshes.remove(cutter_data)
+    return report
+
+
 def apply_apron_finish(root=None):
-    """Return a receipt; replace only the ten existing joint curve data blocks."""
+    """Correct ten joint curves and subtract their apron from the rock-bed slab."""
     import bpy
     from mathutils import Vector
     from mathutils.bvhtree import BVHTree
 
-    old=bpy.context.scene.get(TAG)
-    if old:return json.loads(old)
     apron=bpy.data.objects.get('Entry concrete apron')
+    if apron is None or apron.type!='MESH':raise ValueError('Expected original apron')
+    rock_report=_subtract_rock_bed(apron)
+    old=bpy.context.scene.get(TAG)
+    if old:
+        report=json.loads(old);report['rock_bed_subtraction']=rock_report
+        bpy.context.scene[TAG]=json.dumps(report)
+        return report
     joints=sorted((o for o in bpy.data.objects if o.name.startswith('Entry sidewalk expansion joint')),key=lambda o:o.name)
     if apron is None or apron.type!='MESH' or len(joints)!=10:
         raise ValueError('Expected the original apron and ten sidewalk joints')
@@ -127,7 +261,8 @@ def apply_apron_finish(root=None):
             'boundary_clearance_m':MARGIN,'maximum_sampling_step_m':MAX_STEP,
             'centerline_offset_from_actual_top_m':CENTER_OFFSET,'visible_joint_cap_height_m':.002,
             'evaluated_top_triangles':len(faces),'joints':rows,
-            'scope':'Only ten curve data blocks replaced; original XY lines clipped inside evaluated apron; apron, curbs, other objects and materials unchanged'}
+            'rock_bed_subtraction':rock_report,
+            'scope':'Ten joint curves corrected and overlapping rock bed subtracted; apron, curbs, other objects and materials unchanged'}
     bpy.context.scene[TAG]=json.dumps(report)
     bpy.context.view_layer.update()
     return report
