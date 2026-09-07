@@ -27,6 +27,7 @@ REQUIRED_FILES = [
     'scene/protolabs-campus.blend', 'scene/protolabs-motion.blend',
     'scene/protolabs-campus.glb', 'scene/protolabs-campus-viewer.glb',
     'scene/viewer-export.json', 'scene/cameras.json', 'scene/materials.json',
+    'scene/viewer-package.json', 'viewer/public/models/campus.glb',
     *[f'deliverables/stills/{name}.{suffix}' for name in VIEW_NAMES for suffix in ('png', 'json')],
     'deliverables/flythrough.mp4', 'deliverables/cinematic/path.json',
     'deliverables/motion-sample.mp4', 'deliverables/motion-sample/path.json',
@@ -138,12 +139,21 @@ def main():
     master_hash = hashes['scene/protolabs-campus.blend']
     if review.get('master_sha256') != master_hash: raise RuntimeError('Review master hash differs from the current master')
     viewer = read_json('scene/viewer-export.json')
+    viewer_package = read_json('scene/viewer-package.json')
     path = read_json('deliverables/cinematic/path.json')
     sample = read_json('deliverables/motion-sample/path.json')
     if any(receipt.get('master_sha256') != master_hash for receipt in (viewer, path, sample)):
         raise RuntimeError('Scene, browser export, film and sample masters do not agree')
     if viewer.get('viewer_glb_sha256') != hashes['scene/protolabs-campus-viewer.glb']:
         raise RuntimeError('The browser export differs from its SHA256 receipt')
+    if (viewer_package.get('master_sha256') != master_hash
+            or viewer_package.get('source_glb_sha256') != hashes['scene/protolabs-campus-viewer.glb']
+            or viewer_package.get('palette_sha256') != hashes['scene/materials.json']
+            or viewer_package.get('optimized_glb_sha256') != hashes['viewer/public/models/campus.glb']):
+        raise RuntimeError('The optimized walkthrough differs from its master, source or package receipt')
+    precision = viewer_package.get('position_compression', {})
+    if precision.get('positionComponentType') != 5126 or precision.get('decodedPositionsExact') is not True:
+        raise RuntimeError('The walkthrough package lacks verified full-precision positions')
     if not re.fullmatch(r'[0-9a-f]{64}', path.get('camera_path_sha256', '')):
         raise RuntimeError('The full motion path fingerprint is missing')
     for key in ('camera_path_sha256', 'camera_path_hash_schema', 'camera_path_frame_count',

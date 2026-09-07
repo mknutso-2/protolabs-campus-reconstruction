@@ -27,6 +27,7 @@ scripts/research/.venv/
 
 # Derived browser export provenance, regenerated with the master
 scene/viewer-export.json
+scene/viewer-package.json
 
 # CC0 scan/HDRI cache; exact sources and hashes are retained in research/material-assets.json
 research/material-assets/
