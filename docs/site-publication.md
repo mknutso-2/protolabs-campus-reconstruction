@@ -23,7 +23,9 @@ Sites reported successful deployment, and a subsequent service readback confirme
 
 The accuracy route redirects from `/accuracy.html` to `/accuracy`. The provider appends a 938-character Cloudflare challenge script to its HTML; after removing that specifically verified appended content, the served accuracy source matched the original SHA-256. The earlier strict HTML comparison failure is retained separately and was attributable to this transformation, not changed project content.
 
-The deployed page was opened in the existing browser tab, and its accessibility snapshot showed the Motion panel, all four section tabs and accuracy links. This publication checkpoint does not claim a fresh complete live-site interaction or performance pass; the earlier bounded local checks remain recorded in [viewer verification](viewer-verification.md).
+A subsequent bounded live-browser check verified the Motion video at six seconds, 1280 × 720, ready state 4 and no video error, with its current source on the exact public `/renders/flythrough.mp4` URL. After selecting Explore, the model finished loading and the screenshot showed the campus model on the public origin; browser warning/error logs were empty after that sequence. Following the observed accuracy link loaded the canonical `/accuracy` page legibly, with all seven accuracy rows, five public source links and the return link present.
+
+These checks do not claim a new complete-film playback, walking/all-preset review, complete live-site interaction or performance pass. The earlier bounded local checks remain recorded in [viewer verification](viewer-verification.md).
 
 Workspace evidence is `work/site-public-v1-archive-validation.json` and `work/site-public-v1-anonymous-verification.json`. Its source/build identity is separate from the private reconstruction repository's connector-mirrored commit identity.
 
