@@ -662,11 +662,11 @@ export default function Home() {
         </div>
         <span className="location">Maple Plain, Minnesota</span>
         <a
-          href="https://github.com/mknutso-2/protolabs-campus-reconstruction"
+          href="/accuracy.html"
           target="_blank"
           rel="noreferrer"
         >
-          Project <ArrowUpRight size={16} />
+          Accuracy &amp; sources <ArrowUpRight size={16} />
         </a>
       </header>
       <div className="project-line">
@@ -819,7 +819,7 @@ export default function Home() {
             </video>
             <p>
               A six-second approach to the southeast frontage.{' '}
-              <a href="https://github.com/mknutso-2/protolabs-campus-reconstruction/blob/main/docs/accuracy-summary.md">
+              <a href="/accuracy.html">
                 Read the accuracy account.
               </a>
             </p>
