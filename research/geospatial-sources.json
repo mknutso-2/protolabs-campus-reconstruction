@@ -127,5 +127,46 @@
     "basis": "measured lidar, manually selected bounded samples and robust plane fits",
     "attribution": "USGS 3DEP; Woolpert/NV5; Minnesota Geospatial Information Office",
     "license": "US Government lidar public domain; retain source attribution"
+  },
+  {
+    "id": "usgs-regional-ground-50m",
+    "url": "https://elevation.nationalmap.gov/arcgis/rest/services/3DEPElevation/ImageServer",
+    "acquired": "2026-09-07",
+    "date_of_source": "Service mosaic publication through2026-08-24; individual terrain acquisition dates not returned by exportImage.",
+    "confidence": "medium for broad regional relief;50m resampling does not resolve individual banks/berms.",
+    "local_files": [
+      "research/regional_context_ground_grid.json",
+      "scripts/regional_ground.py",
+      "scripts/research/acquire_regional_ground.py",
+      "docs/distant-context.md"
+    ],
+    "source_sha256": "45ca8bd77a0456db03de55dc9a785d0325d7572a7dbf8eae64df4e2195045fa0",
+    "source_bytes": 263355,
+    "observations": [
+      "One181x181 F32 TIFF export supplies32761 valid samples on a50m grid covering local x/y\u22124500..4500m.",
+      "EPSG26915; NAVD88 assumed from USGS CONUS3DEP convention, with per-source geoid/date not returned. Elevation range279.520..324.559m.",
+      "Scene uses the committed derived grid outside existing near lidar meshes; a75m external seam transition preserves the original measured boundaries.",
+      "Full request, response extent, publication statement, hash, acquisition timestamp and uncertainty are recorded in the grid JSON and linked context documentation."
+    ],
+    "basis": "Official USGS3DEP bare-earth elevation ImageServer; bounded raw float export, not hillshade or aerial texture."
+  },
+  {
+    "id": "pond-water-level-class2-mode",
+    "url": "https://rockyweb.usgs.gov/vdelivery/Datasets/Staged/Elevation/LPC/Projects/MN_CentralMissRiver_B22/MN_CentralMissRiver_4_B22/LAZ/USGS_LPC_MN_CentralMissRiver_B22_4475_49845.laz",
+    "acquired": "2026-09-07",
+    "date_of_source": "2022 lidar campaign; Spring2026 aerial footprint. No current water-level survey.",
+    "confidence": "medium inferred water level from spatially broad nearly horizontal class2 returns; no class9 returns.",
+    "local_files": [
+      "research/water-surface-constraints.json",
+      "scripts/water_finish.py",
+      "docs/water-surface-evidence.md"
+    ],
+    "source_sha256": "772f6ee72e6ba327d653a3a9a10f42e867884f0d748cbc8d1b7f2b54dc699436",
+    "observations": [
+      "292.49m NAVD88 inferred level from dominant interior class2 mode, scene z\u221211.11m.",
+      "48824 returns within0.06m of the mode,90.2% of main-pond class2 points at least5m inside the trace; mode fit RMS0.01088m.",
+      "Horizontal water intersects only the existing traced footprints and actual modeled terrain below that level; surrounding measured ground is unchanged."
+    ],
+    "basis": "Cached bounded USGS lidar geometry and county-aerial waterline; dated interpretation rather than certified water classification."
   }
 ]

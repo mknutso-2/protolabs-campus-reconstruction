@@ -4,7 +4,6 @@
 import type { Mesh, MeshStandardMaterial, Material } from 'three';
 type CameraData = { position: number[]; target: number[]; lens: number };
 type TerrainData = { x: number[]; y: number[]; z: number[][] };
-type PaletteData = Record<string, { linearColor: [number, number, number] }>;
 type CampusTool = {
   name: string;
   description: string;
@@ -28,6 +27,7 @@ import {
   Move,
   RotateCcw,
   Maximize,
+  Minimize,
   ArrowUpRight,
   Eye,
   Play,
@@ -74,7 +74,13 @@ const citations = [
   ['USGS · 2022 lidar', 'https://apps.nationalmap.gov/lidar-explorer/'],
 ];
 
-function Walkthrough({ view }: { view: ViewName }) {
+function Walkthrough({
+  view,
+  resetToken,
+}: {
+  view: ViewName;
+  resetToken: number;
+}) {
   const mount = useRef<HTMLDivElement>(null);
   const runtime = useRef<{
     setView: (view: ViewName) => void;
@@ -83,7 +89,17 @@ function Walkthrough({ view }: { view: ViewName }) {
   } | null>(null);
   const [status, setStatus] = useState('Loading the exterior scene…');
   const [walk, setWalk] = useState(false);
+  const [fullscreen, setFullscreen] = useState(false);
   const currentView = useRef(view);
+  useEffect(() => {
+    const updateFullscreen = () =>
+      setFullscreen(
+        document.fullscreenElement === mount.current?.parentElement,
+      );
+    document.addEventListener('fullscreenchange', updateFullscreen);
+    return () =>
+      document.removeEventListener('fullscreenchange', updateFullscreen);
+  }, []);
   useEffect(() => {
     currentView.current = view;
   }, [view]);
@@ -106,7 +122,12 @@ function Walkthrough({ view }: { view: ViewName }) {
           alpha: false,
           powerPreference: 'high-performance',
         });
-        renderer.setPixelRatio(Math.min(devicePixelRatio, 1.5));
+        const interactivePixelRatio = Math.min(devicePixelRatio, 1.5);
+        const restingPixelRatio =
+          renderer.getContext().getContextAttributes()?.antialias === false
+            ? 2
+            : interactivePixelRatio;
+        renderer.setPixelRatio(interactivePixelRatio);
         renderer.setSize(el.clientWidth, el.clientHeight);
         renderer.outputColorSpace = THREE.SRGBColorSpace;
         renderer.toneMapping = THREE.ACESFilmicToneMapping;
@@ -118,7 +139,12 @@ function Walkthrough({ view }: { view: ViewName }) {
           renderer.dispose();
           renderer.domElement.remove();
         };
-        let needsRender=true;
+        let needsRender = true;
+        let lastChange = performance.now();
+        const markDirty = () => {
+          needsRender = true;
+          lastChange = performance.now();
+        };
         const scene = new THREE.Scene();
         scene.background = new THREE.Color('#a9c3d3');
         scene.fog = new THREE.Fog('#a9c3d3', 420, 1100);
@@ -132,15 +158,19 @@ function Walkthrough({ view }: { view: ViewName }) {
         cam.position.set(166, 31, 108);
         const orbit = new OrbitControls(cam, renderer.domElement);
         orbit.target.set(50, 3.6, -19);
-        orbit.addEventListener('change',()=>{needsRender=true;});
+        orbit.addEventListener('change', markDirty);
+        orbit.addEventListener('start', markDirty);
+        orbit.addEventListener('end', markDirty);
         orbit.enableDamping = true;
         orbit.dampingFactor = 0.09;
-        orbit.maxPolarAngle = Math.PI * 0.485;
+        // Saved eye-level views look upward toward the entrance and must not
+        // be raised above their targets by an orbit-angle clamp.
+        orbit.maxPolarAngle = Math.PI;
         orbit.minDistance = 3;
         orbit.maxDistance = 420;
-        scene.add(new THREE.AmbientLight(0xffffff, 1.6));
-        scene.add(new THREE.HemisphereLight(0xe0efff, 0x53623c, 1.2));
-        const sun = new THREE.DirectionalLight(0xfff1d7, 2.0);
+        scene.add(new THREE.AmbientLight(0xffffff, 0.8));
+        scene.add(new THREE.HemisphereLight(0xe0efff, 0x53623c, 1.0));
+        const sun = new THREE.DirectionalLight(0xfff1d7, 2.2);
         sun.position.set(-30, 120, 90);
         sun.castShadow = true;
         sun.shadow.mapSize.set(2048, 2048);
@@ -156,10 +186,6 @@ function Walkthrough({ view }: { view: ViewName }) {
         const resp = await fetch('/models/cameras.json');
         if (!resp.ok) throw Error('Saved cameras are unavailable');
         const cameras = (await resp.json()) as Record<ViewName, CameraData>;
-        const paletteResp = await fetch('/models/materials.json');
-        const palette: PaletteData = paletteResp.ok
-          ? ((await paletteResp.json()) as PaletteData)
-          : {};
         const groundResp = await fetch('/models/terrain.json');
         const terrain: TerrainData | null = groundResp.ok
           ? ((await groundResp.json()) as TerrainData)
@@ -192,7 +218,7 @@ function Walkthrough({ view }: { view: ViewName }) {
           const v = cameras[id];
           if (!v) return;
           currentLens = v.lens;
-          needsRender=true;
+          markDirty();
           cam.position.set(v.position[0], v.position[2], -v.position[1]);
           orbit.target.set(v.target[0], v.target[2], -v.target[1]);
           cam.fov =
@@ -213,17 +239,15 @@ function Walkthrough({ view }: { view: ViewName }) {
             const convert = (material: Material) => {
               const m = material as MeshStandardMaterial;
 
+              // Packaging has already applied known opaque mean albedos before
+              // optimization. Use each glTF factor once; preserve leaf maps/alpha.
               const simple = new THREE.MeshLambertMaterial({
                 name: m.name,
                 color:
-                  m.name === 'CampusVeg_Bark'
-                    ? new THREE.Color().setRGB(0.19, 0.15, 0.1)
-                    : palette[m.name]
-                      ? new THREE.Color().setRGB(
-                          palette[m.name].linearColor[0] * 1.7,
-                          palette[m.name].linearColor[1] * 1.7,
-                          palette[m.name].linearColor[2] * 1.7,
-                        )
+                  m.name === 'Blue reflective insulated glazing'
+                    ? new THREE.Color().setRGB(0.03, 0.075, 0.095)
+                    : m.name === 'CampusVeg_Bark'
+                      ? new THREE.Color().setRGB(0.19, 0.15, 0.1)
                       : m.color,
                 map: m.map,
                 alphaMap: m.alphaMap,
@@ -273,16 +297,23 @@ function Walkthrough({ view }: { view: ViewName }) {
             ].includes(e.key)
           ) {
             keys.add(e.key);
+            markDirty();
             e.preventDefault();
           }
         };
-        const up = (e: KeyboardEvent) => keys.delete(e.key);
-        const blur = () => keys.clear();
+        const up = (e: KeyboardEvent) => {
+          if (keys.delete(e.key)) markDirty();
+        };
+        const blur = () => {
+          if (keys.size) markDirty();
+          keys.clear();
+        };
         window.addEventListener('blur', blur);
         window.addEventListener('keydown', down);
         window.addEventListener('keyup', up);
         const pointerdown = (e: PointerEvent) => {
           if (isWalk) {
+            markDirty();
             dragging = true;
             lastX = e.clientX;
             lastY = e.clientY;
@@ -305,11 +336,12 @@ function Walkthrough({ view }: { view: ViewName }) {
             .copy(cam.position)
             .add(new THREE.Vector3().setFromSpherical(spherical));
           cam.lookAt(orbit.target);
-          needsRender=true;
+          markDirty();
           lastX = e.clientX;
           lastY = e.clientY;
         };
         const pointerup = () => {
+          if (dragging) markDirty();
           dragging = false;
         };
         renderer.domElement.addEventListener('pointerdown', pointerdown);
@@ -318,7 +350,7 @@ function Walkthrough({ view }: { view: ViewName }) {
         const toggle = (value: boolean) => {
           isWalk = value;
           keys.clear();
-          needsRender=true;
+          markDirty();
           orbit.enabled = !value;
           if (value) {
             cam.position.set(97, ground(97, 17) + 1.7, 17);
@@ -327,6 +359,7 @@ function Walkthrough({ view }: { view: ViewName }) {
           }
         };
         const move = (delta: import('three').Vector3) => {
+          markDirty();
           const next = cam.position.clone().add(delta);
           if (!canWalkTo(next.x, -next.z)) return;
           const dy = ground(next.x, next.z) + 1.7 - cam.position.y;
@@ -334,18 +367,25 @@ function Walkthrough({ view }: { view: ViewName }) {
           cam.position.y += dy;
           orbit.target.add(delta);
           orbit.target.y += dy;
-          needsRender = true;
         };
         const step = (forward: number, sideways: number) => {
           if (!isWalk) return;
           cam.getWorldDirection(direction);
           direction.y = 0;
           direction.normalize();
-          const right = new THREE.Vector3().crossVectors(direction, cam.up).normalize();
-          move(direction.clone().multiplyScalar(forward).addScaledVector(right, sideways));
+          const right = new THREE.Vector3()
+            .crossVectors(direction, cam.up)
+            .normalize();
+          move(
+            direction
+              .clone()
+              .multiplyScalar(forward)
+              .addScaledVector(right, sideways),
+          );
         };
         runtime.current = { setView, toggle, step };
-        let prev = performance.now(), lastDraw=0,
+        let prev = performance.now(),
+          lastDraw = 0,
           raf = 0;
         const tick = (now: number) => {
           const dt = Math.min((now - prev) / 1000, 0.05);
@@ -369,14 +409,27 @@ function Walkthrough({ view }: { view: ViewName }) {
               move(delta);
             }
           } else orbit.update();
-          if(needsRender && now-lastDraw>=1000/30){renderer.render(scene,cam);needsRender=false;lastDraw=now;}
+          const pixelRatio =
+            now - lastChange >= 200 ? restingPixelRatio : interactivePixelRatio;
+          if (
+            (needsRender || renderer.getPixelRatio() !== pixelRatio) &&
+            now - lastDraw >= 1000 / 30
+          ) {
+            // Resolution changes do not count as input: draw once after
+            // settling, then remain idle until the next camera/input change.
+            if (renderer.getPixelRatio() !== pixelRatio)
+              renderer.setPixelRatio(pixelRatio);
+            renderer.render(scene, cam);
+            needsRender = false;
+            lastDraw = now;
+          }
           raf = requestAnimationFrame(tick);
         };
         raf = requestAnimationFrame(tick);
         const resize = new ResizeObserver(() => {
           if (el.clientWidth && el.clientHeight) {
             renderer.setSize(el.clientWidth, el.clientHeight);
-            needsRender=true;
+            markDirty();
             cam.aspect = el.clientWidth / el.clientHeight;
             cam.fov =
               (2 * Math.atan(36 / (2 * currentLens * cam.aspect)) * 180) /
@@ -429,7 +482,7 @@ function Walkthrough({ view }: { view: ViewName }) {
     // oxlint-disable-next-line react/react-compiler
     setWalk(false);
     runtime.current?.toggle(false);
-  }, [view]);
+  }, [view, resetToken]);
   return (
     <div className="viewer-shell">
       <div
@@ -443,24 +496,55 @@ function Walkthrough({ view }: { view: ViewName }) {
       <div className="viewer-top">
         <span className="pill">
           <span className="live-dot" />
-          Editable exterior study
+          Exterior walkthrough
         </span>
         <button
           className="icon-button"
-          aria-label="Fullscreen walkthrough"
+          aria-label={
+            fullscreen
+              ? 'Exit fullscreen walkthrough'
+              : 'Fullscreen walkthrough'
+          }
           onClick={() => {
-            void mount.current?.parentElement?.requestFullscreen?.();
+            if (document.fullscreenElement === mount.current?.parentElement)
+              void document.exitFullscreen();
+            else void mount.current?.parentElement?.requestFullscreen?.();
           }}
         >
-          <Maximize size={18} />
+          {fullscreen ? <Minimize size={18} /> : <Maximize size={18} />}
         </button>
       </div>
       {walk && !status && (
         <fieldset className="walk-pad" aria-label="Walk in one metre steps">
-          <Button className="walk-forward" variant="secondary" aria-label="Step forward" onClick={() => runtime.current?.step(1, 0)}><ArrowUp size={20} /></Button>
-          <Button variant="secondary" aria-label="Step left" onClick={() => runtime.current?.step(0, -1)}><ArrowLeft size={20} /></Button>
-          <Button variant="secondary" aria-label="Step backward" onClick={() => runtime.current?.step(-1, 0)}><ArrowDown size={20} /></Button>
-          <Button variant="secondary" aria-label="Step right" onClick={() => runtime.current?.step(0, 1)}><ArrowRight size={20} /></Button>
+          <Button
+            className="walk-forward"
+            variant="secondary"
+            aria-label="Step forward"
+            onClick={() => runtime.current?.step(1, 0)}
+          >
+            <ArrowUp size={20} />
+          </Button>
+          <Button
+            variant="secondary"
+            aria-label="Step left"
+            onClick={() => runtime.current?.step(0, -1)}
+          >
+            <ArrowLeft size={20} />
+          </Button>
+          <Button
+            variant="secondary"
+            aria-label="Step backward"
+            onClick={() => runtime.current?.step(-1, 0)}
+          >
+            <ArrowDown size={20} />
+          </Button>
+          <Button
+            variant="secondary"
+            aria-label="Step right"
+            onClick={() => runtime.current?.step(0, 1)}
+          >
+            <ArrowRight size={20} />
+          </Button>
         </fieldset>
       )}
       <div className="viewer-bottom">
@@ -500,6 +584,7 @@ function Walkthrough({ view }: { view: ViewName }) {
 }
 export default function Home() {
   const [view, setView] = useState<ViewName>('reference_aerial');
+  const [viewReset, setViewReset] = useState(0);
   const [tab, setTab] = useState('stills');
   const [vcompare, setCompare] = useState('reference_aerial');
   const live = useRef({ view, tab });
@@ -536,6 +621,7 @@ export default function Home() {
             throw new Error('Choose a valid saved exterior view.');
           setTab('explore');
           setView(input.view as ViewName);
+          setViewReset((value) => value + 1);
           await new Promise((resolve) =>
             requestAnimationFrame(() => requestAnimationFrame(resolve)),
           );
@@ -618,13 +704,20 @@ export default function Home() {
           </span>
         </div>
         <TabsContent value="explore">
-          <Walkthrough view={view} />
+          <Walkthrough view={view} resetToken={viewReset} />
+          <p className="comparison-note">
+            Explore the geometry here. Still views show the rendered lighting
+            and surface detail.
+          </p>
           <div className="view-strip">
             {views.map((v) => (
               <button
                 key={v.id}
                 className={v.id === view ? 'view-card active' : 'view-card'}
-                onClick={() => setView(v.id)}
+                onClick={() => {
+                  setView(v.id);
+                  setViewReset((value) => value + 1);
+                }}
               >
                 <img src={'/renders/' + v.id + '.jpg'} alt="" />
                 <span>
@@ -687,7 +780,7 @@ export default function Home() {
               />
               <figcaption>
                 {vcompare === 'reference_aerial'
-                  ? 'Protolabs · current locations page, image filename 2024; capture date unverified'
+                  ? 'Proto Labs, Inc. · official wide aerial; undated photograph'
                   : vcompare === 'entrance_detail'
                     ? 'Minneapolis/St. Paul Business Journal · 2018 entrance photo; historical signage'
                     : 'Machine Design · 2024 article; image capture date unverified'}
@@ -700,8 +793,9 @@ export default function Home() {
                 alt="Corresponding reconstruction camera"
               />
               <figcaption>
-                Fixed camera approximation. Compare massing and details; framing
-                is not a surveyed camera solution.
+                {vcompare === 'reference_aerial'
+                  ? 'Camera fitted to selected photo landmarks. Geometry, materials and hidden details still include approximations.'
+                  : 'Approximate presentation camera; this view is not registered to the photograph.'}
               </figcaption>
             </figure>
           </div>
@@ -724,8 +818,10 @@ export default function Home() {
               <source src="/renders/flythrough.mp4" type="video/mp4" />
             </video>
             <p>
-              Exterior camera study. Delivery status and motion inspection notes
-              are recorded in the project accuracy report.
+              A six-second approach to the southeast frontage.{' '}
+              <a href="https://github.com/mknutso-2/protolabs-campus-reconstruction/blob/main/docs/accuracy-summary.md">
+                Read the accuracy account.
+              </a>
             </p>
           </div>
         </TabsContent>

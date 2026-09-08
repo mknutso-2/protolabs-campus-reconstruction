@@ -1,0 +1,341 @@
+{
+  "schema_version": 1,
+  "retrieved_utc": "2026-09-07T19:14:10.637481+00:00",
+  "license": "CC0-1.0",
+  "total_downloaded_bytes": 24851119,
+  "max_individual_download_bytes": 15000000,
+  "asset_directory": "research/material-assets",
+  "assets": [
+    {
+      "asset_id": "asphalt_01",
+      "name": "Asphalt 01",
+      "source_page": "https://polyhaven.com/a/asphalt_01",
+      "api_metadata_url": "https://api.polyhaven.com/files/asphalt_01",
+      "license": "CC0-1.0",
+      "license_url": "https://polyhaven.com/license",
+      "authors": {
+        "Dario Barresi": "Processing ",
+        "Charlotte Baglioni": "Photography"
+      },
+      "physical_dimensions_mm": [
+        2079.9994468688965,
+        2079.9996852874756
+      ],
+      "files": [
+        {
+          "role": "Diffuse",
+          "resolution": "1k",
+          "format": "jpg",
+          "filename": "asphalt_01_diff_1k.jpg",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/asphalt_01/asphalt_01_diff_1k.jpg",
+          "bytes": 739513,
+          "sha256": "99b6f6bdfbd09279f3f550ac9593336df541aa2319537566eeb3e737d8512010",
+          "official_md5": "43c88946c38109d77a24456686a376f9",
+          "diffuse_mean_linear_rgb": [
+            0.1009031228923553,
+            0.08043019107079778,
+            0.06236830513016824
+          ]
+        },
+        {
+          "role": "Rough",
+          "resolution": "1k",
+          "format": "jpg",
+          "filename": "asphalt_01_rough_1k.jpg",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/asphalt_01/asphalt_01_rough_1k.jpg",
+          "bytes": 344964,
+          "sha256": "147891957807bb03cc565c9daa8a16a4af7713449a0f475c638f78f833ad0646",
+          "official_md5": "92ffad35bc543f59ffd9860c53a98214"
+        },
+        {
+          "role": "Displacement",
+          "resolution": "1k",
+          "format": "jpg",
+          "filename": "asphalt_01_disp_1k.jpg",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/asphalt_01/asphalt_01_disp_1k.jpg",
+          "bytes": 472536,
+          "sha256": "792c1c042a01a70acc55e98c641ce05184613f4d37049db660fbb0f189966da9",
+          "official_md5": "8a1ced950be75f6c278a078cea4b7034"
+        }
+      ],
+      "status": "active_surface_or_default_environment"
+    },
+    {
+      "asset_id": "leafy_grass",
+      "name": "Leafy Grass",
+      "source_page": "https://polyhaven.com/a/leafy_grass",
+      "api_metadata_url": "https://api.polyhaven.com/files/leafy_grass",
+      "license": "CC0-1.0",
+      "license_url": "https://polyhaven.com/license",
+      "authors": {
+        "Charlotte Baglioni": "All"
+      },
+      "physical_dimensions_mm": [
+        2000,
+        2000
+      ],
+      "files": [
+        {
+          "role": "Diffuse",
+          "resolution": "1k",
+          "format": "jpg",
+          "filename": "leafy_grass_diff_1k.jpg",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/leafy_grass/leafy_grass_diff_1k.jpg",
+          "bytes": 1195394,
+          "sha256": "cfa40bc9d9417d1852db8753a8d5917f110c40101179f63543c382e39bc05e4a",
+          "official_md5": "0dbc071e91d6905edfcfbe8eb785a1ab",
+          "diffuse_mean_linear_rgb": [
+            0.31976366855862004,
+            0.235741735805605,
+            0.10614274864881303
+          ]
+        },
+        {
+          "role": "Rough",
+          "resolution": "1k",
+          "format": "jpg",
+          "filename": "leafy_grass_rough_1k.jpg",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/leafy_grass/leafy_grass_rough_1k.jpg",
+          "bytes": 511385,
+          "sha256": "0c2a1d91aacb8e54a496051b59854e51e456fe858abeade778e308359ef16463",
+          "official_md5": "05f6bb1383e12b327727d313c5899cf2"
+        },
+        {
+          "role": "Displacement",
+          "resolution": "1k",
+          "format": "jpg",
+          "filename": "leafy_grass_disp_1k.jpg",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/leafy_grass/leafy_grass_disp_1k.jpg",
+          "bytes": 742755,
+          "sha256": "3c78000885796046cc90cec2a61abea0f65cd8fb6585ac2a7b5987f73c5aa98e",
+          "official_md5": "df6cb89fb7072d00f2de804bf9e4584d"
+        }
+      ],
+      "status": "active_surface_or_default_environment"
+    },
+    {
+      "asset_id": "rough_concrete",
+      "name": "Rough Concrete",
+      "source_page": "https://polyhaven.com/a/rough_concrete",
+      "api_metadata_url": "https://api.polyhaven.com/files/rough_concrete",
+      "license": "CC0-1.0",
+      "license_url": "https://polyhaven.com/license",
+      "authors": {
+        "Dimitrios Savva": "All"
+      },
+      "physical_dimensions_mm": [
+        1230.0000190734863,
+        1230.0000190734863
+      ],
+      "files": [
+        {
+          "role": "Diffuse",
+          "resolution": "1k",
+          "format": "jpg",
+          "filename": "rough_concrete_diff_1k.jpg",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/rough_concrete/rough_concrete_diff_1k.jpg",
+          "bytes": 1042065,
+          "sha256": "dd7fc03e152eb8c2fd511248aa2e9bf7428a645bd0e0b74ac1d887ad136cb0bc",
+          "official_md5": "82909f2db1e0453500703ae54e806f5c",
+          "diffuse_mean_linear_rgb": [
+            0.4884523823119398,
+            0.4697516748417367,
+            0.34045973133724927
+          ]
+        },
+        {
+          "role": "Rough",
+          "resolution": "1k",
+          "format": "jpg",
+          "filename": "rough_concrete_rough_1k.jpg",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/rough_concrete/rough_concrete_rough_1k.jpg",
+          "bytes": 566436,
+          "sha256": "2d392a3e0d44087ddecc0cd3fd27367a6cc0c16f94bbba2e8fbfbdf77eb105be",
+          "official_md5": "4b530c64e200c3190f527ccc04a4c919"
+        },
+        {
+          "role": "Displacement",
+          "resolution": "1k",
+          "format": "jpg",
+          "filename": "rough_concrete_disp_1k.jpg",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/rough_concrete/rough_concrete_disp_1k.jpg",
+          "bytes": 577437,
+          "sha256": "2779ab9324d8f4dda1aa383e83fcb469bd50773b9b69d79612332b34288b3fe3",
+          "official_md5": "e055848b80e2c79479f6453b2731bc93"
+        }
+      ],
+      "status": "active_surface_or_default_environment"
+    },
+    {
+      "asset_id": "lilienstein",
+      "name": "Lilienstein",
+      "source_page": "https://polyhaven.com/a/lilienstein",
+      "api_metadata_url": "https://api.polyhaven.com/files/lilienstein",
+      "license": "CC0-1.0",
+      "license_url": "https://polyhaven.com/license",
+      "authors": {
+        "Andreas Mischok": "All"
+      },
+      "physical_dimensions_mm": null,
+      "files": [
+        {
+          "role": "hdri",
+          "resolution": "2k",
+          "format": "hdr",
+          "filename": "lilienstein_2k.hdr",
+          "url": "https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/2k/lilienstein_2k.hdr",
+          "bytes": 6953927,
+          "sha256": "56cb0e54c6d8ae869236ec4a027441f49b42fcb6398ed0354815fc053cad4224",
+          "official_md5": "aa619c20562049d8ef601236003be6e6"
+        }
+      ],
+      "status": "rejected_candidate",
+      "selection_note": "Rejected as default: sun elevation21.07degrees and distinctive distant sandstone mountain do not match the reference."
+    },
+    {
+      "asset_id": "evening_field",
+      "name": "Evening Field",
+      "source_page": "https://polyhaven.com/a/evening_field",
+      "api_metadata_url": "https://api.polyhaven.com/files/evening_field",
+      "license": "CC0-1.0",
+      "license_url": "https://polyhaven.com/license",
+      "authors": {
+        "Sergej Majboroda": "All"
+      },
+      "physical_dimensions_mm": null,
+      "files": [
+        {
+          "role": "hdri",
+          "resolution": "1k",
+          "format": "hdr",
+          "filename": "evening_field_1k.hdr",
+          "url": "https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/1k/evening_field_1k.hdr",
+          "bytes": 1598539,
+          "sha256": "47f8d9d0fcfd632a7e372bd4053a99680f5717b42cb831cd4fdaa8331f313e18",
+          "official_md5": "cb1fb3074ca60eb91ba216a7a4d82749"
+        }
+      ],
+      "status": "rejected_candidate",
+      "selection_note": "Rejected as default: leaf-off trees and diffuse sky glow do not match the leaf-on low direct-sun reference."
+    },
+    {
+      "asset_id": "spruit_sunrise",
+      "name": "Spruit Sunrise",
+      "source_page": "https://polyhaven.com/a/spruit_sunrise",
+      "api_metadata_url": "https://api.polyhaven.com/files/spruit_sunrise",
+      "license": "CC0-1.0",
+      "license_url": "https://polyhaven.com/license",
+      "authors": {
+        "Greg Zaal": "All"
+      },
+      "physical_dimensions_mm": null,
+      "files": [
+        {
+          "role": "hdri",
+          "resolution": "2k",
+          "format": "hdr",
+          "filename": "spruit_sunrise_2k.hdr",
+          "url": "https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/2k/spruit_sunrise_2k.hdr",
+          "bytes": 5934209,
+          "sha256": "be35af1e825dc7506df48bf86568f9c05f8a8552cf57edf36beb16e54534ec57",
+          "official_md5": "9d78ba2e8fd230951e7e7dbb50a6b4db",
+          "inspection": {
+            "dimensions": [
+              2048,
+              1024
+            ],
+            "peak_pixel_bottom_origin": [
+              1227,
+              557
+            ],
+            "bright_region_center_bottom_origin": [
+              1226.9585659214665,
+              557.1106685613015
+            ],
+            "peak_luminance": 245025.58719999998,
+            "mean_rgb": [
+              1.0684716701507568,
+              0.8289631009101868,
+              0.4319095015525818
+            ],
+            "bright_region_uv": [
+              0.5993450028913411,
+              0.544541668516896
+            ],
+            "inferred_bright_elevation_deg": 8.017500333041284
+          }
+        }
+      ],
+      "status": "optional_environment",
+      "selection_note": "Optional unregistered tree-horizon proxy; actual site landscape is not implied. Power pylons elsewhere in panorama may enter other views."
+    },
+    {
+      "asset_id": "qwantani_sunset_puresky",
+      "name": "Qwantani Sunset (Pure Sky)",
+      "source_page": "https://polyhaven.com/a/qwantani_sunset_puresky",
+      "api_metadata_url": "https://api.polyhaven.com/files/qwantani_sunset_puresky",
+      "license": "CC0-1.0",
+      "license_url": "https://polyhaven.com/license",
+      "authors": {
+        "Greg Zaal": "Photography",
+        "Jarod Guest": "Processing"
+      },
+      "physical_dimensions_mm": null,
+      "files": [
+        {
+          "role": "hdri",
+          "resolution": "2k",
+          "format": "hdr",
+          "filename": "qwantani_sunset_puresky_2k.hdr",
+          "url": "https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/2k/qwantani_sunset_puresky_2k.hdr",
+          "bytes": 4171959,
+          "sha256": "d66e08231e9c09ca40c6d035214ae8efb638782745c82addbb2a063fa32cabef",
+          "official_md5": "b918af5fefb341535961ffdad5fab7bc",
+          "inspection": {
+            "dimensions": [
+              2048,
+              1024
+            ],
+            "peak_pixel_bottom_origin": [
+              1228,
+              546
+            ],
+            "bright_region_center_bottom_origin": [
+              1228.4021582465555,
+              546.1081090984401
+            ],
+            "peak_luminance": 58785.177599999995,
+            "mean_rgb": [
+              0.9720582962036133,
+              0.7936469316482544,
+              0.8242482542991638
+            ],
+            "bright_region_uv": [
+              0.6000498819563259,
+              0.5337969815414454
+            ],
+            "inferred_bright_elevation_deg": 6.083456677460177
+          }
+        }
+      ],
+      "status": "active_surface_or_default_environment",
+      "selection_note": "Default illumination and sky: no invented land backdrop; measured HDRI sun elevation6.08degrees approximates inferred reference5.46degrees."
+    }
+  ],
+  "usage_status": "Scanned material response proposal; visual acceptance requires integrated reference-matched render. Raw source scans are not of Protolabs.",
+  "reference_sun_inference": {
+    "reference_image": "protolabs-official-hq-drone.jpg",
+    "image_size_px": [
+      1200,
+      800
+    ],
+    "approximate_sun_center_px": [
+      288,
+      245
+    ],
+    "elevation_degrees": 5.458046650745555,
+    "azimuth_xy_degrees": 156.05796697531812,
+    "method": "Camera ray through manually observed sun center using research/reference_drone_camera_fit.json; not an ephemeris or verified photo capture time."
+  },
+  "default_download_bytes": 16298653
+}

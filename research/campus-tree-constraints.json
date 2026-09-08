@@ -1,0 +1,4041 @@
+{
+  "description": "Conservative local canopy envelopes for the 92 existing campus tree traces; not a trunk inventory or 2026 height survey.",
+  "generated_date": "2026-09-07",
+  "origin_utm_m": [
+    447671.8750643735,
+    4984591.8364606025
+  ],
+  "horizontal_alignment": "2022 lidar NAD83(2011)/UTM15N EPSG6344 numerically aligned with 2026 aerial NAD83/UTM15N EPSG26915; submeter datum uncertainty retained.",
+  "vertical_datum": "NAVD88 GEOID18 metres",
+  "reference_navd88_m": 303.6,
+  "sources": [
+    {
+      "filename": "USGS_LPC_MN_CentralMissRiver_B22_4475_49845.laz",
+      "url": "https://rockyweb.usgs.gov/vdelivery/Datasets/Staged/Elevation/LPC/Projects/MN_CentralMissRiver_B22/MN_CentralMissRiver_4_B22/LAZ/USGS_LPC_MN_CentralMissRiver_B22_4475_49845.laz",
+      "sha256": "772f6ee72e6ba327d653a3a9a10f42e867884f0d748cbc8d1b7f2b54dc699436",
+      "bytes": 74129464,
+      "point_count": 13323368,
+      "coverage_local_xy": [
+        -171.87506437348202,
+        -91.83646060246974,
+        328.11493562650867,
+        408.1535393977538
+      ],
+      "source_date": "2022-04-25 through2022-06-02 project collection interval",
+      "published_date": "2023-09-14"
+    },
+    {
+      "filename": "USGS_LPC_MN_CentralMissRiver_B22_4475_49840.laz",
+      "url": "https://rockyweb.usgs.gov/vdelivery/Datasets/Staged/Elevation/LPC/Projects/MN_CentralMissRiver_B22/MN_CentralMissRiver_4_B22/LAZ/USGS_LPC_MN_CentralMissRiver_B22_4475_49840.laz",
+      "sha256": "d7d5609b045ecb2c836216d374cc291f5eb56cbcfa960ed7f4f9280d03272d1c",
+      "bytes": 100131419,
+      "point_count": 17088373,
+      "coverage_local_xy": [
+        -171.87506437348202,
+        -591.8364606024697,
+        328.11493562650867,
+        -91.84646060224622
+      ],
+      "source_date": "2022-04-25 through2022-06-02 project collection interval",
+      "published_date": "2023-09-14"
+    }
+  ],
+  "layout_file": "research/site-layout.json",
+  "layout_sha256": "3752a7613121be3909e6c461eee6bd09a14a11addd34a49d3f908691b945fc21",
+  "building_mask_source": "cached OpenStreetMap building outlines, 1m buffer; incomplete/approximate and may suppress overhanging canopy",
+  "building_mask_sha256": "642d0c1c94c10e59392df1b2e0a7d60cd454c1effdc27feb51f4ba64b22d6e06",
+  "method": {
+    "ground": "All class2 returns within4m; local plane least squares with one MAD outlier pass; >=20 points, RMSE<=0.4m and grade<=0.7 required.",
+    "canopy": "Query radius=clamp(aerial traced crown radius+1.5m,3,6m); class1 heights2..30m above local ground plane; exclude cached building footprints buffered1m; 1m-cell p95 with>=3returns; connected support>=6cells; reject flat envelope spread<0.55m and offset>3m. Recommended height=p95 of supported cell envelopes, not maximum.",
+    "eligibility": "Reject insufficient ground, insufficient/offset/flat canopy, trace on building, or partial tile coverage. Higher relative confidence needs >=15 cells, >=100 ground points, trace within1.5m of support and no nearby building mask.",
+    "integration": "Match tree_array_index AND tree_id/center against layout. Eligible: scale actual mesh bottom-to-top to canopy_height_m and base to ground_z. This local query is not a full crown-width measurement: observed_connected_envelope_diameter_m can be query-truncated; retain separately documented inferred/2026-traced width. Ineligible: do not invent a measured height. Keep separate north-context canopy deduplication."
+  },
+  "summary": {
+    "tree_count": 92,
+    "eligible": 53,
+    "higher_relative_confidence": 40,
+    "retained_near_trace_points": 1065122
+  },
+  "rows": [
+    {
+      "tree_array_index": 0,
+      "tree_id": "tree_001",
+      "center_px": [
+        658.4,
+        1059.0
+      ],
+      "position": [
+        -98.172,
+        61.916
+      ],
+      "trace_crown_radius_m": 3.849,
+      "query_radius_m": 5.349,
+      "scene_eligible": false,
+      "confidence": "low_ineligible",
+      "ground_navd88_m": 296.03,
+      "ground_z": -7.57,
+      "canopy_height_m": null,
+      "top_z": null,
+      "observed_connected_envelope_diameter_m": null,
+      "observed_height_p95_cell_envelope_m": null,
+      "observed_height_p95_points_m": 3.218,
+      "observed_height_p99_cell_envelope_m": null,
+      "support": {
+        "local_ground_returns": 2113,
+        "ground_plane_rmse_m": 0.059,
+        "accepted_elevated_returns": 65,
+        "connected_canopy_cells_1m": 0,
+        "cell_height_p90_minus_p10_m": null,
+        "nearest_supported_cell_to_trace_m": null,
+        "class1_returns_excluded_by_roof_plan": 0,
+        "nearby_class6_building_returns": 0,
+        "distance_to_cached_building_plan_m": 42.619,
+        "full_query_coverage": true
+      },
+      "ineligibility_reasons": [
+        "insufficient_connected_canopy_support",
+        "canopy_support_offset_from_uncertain_trace"
+      ],
+      "risks": [
+        "2026 trace and 2022 lidar may describe different growth/removal/leaf state; do not claim current surveyed height.",
+        "Trace center uncertainty is typically 2\u20135m; measured envelope can span neighboring crowns or miss an offset top.",
+        "Class1 is unclassified; broad support and roof masks reduce but cannot eliminate non-vegetation objects."
+      ]
+    },
+    {
+      "tree_array_index": 1,
+      "tree_id": "tree_002",
+      "center_px": [
+        644.5,
+        1197.9
+      ],
+      "position": [
+        -100.23,
+        41.351
+      ],
+      "trace_crown_radius_m": 2.058,
+      "query_radius_m": 3.558,
+      "scene_eligible": true,
+      "confidence": "medium",
+      "ground_navd88_m": 296.43,
+      "ground_z": -7.17,
+      "canopy_height_m": 5.574,
+      "top_z": -1.596,
+      "observed_connected_envelope_diameter_m": 3.385,
+      "observed_height_p95_cell_envelope_m": 5.574,
+      "observed_height_p95_points_m": 5.462,
+      "observed_height_p99_cell_envelope_m": 5.591,
+      "support": {
+        "local_ground_returns": 1820,
+        "ground_plane_rmse_m": 0.245,
+        "accepted_elevated_returns": 210,
+        "connected_canopy_cells_1m": 9,
+        "cell_height_p90_minus_p10_m": 2.419,
+        "nearest_supported_cell_to_trace_m": 1.581,
+        "class1_returns_excluded_by_roof_plan": 0,
+        "nearby_class6_building_returns": 0,
+        "distance_to_cached_building_plan_m": 26.908,
+        "full_query_coverage": true
+      },
+      "ineligibility_reasons": [],
+      "risks": [
+        "2026 trace and 2022 lidar may describe different growth/removal/leaf state; do not claim current surveyed height.",
+        "Trace center uncertainty is typically 2\u20135m; measured envelope can span neighboring crowns or miss an offset top.",
+        "Class1 is unclassified; broad support and roof masks reduce but cannot eliminate non-vegetation objects."
+      ]
+    },
+    {
+      "tree_array_index": 2,
+      "tree_id": "tree_003",
+      "center_px": [
+        667.1,
+        1291.7
+      ],
+      "position": [
+        -96.884,
+        27.464
+      ],
+      "trace_crown_radius_m": 2.576,
+      "query_radius_m": 4.076,
+      "scene_eligible": true,
+      "confidence": "higher_relative_confidence",
+      "ground_navd88_m": 296.792,
+      "ground_z": -6.808,
+      "canopy_height_m": 6.601,
+      "top_z": -0.207,
+      "observed_connected_envelope_diameter_m": 5.863,
+      "observed_height_p95_cell_envelope_m": 6.601,
+      "observed_height_p95_points_m": 6.25,
+      "observed_height_p99_cell_envelope_m": 7.042,
+      "support": {
+        "local_ground_returns": 1811,
+        "ground_plane_rmse_m": 0.229,
+        "accepted_elevated_returns": 1076,
+        "connected_canopy_cells_1m": 27,
+        "cell_height_p90_minus_p10_m": 2.415,
+        "nearest_supported_cell_to_trace_m": 0.707,
+        "class1_returns_excluded_by_roof_plan": 0,
+        "nearby_class6_building_returns": 0,
+        "distance_to_cached_building_plan_m": 23.375,
+        "full_query_coverage": true
+      },
+      "ineligibility_reasons": [],
+      "risks": [
+        "2026 trace and 2022 lidar may describe different growth/removal/leaf state; do not claim current surveyed height.",
+        "Trace center uncertainty is typically 2\u20135m; measured envelope can span neighboring crowns or miss an offset top.",
+        "Class1 is unclassified; broad support and roof masks reduce but cannot eliminate non-vegetation objects."
+      ]
+    },
+    {
+      "tree_array_index": 3,
+      "tree_id": "tree_004",
+      "center_px": [
+        679.2,
+        1369.8
+      ],
+      "position": [
+        -95.092,
+        15.901
+      ],
+      "trace_crown_radius_m": 2.576,
+      "query_radius_m": 4.076,
+      "scene_eligible": true,
+      "confidence": "higher_relative_confidence",
+      "ground_navd88_m": 296.9,
+      "ground_z": -6.7,
+      "canopy_height_m": 8.017,
+      "top_z": 1.317,
+      "observed_connected_envelope_diameter_m": 8.215,
+      "observed_height_p95_cell_envelope_m": 8.017,
+      "observed_height_p95_points_m": 7.547,
+      "observed_height_p99_cell_envelope_m": 9.204,
+      "support": {
+        "local_ground_returns": 1748,
+        "ground_plane_rmse_m": 0.099,
+        "accepted_elevated_returns": 1400,
+        "connected_canopy_cells_1m": 53,
+        "cell_height_p90_minus_p10_m": 4.781,
+        "nearest_supported_cell_to_trace_m": 0.707,
+        "class1_returns_excluded_by_roof_plan": 0,
+        "nearby_class6_building_returns": 0,
+        "distance_to_cached_building_plan_m": 19.591,
+        "full_query_coverage": true
+      },
+      "ineligibility_reasons": [],
+      "risks": [
+        "2026 trace and 2022 lidar may describe different growth/removal/leaf state; do not claim current surveyed height.",
+        "Trace center uncertainty is typically 2\u20135m; measured envelope can span neighboring crowns or miss an offset top.",
+        "Class1 is unclassified; broad support and roof masks reduce but cannot eliminate non-vegetation objects."
+      ]
+    },
+    {
+      "tree_array_index": 4,
+      "tree_id": "tree_005",
+      "center_px": [
+        707.0,
+        1453.1
+      ],
+      "position": [
+        -90.976,
+        3.567
+      ],
+      "trace_crown_radius_m": 2.576,
+      "query_radius_m": 4.076,
+      "scene_eligible": true,
+      "confidence": "higher_relative_confidence",
+      "ground_navd88_m": 297.957,
+      "ground_z": -5.643,
+      "canopy_height_m": 7.024,
+      "top_z": 1.381,
+      "observed_connected_envelope_diameter_m": 8.137,
+      "observed_height_p95_cell_envelope_m": 7.024,
+      "observed_height_p95_points_m": 7.058,
+      "observed_height_p99_cell_envelope_m": 8.258,
+      "support": {
+        "local_ground_returns": 1865,
+        "ground_plane_rmse_m": 0.071,
+        "accepted_elevated_returns": 1197,
+        "connected_canopy_cells_1m": 52,
+        "cell_height_p90_minus_p10_m": 3.528,
+        "nearest_supported_cell_to_trace_m": 0.707,
+        "class1_returns_excluded_by_roof_plan": 0,
+        "nearby_class6_building_returns": 0,
+        "distance_to_cached_building_plan_m": 17.509,
+        "full_query_coverage": true
+      },
+      "ineligibility_reasons": [],
+      "risks": [
+        "2026 trace and 2022 lidar may describe different growth/removal/leaf state; do not claim current surveyed height.",
+        "Trace center uncertainty is typically 2\u20135m; measured envelope can span neighboring crowns or miss an offset top.",
+        "Class1 is unclassified; broad support and roof masks reduce but cannot eliminate non-vegetation objects."
+      ]
+    },
+    {
+      "tree_array_index": 5,
+      "tree_id": "tree_006",
+      "center_px": [
+        727.9,
+        1539.9
+      ],
+      "position": [
+        -87.882,
+        -9.284
+      ],
+      "trace_crown_radius_m": 2.576,
+      "query_radius_m": 4.076,
+      "scene_eligible": true,
+      "confidence": "higher_relative_confidence",
+      "ground_navd88_m": 298.739,
+      "ground_z": -4.861,
+      "canopy_height_m": 6.82,
+      "top_z": 1.959,
+      "observed_connected_envelope_diameter_m": 6.18,
+      "observed_height_p95_cell_envelope_m": 6.82,
+      "observed_height_p95_points_m": 6.147,
+      "observed_height_p99_cell_envelope_m": 7.168,
+      "support": {
+        "local_ground_returns": 1786,
+        "ground_plane_rmse_m": 0.079,
+        "accepted_elevated_returns": 887,
+        "connected_canopy_cells_1m": 30,
+        "cell_height_p90_minus_p10_m": 4.327,
+        "nearest_supported_cell_to_trace_m": 0.707,
+        "class1_returns_excluded_by_roof_plan": 0,
+        "nearby_class6_building_returns": 0,
+        "distance_to_cached_building_plan_m": 14.28,
+        "full_query_coverage": true
+      },
+      "ineligibility_reasons": [],
+      "risks": [
+        "2026 trace and 2022 lidar may describe different growth/removal/leaf state; do not claim current surveyed height.",
+        "Trace center uncertainty is typically 2\u20135m; measured envelope can span neighboring crowns or miss an offset top.",
+        "Class1 is unclassified; broad support and roof masks reduce but cannot eliminate non-vegetation objects."
+      ]
+    },
+    {
+      "tree_array_index": 6,
+      "tree_id": "tree_007",
+      "center_px": [
+        738.3,
+        1590.3
+      ],
+      "position": [
+        -86.342,
+        -16.746
+      ],
+      "trace_crown_radius_m": 2.31,
+      "query_radius_m": 3.81,
+      "scene_eligible": true,
+      "confidence": "higher_relative_confidence",
+      "ground_navd88_m": 299.015,
+      "ground_z": -4.585,
+      "canopy_height_m": 8.794,
+      "top_z": 4.209,
+      "observed_connected_envelope_diameter_m": 6.956,
+      "observed_height_p95_cell_envelope_m": 8.794,
+      "observed_height_p95_points_m": 8.009,
+      "observed_height_p99_cell_envelope_m": 8.966,
+      "support": {
+        "local_ground_returns": 1342,
+        "ground_plane_rmse_m": 0.064,
+        "accepted_elevated_returns": 1567,
+        "connected_canopy_cells_1m": 38,
+        "cell_height_p90_minus_p10_m": 4.394,
+        "nearest_supported_cell_to_trace_m": 0.707,
+        "class1_returns_excluded_by_roof_plan": 0,
+        "nearby_class6_building_returns": 0,
+        "distance_to_cached_building_plan_m": 14.088,
+        "full_query_coverage": true
+      },
+      "ineligibility_reasons": [],
+      "risks": [
+        "2026 trace and 2022 lidar may describe different growth/removal/leaf state; do not claim current surveyed height.",
+        "Trace center uncertainty is typically 2\u20135m; measured envelope can span neighboring crowns or miss an offset top.",
+        "Class1 is unclassified; broad support and roof masks reduce but cannot eliminate non-vegetation objects."
+      ]
+    },
+    {
+      "tree_array_index": 7,
+      "tree_id": "tree_008",
+      "center_px": [
+        482.9,
+        1843.8
+      ],
+      "position": [
+        -124.156,
+        -54.278
+      ],
+      "trace_crown_radius_m": 3.08,
+      "query_radius_m": 4.58,
+      "scene_eligible": false,
+      "confidence": "low_ineligible",
+      "ground_navd88_m": 299.755,
+      "ground_z": -3.845,
+      "canopy_height_m": null,
+      "top_z": null,
+      "observed_connected_envelope_diameter_m": null,
+      "observed_height_p95_cell_envelope_m": null,
+      "observed_height_p95_points_m": null,
+      "observed_height_p99_cell_envelope_m": null,
+      "support": {
+        "local_ground_returns": 2119,
+        "ground_plane_rmse_m": 0.098,
+        "accepted_elevated_returns": 0,
+        "connected_canopy_cells_1m": 0,
+        "cell_height_p90_minus_p10_m": null,
+        "nearest_supported_cell_to_trace_m": null,
+        "class1_returns_excluded_by_roof_plan": 0,
+        "nearby_class6_building_returns": 0,
+        "distance_to_cached_building_plan_m": 23.153,
+        "full_query_coverage": true
+      },
+      "ineligibility_reasons": [
+        "insufficient_connected_canopy_support",
+        "canopy_support_offset_from_uncertain_trace"
+      ],
+      "risks": [
+        "2026 trace and 2022 lidar may describe different growth/removal/leaf state; do not claim current surveyed height.",
+        "Trace center uncertainty is typically 2\u20135m; measured envelope can span neighboring crowns or miss an offset top.",
+        "Class1 is unclassified; broad support and roof masks reduce but cannot eliminate non-vegetation objects."
+      ]
+    },
+    {
+      "tree_array_index": 8,
+      "tree_id": "tree_009",
+      "center_px": [
+        981.5,
+        1652.8
+      ],
+      "position": [
+        -50.335,
+        -25.999
+      ],
+      "trace_crown_radius_m": 3.346,
+      "query_radius_m": 4.846,
+      "scene_eligible": true,
+      "confidence": "higher_relative_confidence",
+      "ground_navd88_m": 300.723,
+      "ground_z": -2.877,
+      "canopy_height_m": 7.954,
+      "top_z": 5.077,
+      "observed_connected_envelope_diameter_m": 7.653,
+      "observed_height_p95_cell_envelope_m": 7.954,
+      "observed_height_p95_points_m": 7.442,
+      "observed_height_p99_cell_envelope_m": 7.981,
+      "support": {
+        "local_ground_returns": 2204,
+        "ground_plane_rmse_m": 0.12,
+        "accepted_elevated_returns": 1348,
+        "connected_canopy_cells_1m": 46,
+        "cell_height_p90_minus_p10_m": 2.192,
+        "nearest_supported_cell_to_trace_m": 0.707,
+        "class1_returns_excluded_by_roof_plan": 0,
+        "nearby_class6_building_returns": 0,
+        "distance_to_cached_building_plan_m": 51.045,
+        "full_query_coverage": true
+      },
+      "ineligibility_reasons": [],
+      "risks": [
+        "2026 trace and 2022 lidar may describe different growth/removal/leaf state; do not claim current surveyed height.",
+        "Trace center uncertainty is typically 2\u20135m; measured envelope can span neighboring crowns or miss an offset top.",
+        "Class1 is unclassified; broad support and roof masks reduce but cannot eliminate non-vegetation objects."
+      ]
+    },
+    {
+      "tree_array_index": 9,
+      "tree_id": "tree_010",
+      "center_px": [
+        1163.9,
+        1651.0
+      ],
+      "position": [
+        -23.33,
+        -25.733
+      ],
+      "trace_crown_radius_m": 3.08,
+      "query_radius_m": 4.58,
+      "scene_eligible": true,
+      "confidence": "higher_relative_confidence",
+      "ground_navd88_m": 301.163,
+      "ground_z": -2.437,
+      "canopy_height_m": 8.562,
+      "top_z": 6.125,
+      "observed_connected_envelope_diameter_m": 8.813,
+      "observed_height_p95_cell_envelope_m": 8.562,
+      "observed_height_p95_points_m": 8.179,
+      "observed_height_p99_cell_envelope_m": 8.597,
+      "support": {
+        "local_ground_returns": 2273,
+        "ground_plane_rmse_m": 0.039,
+        "accepted_elevated_returns": 2412,
+        "connected_canopy_cells_1m": 61,
+        "cell_height_p90_minus_p10_m": 2.897,
+        "nearest_supported_cell_to_trace_m": 0.707,
+        "class1_returns_excluded_by_roof_plan": 0,
+        "nearby_class6_building_returns": 0,
+        "distance_to_cached_building_plan_m": 34.734,
+        "full_query_coverage": true
+      },
+      "ineligibility_reasons": [],
+      "risks": [
+        "2026 trace and 2022 lidar may describe different growth/removal/leaf state; do not claim current surveyed height.",
+        "Trace center uncertainty is typically 2\u20135m; measured envelope can span neighboring crowns or miss an offset top.",
+        "Class1 is unclassified; broad support and roof masks reduce but cannot eliminate non-vegetation objects."
+      ]
+    },
+    {
+      "tree_array_index": 10,
+      "tree_id": "tree_011",
+      "center_px": [
+        1283.7,
+        1652.8
+      ],
+      "position": [
+        -5.593,
+        -25.999
+      ],
+      "trace_crown_radius_m": 2.828,
+      "query_radius_m": 4.328,
+      "scene_eligible": true,
+      "confidence": "higher_relative_confidence",
+      "ground_navd88_m": 301.815,
+      "ground_z": -1.785,
+      "canopy_height_m": 8.537,
+      "top_z": 6.752,
+      "observed_connected_envelope_diameter_m": 6.956,
+      "observed_height_p95_cell_envelope_m": 8.537,
+      "observed_height_p95_points_m": 8.255,
+      "observed_height_p99_cell_envelope_m": 8.655,
+      "support": {
+        "local_ground_returns": 2277,
+        "ground_plane_rmse_m": 0.067,
+        "accepted_elevated_returns": 1175,
+        "connected_canopy_cells_1m": 38,
+        "cell_height_p90_minus_p10_m": 2.654,
+        "nearest_supported_cell_to_trace_m": 0.707,
+        "class1_returns_excluded_by_roof_plan": 0,
+        "nearby_class6_building_returns": 0,
+        "distance_to_cached_building_plan_m": 26.594,
+        "full_query_coverage": true
+      },
+      "ineligibility_reasons": [],
+      "risks": [
+        "2026 trace and 2022 lidar may describe different growth/removal/leaf state; do not claim current surveyed height.",
+        "Trace center uncertainty is typically 2\u20135m; measured envelope can span neighboring crowns or miss an offset top.",
+        "Class1 is unclassified; broad support and roof masks reduce but cannot eliminate non-vegetation objects."
+      ]
+    },
+    {
+      "tree_array_index": 11,
+      "tree_id": "tree_012",
+      "center_px": [
+        1429.6,
+        1654.5
+      ],
+      "position": [
+        16.009,
+        -26.251
+      ],
+      "trace_crown_radius_m": 2.828,
+      "query_radius_m": 4.328,
+      "scene_eligible": false,
+      "confidence": "low_ineligible",
+      "ground_navd88_m": 302.39,
+      "ground_z": -1.21,
+      "canopy_height_m": null,
+      "top_z": null,
+      "observed_connected_envelope_diameter_m": null,
+      "observed_height_p95_cell_envelope_m": null,
+      "observed_height_p95_points_m": 9.821,
+      "observed_height_p99_cell_envelope_m": null,
+      "support": {
+        "local_ground_returns": 2234,
+        "ground_plane_rmse_m": 0.065,
+        "accepted_elevated_returns": 6,
+        "connected_canopy_cells_1m": 0,
+        "cell_height_p90_minus_p10_m": null,
+        "nearest_supported_cell_to_trace_m": null,
+        "class1_returns_excluded_by_roof_plan": 0,
+        "nearby_class6_building_returns": 0,
+        "distance_to_cached_building_plan_m": 26.276,
+        "full_query_coverage": true
+      },
+      "ineligibility_reasons": [
+        "insufficient_connected_canopy_support",
+        "canopy_support_offset_from_uncertain_trace"
+      ],
+      "risks": [
+        "2026 trace and 2022 lidar may describe different growth/removal/leaf state; do not claim current surveyed height.",
+        "Trace center uncertainty is typically 2\u20135m; measured envelope can span neighboring crowns or miss an offset top.",
+        "Class1 is unclassified; broad support and roof masks reduce but cannot eliminate non-vegetation objects."
+      ]
+    },
+    {
+      "tree_array_index": 12,
+      "tree_id": "tree_013",
+      "center_px": [
+        1566.9,
+        1654.5
+      ],
+      "position": [
+        36.337,
+        -26.251
+      ],
+      "trace_crown_radius_m": 2.828,
+      "query_radius_m": 4.328,
+      "scene_eligible": true,
+      "confidence": "higher_relative_confidence",
+      "ground_navd88_m": 303.014,
+      "ground_z": -0.586,
+      "canopy_height_m": 8.613,
+      "top_z": 8.027,
+      "observed_connected_envelope_diameter_m": 9.373,
+      "observed_height_p95_cell_envelope_m": 8.613,
+      "observed_height_p95_points_m": 8.221,
+      "observed_height_p99_cell_envelope_m": 9.102,
+      "support": {
+        "local_ground_returns": 2276,
+        "ground_plane_rmse_m": 0.089,
+        "accepted_elevated_returns": 2528,
+        "connected_canopy_cells_1m": 69,
+        "cell_height_p90_minus_p10_m": 2.93,
+        "nearest_supported_cell_to_trace_m": 0.707,
+        "class1_returns_excluded_by_roof_plan": 0,
+        "nearby_class6_building_returns": 0,
+        "distance_to_cached_building_plan_m": 26.02,
+        "full_query_coverage": true
+      },
+      "ineligibility_reasons": [],
+      "risks": [
+        "2026 trace and 2022 lidar may describe different growth/removal/leaf state; do not claim current surveyed height.",
+        "Trace center uncertainty is typically 2\u20135m; measured envelope can span neighboring crowns or miss an offset top.",
+        "Class1 is unclassified; broad support and roof masks reduce but cannot eliminate non-vegetation objects."
+      ]
+    },
+    {
+      "tree_array_index": 13,
+      "tree_id": "tree_014",
+      "center_px": [
+        1686.7,
+        1652.8
+      ],
+      "position": [
+        54.074,
+        -25.999
+      ],
+      "trace_crown_radius_m": 2.828,
+      "query_radius_m": 4.328,
+      "scene_eligible": false,
+      "confidence": "low_ineligible",
+      "ground_navd88_m": 303.186,
+      "ground_z": -0.414,
+      "canopy_height_m": null,
+      "top_z": null,
+      "observed_connected_envelope_diameter_m": null,
+      "observed_height_p95_cell_envelope_m": null,
+      "observed_height_p95_points_m": 7.635,
+      "observed_height_p99_cell_envelope_m": null,
+      "support": {
+        "local_ground_returns": 2284,
+        "ground_plane_rmse_m": 0.079,
+        "accepted_elevated_returns": 44,
+        "connected_canopy_cells_1m": 0,
+        "cell_height_p90_minus_p10_m": null,
+        "nearest_supported_cell_to_trace_m": null,
+        "class1_returns_excluded_by_roof_plan": 0,
+        "nearby_class6_building_returns": 0,
+        "distance_to_cached_building_plan_m": 25.481,
+        "full_query_coverage": true
+      },
+      "ineligibility_reasons": [
+        "insufficient_connected_canopy_support",
+        "canopy_support_offset_from_uncertain_trace"
+      ],
+      "risks": [
+        "2026 trace and 2022 lidar may describe different growth/removal/leaf state; do not claim current surveyed height.",
+        "Trace center uncertainty is typically 2\u20135m; measured envelope can span neighboring crowns or miss an offset top.",
+        "Class1 is unclassified; broad support and roof masks reduce but cannot eliminate non-vegetation objects."
+      ]
+    },
+    {
+      "tree_array_index": 14,
+      "tree_id": "tree_015",
+      "center_px": [
+        1799.7,
+        1654.5
+      ],
+      "position": [
+        70.804,
+        -26.251
+      ],
+      "trace_crown_radius_m": 3.346,
+      "query_radius_m": 4.846,
+      "scene_eligible": true,
+      "confidence": "medium",
+      "ground_navd88_m": 303.158,
+      "ground_z": -0.442,
+      "canopy_height_m": 9.406,
+      "top_z": 8.964,
+      "observed_connected_envelope_diameter_m": 3.742,
+      "observed_height_p95_cell_envelope_m": 9.406,
+      "observed_height_p95_points_m": 9.294,
+      "observed_height_p99_cell_envelope_m": 9.584,
+      "support": {
+        "local_ground_returns": 2350,
+        "ground_plane_rmse_m": 0.091,
+        "accepted_elevated_returns": 368,
+        "connected_canopy_cells_1m": 11,
+        "cell_height_p90_minus_p10_m": 1.35,
+        "nearest_supported_cell_to_trace_m": 2.915,
+        "class1_returns_excluded_by_roof_plan": 0,
+        "nearby_class6_building_returns": 0,
+        "distance_to_cached_building_plan_m": 29.53,
+        "full_query_coverage": true
+      },
+      "ineligibility_reasons": [],
+      "risks": [
+        "2026 trace and 2022 lidar may describe different growth/removal/leaf state; do not claim current surveyed height.",
+        "Trace center uncertainty is typically 2\u20135m; measured envelope can span neighboring crowns or miss an offset top.",
+        "Class1 is unclassified; broad support and roof masks reduce but cannot eliminate non-vegetation objects."
+      ]
+    },
+    {
+      "tree_array_index": 15,
+      "tree_id": "tree_016",
+      "center_px": [
+        2171.4,
+        1666.7
+      ],
+      "position": [
+        125.837,
+        -28.057
+      ],
+      "trace_crown_radius_m": 3.08,
+      "query_radius_m": 4.58,
+      "scene_eligible": false,
+      "confidence": "low_ineligible",
+      "ground_navd88_m": 304.602,
+      "ground_z": 1.002,
+      "canopy_height_m": null,
+      "top_z": null,
+      "observed_connected_envelope_diameter_m": 2.985,
+      "observed_height_p95_cell_envelope_m": 3.072,
+      "observed_height_p95_points_m": 3.143,
+      "observed_height_p99_cell_envelope_m": 3.206,
+      "support": {
+        "local_ground_returns": 1987,
+        "ground_plane_rmse_m": 0.226,
+        "accepted_elevated_returns": 146,
+        "connected_canopy_cells_1m": 7,
+        "cell_height_p90_minus_p10_m": 0.428,
+        "nearest_supported_cell_to_trace_m": 0.707,
+        "class1_returns_excluded_by_roof_plan": 0,
+        "nearby_class6_building_returns": 0,
+        "distance_to_cached_building_plan_m": 56.129,
+        "full_query_coverage": true
+      },
+      "ineligibility_reasons": [
+        "flat_elevated_envelope_possible_roof_or_trimmed_shrub"
+      ],
+      "risks": [
+        "2026 trace and 2022 lidar may describe different growth/removal/leaf state; do not claim current surveyed height.",
+        "Trace center uncertainty is typically 2\u20135m; measured envelope can span neighboring crowns or miss an offset top.",
+        "Class1 is unclassified; broad support and roof masks reduce but cannot eliminate non-vegetation objects."
+      ]
+    },
+    {
+      "tree_array_index": 16,
+      "tree_id": "tree_017",
+      "center_px": [
+        2397.2,
+        1664.9
+      ],
+      "position": [
+        159.268,
+        -27.791
+      ],
+      "trace_crown_radius_m": 2.576,
+      "query_radius_m": 4.076,
+      "scene_eligible": true,
+      "confidence": "medium",
+      "ground_navd88_m": 304.921,
+      "ground_z": 1.321,
+      "canopy_height_m": 4.453,
+      "top_z": 5.774,
+      "observed_connected_envelope_diameter_m": 4.652,
+      "observed_height_p95_cell_envelope_m": 4.453,
+      "observed_height_p95_points_m": 4.319,
+      "observed_height_p99_cell_envelope_m": 4.758,
+      "support": {
+        "local_ground_returns": 1856,
+        "ground_plane_rmse_m": 0.031,
+        "accepted_elevated_returns": 459,
+        "connected_canopy_cells_1m": 17,
+        "cell_height_p90_minus_p10_m": 1.253,
+        "nearest_supported_cell_to_trace_m": 1.581,
+        "class1_returns_excluded_by_roof_plan": 0,
+        "nearby_class6_building_returns": 0,
+        "distance_to_cached_building_plan_m": 54.549,
+        "full_query_coverage": true
+      },
+      "ineligibility_reasons": [],
+      "risks": [
+        "2026 trace and 2022 lidar may describe different growth/removal/leaf state; do not claim current surveyed height.",
+        "Trace center uncertainty is typically 2\u20135m; measured envelope can span neighboring crowns or miss an offset top.",
+        "Class1 is unclassified; broad support and roof masks reduce but cannot eliminate non-vegetation objects."
+      ]
+    },
+    {
+      "tree_array_index": 17,
+      "tree_id": "tree_018",
+      "center_px": [
+        2624.8,
+        1706.6
+      ],
+      "position": [
+        192.965,
+        -33.965
+      ],
+      "trace_crown_radius_m": 3.08,
+      "query_radius_m": 4.58,
+      "scene_eligible": true,
+      "confidence": "medium",
+      "ground_navd88_m": 305.937,
+      "ground_z": 2.337,
+      "canopy_height_m": 3.355,
+      "top_z": 5.692,
+      "observed_connected_envelope_diameter_m": 3.192,
+      "observed_height_p95_cell_envelope_m": 3.355,
+      "observed_height_p95_points_m": 3.207,
+      "observed_height_p99_cell_envelope_m": 3.462,
+      "support": {
+        "local_ground_returns": 2077,
+        "ground_plane_rmse_m": 0.03,
+        "accepted_elevated_returns": 212,
+        "connected_canopy_cells_1m": 8,
+        "cell_height_p90_minus_p10_m": 1.084,
+        "nearest_supported_cell_to_trace_m": 2.55,
+        "class1_returns_excluded_by_roof_plan": 0,
+        "nearby_class6_building_returns": 0,
+        "distance_to_cached_building_plan_m": 49.823,
+        "full_query_coverage": true
+      },
+      "ineligibility_reasons": [],
+      "risks": [
+        "2026 trace and 2022 lidar may describe different growth/removal/leaf state; do not claim current surveyed height.",
+        "Trace center uncertainty is typically 2\u20135m; measured envelope can span neighboring crowns or miss an offset top.",
+        "Class1 is unclassified; broad support and roof masks reduce but cannot eliminate non-vegetation objects."
+      ]
+    },
+    {
+      "tree_array_index": 18,
+      "tree_id": "tree_019",
+      "center_px": [
+        2769.0,
+        1793.4
+      ],
+      "position": [
+        214.315,
+        -46.816
+      ],
+      "trace_crown_radius_m": 2.828,
+      "query_radius_m": 4.328,
+      "scene_eligible": false,
+      "confidence": "low_ineligible",
+      "ground_navd88_m": 306.674,
+      "ground_z": 3.074,
+      "canopy_height_m": null,
+      "top_z": null,
+      "observed_connected_envelope_diameter_m": null,
+      "observed_height_p95_cell_envelope_m": null,
+      "observed_height_p95_points_m": 10.181,
+      "observed_height_p99_cell_envelope_m": null,
+      "support": {
+        "local_ground_returns": 2470,
+        "ground_plane_rmse_m": 0.023,
+        "accepted_elevated_returns": 36,
+        "connected_canopy_cells_1m": 0,
+        "cell_height_p90_minus_p10_m": null,
+        "nearest_supported_cell_to_trace_m": null,
+        "class1_returns_excluded_by_roof_plan": 0,
+        "nearby_class6_building_returns": 0,
+        "distance_to_cached_building_plan_m": 47.788,
+        "full_query_coverage": true
+      },
+      "ineligibility_reasons": [
+        "insufficient_connected_canopy_support",
+        "canopy_support_offset_from_uncertain_trace"
+      ],
+      "risks": [
+        "2026 trace and 2022 lidar may describe different growth/removal/leaf state; do not claim current surveyed height.",
+        "Trace center uncertainty is typically 2\u20135m; measured envelope can span neighboring crowns or miss an offset top.",
+        "Class1 is unclassified; broad support and roof masks reduce but cannot eliminate non-vegetation objects."
+      ]
+    },
+    {
+      "tree_array_index": 19,
+      "tree_id": "tree_020",
+      "center_px": [
+        2828.0,
+        1822.9
+      ],
+      "position": [
+        223.05,
+        -51.184
+      ],
+      "trace_crown_radius_m": 2.576,
+      "query_radius_m": 4.076,
+      "scene_eligible": true,
+      "confidence": "medium",
+      "ground_navd88_m": 307.347,
+      "ground_z": 3.747,
+      "canopy_height_m": 3.75,
+      "top_z": 7.497,
+      "observed_connected_envelope_diameter_m": 3.568,
+      "observed_height_p95_cell_envelope_m": 3.75,
+      "observed_height_p95_points_m": 3.903,
+      "observed_height_p99_cell_envelope_m": 3.846,
+      "support": {
+        "local_ground_returns": 2112,
+        "ground_plane_rmse_m": 0.043,
+        "accepted_elevated_returns": 282,
+        "connected_canopy_cells_1m": 10,
+        "cell_height_p90_minus_p10_m": 0.971,
+        "nearest_supported_cell_to_trace_m": 0.707,
+        "class1_returns_excluded_by_roof_plan": 0,
+        "nearby_class6_building_returns": 0,
+        "distance_to_cached_building_plan_m": 51.145,
+        "full_query_coverage": true
+      },
+      "ineligibility_reasons": [],
+      "risks": [
+        "2026 trace and 2022 lidar may describe different growth/removal/leaf state; do not claim current surveyed height.",
+        "Trace center uncertainty is typically 2\u20135m; measured envelope can span neighboring crowns or miss an offset top.",
+        "Class1 is unclassified; broad support and roof masks reduce but cannot eliminate non-vegetation objects."
+      ]
+    },
+    {
+      "tree_array_index": 20,
+      "tree_id": "tree_021",
+      "center_px": [
+        2880.1,
+        1843.8
+      ],
+      "position": [
+        230.764,
+        -54.278
+      ],
+      "trace_crown_radius_m": 2.576,
+      "query_radius_m": 4.076,
+      "scene_eligible": true,
+      "confidence": "medium",
+      "ground_navd88_m": 308.105,
+      "ground_z": 4.505,
+      "canopy_height_m": 3.631,
+      "top_z": 8.135,
+      "observed_connected_envelope_diameter_m": 2.985,
+      "observed_height_p95_cell_envelope_m": 3.631,
+      "observed_height_p95_points_m": 3.654,
+      "observed_height_p99_cell_envelope_m": 3.737,
+      "support": {
+        "local_ground_returns": 2164,
+        "ground_plane_rmse_m": 0.102,
+        "accepted_elevated_returns": 157,
+        "connected_canopy_cells_1m": 7,
+        "cell_height_p90_minus_p10_m": 1.019,
+        "nearest_supported_cell_to_trace_m": 2.55,
+        "class1_returns_excluded_by_roof_plan": 0,
+        "nearby_class6_building_returns": 0,
+        "distance_to_cached_building_plan_m": 55.772,
+        "full_query_coverage": true
+      },
+      "ineligibility_reasons": [],
+      "risks": [
+        "2026 trace and 2022 lidar may describe different growth/removal/leaf state; do not claim current surveyed height.",
+        "Trace center uncertainty is typically 2\u20135m; measured envelope can span neighboring crowns or miss an offset top.",
+        "Class1 is unclassified; broad support and roof masks reduce but cannot eliminate non-vegetation objects."
+      ]
+    },
+    {
+      "tree_array_index": 21,
+      "tree_id": "tree_022",
+      "center_px": [
+        2925.3,
+        876.7
+      ],
+      "position": [
+        237.456,
+        88.907
+      ],
+      "trace_crown_radius_m": 2.576,
+      "query_radius_m": 4.076,
+      "scene_eligible": false,
+      "confidence": "low_ineligible",
+      "ground_navd88_m": 307.023,
+      "ground_z": 3.423,
+      "canopy_height_m": null,
+      "top_z": null,
+      "observed_connected_envelope_diameter_m": null,
+      "observed_height_p95_cell_envelope_m": null,
+      "observed_height_p95_points_m": 6.781,
+      "observed_height_p99_cell_envelope_m": null,
+      "support": {
+        "local_ground_returns": 2296,
+        "ground_plane_rmse_m": 0.066,
+        "accepted_elevated_returns": 81,
+        "connected_canopy_cells_1m": 0,
+        "cell_height_p90_minus_p10_m": null,
+        "nearest_supported_cell_to_trace_m": null,
+        "class1_returns_excluded_by_roof_plan": 0,
+        "nearby_class6_building_returns": 0,
+        "distance_to_cached_building_plan_m": 141.928,
+        "full_query_coverage": true
+      },
+      "ineligibility_reasons": [
+        "insufficient_connected_canopy_support",
+        "canopy_support_offset_from_uncertain_trace"
+      ],
+      "risks": [
+        "2026 trace and 2022 lidar may describe different growth/removal/leaf state; do not claim current surveyed height.",
+        "Trace center uncertainty is typically 2\u20135m; measured envelope can span neighboring crowns or miss an offset top.",
+        "Class1 is unclassified; broad support and roof masks reduce but cannot eliminate non-vegetation objects."
+      ]
+    },
+    {
+      "tree_array_index": 22,
+      "tree_id": "tree_023",
+      "center_px": [
+        2925.3,
+        994.8
+      ],
+      "position": [
+        237.456,
+        71.422
+      ],
+      "trace_crown_radius_m": 3.08,
+      "query_radius_m": 4.58,
+      "scene_eligible": true,
+      "confidence": "medium",
+      "ground_navd88_m": 307.354,
+      "ground_z": 3.754,
+      "canopy_height_m": 10.192,
+      "top_z": 13.946,
+      "observed_connected_envelope_diameter_m": 3.909,
+      "observed_height_p95_cell_envelope_m": 10.192,
+      "observed_height_p95_points_m": 9.626,
+      "observed_height_p99_cell_envelope_m": 10.453,
+      "support": {
+        "local_ground_returns": 2291,
+        "ground_plane_rmse_m": 0.061,
+        "accepted_elevated_returns": 260,
+        "connected_canopy_cells_1m": 12,
+        "cell_height_p90_minus_p10_m": 5.5,
+        "nearest_supported_cell_to_trace_m": 2.915,
+        "class1_returns_excluded_by_roof_plan": 0,
+        "nearby_class6_building_returns": 0,
+        "distance_to_cached_building_plan_m": 136.745,
+        "full_query_coverage": true
+      },
+      "ineligibility_reasons": [],
+      "risks": [
+        "2026 trace and 2022 lidar may describe different growth/removal/leaf state; do not claim current surveyed height.",
+        "Trace center uncertainty is typically 2\u20135m; measured envelope can span neighboring crowns or miss an offset top.",
+        "Class1 is unclassified; broad support and roof masks reduce but cannot eliminate non-vegetation objects."
+      ]
+    },
+    {
+      "tree_array_index": 23,
+      "tree_id": "tree_024",
+      "center_px": [
+        2927.0,
+        1125.0
+      ],
+      "position": [
+        237.708,
+        52.145
+      ],
+      "trace_crown_radius_m": 3.598,
+      "query_radius_m": 5.098,
+      "scene_eligible": false,
+      "confidence": "low_ineligible",
+      "ground_navd88_m": 307.821,
+      "ground_z": 4.221,
+      "canopy_height_m": null,
+      "top_z": null,
+      "observed_connected_envelope_diameter_m": null,
+      "observed_height_p95_cell_envelope_m": null,
+      "observed_height_p95_points_m": null,
+      "observed_height_p99_cell_envelope_m": null,
+      "support": {
+        "local_ground_returns": 2358,
+        "ground_plane_rmse_m": 0.059,
+        "accepted_elevated_returns": 0,
+        "connected_canopy_cells_1m": 0,
+        "cell_height_p90_minus_p10_m": null,
+        "nearest_supported_cell_to_trace_m": null,
+        "class1_returns_excluded_by_roof_plan": 0,
+        "nearby_class6_building_returns": 0,
+        "distance_to_cached_building_plan_m": 133.724,
+        "full_query_coverage": true
+      },
+      "ineligibility_reasons": [
+        "insufficient_connected_canopy_support",
+        "canopy_support_offset_from_uncertain_trace"
+      ],
+      "risks": [
+        "2026 trace and 2022 lidar may describe different growth/removal/leaf state; do not claim current surveyed height.",
+        "Trace center uncertainty is typically 2\u20135m; measured envelope can span neighboring crowns or miss an offset top.",
+        "Class1 is unclassified; broad support and roof masks reduce but cannot eliminate non-vegetation objects."
+      ]
+    },
+    {
+      "tree_array_index": 24,
+      "tree_id": "tree_025",
+      "center_px": [
+        2927.0,
+        1237.8
+      ],
+      "position": [
+        237.708,
+        35.444
+      ],
+      "trace_crown_radius_m": 3.598,
+      "query_radius_m": 5.098,
+      "scene_eligible": true,
+      "confidence": "medium",
+      "ground_navd88_m": 308.122,
+      "ground_z": 4.522,
+      "canopy_height_m": 5.109,
+      "top_z": 9.632,
+      "observed_connected_envelope_diameter_m": 4.514,
+      "observed_height_p95_cell_envelope_m": 5.109,
+      "observed_height_p95_points_m": 4.956,
+      "observed_height_p99_cell_envelope_m": 5.165,
+      "support": {
+        "local_ground_returns": 2427,
+        "ground_plane_rmse_m": 0.043,
+        "accepted_elevated_returns": 340,
+        "connected_canopy_cells_1m": 16,
+        "cell_height_p90_minus_p10_m": 2.703,
+        "nearest_supported_cell_to_trace_m": 2.55,
+        "class1_returns_excluded_by_roof_plan": 0,
+        "nearby_class6_building_returns": 0,
+        "distance_to_cached_building_plan_m": 130.316,
+        "full_query_coverage": true
+      },
+      "ineligibility_reasons": [],
+      "risks": [
+        "2026 trace and 2022 lidar may describe different growth/removal/leaf state; do not claim current surveyed height.",
+        "Trace center uncertainty is typically 2\u20135m; measured envelope can span neighboring crowns or miss an offset top.",
+        "Class1 is unclassified; broad support and roof masks reduce but cannot eliminate non-vegetation objects."
+      ]
+    },
+    {
+      "tree_array_index": 25,
+      "tree_id": "tree_026",
+      "center_px": [
+        2932.3,
+        1359.4
+      ],
+      "position": [
+        238.493,
+        17.44
+      ],
+      "trace_crown_radius_m": 3.598,
+      "query_radius_m": 5.098,
+      "scene_eligible": true,
+      "confidence": "higher_relative_confidence",
+      "ground_navd88_m": 308.735,
+      "ground_z": 5.135,
+      "canopy_height_m": 17.127,
+      "top_z": 22.262,
+      "observed_connected_envelope_diameter_m": 9.027,
+      "observed_height_p95_cell_envelope_m": 17.127,
+      "observed_height_p95_points_m": 16.495,
+      "observed_height_p99_cell_envelope_m": 17.344,
+      "support": {
+        "local_ground_returns": 2343,
+        "ground_plane_rmse_m": 0.071,
+        "accepted_elevated_returns": 2082,
+        "connected_canopy_cells_1m": 64,
+        "cell_height_p90_minus_p10_m": 11.543,
+        "nearest_supported_cell_to_trace_m": 0.707,
+        "class1_returns_excluded_by_roof_plan": 0,
+        "nearby_class6_building_returns": 0,
+        "distance_to_cached_building_plan_m": 114.619,
+        "full_query_coverage": true
+      },
+      "ineligibility_reasons": [],
+      "risks": [
+        "2026 trace and 2022 lidar may describe different growth/removal/leaf state; do not claim current surveyed height.",
+        "Trace center uncertainty is typically 2\u20135m; measured envelope can span neighboring crowns or miss an offset top.",
+        "Class1 is unclassified; broad support and roof masks reduce but cannot eliminate non-vegetation objects."
+      ]
+    },
+    {
+      "tree_array_index": 26,
+      "tree_id": "tree_027",
+      "center_px": [
+        2923.6,
+        1472.2
+      ],
+      "position": [
+        237.205,
+        0.74
+      ],
+      "trace_crown_radius_m": 3.849,
+      "query_radius_m": 5.349,
+      "scene_eligible": false,
+      "confidence": "low_ineligible",
+      "ground_navd88_m": 308.464,
+      "ground_z": 4.864,
+      "canopy_height_m": null,
+      "top_z": null,
+      "observed_connected_envelope_diameter_m": null,
+      "observed_height_p95_cell_envelope_m": null,
+      "observed_height_p95_points_m": null,
+      "observed_height_p99_cell_envelope_m": null,
+      "support": {
+        "local_ground_returns": 2364,
+        "ground_plane_rmse_m": 0.043,
+        "accepted_elevated_returns": 0,
+        "connected_canopy_cells_1m": 0,
+        "cell_height_p90_minus_p10_m": null,
+        "nearest_supported_cell_to_trace_m": null,
+        "class1_returns_excluded_by_roof_plan": 0,
+        "nearby_class6_building_returns": 0,
+        "distance_to_cached_building_plan_m": 99.642,
+        "full_query_coverage": true
+      },
+      "ineligibility_reasons": [
+        "insufficient_connected_canopy_support",
+        "canopy_support_offset_from_uncertain_trace"
+      ],
+      "risks": [
+        "2026 trace and 2022 lidar may describe different growth/removal/leaf state; do not claim current surveyed height.",
+        "Trace center uncertainty is typically 2\u20135m; measured envelope can span neighboring crowns or miss an offset top.",
+        "Class1 is unclassified; broad support and roof masks reduce but cannot eliminate non-vegetation objects."
+      ]
+    },
+    {
+      "tree_array_index": 27,
+      "tree_id": "tree_028",
+      "center_px": [
+        2934.0,
+        1581.6
+      ],
+      "position": [
+        238.744,
+        -15.458
+      ],
+      "trace_crown_radius_m": 3.598,
+      "query_radius_m": 5.098,
+      "scene_eligible": false,
+      "confidence": "low_ineligible",
+      "ground_navd88_m": 308.681,
+      "ground_z": 5.081,
+      "canopy_height_m": null,
+      "top_z": null,
+      "observed_connected_envelope_diameter_m": null,
+      "observed_height_p95_cell_envelope_m": null,
+      "observed_height_p95_points_m": 2.837,
+      "observed_height_p99_cell_envelope_m": null,
+      "support": {
+        "local_ground_returns": 2290,
+        "ground_plane_rmse_m": 0.044,
+        "accepted_elevated_returns": 39,
+        "connected_canopy_cells_1m": 0,
+        "cell_height_p90_minus_p10_m": null,
+        "nearest_supported_cell_to_trace_m": null,
+        "class1_returns_excluded_by_roof_plan": 0,
+        "nearby_class6_building_returns": 0,
+        "distance_to_cached_building_plan_m": 87.502,
+        "full_query_coverage": true
+      },
+      "ineligibility_reasons": [
+        "insufficient_connected_canopy_support",
+        "canopy_support_offset_from_uncertain_trace"
+      ],
+      "risks": [
+        "2026 trace and 2022 lidar may describe different growth/removal/leaf state; do not claim current surveyed height.",
+        "Trace center uncertainty is typically 2\u20135m; measured envelope can span neighboring crowns or miss an offset top.",
+        "Class1 is unclassified; broad support and roof masks reduce but cannot eliminate non-vegetation objects."
+      ]
+    },
+    {
+      "tree_array_index": 28,
+      "tree_id": "tree_029",
+      "center_px": [
+        2939.2,
+        1689.2
+      ],
+      "position": [
+        239.514,
+        -31.389
+      ],
+      "trace_crown_radius_m": 3.08,
+      "query_radius_m": 4.58,
+      "scene_eligible": false,
+      "confidence": "low_ineligible",
+      "ground_navd88_m": 308.834,
+      "ground_z": 5.234,
+      "canopy_height_m": null,
+      "top_z": null,
+      "observed_connected_envelope_diameter_m": null,
+      "observed_height_p95_cell_envelope_m": null,
+      "observed_height_p95_points_m": null,
+      "observed_height_p99_cell_envelope_m": null,
+      "support": {
+        "local_ground_returns": 2391,
+        "ground_plane_rmse_m": 0.034,
+        "accepted_elevated_returns": 0,
+        "connected_canopy_cells_1m": 0,
+        "cell_height_p90_minus_p10_m": null,
+        "nearest_supported_cell_to_trace_m": null,
+        "class1_returns_excluded_by_roof_plan": 0,
+        "nearby_class6_building_returns": 0,
+        "distance_to_cached_building_plan_m": 76.507,
+        "full_query_coverage": true
+      },
+      "ineligibility_reasons": [
+        "insufficient_connected_canopy_support",
+        "canopy_support_offset_from_uncertain_trace"
+      ],
+      "risks": [
+        "2026 trace and 2022 lidar may describe different growth/removal/leaf state; do not claim current surveyed height.",
+        "Trace center uncertainty is typically 2\u20135m; measured envelope can span neighboring crowns or miss an offset top.",
+        "Class1 is unclassified; broad support and roof masks reduce but cannot eliminate non-vegetation objects."
+      ]
+    },
+    {
+      "tree_array_index": 29,
+      "tree_id": "tree_030",
+      "center_px": [
+        2371.2,
+        803.8
+      ],
+      "position": [
+        155.418,
+        99.7
+      ],
+      "trace_crown_radius_m": 4.116,
+      "query_radius_m": 5.616,
+      "scene_eligible": false,
+      "confidence": "low_ineligible",
+      "ground_navd88_m": 304.345,
+      "ground_z": 0.745,
+      "canopy_height_m": null,
+      "top_z": null,
+      "observed_connected_envelope_diameter_m": null,
+      "observed_height_p95_cell_envelope_m": null,
+      "observed_height_p95_points_m": 3.225,
+      "observed_height_p99_cell_envelope_m": null,
+      "support": {
+        "local_ground_returns": 2363,
+        "ground_plane_rmse_m": 0.053,
+        "accepted_elevated_returns": 18,
+        "connected_canopy_cells_1m": 0,
+        "cell_height_p90_minus_p10_m": null,
+        "nearest_supported_cell_to_trace_m": null,
+        "class1_returns_excluded_by_roof_plan": 0,
+        "nearby_class6_building_returns": 0,
+        "distance_to_cached_building_plan_m": 72.883,
+        "full_query_coverage": true
+      },
+      "ineligibility_reasons": [
+        "insufficient_connected_canopy_support",
+        "canopy_support_offset_from_uncertain_trace"
+      ],
+      "risks": [
+        "2026 trace and 2022 lidar may describe different growth/removal/leaf state; do not claim current surveyed height.",
+        "Trace center uncertainty is typically 2\u20135m; measured envelope can span neighboring crowns or miss an offset top.",
+        "Class1 is unclassified; broad support and roof masks reduce but cannot eliminate non-vegetation objects."
+      ]
+    },
+    {
+      "tree_array_index": 30,
+      "tree_id": "tree_031",
+      "center_px": [
+        2011.6,
+        826.4
+      ],
+      "position": [
+        102.177,
+        96.354
+      ],
+      "trace_crown_radius_m": 4.634,
+      "query_radius_m": 6.0,
+      "scene_eligible": false,
+      "confidence": "low_ineligible",
+      "ground_navd88_m": 298.733,
+      "ground_z": -4.867,
+      "canopy_height_m": null,
+      "top_z": null,
+      "observed_connected_envelope_diameter_m": null,
+      "observed_height_p95_cell_envelope_m": null,
+      "observed_height_p95_points_m": null,
+      "observed_height_p99_cell_envelope_m": null,
+      "support": {
+        "local_ground_returns": 2358,
+        "ground_plane_rmse_m": 0.053,
+        "accepted_elevated_returns": 0,
+        "connected_canopy_cells_1m": 0,
+        "cell_height_p90_minus_p10_m": null,
+        "nearest_supported_cell_to_trace_m": null,
+        "class1_returns_excluded_by_roof_plan": 0,
+        "nearby_class6_building_returns": 0,
+        "distance_to_cached_building_plan_m": 34.345,
+        "full_query_coverage": true
+      },
+      "ineligibility_reasons": [
+        "insufficient_connected_canopy_support",
+        "canopy_support_offset_from_uncertain_trace"
+      ],
+      "risks": [
+        "2026 trace and 2022 lidar may describe different growth/removal/leaf state; do not claim current surveyed height.",
+        "Trace center uncertainty is typically 2\u20135m; measured envelope can span neighboring crowns or miss an offset top.",
+        "Class1 is unclassified; broad support and roof masks reduce but cannot eliminate non-vegetation objects."
+      ]
+    },
+    {
+      "tree_array_index": 31,
+      "tree_id": "tree_032",
+      "center_px": [
+        1725.0,
+        833.3
+      ],
+      "position": [
+        59.745,
+        95.333
+      ],
+      "trace_crown_radius_m": 4.634,
+      "query_radius_m": 6.0,
+      "scene_eligible": true,
+      "confidence": "higher_relative_confidence",
+      "ground_navd88_m": 294.95,
+      "ground_z": -8.65,
+      "canopy_height_m": 7.294,
+      "top_z": -1.356,
+      "observed_connected_envelope_diameter_m": 7.653,
+      "observed_height_p95_cell_envelope_m": 7.294,
+      "observed_height_p95_points_m": 6.974,
+      "observed_height_p99_cell_envelope_m": 7.758,
+      "support": {
+        "local_ground_returns": 2157,
+        "ground_plane_rmse_m": 0.099,
+        "accepted_elevated_returns": 1574,
+        "connected_canopy_cells_1m": 46,
+        "cell_height_p90_minus_p10_m": 3.016,
+        "nearest_supported_cell_to_trace_m": 0.707,
+        "class1_returns_excluded_by_roof_plan": 0,
+        "nearby_class6_building_returns": 0,
+        "distance_to_cached_building_plan_m": 41.499,
+        "full_query_coverage": true
+      },
+      "ineligibility_reasons": [],
+      "risks": [
+        "2026 trace and 2022 lidar may describe different growth/removal/leaf state; do not claim current surveyed height.",
+        "Trace center uncertainty is typically 2\u20135m; measured envelope can span neighboring crowns or miss an offset top.",
+        "Class1 is unclassified; broad support and roof masks reduce but cannot eliminate non-vegetation objects."
+      ]
+    },
+    {
+      "tree_array_index": 32,
+      "tree_id": "tree_033",
+      "center_px": [
+        1678.1,
+        845.5
+      ],
+      "position": [
+        52.801,
+        93.526
+      ],
+      "trace_crown_radius_m": 2.576,
+      "query_radius_m": 4.076,
+      "scene_eligible": false,
+      "confidence": "low_ineligible",
+      "ground_navd88_m": 294.721,
+      "ground_z": -8.879,
+      "canopy_height_m": null,
+      "top_z": null,
+      "observed_connected_envelope_diameter_m": null,
+      "observed_height_p95_cell_envelope_m": null,
+      "observed_height_p95_points_m": null,
+      "observed_height_p99_cell_envelope_m": null,
+      "support": {
+        "local_ground_returns": 2350,
+        "ground_plane_rmse_m": 0.145,
+        "accepted_elevated_returns": 0,
+        "connected_canopy_cells_1m": 0,
+        "cell_height_p90_minus_p10_m": null,
+        "nearest_supported_cell_to_trace_m": null,
+        "class1_returns_excluded_by_roof_plan": 0,
+        "nearby_class6_building_returns": 0,
+        "distance_to_cached_building_plan_m": 40.404,
+        "full_query_coverage": true
+      },
+      "ineligibility_reasons": [
+        "insufficient_connected_canopy_support",
+        "canopy_support_offset_from_uncertain_trace"
+      ],
+      "risks": [
+        "2026 trace and 2022 lidar may describe different growth/removal/leaf state; do not claim current surveyed height.",
+        "Trace center uncertainty is typically 2\u20135m; measured envelope can span neighboring crowns or miss an offset top.",
+        "Class1 is unclassified; broad support and roof masks reduce but cannot eliminate non-vegetation objects."
+      ]
+    },
+    {
+      "tree_array_index": 33,
+      "tree_id": "tree_034",
+      "center_px": [
+        1622.5,
+        932.3
+      ],
+      "position": [
+        44.569,
+        80.675
+      ],
+      "trace_crown_radius_m": 2.576,
+      "query_radius_m": 4.076,
+      "scene_eligible": true,
+      "confidence": "higher_relative_confidence",
+      "ground_navd88_m": 298.013,
+      "ground_z": -5.587,
+      "canopy_height_m": 8.515,
+      "top_z": 2.928,
+      "observed_connected_envelope_diameter_m": 5.046,
+      "observed_height_p95_cell_envelope_m": 8.515,
+      "observed_height_p95_points_m": 8.219,
+      "observed_height_p99_cell_envelope_m": 8.68,
+      "support": {
+        "local_ground_returns": 2319,
+        "ground_plane_rmse_m": 0.146,
+        "accepted_elevated_returns": 580,
+        "connected_canopy_cells_1m": 20,
+        "cell_height_p90_minus_p10_m": 1.555,
+        "nearest_supported_cell_to_trace_m": 0.707,
+        "class1_returns_excluded_by_roof_plan": 0,
+        "nearby_class6_building_returns": 0,
+        "distance_to_cached_building_plan_m": 25.621,
+        "full_query_coverage": true
+      },
+      "ineligibility_reasons": [],
+      "risks": [
+        "2026 trace and 2022 lidar may describe different growth/removal/leaf state; do not claim current surveyed height.",
+        "Trace center uncertainty is typically 2\u20135m; measured envelope can span neighboring crowns or miss an offset top.",
+        "Class1 is unclassified; broad support and roof masks reduce but cannot eliminate non-vegetation objects."
+      ]
+    },
+    {
+      "tree_array_index": 34,
+      "tree_id": "tree_035",
+      "center_px": [
+        1361.9,
+        897.6
+      ],
+      "position": [
+        5.985,
+        85.813
+      ],
+      "trace_crown_radius_m": 3.346,
+      "query_radius_m": 4.846,
+      "scene_eligible": false,
+      "confidence": "low_ineligible",
+      "ground_navd88_m": 295.225,
+      "ground_z": -8.375,
+      "canopy_height_m": null,
+      "top_z": null,
+      "observed_connected_envelope_diameter_m": null,
+      "observed_height_p95_cell_envelope_m": null,
+      "observed_height_p95_points_m": null,
+      "observed_height_p99_cell_envelope_m": null,
+      "support": {
+        "local_ground_returns": 2239,
+        "ground_plane_rmse_m": 0.168,
+        "accepted_elevated_returns": 0,
+        "connected_canopy_cells_1m": 0,
+        "cell_height_p90_minus_p10_m": null,
+        "nearest_supported_cell_to_trace_m": null,
+        "class1_returns_excluded_by_roof_plan": 0,
+        "nearby_class6_building_returns": 0,
+        "distance_to_cached_building_plan_m": 27.721,
+        "full_query_coverage": true
+      },
+      "ineligibility_reasons": [
+        "insufficient_connected_canopy_support",
+        "canopy_support_offset_from_uncertain_trace"
+      ],
+      "risks": [
+        "2026 trace and 2022 lidar may describe different growth/removal/leaf state; do not claim current surveyed height.",
+        "Trace center uncertainty is typically 2\u20135m; measured envelope can span neighboring crowns or miss an offset top.",
+        "Class1 is unclassified; broad support and roof masks reduce but cannot eliminate non-vegetation objects."
+      ]
+    },
+    {
+      "tree_array_index": 35,
+      "tree_id": "tree_036",
+      "center_px": [
+        1165.6,
+        906.2
+      ],
+      "position": [
+        -23.078,
+        84.539
+      ],
+      "trace_crown_radius_m": 3.598,
+      "query_radius_m": 5.098,
+      "scene_eligible": false,
+      "confidence": "low_ineligible",
+      "ground_navd88_m": 294.858,
+      "ground_z": -8.742,
+      "canopy_height_m": null,
+      "top_z": null,
+      "observed_connected_envelope_diameter_m": null,
+      "observed_height_p95_cell_envelope_m": null,
+      "observed_height_p95_points_m": 2.711,
+      "observed_height_p99_cell_envelope_m": null,
+      "support": {
+        "local_ground_returns": 2200,
+        "ground_plane_rmse_m": 0.116,
+        "accepted_elevated_returns": 63,
+        "connected_canopy_cells_1m": 0,
+        "cell_height_p90_minus_p10_m": null,
+        "nearest_supported_cell_to_trace_m": null,
+        "class1_returns_excluded_by_roof_plan": 0,
+        "nearby_class6_building_returns": 0,
+        "distance_to_cached_building_plan_m": 43.56,
+        "full_query_coverage": true
+      },
+      "ineligibility_reasons": [
+        "insufficient_connected_canopy_support",
+        "canopy_support_offset_from_uncertain_trace"
+      ],
+      "risks": [
+        "2026 trace and 2022 lidar may describe different growth/removal/leaf state; do not claim current surveyed height.",
+        "Trace center uncertainty is typically 2\u20135m; measured envelope can span neighboring crowns or miss an offset top.",
+        "Class1 is unclassified; broad support and roof masks reduce but cannot eliminate non-vegetation objects."
+      ]
+    },
+    {
+      "tree_array_index": 36,
+      "tree_id": "tree_037",
+      "center_px": [
+        993.6,
+        904.5
+      ],
+      "position": [
+        -48.544,
+        84.791
+      ],
+      "trace_crown_radius_m": 3.598,
+      "query_radius_m": 5.098,
+      "scene_eligible": false,
+      "confidence": "low_ineligible",
+      "ground_navd88_m": 294.484,
+      "ground_z": -9.116,
+      "canopy_height_m": null,
+      "top_z": null,
+      "observed_connected_envelope_diameter_m": null,
+      "observed_height_p95_cell_envelope_m": null,
+      "observed_height_p95_points_m": 2.681,
+      "observed_height_p99_cell_envelope_m": null,
+      "support": {
+        "local_ground_returns": 2260,
+        "ground_plane_rmse_m": 0.151,
+        "accepted_elevated_returns": 49,
+        "connected_canopy_cells_1m": 0,
+        "cell_height_p90_minus_p10_m": null,
+        "nearest_supported_cell_to_trace_m": null,
+        "class1_returns_excluded_by_roof_plan": 0,
+        "nearby_class6_building_returns": 0,
+        "distance_to_cached_building_plan_m": 61.275,
+        "full_query_coverage": true
+      },
+      "ineligibility_reasons": [
+        "insufficient_connected_canopy_support",
+        "canopy_support_offset_from_uncertain_trace"
+      ],
+      "risks": [
+        "2026 trace and 2022 lidar may describe different growth/removal/leaf state; do not claim current surveyed height.",
+        "Trace center uncertainty is typically 2\u20135m; measured envelope can span neighboring crowns or miss an offset top.",
+        "Class1 is unclassified; broad support and roof masks reduce but cannot eliminate non-vegetation objects."
+      ]
+    },
+    {
+      "tree_array_index": 37,
+      "tree_id": "tree_038",
+      "center_px": [
+        328.3,
+        112.8
+      ],
+      "position": [
+        -147.045,
+        202.007
+      ],
+      "trace_crown_radius_m": 4.634,
+      "query_radius_m": 6.0,
+      "scene_eligible": false,
+      "confidence": "low_ineligible",
+      "ground_navd88_m": 291.776,
+      "ground_z": -11.824,
+      "canopy_height_m": null,
+      "top_z": null,
+      "observed_connected_envelope_diameter_m": null,
+      "observed_height_p95_cell_envelope_m": null,
+      "observed_height_p95_points_m": null,
+      "observed_height_p99_cell_envelope_m": null,
+      "support": {
+        "local_ground_returns": 689,
+        "ground_plane_rmse_m": 0.092,
+        "accepted_elevated_returns": 0,
+        "connected_canopy_cells_1m": 0,
+        "cell_height_p90_minus_p10_m": null,
+        "nearest_supported_cell_to_trace_m": null,
+        "class1_returns_excluded_by_roof_plan": 0,
+        "nearby_class6_building_returns": 0,
+        "distance_to_cached_building_plan_m": 176.13,
+        "full_query_coverage": true
+      },
+      "ineligibility_reasons": [
+        "insufficient_connected_canopy_support",
+        "canopy_support_offset_from_uncertain_trace"
+      ],
+      "risks": [
+        "2026 trace and 2022 lidar may describe different growth/removal/leaf state; do not claim current surveyed height.",
+        "Trace center uncertainty is typically 2\u20135m; measured envelope can span neighboring crowns or miss an offset top.",
+        "Class1 is unclassified; broad support and roof masks reduce but cannot eliminate non-vegetation objects."
+      ]
+    },
+    {
+      "tree_array_index": 38,
+      "tree_id": "tree_039",
+      "center_px": [
+        495.1,
+        79.9
+      ],
+      "position": [
+        -122.35,
+        206.878
+      ],
+      "trace_crown_radius_m": 4.634,
+      "query_radius_m": 6.0,
+      "scene_eligible": false,
+      "confidence": "low_ineligible",
+      "ground_navd88_m": 291.787,
+      "ground_z": -11.813,
+      "canopy_height_m": null,
+      "top_z": null,
+      "observed_connected_envelope_diameter_m": null,
+      "observed_height_p95_cell_envelope_m": null,
+      "observed_height_p95_points_m": 2.126,
+      "observed_height_p99_cell_envelope_m": null,
+      "support": {
+        "local_ground_returns": 1049,
+        "ground_plane_rmse_m": 0.077,
+        "accepted_elevated_returns": 3,
+        "connected_canopy_cells_1m": 0,
+        "cell_height_p90_minus_p10_m": null,
+        "nearest_supported_cell_to_trace_m": null,
+        "class1_returns_excluded_by_roof_plan": 0,
+        "nearby_class6_building_returns": 0,
+        "distance_to_cached_building_plan_m": 179.395,
+        "full_query_coverage": true
+      },
+      "ineligibility_reasons": [
+        "insufficient_connected_canopy_support",
+        "canopy_support_offset_from_uncertain_trace"
+      ],
+      "risks": [
+        "2026 trace and 2022 lidar may describe different growth/removal/leaf state; do not claim current surveyed height.",
+        "Trace center uncertainty is typically 2\u20135m; measured envelope can span neighboring crowns or miss an offset top.",
+        "Class1 is unclassified; broad support and roof masks reduce but cannot eliminate non-vegetation objects."
+      ]
+    },
+    {
+      "tree_array_index": 39,
+      "tree_id": "tree_040",
+      "center_px": [
+        696.6,
+        102.4
+      ],
+      "position": [
+        -92.516,
+        203.547
+      ],
+      "trace_crown_radius_m": 5.656,
+      "query_radius_m": 6.0,
+      "scene_eligible": false,
+      "confidence": "low_ineligible",
+      "ground_navd88_m": 291.843,
+      "ground_z": -11.757,
+      "canopy_height_m": null,
+      "top_z": null,
+      "observed_connected_envelope_diameter_m": null,
+      "observed_height_p95_cell_envelope_m": null,
+      "observed_height_p95_points_m": null,
+      "observed_height_p99_cell_envelope_m": null,
+      "support": {
+        "local_ground_returns": 1050,
+        "ground_plane_rmse_m": 0.063,
+        "accepted_elevated_returns": 0,
+        "connected_canopy_cells_1m": 0,
+        "cell_height_p90_minus_p10_m": null,
+        "nearest_supported_cell_to_trace_m": null,
+        "class1_returns_excluded_by_roof_plan": 0,
+        "nearby_class6_building_returns": 0,
+        "distance_to_cached_building_plan_m": 178.589,
+        "full_query_coverage": true
+      },
+      "ineligibility_reasons": [
+        "insufficient_connected_canopy_support",
+        "canopy_support_offset_from_uncertain_trace"
+      ],
+      "risks": [
+        "2026 trace and 2022 lidar may describe different growth/removal/leaf state; do not claim current surveyed height.",
+        "Trace center uncertainty is typically 2\u20135m; measured envelope can span neighboring crowns or miss an offset top.",
+        "Class1 is unclassified; broad support and roof masks reduce but cannot eliminate non-vegetation objects."
+      ]
+    },
+    {
+      "tree_array_index": 40,
+      "tree_id": "tree_041",
+      "center_px": [
+        872.0,
+        100.7
+      ],
+      "position": [
+        -66.547,
+        203.799
+      ],
+      "trace_crown_radius_m": 5.138,
+      "query_radius_m": 6.0,
+      "scene_eligible": true,
+      "confidence": "higher_relative_confidence",
+      "ground_navd88_m": 292.377,
+      "ground_z": -11.223,
+      "canopy_height_m": 4.199,
+      "top_z": -7.023,
+      "observed_connected_envelope_diameter_m": 11.507,
+      "observed_height_p95_cell_envelope_m": 4.199,
+      "observed_height_p95_points_m": 3.938,
+      "observed_height_p99_cell_envelope_m": 4.341,
+      "support": {
+        "local_ground_returns": 1901,
+        "ground_plane_rmse_m": 0.033,
+        "accepted_elevated_returns": 3461,
+        "connected_canopy_cells_1m": 104,
+        "cell_height_p90_minus_p10_m": 1.441,
+        "nearest_supported_cell_to_trace_m": 0.707,
+        "class1_returns_excluded_by_roof_plan": 0,
+        "nearby_class6_building_returns": 0,
+        "distance_to_cached_building_plan_m": 164.959,
+        "full_query_coverage": true
+      },
+      "ineligibility_reasons": [],
+      "risks": [
+        "2026 trace and 2022 lidar may describe different growth/removal/leaf state; do not claim current surveyed height.",
+        "Trace center uncertainty is typically 2\u20135m; measured envelope can span neighboring crowns or miss an offset top.",
+        "Class1 is unclassified; broad support and roof masks reduce but cannot eliminate non-vegetation objects."
+      ]
+    },
+    {
+      "tree_array_index": 41,
+      "tree_id": "tree_042",
+      "center_px": [
+        905.0,
+        295.1
+      ],
+      "position": [
+        -61.661,
+        175.016
+      ],
+      "trace_crown_radius_m": 5.907,
+      "query_radius_m": 6.0,
+      "scene_eligible": true,
+      "confidence": "higher_relative_confidence",
+      "ground_navd88_m": 292.168,
+      "ground_z": -11.432,
+      "canopy_height_m": 10.603,
+      "top_z": -0.829,
+      "observed_connected_envelope_diameter_m": 10.645,
+      "observed_height_p95_cell_envelope_m": 10.603,
+      "observed_height_p95_points_m": 9.851,
+      "observed_height_p99_cell_envelope_m": 11.112,
+      "support": {
+        "local_ground_returns": 1927,
+        "ground_plane_rmse_m": 0.032,
+        "accepted_elevated_returns": 4053,
+        "connected_canopy_cells_1m": 89,
+        "cell_height_p90_minus_p10_m": 6.967,
+        "nearest_supported_cell_to_trace_m": 0.707,
+        "class1_returns_excluded_by_roof_plan": 0,
+        "nearby_class6_building_returns": 0,
+        "distance_to_cached_building_plan_m": 137.647,
+        "full_query_coverage": true
+      },
+      "ineligibility_reasons": [],
+      "risks": [
+        "2026 trace and 2022 lidar may describe different growth/removal/leaf state; do not claim current surveyed height.",
+        "Trace center uncertainty is typically 2\u20135m; measured envelope can span neighboring crowns or miss an offset top.",
+        "Class1 is unclassified; broad support and roof masks reduce but cannot eliminate non-vegetation objects."
+      ]
+    },
+    {
+      "tree_array_index": 42,
+      "tree_id": "tree_043",
+      "center_px": [
+        1162.1,
+        381.9
+      ],
+      "position": [
+        -23.596,
+        162.165
+      ],
+      "trace_crown_radius_m": 5.138,
+      "query_radius_m": 6.0,
+      "scene_eligible": true,
+      "confidence": "higher_relative_confidence",
+      "ground_navd88_m": 292.358,
+      "ground_z": -11.242,
+      "canopy_height_m": 5.046,
+      "top_z": -6.195,
+      "observed_connected_envelope_diameter_m": 6.077,
+      "observed_height_p95_cell_envelope_m": 5.046,
+      "observed_height_p95_points_m": 4.433,
+      "observed_height_p99_cell_envelope_m": 5.276,
+      "support": {
+        "local_ground_returns": 2165,
+        "ground_plane_rmse_m": 0.035,
+        "accepted_elevated_returns": 446,
+        "connected_canopy_cells_1m": 29,
+        "cell_height_p90_minus_p10_m": 2.463,
+        "nearest_supported_cell_to_trace_m": 0.707,
+        "class1_returns_excluded_by_roof_plan": 0,
+        "nearby_class6_building_returns": 0,
+        "distance_to_cached_building_plan_m": 109.372,
+        "full_query_coverage": true
+      },
+      "ineligibility_reasons": [],
+      "risks": [
+        "2026 trace and 2022 lidar may describe different growth/removal/leaf state; do not claim current surveyed height.",
+        "Trace center uncertainty is typically 2\u20135m; measured envelope can span neighboring crowns or miss an offset top.",
+        "Class1 is unclassified; broad support and roof masks reduce but cannot eliminate non-vegetation objects."
+      ]
+    },
+    {
+      "tree_array_index": 43,
+      "tree_id": "tree_044",
+      "center_px": [
+        1269.8,
+        409.7
+      ],
+      "position": [
+        -7.651,
+        158.049
+      ],
+      "trace_crown_radius_m": 4.368,
+      "query_radius_m": 5.868,
+      "scene_eligible": true,
+      "confidence": "higher_relative_confidence",
+      "ground_navd88_m": 292.517,
+      "ground_z": -11.083,
+      "canopy_height_m": 13.194,
+      "top_z": 2.111,
+      "observed_connected_envelope_diameter_m": 12.153,
+      "observed_height_p95_cell_envelope_m": 13.194,
+      "observed_height_p95_points_m": 12.591,
+      "observed_height_p99_cell_envelope_m": 13.968,
+      "support": {
+        "local_ground_returns": 871,
+        "ground_plane_rmse_m": 0.034,
+        "accepted_elevated_returns": 6005,
+        "connected_canopy_cells_1m": 116,
+        "cell_height_p90_minus_p10_m": 9.944,
+        "nearest_supported_cell_to_trace_m": 0.707,
+        "class1_returns_excluded_by_roof_plan": 0,
+        "nearby_class6_building_returns": 0,
+        "distance_to_cached_building_plan_m": 101.222,
+        "full_query_coverage": true
+      },
+      "ineligibility_reasons": [],
+      "risks": [
+        "2026 trace and 2022 lidar may describe different growth/removal/leaf state; do not claim current surveyed height.",
+        "Trace center uncertainty is typically 2\u20135m; measured envelope can span neighboring crowns or miss an offset top.",
+        "Class1 is unclassified; broad support and roof masks reduce but cannot eliminate non-vegetation objects."
+      ]
+    },
+    {
+      "tree_array_index": 44,
+      "tree_id": "tree_045",
+      "center_px": [
+        1445.3,
+        321.2
+      ],
+      "position": [
+        18.333,
+        171.152
+      ],
+      "trace_crown_radius_m": 4.634,
+      "query_radius_m": 6.0,
+      "scene_eligible": false,
+      "confidence": "low_ineligible",
+      "ground_navd88_m": 292.108,
+      "ground_z": -11.492,
+      "canopy_height_m": null,
+      "top_z": null,
+      "observed_connected_envelope_diameter_m": 5.171,
+      "observed_height_p95_cell_envelope_m": 11.193,
+      "observed_height_p95_points_m": 9.841,
+      "observed_height_p99_cell_envelope_m": 11.234,
+      "support": {
+        "local_ground_returns": 2145,
+        "ground_plane_rmse_m": 0.035,
+        "accepted_elevated_returns": 470,
+        "connected_canopy_cells_1m": 21,
+        "cell_height_p90_minus_p10_m": 3.388,
+        "nearest_supported_cell_to_trace_m": 4.301,
+        "class1_returns_excluded_by_roof_plan": 0,
+        "nearby_class6_building_returns": 0,
+        "distance_to_cached_building_plan_m": 112.266,
+        "full_query_coverage": true
+      },
+      "ineligibility_reasons": [
+        "canopy_support_offset_from_uncertain_trace"
+      ],
+      "risks": [
+        "2026 trace and 2022 lidar may describe different growth/removal/leaf state; do not claim current surveyed height.",
+        "Trace center uncertainty is typically 2\u20135m; measured envelope can span neighboring crowns or miss an offset top.",
+        "Class1 is unclassified; broad support and roof masks reduce but cannot eliminate non-vegetation objects."
+      ]
+    },
+    {
+      "tree_array_index": 45,
+      "tree_id": "tree_046",
+      "center_px": [
+        1471.3,
+        232.6
+      ],
+      "position": [
+        22.183,
+        184.27
+      ],
+      "trace_crown_radius_m": 5.656,
+      "query_radius_m": 6.0,
+      "scene_eligible": false,
+      "confidence": "low_ineligible",
+      "ground_navd88_m": 292.089,
+      "ground_z": -11.511,
+      "canopy_height_m": null,
+      "top_z": null,
+      "observed_connected_envelope_diameter_m": null,
+      "observed_height_p95_cell_envelope_m": null,
+      "observed_height_p95_points_m": null,
+      "observed_height_p99_cell_envelope_m": null,
+      "support": {
+        "local_ground_returns": 2097,
+        "ground_plane_rmse_m": 0.045,
+        "accepted_elevated_returns": 0,
+        "connected_canopy_cells_1m": 0,
+        "cell_height_p90_minus_p10_m": null,
+        "nearest_supported_cell_to_trace_m": null,
+        "class1_returns_excluded_by_roof_plan": 0,
+        "nearby_class6_building_returns": 0,
+        "distance_to_cached_building_plan_m": 125.314,
+        "full_query_coverage": true
+      },
+      "ineligibility_reasons": [
+        "insufficient_connected_canopy_support",
+        "canopy_support_offset_from_uncertain_trace"
+      ],
+      "risks": [
+        "2026 trace and 2022 lidar may describe different growth/removal/leaf state; do not claim current surveyed height.",
+        "Trace center uncertainty is typically 2\u20135m; measured envelope can span neighboring crowns or miss an offset top.",
+        "Class1 is unclassified; broad support and roof masks reduce but cannot eliminate non-vegetation objects."
+      ]
+    },
+    {
+      "tree_array_index": 46,
+      "tree_id": "tree_047",
+      "center_px": [
+        1620.7,
+        298.6
+      ],
+      "position": [
+        44.302,
+        174.498
+      ],
+      "trace_crown_radius_m": 4.886,
+      "query_radius_m": 6.0,
+      "scene_eligible": true,
+      "confidence": "higher_relative_confidence",
+      "ground_navd88_m": 292.258,
+      "ground_z": -11.342,
+      "canopy_height_m": 13.758,
+      "top_z": 2.416,
+      "observed_connected_envelope_diameter_m": 11.995,
+      "observed_height_p95_cell_envelope_m": 13.758,
+      "observed_height_p95_points_m": 13.059,
+      "observed_height_p99_cell_envelope_m": 14.028,
+      "support": {
+        "local_ground_returns": 1748,
+        "ground_plane_rmse_m": 0.041,
+        "accepted_elevated_returns": 4693,
+        "connected_canopy_cells_1m": 113,
+        "cell_height_p90_minus_p10_m": 9.568,
+        "nearest_supported_cell_to_trace_m": 0.707,
+        "class1_returns_excluded_by_roof_plan": 0,
+        "nearby_class6_building_returns": 0,
+        "distance_to_cached_building_plan_m": 116.204,
+        "full_query_coverage": true
+      },
+      "ineligibility_reasons": [],
+      "risks": [
+        "2026 trace and 2022 lidar may describe different growth/removal/leaf state; do not claim current surveyed height.",
+        "Trace center uncertainty is typically 2\u20135m; measured envelope can span neighboring crowns or miss an offset top.",
+        "Class1 is unclassified; broad support and roof masks reduce but cannot eliminate non-vegetation objects."
+      ]
+    },
+    {
+      "tree_array_index": 47,
+      "tree_id": "tree_048",
+      "center_px": [
+        1665.9,
+        244.8
+      ],
+      "position": [
+        50.994,
+        182.464
+      ],
+      "trace_crown_radius_m": 4.116,
+      "query_radius_m": 5.616,
+      "scene_eligible": true,
+      "confidence": "higher_relative_confidence",
+      "ground_navd88_m": 292.237,
+      "ground_z": -11.363,
+      "canopy_height_m": 14.332,
+      "top_z": 2.969,
+      "observed_connected_envelope_diameter_m": 10.155,
+      "observed_height_p95_cell_envelope_m": 14.332,
+      "observed_height_p95_points_m": 13.796,
+      "observed_height_p99_cell_envelope_m": 14.666,
+      "support": {
+        "local_ground_returns": 1840,
+        "ground_plane_rmse_m": 0.045,
+        "accepted_elevated_returns": 4752,
+        "connected_canopy_cells_1m": 81,
+        "cell_height_p90_minus_p10_m": 2.921,
+        "nearest_supported_cell_to_trace_m": 0.707,
+        "class1_returns_excluded_by_roof_plan": 0,
+        "nearby_class6_building_returns": 0,
+        "distance_to_cached_building_plan_m": 125.026,
+        "full_query_coverage": true
+      },
+      "ineligibility_reasons": [],
+      "risks": [
+        "2026 trace and 2022 lidar may describe different growth/removal/leaf state; do not claim current surveyed height.",
+        "Trace center uncertainty is typically 2\u20135m; measured envelope can span neighboring crowns or miss an offset top.",
+        "Class1 is unclassified; broad support and roof masks reduce but cannot eliminate non-vegetation objects."
+      ]
+    },
+    {
+      "tree_array_index": 48,
+      "tree_id": "tree_049",
+      "center_px": [
+        1540.8,
+        378.5
+      ],
+      "position": [
+        32.473,
+        162.669
+      ],
+      "trace_crown_radius_m": 4.368,
+      "query_radius_m": 5.868,
+      "scene_eligible": true,
+      "confidence": "higher_relative_confidence",
+      "ground_navd88_m": 292.364,
+      "ground_z": -11.236,
+      "canopy_height_m": 14.068,
+      "top_z": 2.833,
+      "observed_connected_envelope_diameter_m": 12.309,
+      "observed_height_p95_cell_envelope_m": 14.068,
+      "observed_height_p95_points_m": 13.163,
+      "observed_height_p99_cell_envelope_m": 14.34,
+      "support": {
+        "local_ground_returns": 1754,
+        "ground_plane_rmse_m": 0.042,
+        "accepted_elevated_returns": 7002,
+        "connected_canopy_cells_1m": 119,
+        "cell_height_p90_minus_p10_m": 8.249,
+        "nearest_supported_cell_to_trace_m": 0.707,
+        "class1_returns_excluded_by_roof_plan": 0,
+        "nearby_class6_building_returns": 0,
+        "distance_to_cached_building_plan_m": 103.599,
+        "full_query_coverage": true
+      },
+      "ineligibility_reasons": [],
+      "risks": [
+        "2026 trace and 2022 lidar may describe different growth/removal/leaf state; do not claim current surveyed height.",
+        "Trace center uncertainty is typically 2\u20135m; measured envelope can span neighboring crowns or miss an offset top.",
+        "Class1 is unclassified; broad support and roof masks reduce but cannot eliminate non-vegetation objects."
+      ]
+    },
+    {
+      "tree_array_index": 49,
+      "tree_id": "tree_050",
+      "center_px": [
+        1471.3,
+        434.0
+      ],
+      "position": [
+        22.183,
+        154.451
+      ],
+      "trace_crown_radius_m": 3.849,
+      "query_radius_m": 5.349,
+      "scene_eligible": true,
+      "confidence": "medium",
+      "ground_navd88_m": 292.625,
+      "ground_z": -10.975,
+      "canopy_height_m": 13.542,
+      "top_z": 2.566,
+      "observed_connected_envelope_diameter_m": 5.863,
+      "observed_height_p95_cell_envelope_m": 13.542,
+      "observed_height_p95_points_m": 13.093,
+      "observed_height_p99_cell_envelope_m": 13.585,
+      "support": {
+        "local_ground_returns": 1432,
+        "ground_plane_rmse_m": 0.046,
+        "accepted_elevated_returns": 997,
+        "connected_canopy_cells_1m": 27,
+        "cell_height_p90_minus_p10_m": 7.733,
+        "nearest_supported_cell_to_trace_m": 2.55,
+        "class1_returns_excluded_by_roof_plan": 0,
+        "nearby_class6_building_returns": 0,
+        "distance_to_cached_building_plan_m": 95.5,
+        "full_query_coverage": true
+      },
+      "ineligibility_reasons": [],
+      "risks": [
+        "2026 trace and 2022 lidar may describe different growth/removal/leaf state; do not claim current surveyed height.",
+        "Trace center uncertainty is typically 2\u20135m; measured envelope can span neighboring crowns or miss an offset top.",
+        "Class1 is unclassified; broad support and roof masks reduce but cannot eliminate non-vegetation objects."
+      ]
+    },
+    {
+      "tree_array_index": 50,
+      "tree_id": "tree_051",
+      "center_px": [
+        1384.5,
+        427.1
+      ],
+      "position": [
+        9.332,
+        155.473
+      ],
+      "trace_crown_radius_m": 4.368,
+      "query_radius_m": 5.868,
+      "scene_eligible": true,
+      "confidence": "higher_relative_confidence",
+      "ground_navd88_m": 292.438,
+      "ground_z": -11.162,
+      "canopy_height_m": 14.581,
+      "top_z": 3.419,
+      "observed_connected_envelope_diameter_m": 12.412,
+      "observed_height_p95_cell_envelope_m": 14.581,
+      "observed_height_p95_points_m": 13.871,
+      "observed_height_p99_cell_envelope_m": 15.0,
+      "support": {
+        "local_ground_returns": 1770,
+        "ground_plane_rmse_m": 0.035,
+        "accepted_elevated_returns": 8172,
+        "connected_canopy_cells_1m": 121,
+        "cell_height_p90_minus_p10_m": 3.723,
+        "nearest_supported_cell_to_trace_m": 0.707,
+        "class1_returns_excluded_by_roof_plan": 0,
+        "nearby_class6_building_returns": 0,
+        "distance_to_cached_building_plan_m": 96.751,
+        "full_query_coverage": true
+      },
+      "ineligibility_reasons": [],
+      "risks": [
+        "2026 trace and 2022 lidar may describe different growth/removal/leaf state; do not claim current surveyed height.",
+        "Trace center uncertainty is typically 2\u20135m; measured envelope can span neighboring crowns or miss an offset top.",
+        "Class1 is unclassified; broad support and roof masks reduce but cannot eliminate non-vegetation objects."
+      ]
+    },
+    {
+      "tree_array_index": 51,
+      "tree_id": "tree_052",
+      "center_px": [
+        1518.2,
+        508.7
+      ],
+      "position": [
+        29.127,
+        143.392
+      ],
+      "trace_crown_radius_m": 3.849,
+      "query_radius_m": 5.349,
+      "scene_eligible": false,
+      "confidence": "low_ineligible",
+      "ground_navd88_m": 293.278,
+      "ground_z": -10.322,
+      "canopy_height_m": null,
+      "top_z": null,
+      "observed_connected_envelope_diameter_m": null,
+      "observed_height_p95_cell_envelope_m": null,
+      "observed_height_p95_points_m": null,
+      "observed_height_p99_cell_envelope_m": null,
+      "support": {
+        "local_ground_returns": 2280,
+        "ground_plane_rmse_m": 0.031,
+        "accepted_elevated_returns": 0,
+        "connected_canopy_cells_1m": 0,
+        "cell_height_p90_minus_p10_m": null,
+        "nearest_supported_cell_to_trace_m": null,
+        "class1_returns_excluded_by_roof_plan": 0,
+        "nearby_class6_building_returns": 0,
+        "distance_to_cached_building_plan_m": 84.324,
+        "full_query_coverage": true
+      },
+      "ineligibility_reasons": [
+        "insufficient_connected_canopy_support",
+        "canopy_support_offset_from_uncertain_trace"
+      ],
+      "risks": [
+        "2026 trace and 2022 lidar may describe different growth/removal/leaf state; do not claim current surveyed height.",
+        "Trace center uncertainty is typically 2\u20135m; measured envelope can span neighboring crowns or miss an offset top.",
+        "Class1 is unclassified; broad support and roof masks reduce but cannot eliminate non-vegetation objects."
+      ]
+    },
+    {
+      "tree_array_index": 52,
+      "tree_id": "tree_053",
+      "center_px": [
+        1671.1,
+        102.4
+      ],
+      "position": [
+        51.764,
+        203.547
+      ],
+      "trace_crown_radius_m": 4.116,
+      "query_radius_m": 5.616,
+      "scene_eligible": false,
+      "confidence": "low_ineligible",
+      "ground_navd88_m": 292.158,
+      "ground_z": -11.442,
+      "canopy_height_m": null,
+      "top_z": null,
+      "observed_connected_envelope_diameter_m": null,
+      "observed_height_p95_cell_envelope_m": null,
+      "observed_height_p95_points_m": null,
+      "observed_height_p99_cell_envelope_m": null,
+      "support": {
+        "local_ground_returns": 2231,
+        "ground_plane_rmse_m": 0.039,
+        "accepted_elevated_returns": 0,
+        "connected_canopy_cells_1m": 0,
+        "cell_height_p90_minus_p10_m": null,
+        "nearest_supported_cell_to_trace_m": null,
+        "class1_returns_excluded_by_roof_plan": 0,
+        "nearby_class6_building_returns": 0,
+        "distance_to_cached_building_plan_m": 145.754,
+        "full_query_coverage": true
+      },
+      "ineligibility_reasons": [
+        "insufficient_connected_canopy_support",
+        "canopy_support_offset_from_uncertain_trace"
+      ],
+      "risks": [
+        "2026 trace and 2022 lidar may describe different growth/removal/leaf state; do not claim current surveyed height.",
+        "Trace center uncertainty is typically 2\u20135m; measured envelope can span neighboring crowns or miss an offset top.",
+        "Class1 is unclassified; broad support and roof masks reduce but cannot eliminate non-vegetation objects."
+      ]
+    },
+    {
+      "tree_array_index": 53,
+      "tree_id": "tree_054",
+      "center_px": [
+        743.5,
+        414.9
+      ],
+      "position": [
+        -85.572,
+        157.279
+      ],
+      "trace_crown_radius_m": 4.368,
+      "query_radius_m": 5.868,
+      "scene_eligible": true,
+      "confidence": "higher_relative_confidence",
+      "ground_navd88_m": 293.081,
+      "ground_z": -10.519,
+      "canopy_height_m": 3.261,
+      "top_z": -7.258,
+      "observed_connected_envelope_diameter_m": 4.37,
+      "observed_height_p95_cell_envelope_m": 3.261,
+      "observed_height_p95_points_m": 3.034,
+      "observed_height_p99_cell_envelope_m": 3.297,
+      "support": {
+        "local_ground_returns": 1569,
+        "ground_plane_rmse_m": 0.077,
+        "accepted_elevated_returns": 361,
+        "connected_canopy_cells_1m": 15,
+        "cell_height_p90_minus_p10_m": 0.832,
+        "nearest_supported_cell_to_trace_m": 0.707,
+        "class1_returns_excluded_by_roof_plan": 0,
+        "nearby_class6_building_returns": 0,
+        "distance_to_cached_building_plan_m": 135.163,
+        "full_query_coverage": true
+      },
+      "ineligibility_reasons": [],
+      "risks": [
+        "2026 trace and 2022 lidar may describe different growth/removal/leaf state; do not claim current surveyed height.",
+        "Trace center uncertainty is typically 2\u20135m; measured envelope can span neighboring crowns or miss an offset top.",
+        "Class1 is unclassified; broad support and roof masks reduce but cannot eliminate non-vegetation objects."
+      ]
+    },
+    {
+      "tree_array_index": 54,
+      "tree_id": "tree_055",
+      "center_px": [
+        814.7,
+        413.2
+      ],
+      "position": [
+        -75.031,
+        157.531
+      ],
+      "trace_crown_radius_m": 3.849,
+      "query_radius_m": 5.349,
+      "scene_eligible": true,
+      "confidence": "higher_relative_confidence",
+      "ground_navd88_m": 293.533,
+      "ground_z": -10.067,
+      "canopy_height_m": 7.876,
+      "top_z": -2.191,
+      "observed_connected_envelope_diameter_m": 11.056,
+      "observed_height_p95_cell_envelope_m": 7.876,
+      "observed_height_p95_points_m": 7.39,
+      "observed_height_p99_cell_envelope_m": 9.302,
+      "support": {
+        "local_ground_returns": 1994,
+        "ground_plane_rmse_m": 0.127,
+        "accepted_elevated_returns": 3925,
+        "connected_canopy_cells_1m": 96,
+        "cell_height_p90_minus_p10_m": 3.146,
+        "nearest_supported_cell_to_trace_m": 0.707,
+        "class1_returns_excluded_by_roof_plan": 0,
+        "nearby_class6_building_returns": 0,
+        "distance_to_cached_building_plan_m": 131.667,
+        "full_query_coverage": true
+      },
+      "ineligibility_reasons": [],
+      "risks": [
+        "2026 trace and 2022 lidar may describe different growth/removal/leaf state; do not claim current surveyed height.",
+        "Trace center uncertainty is typically 2\u20135m; measured envelope can span neighboring crowns or miss an offset top.",
+        "Class1 is unclassified; broad support and roof masks reduce but cannot eliminate non-vegetation objects."
+      ]
+    },
+    {
+      "tree_array_index": 55,
+      "tree_id": "tree_056",
+      "center_px": [
+        922.4,
+        442.7
+      ],
+      "position": [
+        -59.085,
+        153.163
+      ],
+      "trace_crown_radius_m": 4.116,
+      "query_radius_m": 5.616,
+      "scene_eligible": true,
+      "confidence": "higher_relative_confidence",
+      "ground_navd88_m": 292.48,
+      "ground_z": -11.12,
+      "canopy_height_m": 13.211,
+      "top_z": 2.091,
+      "observed_connected_envelope_diameter_m": 12.309,
+      "observed_height_p95_cell_envelope_m": 13.211,
+      "observed_height_p95_points_m": 12.317,
+      "observed_height_p99_cell_envelope_m": 13.659,
+      "support": {
+        "local_ground_returns": 1509,
+        "ground_plane_rmse_m": 0.05,
+        "accepted_elevated_returns": 5734,
+        "connected_canopy_cells_1m": 119,
+        "cell_height_p90_minus_p10_m": 6.405,
+        "nearest_supported_cell_to_trace_m": 0.707,
+        "class1_returns_excluded_by_roof_plan": 0,
+        "nearby_class6_building_returns": 0,
+        "distance_to_cached_building_plan_m": 118.195,
+        "full_query_coverage": true
+      },
+      "ineligibility_reasons": [],
+      "risks": [
+        "2026 trace and 2022 lidar may describe different growth/removal/leaf state; do not claim current surveyed height.",
+        "Trace center uncertainty is typically 2\u20135m; measured envelope can span neighboring crowns or miss an offset top.",
+        "Class1 is unclassified; broad support and roof masks reduce but cannot eliminate non-vegetation objects."
+      ]
+    },
+    {
+      "tree_array_index": 56,
+      "tree_id": "tree_057",
+      "center_px": [
+        986.7,
+        491.3
+      ],
+      "position": [
+        -49.565,
+        145.968
+      ],
+      "trace_crown_radius_m": 4.368,
+      "query_radius_m": 5.868,
+      "scene_eligible": true,
+      "confidence": "higher_relative_confidence",
+      "ground_navd88_m": 292.675,
+      "ground_z": -10.925,
+      "canopy_height_m": 14.121,
+      "top_z": 3.196,
+      "observed_connected_envelope_diameter_m": 12.361,
+      "observed_height_p95_cell_envelope_m": 14.121,
+      "observed_height_p95_points_m": 13.355,
+      "observed_height_p99_cell_envelope_m": 14.223,
+      "support": {
+        "local_ground_returns": 1595,
+        "ground_plane_rmse_m": 0.034,
+        "accepted_elevated_returns": 8809,
+        "connected_canopy_cells_1m": 120,
+        "cell_height_p90_minus_p10_m": 3.517,
+        "nearest_supported_cell_to_trace_m": 0.707,
+        "class1_returns_excluded_by_roof_plan": 0,
+        "nearby_class6_building_returns": 0,
+        "distance_to_cached_building_plan_m": 106.77,
+        "full_query_coverage": true
+      },
+      "ineligibility_reasons": [],
+      "risks": [
+        "2026 trace and 2022 lidar may describe different growth/removal/leaf state; do not claim current surveyed height.",
+        "Trace center uncertainty is typically 2\u20135m; measured envelope can span neighboring crowns or miss an offset top.",
+        "Class1 is unclassified; broad support and roof masks reduce but cannot eliminate non-vegetation objects."
+      ]
+    },
+    {
+      "tree_array_index": 57,
+      "tree_id": "tree_058",
+      "center_px": [
+        1099.6,
+        489.6
+      ],
+      "position": [
+        -32.85,
+        146.22
+      ],
+      "trace_crown_radius_m": 3.849,
+      "query_radius_m": 5.349,
+      "scene_eligible": true,
+      "confidence": "higher_relative_confidence",
+      "ground_navd88_m": 292.821,
+      "ground_z": -10.779,
+      "canopy_height_m": 11.205,
+      "top_z": 0.425,
+      "observed_connected_envelope_diameter_m": 8.215,
+      "observed_height_p95_cell_envelope_m": 11.205,
+      "observed_height_p95_points_m": 10.511,
+      "observed_height_p99_cell_envelope_m": 11.785,
+      "support": {
+        "local_ground_returns": 1902,
+        "ground_plane_rmse_m": 0.037,
+        "accepted_elevated_returns": 1654,
+        "connected_canopy_cells_1m": 53,
+        "cell_height_p90_minus_p10_m": 7.203,
+        "nearest_supported_cell_to_trace_m": 0.707,
+        "class1_returns_excluded_by_roof_plan": 0,
+        "nearby_class6_building_returns": 0,
+        "distance_to_cached_building_plan_m": 98.305,
+        "full_query_coverage": true
+      },
+      "ineligibility_reasons": [],
+      "risks": [
+        "2026 trace and 2022 lidar may describe different growth/removal/leaf state; do not claim current surveyed height.",
+        "Trace center uncertainty is typically 2\u20135m; measured envelope can span neighboring crowns or miss an offset top.",
+        "Class1 is unclassified; broad support and roof masks reduce but cannot eliminate non-vegetation objects."
+      ]
+    },
+    {
+      "tree_array_index": 58,
+      "tree_id": "tree_059",
+      "center_px": [
+        1295.9,
+        593.8
+      ],
+      "position": [
+        -3.786,
+        130.792
+      ],
+      "trace_crown_radius_m": 4.368,
+      "query_radius_m": 5.868,
+      "scene_eligible": true,
+      "confidence": "higher_relative_confidence",
+      "ground_navd88_m": 293.781,
+      "ground_z": -9.819,
+      "canopy_height_m": 10.711,
+      "top_z": 0.893,
+      "observed_connected_envelope_diameter_m": 7.225,
+      "observed_height_p95_cell_envelope_m": 10.711,
+      "observed_height_p95_points_m": 10.043,
+      "observed_height_p99_cell_envelope_m": 11.2,
+      "support": {
+        "local_ground_returns": 2254,
+        "ground_plane_rmse_m": 0.031,
+        "accepted_elevated_returns": 1825,
+        "connected_canopy_cells_1m": 41,
+        "cell_height_p90_minus_p10_m": 6.157,
+        "nearest_supported_cell_to_trace_m": 0.707,
+        "class1_returns_excluded_by_roof_plan": 0,
+        "nearby_class6_building_returns": 0,
+        "distance_to_cached_building_plan_m": 73.749,
+        "full_query_coverage": true
+      },
+      "ineligibility_reasons": [],
+      "risks": [
+        "2026 trace and 2022 lidar may describe different growth/removal/leaf state; do not claim current surveyed height.",
+        "Trace center uncertainty is typically 2\u20135m; measured envelope can span neighboring crowns or miss an offset top.",
+        "Class1 is unclassified; broad support and roof masks reduce but cannot eliminate non-vegetation objects."
+      ]
+    },
+    {
+      "tree_array_index": 59,
+      "tree_id": "tree_060",
+      "center_px": [
+        1108.3,
+        647.6
+      ],
+      "position": [
+        -31.562,
+        122.827
+      ],
+      "trace_crown_radius_m": 3.849,
+      "query_radius_m": 5.349,
+      "scene_eligible": true,
+      "confidence": "higher_relative_confidence",
+      "ground_navd88_m": 293.866,
+      "ground_z": -9.734,
+      "canopy_height_m": 8.416,
+      "top_z": -1.318,
+      "observed_connected_envelope_diameter_m": 9.508,
+      "observed_height_p95_cell_envelope_m": 8.416,
+      "observed_height_p95_points_m": 7.953,
+      "observed_height_p99_cell_envelope_m": 8.645,
+      "support": {
+        "local_ground_returns": 2145,
+        "ground_plane_rmse_m": 0.027,
+        "accepted_elevated_returns": 2500,
+        "connected_canopy_cells_1m": 71,
+        "cell_height_p90_minus_p10_m": 5.37,
+        "nearest_supported_cell_to_trace_m": 0.707,
+        "class1_returns_excluded_by_roof_plan": 0,
+        "nearby_class6_building_returns": 0,
+        "distance_to_cached_building_plan_m": 77.493,
+        "full_query_coverage": true
+      },
+      "ineligibility_reasons": [],
+      "risks": [
+        "2026 trace and 2022 lidar may describe different growth/removal/leaf state; do not claim current surveyed height.",
+        "Trace center uncertainty is typically 2\u20135m; measured envelope can span neighboring crowns or miss an offset top.",
+        "Class1 is unclassified; broad support and roof masks reduce but cannot eliminate non-vegetation objects."
+      ]
+    },
+    {
+      "tree_array_index": 60,
+      "tree_id": "tree_061",
+      "center_px": [
+        1031.8,
+        651.0
+      ],
+      "position": [
+        -42.888,
+        122.323
+      ],
+      "trace_crown_radius_m": 3.598,
+      "query_radius_m": 5.098,
+      "scene_eligible": true,
+      "confidence": "medium",
+      "ground_navd88_m": 293.904,
+      "ground_z": -9.696,
+      "canopy_height_m": 6.431,
+      "top_z": -3.265,
+      "observed_connected_envelope_diameter_m": 7.485,
+      "observed_height_p95_cell_envelope_m": 6.431,
+      "observed_height_p95_points_m": 5.998,
+      "observed_height_p99_cell_envelope_m": 7.099,
+      "support": {
+        "local_ground_returns": 2127,
+        "ground_plane_rmse_m": 0.046,
+        "accepted_elevated_returns": 1160,
+        "connected_canopy_cells_1m": 44,
+        "cell_height_p90_minus_p10_m": 3.556,
+        "nearest_supported_cell_to_trace_m": 1.581,
+        "class1_returns_excluded_by_roof_plan": 0,
+        "nearby_class6_building_returns": 0,
+        "distance_to_cached_building_plan_m": 84.005,
+        "full_query_coverage": true
+      },
+      "ineligibility_reasons": [],
+      "risks": [
+        "2026 trace and 2022 lidar may describe different growth/removal/leaf state; do not claim current surveyed height.",
+        "Trace center uncertainty is typically 2\u20135m; measured envelope can span neighboring crowns or miss an offset top.",
+        "Class1 is unclassified; broad support and roof masks reduce but cannot eliminate non-vegetation objects."
+      ]
+    },
+    {
+      "tree_array_index": 61,
+      "tree_id": "tree_062",
+      "center_px": [
+        1202.1,
+        631.9
+      ],
+      "position": [
+        -17.674,
+        125.151
+      ],
+      "trace_crown_radius_m": 3.346,
+      "query_radius_m": 4.846,
+      "scene_eligible": true,
+      "confidence": "higher_relative_confidence",
+      "ground_navd88_m": 293.841,
+      "ground_z": -9.759,
+      "canopy_height_m": 9.048,
+      "top_z": -0.711,
+      "observed_connected_envelope_diameter_m": 9.373,
+      "observed_height_p95_cell_envelope_m": 9.048,
+      "observed_height_p95_points_m": 8.546,
+      "observed_height_p99_cell_envelope_m": 9.458,
+      "support": {
+        "local_ground_returns": 2201,
+        "ground_plane_rmse_m": 0.025,
+        "accepted_elevated_returns": 3061,
+        "connected_canopy_cells_1m": 69,
+        "cell_height_p90_minus_p10_m": 3.471,
+        "nearest_supported_cell_to_trace_m": 0.707,
+        "class1_returns_excluded_by_roof_plan": 0,
+        "nearby_class6_building_returns": 0,
+        "distance_to_cached_building_plan_m": 72.735,
+        "full_query_coverage": true
+      },
+      "ineligibility_reasons": [],
+      "risks": [
+        "2026 trace and 2022 lidar may describe different growth/removal/leaf state; do not claim current surveyed height.",
+        "Trace center uncertainty is typically 2\u20135m; measured envelope can span neighboring crowns or miss an offset top.",
+        "Class1 is unclassified; broad support and roof masks reduce but cannot eliminate non-vegetation objects."
+      ]
+    },
+    {
+      "tree_array_index": 62,
+      "tree_id": "tree_063",
+      "center_px": [
+        1085.7,
+        783.0
+      ],
+      "position": [
+        -34.908,
+        102.78
+      ],
+      "trace_crown_radius_m": 3.598,
+      "query_radius_m": 5.098,
+      "scene_eligible": false,
+      "confidence": "low_ineligible",
+      "ground_navd88_m": null,
+      "ground_z": null,
+      "canopy_height_m": null,
+      "top_z": null,
+      "observed_connected_envelope_diameter_m": null,
+      "observed_height_p95_cell_envelope_m": null,
+      "observed_height_p95_points_m": null,
+      "observed_height_p99_cell_envelope_m": null,
+      "support": {
+        "local_ground_returns": 19,
+        "ground_plane_rmse_m": null,
+        "accepted_elevated_returns": 0,
+        "connected_canopy_cells_1m": 0,
+        "cell_height_p90_minus_p10_m": null,
+        "nearest_supported_cell_to_trace_m": null,
+        "class1_returns_excluded_by_roof_plan": 0,
+        "nearby_class6_building_returns": 0,
+        "distance_to_cached_building_plan_m": 64.353,
+        "full_query_coverage": true
+      },
+      "ineligibility_reasons": [
+        "insufficient_or_rough_local_ground",
+        "insufficient_connected_canopy_support",
+        "canopy_support_offset_from_uncertain_trace"
+      ],
+      "risks": [
+        "2026 trace and 2022 lidar may describe different growth/removal/leaf state; do not claim current surveyed height.",
+        "Trace center uncertainty is typically 2\u20135m; measured envelope can span neighboring crowns or miss an offset top.",
+        "Class1 is unclassified; broad support and roof masks reduce but cannot eliminate non-vegetation objects."
+      ]
+    },
+    {
+      "tree_array_index": 63,
+      "tree_id": "tree_064",
+      "center_px": [
+        1273.3,
+        803.8
+      ],
+      "position": [
+        -7.132,
+        99.7
+      ],
+      "trace_crown_radius_m": 3.08,
+      "query_radius_m": 4.58,
+      "scene_eligible": false,
+      "confidence": "low_ineligible",
+      "ground_navd88_m": 292.492,
+      "ground_z": -11.108,
+      "canopy_height_m": null,
+      "top_z": null,
+      "observed_connected_envelope_diameter_m": null,
+      "observed_height_p95_cell_envelope_m": null,
+      "observed_height_p95_points_m": null,
+      "observed_height_p99_cell_envelope_m": null,
+      "support": {
+        "local_ground_returns": 1010,
+        "ground_plane_rmse_m": 0.044,
+        "accepted_elevated_returns": 0,
+        "connected_canopy_cells_1m": 0,
+        "cell_height_p90_minus_p10_m": null,
+        "nearest_supported_cell_to_trace_m": null,
+        "class1_returns_excluded_by_roof_plan": 0,
+        "nearby_class6_building_returns": 0,
+        "distance_to_cached_building_plan_m": 45.205,
+        "full_query_coverage": true
+      },
+      "ineligibility_reasons": [
+        "insufficient_connected_canopy_support",
+        "canopy_support_offset_from_uncertain_trace"
+      ],
+      "risks": [
+        "2026 trace and 2022 lidar may describe different growth/removal/leaf state; do not claim current surveyed height.",
+        "Trace center uncertainty is typically 2\u20135m; measured envelope can span neighboring crowns or miss an offset top.",
+        "Class1 is unclassified; broad support and roof masks reduce but cannot eliminate non-vegetation objects."
+      ]
+    },
+    {
+      "tree_array_index": 64,
+      "tree_id": "tree_065",
+      "center_px": [
+        851.2,
+        560.8
+      ],
+      "position": [
+        -69.627,
+        135.678
+      ],
+      "trace_crown_radius_m": 3.346,
+      "query_radius_m": 4.846,
+      "scene_eligible": true,
+      "confidence": "medium",
+      "ground_navd88_m": 292.75,
+      "ground_z": -10.85,
+      "canopy_height_m": 4.26,
+      "top_z": -6.59,
+      "observed_connected_envelope_diameter_m": 5.171,
+      "observed_height_p95_cell_envelope_m": 4.26,
+      "observed_height_p95_points_m": 4.017,
+      "observed_height_p99_cell_envelope_m": 4.309,
+      "support": {
+        "local_ground_returns": 887,
+        "ground_plane_rmse_m": 0.16,
+        "accepted_elevated_returns": 515,
+        "connected_canopy_cells_1m": 21,
+        "cell_height_p90_minus_p10_m": 1.533,
+        "nearest_supported_cell_to_trace_m": 1.581,
+        "class1_returns_excluded_by_roof_plan": 0,
+        "nearby_class6_building_returns": 0,
+        "distance_to_cached_building_plan_m": 112.183,
+        "full_query_coverage": true
+      },
+      "ineligibility_reasons": [],
+      "risks": [
+        "2026 trace and 2022 lidar may describe different growth/removal/leaf state; do not claim current surveyed height.",
+        "Trace center uncertainty is typically 2\u20135m; measured envelope can span neighboring crowns or miss an offset top.",
+        "Class1 is unclassified; broad support and roof masks reduce but cannot eliminate non-vegetation objects."
+      ]
+    },
+    {
+      "tree_array_index": 65,
+      "tree_id": "tree_066",
+      "center_px": [
+        277.9,
+        765.6
+      ],
+      "position": [
+        -154.507,
+        105.356
+      ],
+      "trace_crown_radius_m": 4.886,
+      "query_radius_m": 6.0,
+      "scene_eligible": true,
+      "confidence": "higher_relative_confidence",
+      "ground_navd88_m": 292.03,
+      "ground_z": -11.57,
+      "canopy_height_m": 11.737,
+      "top_z": 0.167,
+      "observed_connected_envelope_diameter_m": 9.837,
+      "observed_height_p95_cell_envelope_m": 11.737,
+      "observed_height_p95_points_m": 10.992,
+      "observed_height_p99_cell_envelope_m": 12.799,
+      "support": {
+        "local_ground_returns": 1509,
+        "ground_plane_rmse_m": 0.033,
+        "accepted_elevated_returns": 2960,
+        "connected_canopy_cells_1m": 76,
+        "cell_height_p90_minus_p10_m": 5.554,
+        "nearest_supported_cell_to_trace_m": 0.707,
+        "class1_returns_excluded_by_roof_plan": 0,
+        "nearby_class6_building_returns": 0,
+        "distance_to_cached_building_plan_m": 81.748,
+        "full_query_coverage": true
+      },
+      "ineligibility_reasons": [],
+      "risks": [
+        "2026 trace and 2022 lidar may describe different growth/removal/leaf state; do not claim current surveyed height.",
+        "Trace center uncertainty is typically 2\u20135m; measured envelope can span neighboring crowns or miss an offset top.",
+        "Class1 is unclassified; broad support and roof masks reduce but cannot eliminate non-vegetation objects."
+      ]
+    },
+    {
+      "tree_array_index": 66,
+      "tree_id": "tree_067",
+      "center_px": [
+        416.9,
+        765.6
+      ],
+      "position": [
+        -133.928,
+        105.356
+      ],
+      "trace_crown_radius_m": 5.138,
+      "query_radius_m": 6.0,
+      "scene_eligible": true,
+      "confidence": "higher_relative_confidence",
+      "ground_navd88_m": 292.136,
+      "ground_z": -11.464,
+      "canopy_height_m": 15.915,
+      "top_z": 4.451,
+      "observed_connected_envelope_diameter_m": 12.412,
+      "observed_height_p95_cell_envelope_m": 15.915,
+      "observed_height_p95_points_m": 15.294,
+      "observed_height_p99_cell_envelope_m": 16.17,
+      "support": {
+        "local_ground_returns": 1346,
+        "ground_plane_rmse_m": 0.031,
+        "accepted_elevated_returns": 7823,
+        "connected_canopy_cells_1m": 121,
+        "cell_height_p90_minus_p10_m": 11.697,
+        "nearest_supported_cell_to_trace_m": 0.707,
+        "class1_returns_excluded_by_roof_plan": 0,
+        "nearby_class6_building_returns": 0,
+        "distance_to_cached_building_plan_m": 78.593,
+        "full_query_coverage": true
+      },
+      "ineligibility_reasons": [],
+      "risks": [
+        "2026 trace and 2022 lidar may describe different growth/removal/leaf state; do not claim current surveyed height.",
+        "Trace center uncertainty is typically 2\u20135m; measured envelope can span neighboring crowns or miss an offset top.",
+        "Class1 is unclassified; broad support and roof masks reduce but cannot eliminate non-vegetation objects."
+      ]
+    },
+    {
+      "tree_array_index": 67,
+      "tree_id": "tree_068",
+      "center_px": [
+        474.2,
+        717.0
+      ],
+      "position": [
+        -125.444,
+        112.552
+      ],
+      "trace_crown_radius_m": 4.368,
+      "query_radius_m": 5.868,
+      "scene_eligible": true,
+      "confidence": "higher_relative_confidence",
+      "ground_navd88_m": 292.286,
+      "ground_z": -11.314,
+      "canopy_height_m": 13.299,
+      "top_z": 1.985,
+      "observed_connected_envelope_diameter_m": 11.888,
+      "observed_height_p95_cell_envelope_m": 13.299,
+      "observed_height_p95_points_m": 11.401,
+      "observed_height_p99_cell_envelope_m": 13.793,
+      "support": {
+        "local_ground_returns": 1401,
+        "ground_plane_rmse_m": 0.045,
+        "accepted_elevated_returns": 5766,
+        "connected_canopy_cells_1m": 111,
+        "cell_height_p90_minus_p10_m": 7.58,
+        "nearest_supported_cell_to_trace_m": 0.707,
+        "class1_returns_excluded_by_roof_plan": 0,
+        "nearby_class6_building_returns": 0,
+        "distance_to_cached_building_plan_m": 85.093,
+        "full_query_coverage": true
+      },
+      "ineligibility_reasons": [],
+      "risks": [
+        "2026 trace and 2022 lidar may describe different growth/removal/leaf state; do not claim current surveyed height.",
+        "Trace center uncertainty is typically 2\u20135m; measured envelope can span neighboring crowns or miss an offset top.",
+        "Class1 is unclassified; broad support and roof masks reduce but cannot eliminate non-vegetation objects."
+      ]
+    },
+    {
+      "tree_array_index": 68,
+      "tree_id": "tree_069",
+      "center_px": [
+        420.4,
+        590.3
+      ],
+      "position": [
+        -133.409,
+        131.31
+      ],
+      "trace_crown_radius_m": 5.404,
+      "query_radius_m": 6.0,
+      "scene_eligible": true,
+      "confidence": "higher_relative_confidence",
+      "ground_navd88_m": 292.222,
+      "ground_z": -11.378,
+      "canopy_height_m": 13.414,
+      "top_z": 2.035,
+      "observed_connected_envelope_diameter_m": 12.616,
+      "observed_height_p95_cell_envelope_m": 13.414,
+      "observed_height_p95_points_m": 12.483,
+      "observed_height_p99_cell_envelope_m": 13.615,
+      "support": {
+        "local_ground_returns": 1481,
+        "ground_plane_rmse_m": 0.042,
+        "accepted_elevated_returns": 7284,
+        "connected_canopy_cells_1m": 125,
+        "cell_height_p90_minus_p10_m": 5.123,
+        "nearest_supported_cell_to_trace_m": 0.707,
+        "class1_returns_excluded_by_roof_plan": 0,
+        "nearby_class6_building_returns": 0,
+        "distance_to_cached_building_plan_m": 104.316,
+        "full_query_coverage": true
+      },
+      "ineligibility_reasons": [],
+      "risks": [
+        "2026 trace and 2022 lidar may describe different growth/removal/leaf state; do not claim current surveyed height.",
+        "Trace center uncertainty is typically 2\u20135m; measured envelope can span neighboring crowns or miss an offset top.",
+        "Class1 is unclassified; broad support and roof masks reduce but cannot eliminate non-vegetation objects."
+      ]
+    },
+    {
+      "tree_array_index": 69,
+      "tree_id": "tree_070",
+      "center_px": [
+        430.8,
+        494.8
+      ],
+      "position": [
+        -131.87,
+        145.45
+      ],
+      "trace_crown_radius_m": 4.116,
+      "query_radius_m": 5.616,
+      "scene_eligible": true,
+      "confidence": "higher_relative_confidence",
+      "ground_navd88_m": 292.451,
+      "ground_z": -11.149,
+      "canopy_height_m": 11.255,
+      "top_z": 0.106,
+      "observed_connected_envelope_diameter_m": 12.205,
+      "observed_height_p95_cell_envelope_m": 11.255,
+      "observed_height_p95_points_m": 10.542,
+      "observed_height_p99_cell_envelope_m": 11.374,
+      "support": {
+        "local_ground_returns": 1801,
+        "ground_plane_rmse_m": 0.084,
+        "accepted_elevated_returns": 5767,
+        "connected_canopy_cells_1m": 117,
+        "cell_height_p90_minus_p10_m": 4.603,
+        "nearest_supported_cell_to_trace_m": 0.707,
+        "class1_returns_excluded_by_roof_plan": 0,
+        "nearby_class6_building_returns": 0,
+        "distance_to_cached_building_plan_m": 118.275,
+        "full_query_coverage": true
+      },
+      "ineligibility_reasons": [],
+      "risks": [
+        "2026 trace and 2022 lidar may describe different growth/removal/leaf state; do not claim current surveyed height.",
+        "Trace center uncertainty is typically 2\u20135m; measured envelope can span neighboring crowns or miss an offset top.",
+        "Class1 is unclassified; broad support and roof masks reduce but cannot eliminate non-vegetation objects."
+      ]
+    },
+    {
+      "tree_array_index": 70,
+      "tree_id": "tree_071",
+      "center_px": [
+        302.3,
+        555.6
+      ],
+      "position": [
+        -150.895,
+        136.448
+      ],
+      "trace_crown_radius_m": 4.634,
+      "query_radius_m": 6.0,
+      "scene_eligible": true,
+      "confidence": "higher_relative_confidence",
+      "ground_navd88_m": 292.256,
+      "ground_z": -11.344,
+      "canopy_height_m": 12.124,
+      "top_z": 0.78,
+      "observed_connected_envelope_diameter_m": 12.616,
+      "observed_height_p95_cell_envelope_m": 12.124,
+      "observed_height_p95_points_m": 10.445,
+      "observed_height_p99_cell_envelope_m": 12.692,
+      "support": {
+        "local_ground_returns": 1580,
+        "ground_plane_rmse_m": 0.038,
+        "accepted_elevated_returns": 6059,
+        "connected_canopy_cells_1m": 125,
+        "cell_height_p90_minus_p10_m": 4.793,
+        "nearest_supported_cell_to_trace_m": 0.707,
+        "class1_returns_excluded_by_roof_plan": 0,
+        "nearby_class6_building_returns": 0,
+        "distance_to_cached_building_plan_m": 112.003,
+        "full_query_coverage": true
+      },
+      "ineligibility_reasons": [],
+      "risks": [
+        "2026 trace and 2022 lidar may describe different growth/removal/leaf state; do not claim current surveyed height.",
+        "Trace center uncertainty is typically 2\u20135m; measured envelope can span neighboring crowns or miss an offset top.",
+        "Class1 is unclassified; broad support and roof masks reduce but cannot eliminate non-vegetation objects."
+      ]
+    },
+    {
+      "tree_array_index": 71,
+      "tree_id": "tree_072",
+      "center_px": [
+        232.8,
+        590.3
+      ],
+      "position": [
+        -161.185,
+        131.31
+      ],
+      "trace_crown_radius_m": 5.404,
+      "query_radius_m": 6.0,
+      "scene_eligible": true,
+      "confidence": "higher_relative_confidence",
+      "ground_navd88_m": 292.176,
+      "ground_z": -11.424,
+      "canopy_height_m": 7.841,
+      "top_z": -3.583,
+      "observed_connected_envelope_diameter_m": 12.565,
+      "observed_height_p95_cell_envelope_m": 7.841,
+      "observed_height_p95_points_m": 7.434,
+      "observed_height_p99_cell_envelope_m": 9.744,
+      "support": {
+        "local_ground_returns": 1467,
+        "ground_plane_rmse_m": 0.039,
+        "accepted_elevated_returns": 5756,
+        "connected_canopy_cells_1m": 124,
+        "cell_height_p90_minus_p10_m": 3.232,
+        "nearest_supported_cell_to_trace_m": 0.707,
+        "class1_returns_excluded_by_roof_plan": 0,
+        "nearby_class6_building_returns": 0,
+        "distance_to_cached_building_plan_m": 108.507,
+        "full_query_coverage": true
+      },
+      "ineligibility_reasons": [],
+      "risks": [
+        "2026 trace and 2022 lidar may describe different growth/removal/leaf state; do not claim current surveyed height.",
+        "Trace center uncertainty is typically 2\u20135m; measured envelope can span neighboring crowns or miss an offset top.",
+        "Class1 is unclassified; broad support and roof masks reduce but cannot eliminate non-vegetation objects."
+      ]
+    },
+    {
+      "tree_array_index": 72,
+      "tree_id": "tree_073",
+      "center_px": [
+        199.8,
+        732.6
+      ],
+      "position": [
+        -166.07,
+        110.242
+      ],
+      "trace_crown_radius_m": 5.656,
+      "query_radius_m": 6.0,
+      "scene_eligible": false,
+      "confidence": "low_ineligible",
+      "ground_navd88_m": 292.176,
+      "ground_z": -11.424,
+      "canopy_height_m": null,
+      "top_z": null,
+      "observed_connected_envelope_diameter_m": 8.885,
+      "observed_height_p95_cell_envelope_m": 10.725,
+      "observed_height_p95_points_m": 10.409,
+      "observed_height_p99_cell_envelope_m": 10.831,
+      "support": {
+        "local_ground_returns": 3003,
+        "ground_plane_rmse_m": 0.056,
+        "accepted_elevated_returns": 2671,
+        "connected_canopy_cells_1m": 62,
+        "cell_height_p90_minus_p10_m": 5.636,
+        "nearest_supported_cell_to_trace_m": 0.707,
+        "class1_returns_excluded_by_roof_plan": 0,
+        "nearby_class6_building_returns": 0,
+        "distance_to_cached_building_plan_m": 89.329,
+        "full_query_coverage": false
+      },
+      "ineligibility_reasons": [
+        "query_circle_outside_cached_lidar_coverage"
+      ],
+      "risks": [
+        "2026 trace and 2022 lidar may describe different growth/removal/leaf state; do not claim current surveyed height.",
+        "Trace center uncertainty is typically 2\u20135m; measured envelope can span neighboring crowns or miss an offset top.",
+        "Class1 is unclassified; broad support and roof masks reduce but cannot eliminate non-vegetation objects."
+      ]
+    },
+    {
+      "tree_array_index": 73,
+      "tree_id": "tree_074",
+      "center_px": [
+        180.7,
+        968.8
+      ],
+      "position": [
+        -168.898,
+        75.271
+      ],
+      "trace_crown_radius_m": 5.138,
+      "query_radius_m": 6.0,
+      "scene_eligible": false,
+      "confidence": "low_ineligible",
+      "ground_navd88_m": 292.083,
+      "ground_z": -11.517,
+      "canopy_height_m": null,
+      "top_z": null,
+      "observed_connected_envelope_diameter_m": 9.373,
+      "observed_height_p95_cell_envelope_m": 17.612,
+      "observed_height_p95_points_m": 15.701,
+      "observed_height_p99_cell_envelope_m": 18.256,
+      "support": {
+        "local_ground_returns": 2518,
+        "ground_plane_rmse_m": 0.027,
+        "accepted_elevated_returns": 4836,
+        "connected_canopy_cells_1m": 69,
+        "cell_height_p90_minus_p10_m": 11.366,
+        "nearest_supported_cell_to_trace_m": 0.707,
+        "class1_returns_excluded_by_roof_plan": 0,
+        "nearby_class6_building_returns": 0,
+        "distance_to_cached_building_plan_m": 58.353,
+        "full_query_coverage": false
+      },
+      "ineligibility_reasons": [
+        "query_circle_outside_cached_lidar_coverage"
+      ],
+      "risks": [
+        "2026 trace and 2022 lidar may describe different growth/removal/leaf state; do not claim current surveyed height.",
+        "Trace center uncertainty is typically 2\u20135m; measured envelope can span neighboring crowns or miss an offset top.",
+        "Class1 is unclassified; broad support and roof masks reduce but cannot eliminate non-vegetation objects."
+      ]
+    },
+    {
+      "tree_array_index": 74,
+      "tree_id": "tree_075",
+      "center_px": [
+        201.5,
+        1213.5
+      ],
+      "position": [
+        -165.819,
+        39.042
+      ],
+      "trace_crown_radius_m": 5.138,
+      "query_radius_m": 6.0,
+      "scene_eligible": true,
+      "confidence": "higher_relative_confidence",
+      "ground_navd88_m": 293.26,
+      "ground_z": -10.34,
+      "canopy_height_m": 13.049,
+      "top_z": 2.708,
+      "observed_connected_envelope_diameter_m": 12.616,
+      "observed_height_p95_cell_envelope_m": 13.049,
+      "observed_height_p95_points_m": 11.94,
+      "observed_height_p99_cell_envelope_m": 14.633,
+      "support": {
+        "local_ground_returns": 2221,
+        "ground_plane_rmse_m": 0.095,
+        "accepted_elevated_returns": 7716,
+        "connected_canopy_cells_1m": 125,
+        "cell_height_p90_minus_p10_m": 6.822,
+        "nearest_supported_cell_to_trace_m": 0.707,
+        "class1_returns_excluded_by_roof_plan": 0,
+        "nearby_class6_building_returns": 0,
+        "distance_to_cached_building_plan_m": 25.42,
+        "full_query_coverage": true
+      },
+      "ineligibility_reasons": [],
+      "risks": [
+        "2026 trace and 2022 lidar may describe different growth/removal/leaf state; do not claim current surveyed height.",
+        "Trace center uncertainty is typically 2\u20135m; measured envelope can span neighboring crowns or miss an offset top.",
+        "Class1 is unclassified; broad support and roof masks reduce but cannot eliminate non-vegetation objects."
+      ]
+    },
+    {
+      "tree_array_index": 75,
+      "tree_id": "tree_076",
+      "center_px": [
+        97.3,
+        1248.3
+      ],
+      "position": [
+        -181.246,
+        33.889
+      ],
+      "trace_crown_radius_m": 4.368,
+      "query_radius_m": 5.868,
+      "scene_eligible": false,
+      "confidence": "low_ineligible",
+      "ground_navd88_m": null,
+      "ground_z": null,
+      "canopy_height_m": null,
+      "top_z": null,
+      "observed_connected_envelope_diameter_m": null,
+      "observed_height_p95_cell_envelope_m": null,
+      "observed_height_p95_points_m": null,
+      "observed_height_p99_cell_envelope_m": null,
+      "support": {
+        "local_ground_returns": 0,
+        "ground_plane_rmse_m": null,
+        "accepted_elevated_returns": 0,
+        "connected_canopy_cells_1m": 0,
+        "cell_height_p90_minus_p10_m": null,
+        "nearest_supported_cell_to_trace_m": null,
+        "class1_returns_excluded_by_roof_plan": 0,
+        "nearby_class6_building_returns": 0,
+        "distance_to_cached_building_plan_m": 27.426,
+        "full_query_coverage": false
+      },
+      "ineligibility_reasons": [
+        "insufficient_or_rough_local_ground",
+        "insufficient_connected_canopy_support",
+        "canopy_support_offset_from_uncertain_trace",
+        "query_circle_outside_cached_lidar_coverage"
+      ],
+      "risks": [
+        "2026 trace and 2022 lidar may describe different growth/removal/leaf state; do not claim current surveyed height.",
+        "Trace center uncertainty is typically 2\u20135m; measured envelope can span neighboring crowns or miss an offset top.",
+        "Class1 is unclassified; broad support and roof masks reduce but cannot eliminate non-vegetation objects."
+      ]
+    },
+    {
+      "tree_array_index": 76,
+      "tree_id": "tree_077",
+      "center_px": [
+        2833.2,
+        338.5
+      ],
+      "position": [
+        223.82,
+        168.591
+      ],
+      "trace_crown_radius_m": 4.886,
+      "query_radius_m": 6.0,
+      "scene_eligible": false,
+      "confidence": "low_ineligible",
+      "ground_navd88_m": 303.434,
+      "ground_z": -0.166,
+      "canopy_height_m": null,
+      "top_z": null,
+      "observed_connected_envelope_diameter_m": null,
+      "observed_height_p95_cell_envelope_m": null,
+      "observed_height_p95_points_m": 2.738,
+      "observed_height_p99_cell_envelope_m": null,
+      "support": {
+        "local_ground_returns": 2210,
+        "ground_plane_rmse_m": 0.039,
+        "accepted_elevated_returns": 73,
+        "connected_canopy_cells_1m": 0,
+        "cell_height_p90_minus_p10_m": null,
+        "nearest_supported_cell_to_trace_m": null,
+        "class1_returns_excluded_by_roof_plan": 0,
+        "nearby_class6_building_returns": 0,
+        "distance_to_cached_building_plan_m": 168.458,
+        "full_query_coverage": true
+      },
+      "ineligibility_reasons": [
+        "insufficient_connected_canopy_support",
+        "canopy_support_offset_from_uncertain_trace"
+      ],
+      "risks": [
+        "2026 trace and 2022 lidar may describe different growth/removal/leaf state; do not claim current surveyed height.",
+        "Trace center uncertainty is typically 2\u20135m; measured envelope can span neighboring crowns or miss an offset top.",
+        "Class1 is unclassified; broad support and roof masks reduce but cannot eliminate non-vegetation objects."
+      ]
+    },
+    {
+      "tree_array_index": 77,
+      "tree_id": "tree_078",
+      "center_px": [
+        2765.5,
+        638.9
+      ],
+      "position": [
+        213.797,
+        124.115
+      ],
+      "trace_crown_radius_m": 5.656,
+      "query_radius_m": 6.0,
+      "scene_eligible": false,
+      "confidence": "low_ineligible",
+      "ground_navd88_m": 307.888,
+      "ground_z": 4.288,
+      "canopy_height_m": null,
+      "top_z": null,
+      "observed_connected_envelope_diameter_m": null,
+      "observed_height_p95_cell_envelope_m": null,
+      "observed_height_p95_points_m": null,
+      "observed_height_p99_cell_envelope_m": null,
+      "support": {
+        "local_ground_returns": 2327,
+        "ground_plane_rmse_m": 0.029,
+        "accepted_elevated_returns": 0,
+        "connected_canopy_cells_1m": 0,
+        "cell_height_p90_minus_p10_m": null,
+        "nearest_supported_cell_to_trace_m": null,
+        "class1_returns_excluded_by_roof_plan": 0,
+        "nearby_class6_building_returns": 0,
+        "distance_to_cached_building_plan_m": 135.899,
+        "full_query_coverage": true
+      },
+      "ineligibility_reasons": [
+        "insufficient_connected_canopy_support",
+        "canopy_support_offset_from_uncertain_trace"
+      ],
+      "risks": [
+        "2026 trace and 2022 lidar may describe different growth/removal/leaf state; do not claim current surveyed height.",
+        "Trace center uncertainty is typically 2\u20135m; measured envelope can span neighboring crowns or miss an offset top.",
+        "Class1 is unclassified; broad support and roof masks reduce but cannot eliminate non-vegetation objects."
+      ]
+    },
+    {
+      "tree_array_index": 78,
+      "tree_id": "tree_079",
+      "center_px": [
+        2586.6,
+        642.4
+      ],
+      "position": [
+        187.31,
+        123.597
+      ],
+      "trace_crown_radius_m": 4.634,
+      "query_radius_m": 6.0,
+      "scene_eligible": false,
+      "confidence": "low_ineligible",
+      "ground_navd88_m": 304.085,
+      "ground_z": 0.485,
+      "canopy_height_m": null,
+      "top_z": null,
+      "observed_connected_envelope_diameter_m": null,
+      "observed_height_p95_cell_envelope_m": null,
+      "observed_height_p95_points_m": null,
+      "observed_height_p99_cell_envelope_m": null,
+      "support": {
+        "local_ground_returns": 2443,
+        "ground_plane_rmse_m": 0.028,
+        "accepted_elevated_returns": 0,
+        "connected_canopy_cells_1m": 0,
+        "cell_height_p90_minus_p10_m": null,
+        "nearest_supported_cell_to_trace_m": null,
+        "class1_returns_excluded_by_roof_plan": 0,
+        "nearby_class6_building_returns": 0,
+        "distance_to_cached_building_plan_m": 112.538,
+        "full_query_coverage": true
+      },
+      "ineligibility_reasons": [
+        "insufficient_connected_canopy_support",
+        "canopy_support_offset_from_uncertain_trace"
+      ],
+      "risks": [
+        "2026 trace and 2022 lidar may describe different growth/removal/leaf state; do not claim current surveyed height.",
+        "Trace center uncertainty is typically 2\u20135m; measured envelope can span neighboring crowns or miss an offset top.",
+        "Class1 is unclassified; broad support and roof masks reduce but cannot eliminate non-vegetation objects."
+      ]
+    },
+    {
+      "tree_array_index": 79,
+      "tree_id": "tree_080",
+      "center_px": [
+        2452.8,
+        472.2
+      ],
+      "position": [
+        167.5,
+        148.796
+      ],
+      "trace_crown_radius_m": 3.346,
+      "query_radius_m": 4.846,
+      "scene_eligible": false,
+      "confidence": "low_ineligible",
+      "ground_navd88_m": 303.929,
+      "ground_z": 0.329,
+      "canopy_height_m": null,
+      "top_z": null,
+      "observed_connected_envelope_diameter_m": null,
+      "observed_height_p95_cell_envelope_m": null,
+      "observed_height_p95_points_m": 2.234,
+      "observed_height_p99_cell_envelope_m": null,
+      "support": {
+        "local_ground_returns": 2381,
+        "ground_plane_rmse_m": 0.065,
+        "accepted_elevated_returns": 10,
+        "connected_canopy_cells_1m": 0,
+        "cell_height_p90_minus_p10_m": null,
+        "nearest_supported_cell_to_trace_m": null,
+        "class1_returns_excluded_by_roof_plan": 0,
+        "nearby_class6_building_returns": 0,
+        "distance_to_cached_building_plan_m": 113.803,
+        "full_query_coverage": true
+      },
+      "ineligibility_reasons": [
+        "insufficient_connected_canopy_support",
+        "canopy_support_offset_from_uncertain_trace"
+      ],
+      "risks": [
+        "2026 trace and 2022 lidar may describe different growth/removal/leaf state; do not claim current surveyed height.",
+        "Trace center uncertainty is typically 2\u20135m; measured envelope can span neighboring crowns or miss an offset top.",
+        "Class1 is unclassified; broad support and roof masks reduce but cannot eliminate non-vegetation objects."
+      ]
+    },
+    {
+      "tree_array_index": 80,
+      "tree_id": "tree_081",
+      "center_px": [
+        2914.9,
+        562.5
+      ],
+      "position": [
+        235.916,
+        135.426
+      ],
+      "trace_crown_radius_m": 4.886,
+      "query_radius_m": 6.0,
+      "scene_eligible": true,
+      "confidence": "higher_relative_confidence",
+      "ground_navd88_m": 302.393,
+      "ground_z": -1.207,
+      "canopy_height_m": 13.066,
+      "top_z": 11.859,
+      "observed_connected_envelope_diameter_m": 7.047,
+      "observed_height_p95_cell_envelope_m": 13.066,
+      "observed_height_p95_points_m": 12.421,
+      "observed_height_p99_cell_envelope_m": 13.379,
+      "support": {
+        "local_ground_returns": 2111,
+        "ground_plane_rmse_m": 0.044,
+        "accepted_elevated_returns": 2143,
+        "connected_canopy_cells_1m": 39,
+        "cell_height_p90_minus_p10_m": 4.534,
+        "nearest_supported_cell_to_trace_m": 0.707,
+        "class1_returns_excluded_by_roof_plan": 0,
+        "nearby_class6_building_returns": 0,
+        "distance_to_cached_building_plan_m": 160.743,
+        "full_query_coverage": true
+      },
+      "ineligibility_reasons": [],
+      "risks": [
+        "2026 trace and 2022 lidar may describe different growth/removal/leaf state; do not claim current surveyed height.",
+        "Trace center uncertainty is typically 2\u20135m; measured envelope can span neighboring crowns or miss an offset top.",
+        "Class1 is unclassified; broad support and roof masks reduce but cannot eliminate non-vegetation objects."
+      ]
+    },
+    {
+      "tree_array_index": 81,
+      "tree_id": "tree_082",
+      "center_px": [
+        988.4,
+        1932.3
+      ],
+      "position": [
+        -49.313,
+        -67.381
+      ],
+      "trace_crown_radius_m": 3.08,
+      "query_radius_m": 4.58,
+      "scene_eligible": false,
+      "confidence": "low_ineligible",
+      "ground_navd88_m": 303.056,
+      "ground_z": -0.544,
+      "canopy_height_m": null,
+      "top_z": null,
+      "observed_connected_envelope_diameter_m": null,
+      "observed_height_p95_cell_envelope_m": null,
+      "observed_height_p95_points_m": null,
+      "observed_height_p99_cell_envelope_m": null,
+      "support": {
+        "local_ground_returns": 2121,
+        "ground_plane_rmse_m": 0.035,
+        "accepted_elevated_returns": 0,
+        "connected_canopy_cells_1m": 0,
+        "cell_height_p90_minus_p10_m": null,
+        "nearest_supported_cell_to_trace_m": null,
+        "class1_returns_excluded_by_roof_plan": 0,
+        "nearby_class6_building_returns": 0,
+        "distance_to_cached_building_plan_m": 16.991,
+        "full_query_coverage": true
+      },
+      "ineligibility_reasons": [
+        "insufficient_connected_canopy_support",
+        "canopy_support_offset_from_uncertain_trace"
+      ],
+      "risks": [
+        "2026 trace and 2022 lidar may describe different growth/removal/leaf state; do not claim current surveyed height.",
+        "Trace center uncertainty is typically 2\u20135m; measured envelope can span neighboring crowns or miss an offset top.",
+        "Class1 is unclassified; broad support and roof masks reduce but cannot eliminate non-vegetation objects."
+      ]
+    },
+    {
+      "tree_array_index": 82,
+      "tree_id": "tree_083",
+      "center_px": [
+        1087.4,
+        1925.3
+      ],
+      "position": [
+        -34.656,
+        -66.345
+      ],
+      "trace_crown_radius_m": 2.576,
+      "query_radius_m": 4.076,
+      "scene_eligible": false,
+      "confidence": "low_ineligible",
+      "ground_navd88_m": 303.306,
+      "ground_z": -0.294,
+      "canopy_height_m": null,
+      "top_z": null,
+      "observed_connected_envelope_diameter_m": null,
+      "observed_height_p95_cell_envelope_m": null,
+      "observed_height_p95_points_m": null,
+      "observed_height_p99_cell_envelope_m": null,
+      "support": {
+        "local_ground_returns": 2221,
+        "ground_plane_rmse_m": 0.025,
+        "accepted_elevated_returns": 0,
+        "connected_canopy_cells_1m": 0,
+        "cell_height_p90_minus_p10_m": null,
+        "nearest_supported_cell_to_trace_m": null,
+        "class1_returns_excluded_by_roof_plan": 0,
+        "nearby_class6_building_returns": 0,
+        "distance_to_cached_building_plan_m": 12.199,
+        "full_query_coverage": true
+      },
+      "ineligibility_reasons": [
+        "insufficient_connected_canopy_support",
+        "canopy_support_offset_from_uncertain_trace"
+      ],
+      "risks": [
+        "2026 trace and 2022 lidar may describe different growth/removal/leaf state; do not claim current surveyed height.",
+        "Trace center uncertainty is typically 2\u20135m; measured envelope can span neighboring crowns or miss an offset top.",
+        "Class1 is unclassified; broad support and roof masks reduce but cannot eliminate non-vegetation objects."
+      ]
+    },
+    {
+      "tree_array_index": 83,
+      "tree_id": "tree_084",
+      "center_px": [
+        1584.3,
+        1939.2
+      ],
+      "position": [
+        38.913,
+        -68.403
+      ],
+      "trace_crown_radius_m": 3.08,
+      "query_radius_m": 4.58,
+      "scene_eligible": false,
+      "confidence": "low_ineligible",
+      "ground_navd88_m": 303.316,
+      "ground_z": -0.284,
+      "canopy_height_m": null,
+      "top_z": null,
+      "observed_connected_envelope_diameter_m": null,
+      "observed_height_p95_cell_envelope_m": null,
+      "observed_height_p95_points_m": null,
+      "observed_height_p99_cell_envelope_m": null,
+      "support": {
+        "local_ground_returns": 2287,
+        "ground_plane_rmse_m": 0.014,
+        "accepted_elevated_returns": 0,
+        "connected_canopy_cells_1m": 0,
+        "cell_height_p90_minus_p10_m": null,
+        "nearest_supported_cell_to_trace_m": null,
+        "class1_returns_excluded_by_roof_plan": 0,
+        "nearby_class6_building_returns": 0,
+        "distance_to_cached_building_plan_m": 10.471,
+        "full_query_coverage": true
+      },
+      "ineligibility_reasons": [
+        "insufficient_connected_canopy_support",
+        "canopy_support_offset_from_uncertain_trace"
+      ],
+      "risks": [
+        "2026 trace and 2022 lidar may describe different growth/removal/leaf state; do not claim current surveyed height.",
+        "Trace center uncertainty is typically 2\u20135m; measured envelope can span neighboring crowns or miss an offset top.",
+        "Class1 is unclassified; broad support and roof masks reduce but cannot eliminate non-vegetation objects."
+      ]
+    },
+    {
+      "tree_array_index": 84,
+      "tree_id": "tree_085",
+      "center_px": [
+        1695.4,
+        2029.5
+      ],
+      "position": [
+        55.362,
+        -81.772
+      ],
+      "trace_crown_radius_m": 2.828,
+      "query_radius_m": 4.328,
+      "scene_eligible": false,
+      "confidence": "low_ineligible",
+      "ground_navd88_m": 303.264,
+      "ground_z": -0.336,
+      "canopy_height_m": null,
+      "top_z": null,
+      "observed_connected_envelope_diameter_m": null,
+      "observed_height_p95_cell_envelope_m": null,
+      "observed_height_p95_points_m": null,
+      "observed_height_p99_cell_envelope_m": null,
+      "support": {
+        "local_ground_returns": 2286,
+        "ground_plane_rmse_m": 0.015,
+        "accepted_elevated_returns": 0,
+        "connected_canopy_cells_1m": 0,
+        "cell_height_p90_minus_p10_m": null,
+        "nearest_supported_cell_to_trace_m": null,
+        "class1_returns_excluded_by_roof_plan": 0,
+        "nearby_class6_building_returns": 0,
+        "distance_to_cached_building_plan_m": 18.316,
+        "full_query_coverage": true
+      },
+      "ineligibility_reasons": [
+        "insufficient_connected_canopy_support",
+        "canopy_support_offset_from_uncertain_trace"
+      ],
+      "risks": [
+        "2026 trace and 2022 lidar may describe different growth/removal/leaf state; do not claim current surveyed height.",
+        "Trace center uncertainty is typically 2\u20135m; measured envelope can span neighboring crowns or miss an offset top.",
+        "Class1 is unclassified; broad support and roof masks reduce but cannot eliminate non-vegetation objects."
+      ]
+    },
+    {
+      "tree_array_index": 85,
+      "tree_id": "tree_086",
+      "center_px": [
+        1627.7,
+        1875.0
+      ],
+      "position": [
+        45.339,
+        -58.897
+      ],
+      "trace_crown_radius_m": 3.08,
+      "query_radius_m": 4.58,
+      "scene_eligible": true,
+      "confidence": "higher_relative_confidence",
+      "ground_navd88_m": 303.235,
+      "ground_z": -0.365,
+      "canopy_height_m": 6.992,
+      "top_z": 6.627,
+      "observed_connected_envelope_diameter_m": 6.383,
+      "observed_height_p95_cell_envelope_m": 6.992,
+      "observed_height_p95_points_m": 6.74,
+      "observed_height_p99_cell_envelope_m": 7.619,
+      "support": {
+        "local_ground_returns": 1291,
+        "ground_plane_rmse_m": 0.035,
+        "accepted_elevated_returns": 1087,
+        "connected_canopy_cells_1m": 32,
+        "cell_height_p90_minus_p10_m": 4.334,
+        "nearest_supported_cell_to_trace_m": 0.707,
+        "class1_returns_excluded_by_roof_plan": 0,
+        "nearby_class6_building_returns": 0,
+        "distance_to_cached_building_plan_m": 21.478,
+        "full_query_coverage": true
+      },
+      "ineligibility_reasons": [],
+      "risks": [
+        "2026 trace and 2022 lidar may describe different growth/removal/leaf state; do not claim current surveyed height.",
+        "Trace center uncertainty is typically 2\u20135m; measured envelope can span neighboring crowns or miss an offset top.",
+        "Class1 is unclassified; broad support and roof masks reduce but cannot eliminate non-vegetation objects."
+      ]
+    },
+    {
+      "tree_array_index": 86,
+      "tree_id": "tree_087",
+      "center_px": [
+        849.4,
+        2185.8
+      ],
+      "position": [
+        -69.893,
+        -104.913
+      ],
+      "trace_crown_radius_m": 2.828,
+      "query_radius_m": 4.328,
+      "scene_eligible": true,
+      "confidence": "higher_relative_confidence",
+      "ground_navd88_m": 302.533,
+      "ground_z": -1.067,
+      "canopy_height_m": 7.495,
+      "top_z": 6.427,
+      "observed_connected_envelope_diameter_m": 6.956,
+      "observed_height_p95_cell_envelope_m": 7.495,
+      "observed_height_p95_points_m": 7.305,
+      "observed_height_p99_cell_envelope_m": 7.734,
+      "support": {
+        "local_ground_returns": 2297,
+        "ground_plane_rmse_m": 0.043,
+        "accepted_elevated_returns": 1516,
+        "connected_canopy_cells_1m": 38,
+        "cell_height_p90_minus_p10_m": 1.876,
+        "nearest_supported_cell_to_trace_m": 0.707,
+        "class1_returns_excluded_by_roof_plan": 0,
+        "nearby_class6_building_returns": 0,
+        "distance_to_cached_building_plan_m": 30.977,
+        "full_query_coverage": true
+      },
+      "ineligibility_reasons": [],
+      "risks": [
+        "2026 trace and 2022 lidar may describe different growth/removal/leaf state; do not claim current surveyed height.",
+        "Trace center uncertainty is typically 2\u20135m; measured envelope can span neighboring crowns or miss an offset top.",
+        "Class1 is unclassified; broad support and roof masks reduce but cannot eliminate non-vegetation objects."
+      ]
+    },
+    {
+      "tree_array_index": 87,
+      "tree_id": "tree_088",
+      "center_px": [
+        847.7,
+        2256.9
+      ],
+      "position": [
+        -70.145,
+        -115.44
+      ],
+      "trace_crown_radius_m": 2.828,
+      "query_radius_m": 4.328,
+      "scene_eligible": true,
+      "confidence": "higher_relative_confidence",
+      "ground_navd88_m": 302.929,
+      "ground_z": -0.671,
+      "canopy_height_m": 8.876,
+      "top_z": 8.205,
+      "observed_connected_envelope_diameter_m": 7.047,
+      "observed_height_p95_cell_envelope_m": 8.876,
+      "observed_height_p95_points_m": 8.451,
+      "observed_height_p99_cell_envelope_m": 8.939,
+      "support": {
+        "local_ground_returns": 1879,
+        "ground_plane_rmse_m": 0.021,
+        "accepted_elevated_returns": 1513,
+        "connected_canopy_cells_1m": 39,
+        "cell_height_p90_minus_p10_m": 3.615,
+        "nearest_supported_cell_to_trace_m": 0.707,
+        "class1_returns_excluded_by_roof_plan": 0,
+        "nearby_class6_building_returns": 0,
+        "distance_to_cached_building_plan_m": 31.162,
+        "full_query_coverage": true
+      },
+      "ineligibility_reasons": [],
+      "risks": [
+        "2026 trace and 2022 lidar may describe different growth/removal/leaf state; do not claim current surveyed height.",
+        "Trace center uncertainty is typically 2\u20135m; measured envelope can span neighboring crowns or miss an offset top.",
+        "Class1 is unclassified; broad support and roof masks reduce but cannot eliminate non-vegetation objects."
+      ]
+    },
+    {
+      "tree_array_index": 88,
+      "tree_id": "tree_089",
+      "center_px": [
+        844.2,
+        2333.3
+      ],
+      "position": [
+        -70.663,
+        -126.751
+      ],
+      "trace_crown_radius_m": 2.828,
+      "query_radius_m": 4.328,
+      "scene_eligible": true,
+      "confidence": "medium",
+      "ground_navd88_m": 303.102,
+      "ground_z": -0.498,
+      "canopy_height_m": 6.392,
+      "top_z": 5.894,
+      "observed_connected_envelope_diameter_m": 3.568,
+      "observed_height_p95_cell_envelope_m": 6.392,
+      "observed_height_p95_points_m": 6.211,
+      "observed_height_p99_cell_envelope_m": 6.694,
+      "support": {
+        "local_ground_returns": 2255,
+        "ground_plane_rmse_m": 0.019,
+        "accepted_elevated_returns": 251,
+        "connected_canopy_cells_1m": 10,
+        "cell_height_p90_minus_p10_m": 1.052,
+        "nearest_supported_cell_to_trace_m": 2.121,
+        "class1_returns_excluded_by_roof_plan": 0,
+        "nearby_class6_building_returns": 0,
+        "distance_to_cached_building_plan_m": 31.608,
+        "full_query_coverage": true
+      },
+      "ineligibility_reasons": [],
+      "risks": [
+        "2026 trace and 2022 lidar may describe different growth/removal/leaf state; do not claim current surveyed height.",
+        "Trace center uncertainty is typically 2\u20135m; measured envelope can span neighboring crowns or miss an offset top.",
+        "Class1 is unclassified; broad support and roof masks reduce but cannot eliminate non-vegetation objects."
+      ]
+    },
+    {
+      "tree_array_index": 89,
+      "tree_id": "tree_090",
+      "center_px": [
+        852.9,
+        2416.7
+      ],
+      "position": [
+        -69.375,
+        -139.099
+      ],
+      "trace_crown_radius_m": 3.08,
+      "query_radius_m": 4.58,
+      "scene_eligible": true,
+      "confidence": "medium",
+      "ground_navd88_m": 303.341,
+      "ground_z": -0.259,
+      "canopy_height_m": 5.45,
+      "top_z": 5.191,
+      "observed_connected_envelope_diameter_m": 5.971,
+      "observed_height_p95_cell_envelope_m": 5.45,
+      "observed_height_p95_points_m": 4.966,
+      "observed_height_p99_cell_envelope_m": 6.251,
+      "support": {
+        "local_ground_returns": 1662,
+        "ground_plane_rmse_m": 0.024,
+        "accepted_elevated_returns": 620,
+        "connected_canopy_cells_1m": 28,
+        "cell_height_p90_minus_p10_m": 2.09,
+        "nearest_supported_cell_to_trace_m": 1.581,
+        "class1_returns_excluded_by_roof_plan": 0,
+        "nearby_class6_building_returns": 0,
+        "distance_to_cached_building_plan_m": 30.548,
+        "full_query_coverage": true
+      },
+      "ineligibility_reasons": [],
+      "risks": [
+        "2026 trace and 2022 lidar may describe different growth/removal/leaf state; do not claim current surveyed height.",
+        "Trace center uncertainty is typically 2\u20135m; measured envelope can span neighboring crowns or miss an offset top.",
+        "Class1 is unclassified; broad support and roof masks reduce but cannot eliminate non-vegetation objects."
+      ]
+    },
+    {
+      "tree_array_index": 90,
+      "tree_id": "tree_091",
+      "center_px": [
+        2770.7,
+        2199.7
+      ],
+      "position": [
+        214.567,
+        -106.971
+      ],
+      "trace_crown_radius_m": 4.116,
+      "query_radius_m": 5.616,
+      "scene_eligible": false,
+      "confidence": "low_ineligible",
+      "ground_navd88_m": 308.337,
+      "ground_z": 4.737,
+      "canopy_height_m": null,
+      "top_z": null,
+      "observed_connected_envelope_diameter_m": null,
+      "observed_height_p95_cell_envelope_m": null,
+      "observed_height_p95_points_m": null,
+      "observed_height_p99_cell_envelope_m": null,
+      "support": {
+        "local_ground_returns": 2351,
+        "ground_plane_rmse_m": 0.034,
+        "accepted_elevated_returns": 0,
+        "connected_canopy_cells_1m": 0,
+        "cell_height_p90_minus_p10_m": null,
+        "nearest_supported_cell_to_trace_m": null,
+        "class1_returns_excluded_by_roof_plan": 0,
+        "nearby_class6_building_returns": 0,
+        "distance_to_cached_building_plan_m": 29.073,
+        "full_query_coverage": true
+      },
+      "ineligibility_reasons": [
+        "insufficient_connected_canopy_support",
+        "canopy_support_offset_from_uncertain_trace"
+      ],
+      "risks": [
+        "2026 trace and 2022 lidar may describe different growth/removal/leaf state; do not claim current surveyed height.",
+        "Trace center uncertainty is typically 2\u20135m; measured envelope can span neighboring crowns or miss an offset top.",
+        "Class1 is unclassified; broad support and roof masks reduce but cannot eliminate non-vegetation objects."
+      ]
+    },
+    {
+      "tree_array_index": 91,
+      "tree_id": "tree_092",
+      "center_px": [
+        2841.9,
+        2326.4
+      ],
+      "position": [
+        225.108,
+        -125.73
+      ],
+      "trace_crown_radius_m": 3.598,
+      "query_radius_m": 5.098,
+      "scene_eligible": false,
+      "confidence": "low_ineligible",
+      "ground_navd88_m": 308.919,
+      "ground_z": 5.319,
+      "canopy_height_m": null,
+      "top_z": null,
+      "observed_connected_envelope_diameter_m": null,
+      "observed_height_p95_cell_envelope_m": null,
+      "observed_height_p95_points_m": null,
+      "observed_height_p99_cell_envelope_m": null,
+      "support": {
+        "local_ground_returns": 2295,
+        "ground_plane_rmse_m": 0.191,
+        "accepted_elevated_returns": 0,
+        "connected_canopy_cells_1m": 0,
+        "cell_height_p90_minus_p10_m": null,
+        "nearest_supported_cell_to_trace_m": null,
+        "class1_returns_excluded_by_roof_plan": 0,
+        "nearby_class6_building_returns": 0,
+        "distance_to_cached_building_plan_m": 39.429,
+        "full_query_coverage": true
+      },
+      "ineligibility_reasons": [
+        "insufficient_connected_canopy_support",
+        "canopy_support_offset_from_uncertain_trace"
+      ],
+      "risks": [
+        "2026 trace and 2022 lidar may describe different growth/removal/leaf state; do not claim current surveyed height.",
+        "Trace center uncertainty is typically 2\u20135m; measured envelope can span neighboring crowns or miss an offset top.",
+        "Class1 is unclassified; broad support and roof masks reduce but cannot eliminate non-vegetation objects."
+      ]
+    }
+  ]
+}

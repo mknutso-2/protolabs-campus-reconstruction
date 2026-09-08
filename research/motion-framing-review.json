@@ -1,0 +1,512 @@
+{
+  "master_sha256": "7dd2ff5a1253f1153e70c4ba09a1bb7806c3d326b950d91c629635bb5cc43cc0",
+  "master_unchanged_after_read": true,
+  "source_or_camera_edits": false,
+  "renders": 0,
+  "proposal_only": false,
+  "paused_sample_status": "Only frames 61 and 62 exist; incomplete and unaccepted. Frame 61 was viewed solely to corroborate clipping.",
+  "projection_calibration_max_ndc_error": 1.523701373962183e-07,
+  "evaluated_object_count": 1154,
+  "evaluated_vertex_count": 140147,
+  "proposal": {
+    "radius_m": [
+      145,
+      119.0
+    ],
+    "lens_mm": [
+      28,
+      30
+    ],
+    "target": [
+      55.0,
+      16.0,
+      3.5
+    ],
+    "theta_degrees": [
+      -52,
+      -30
+    ],
+    "height_m": [
+      29,
+      16
+    ],
+    "minimum_margin_fraction": 0.0507434447060785,
+    "worst_frame": 144,
+    "global_pixel_extrema": [
+      305.7338437112049,
+      281.1902073264517,
+      1215.0483907762195,
+      533.0714055547357
+    ]
+  },
+  "path_seconds": 6,
+  "fps": 24,
+  "frames": 144,
+  "smoothstep": "u=t*t*(3-2*t), t=(frame-1)/143",
+  "formula": {
+    "theta_degrees": "-52+22*u",
+    "radius_m": "145-26*u",
+    "height_m": "29-13*u",
+    "lens_mm": "28+2*u",
+    "target": [
+      55,
+      16,
+      3.5
+    ]
+  },
+  "minimum_endpoint_radius_for_exact_5pct_m": 118.81563635185651,
+  "diagnostic_frames": [
+    {
+      "frame": 1,
+      "radius_m": 145.0,
+      "lens_mm": 28.0,
+      "position": [
+        144.27091392222047,
+        -98.2615592729747,
+        29.0
+      ],
+      "pixel_extrema": [
+        324.1445070638365,
+        284.4205527376753,
+        1034.7218405262638,
+        522.1003376710094
+      ],
+      "limiting_objects": [
+        "West frontage projecting stair",
+        "Roof plant white screen",
+        "White metal fascia.001",
+        "Monument sign base"
+      ],
+      "minimum_margin_fraction": 0.19162356208885645,
+      "groups": {
+        "NE_wing": {
+          "pixel_extrema": [
+            794.05275119617,
+            331.1337928082572,
+            1034.7218405262638,
+            433.68818360721514
+          ]
+        },
+        "connector": {
+          "pixel_extrema": [
+            572.238299239804,
+            337.38421991458324,
+            814.6956223696375,
+            441.59977898551904
+          ]
+        },
+        "entrance": {
+          "pixel_extrema": [
+            585.1599041217263,
+            364.6004958857722,
+            734.7183052598473,
+            421.1812695852343
+          ]
+        },
+        "flag": {
+          "pixel_extrema": [
+            723.7740160013352,
+            336.1635887606774,
+            746.7388946044887,
+            447.03176552261965
+          ]
+        },
+        "main": {
+          "pixel_extrema": [
+            324.1445070638365,
+            292.0509885893484,
+            779.3625365581247,
+            435.36236696219237
+          ]
+        },
+        "monument": {
+          "pixel_extrema": [
+            664.8334803193284,
+            486.3460715572827,
+            702.3475764476975,
+            522.1003376710094
+          ]
+        },
+        "roof_mechanical": {
+          "pixel_extrema": [
+            444.89242037422605,
+            284.4205527376753,
+            936.1124629928337,
+            356.09185190406936
+          ]
+        },
+        "roof_truss": {
+          "pixel_extrema": [
+            672.7884720280695,
+            298.4094935993729,
+            837.4535588015959,
+            428.78344842924497
+          ]
+        }
+      },
+      "full_vertices_match_convex_hull_extrema": true
+    },
+    {
+      "frame": 61,
+      "radius_m": 135.10931852635605,
+      "lens_mm": 28.760821651818766,
+      "position": [
+        152.79200248345074,
+        -77.2268856228347,
+        24.054659263178017
+      ],
+      "pixel_extrema": [
+        333.45573926044784,
+        281.74215004393665,
+        1087.4854300331183,
+        531.1156851017893
+      ],
+      "limiting_objects": [
+        "West frontage projecting stair",
+        "Roof plant white screen",
+        "White metal fascia.001",
+        "Monument sign base"
+      ],
+      "minimum_margin_fraction": 0.15040200778662638,
+      "groups": {
+        "NE_wing": {
+          "pixel_extrema": [
+            805.5354399179857,
+            335.08288172637356,
+            1087.4854300331183,
+            455.125591022824
+          ]
+        },
+        "connector": {
+          "pixel_extrema": [
+            550.4420470732598,
+            341.3798794528594,
+            854.7314424888101,
+            452.0553659951323
+          ]
+        },
+        "entrance": {
+          "pixel_extrema": [
+            560.5933962243047,
+            361.28845052107096,
+            722.0088117485604,
+            425.72118423749
+          ]
+        },
+        "flag": {
+          "pixel_extrema": [
+            683.4469450330951,
+            325.7102345731125,
+            706.0253805145436,
+            453.38867710251697
+          ]
+        },
+        "main": {
+          "pixel_extrema": [
+            333.45573926044784,
+            293.57341828528166,
+            815.9503380924511,
+            439.8225570508726
+          ]
+        },
+        "monument": {
+          "pixel_extrema": [
+            556.4290311759354,
+            491.24551097643365,
+            605.8684516798803,
+            531.1156851017893
+          ]
+        },
+        "roof_mechanical": {
+          "pixel_extrema": [
+            453.7417222192239,
+            281.74215004393665,
+            980.7860803390184,
+            360.44386709628066
+          ]
+        },
+        "roof_truss": {
+          "pixel_extrema": [
+            629.4364496869081,
+            298.8258718916248,
+            880.181203603455,
+            433.33788009746957
+          ]
+        }
+      },
+      "full_vertices_match_convex_hull_extrema": true
+    },
+    {
+      "frame": 72,
+      "radius_m": 132.1363614135388,
+      "lens_mm": 28.989510660497018,
+      "position": [
+        154.54980019519388,
+        -70.88990326100217,
+        22.56818070676939
+      ],
+      "pixel_extrema": [
+        337.7255636432916,
+        281.35904315560634,
+        1104.1453772140535,
+        532.4691249341338
+      ],
+      "limiting_objects": [
+        "West frontage projecting stair",
+        "Roof plant white screen",
+        "White metal fascia.001",
+        "Monument sign base"
+      ],
+      "minimum_margin_fraction": 0.13738642405152068,
+      "groups": {
+        "NE_wing": {
+          "pixel_extrema": [
+            808.5947055306906,
+            336.36175445953796,
+            1104.1453772140535,
+            462.07729061625014
+          ]
+        },
+        "connector": {
+          "pixel_extrema": [
+            543.5190746503208,
+            342.7741134432274,
+            867.7147947664043,
+            455.19940296362734
+          ]
+        },
+        "entrance": {
+          "pixel_extrema": [
+            552.6369641111805,
+            360.0978548528568,
+            716.9306128895488,
+            426.78100252590053
+          ]
+        },
+        "flag": {
+          "pixel_extrema": [
+            668.5749997193124,
+            321.4637346118801,
+            690.7464285996607,
+            454.77523420116455
+          ]
+        },
+        "main": {
+          "pixel_extrema": [
+            337.7255636432916,
+            294.48813333375045,
+            827.8365059008129,
+            441.14568107805655
+          ]
+        },
+        "monument": {
+          "pixel_extrema": [
+            517.3791785697425,
+            491.3625865592592,
+            570.5538206945354,
+            532.4691249341338
+          ]
+        },
+        "roof_mechanical": {
+          "pixel_extrema": [
+            456.34094401288706,
+            281.35904315560634,
+            994.9606076554443,
+            362.08116646264625
+          ]
+        },
+        "roof_truss": {
+          "pixel_extrema": [
+            614.1115310429915,
+            298.9522337185568,
+            894.0330136507504,
+            434.3121139215489
+          ]
+        }
+      },
+      "full_vertices_match_convex_hull_extrema": true
+    },
+    {
+      "frame": 84,
+      "radius_m": 128.89068147364395,
+      "lens_mm": 29.239178348181234,
+      "position": [
+        156.05403241068743,
+        -64.0055642082479,
+        20.945340736821983
+      ],
+      "pixel_extrema": [
+        343.17610685999637,
+        281.19173074933894,
+        1122.942696977351,
+        533.0663989696939
+      ],
+      "limiting_objects": [
+        "West frontage projecting stair",
+        "Roof plant white screen",
+        "White metal fascia.001",
+        "Monument sign base"
+      ],
+      "minimum_margin_fraction": 0.1227010179864445,
+      "groups": {
+        "NE_wing": {
+          "pixel_extrema": [
+            811.6769701855001,
+            337.78126765247856,
+            1122.942696977351,
+            469.9111897633304
+          ]
+        },
+        "connector": {
+          "pixel_extrema": [
+            535.7778359104445,
+            344.39061623888307,
+            882.4397121169562,
+            458.607802072531
+          ]
+        },
+        "entrance": {
+          "pixel_extrema": [
+            543.6555575480139,
+            358.69543123990474,
+            710.6396516365787,
+            427.7353731118498
+          ]
+        },
+        "flag": {
+          "pixel_extrema": [
+            650.7346304981209,
+            316.1500807946982,
+            672.2797886292674,
+            455.94340433747436
+          ]
+        },
+        "main": {
+          "pixel_extrema": [
+            343.17610685999637,
+            295.74800668446966,
+            841.3238688616939,
+            442.58837444888906
+          ]
+        },
+        "monument": {
+          "pixel_extrema": [
+            471.1119019055621,
+            490.61760350855286,
+            528.3673671735255,
+            533.0663989696939
+          ]
+        },
+        "roof_mechanical": {
+          "pixel_extrema": [
+            459.73912643468276,
+            281.19173074933894,
+            1010.8553521938179,
+            363.71296164189874
+          ]
+        },
+        "roof_truss": {
+          "pixel_extrema": [
+            596.0895876583776,
+            299.0598727500536,
+            909.742771928152,
+            435.1169751905217
+          ]
+        }
+      },
+      "full_vertices_match_convex_hull_extrema": true
+    },
+    {
+      "frame": 144,
+      "radius_m": 119.0,
+      "lens_mm": 30.0,
+      "position": [
+        158.05702305034822,
+        -43.49999999999999,
+        16.0
+      ],
+      "pixel_extrema": [
+        305.7338437112049,
+        282.50692287748495,
+        1215.0483907762195,
+        528.1133240771835
+      ],
+      "limiting_objects": [
+        "Monument sign base",
+        "Roof plant white screen",
+        "White metal fascia.001",
+        "Monument sign base"
+      ],
+      "minimum_margin_fraction": 0.0507434447060785,
+      "groups": {
+        "NE_wing": {
+          "pixel_extrema": [
+            818.9924935333295,
+            342.00172770595987,
+            1215.0483907762195,
+            495.01755042025263
+          ]
+        },
+        "connector": {
+          "pixel_extrema": [
+            511.11096932576856,
+            349.82765660873406,
+            931.2623468838954,
+            468.62894648671033
+          ]
+        },
+        "entrance": {
+          "pixel_extrema": [
+            514.4559200155122,
+            353.7885088340191,
+            686.0507263786574,
+            429.048162049279
+          ]
+        },
+        "flag": {
+          "pixel_extrema": [
+            584.0835177140013,
+            294.92893290667575,
+            603.2721411236272,
+            456.76927955329506
+          ]
+        },
+        "main": {
+          "pixel_extrema": [
+            364.9387326203414,
+            301.20311946257135,
+            886.0834327904981,
+            447.05087083249606
+          ]
+        },
+        "monument": {
+          "pixel_extrema": [
+            305.7338437112049,
+            481.65392533218375,
+            374.88707690756434,
+            528.1133240771835
+          ]
+        },
+        "roof_mechanical": {
+          "pixel_extrema": [
+            473.8854525966591,
+            282.50692287748495,
+            1062.1962212963745,
+            366.9714580404014
+          ]
+        },
+        "roof_truss": {
+          "pixel_extrema": [
+            532.3961829162936,
+            298.89393575870963,
+            961.8481023642587,
+            435.55736359108334
+          ]
+        }
+      },
+      "full_vertices_match_convex_hull_extrema": true
+    }
+  ],
+  "limits": "Projection ensures bounds fit, not visibility through trees/other geometry, lens aesthetics, anti-aliasing or rendered quality. Evaluated vertices include buried walls. No exposure/scene/camera source change or render was performed.",
+  "integration": "Root accepted and implemented in scripts/render_motion.py; visual sample/film acceptance still pending."
+}

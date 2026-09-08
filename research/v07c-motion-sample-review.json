@@ -1,0 +1,227 @@
+{
+  "schema": "portable_motion_sample_review_v1",
+  "decision": "accepted_for_full_film_render",
+  "reviewed_at_utc": "2026-09-07T23:46:49.938421+00:00",
+  "reviewers": {
+    "root": "Codex root",
+    "independent": "motion_review subagent"
+  },
+  "original_authorization_sha256": "2697b2835b58f210231209c7d2c0f32d3328079febf2f6ef1d84ca1199c2ee98",
+  "master": {
+    "path": "scene/protolabs-campus.blend",
+    "sha256": "3d861d6c2e1c54f7c144d52c5e74f21568b18d047a326631405c9da1956b8e5a"
+  },
+  "camera_path_sha256": "2328277591e0c3c1f04ff040c49497cd2e8e77246d4926ee693b2187215bfbac",
+  "motion_definition_revision": "69a7594d440108b3f2ed1e2d8b00002070301537",
+  "render_motion_sha256": "580067558afdd3587ba8a15ddeed9496209ac289a7fcd314cddd02505eddb8cf",
+  "settings": {
+    "width": 1280,
+    "height": 720,
+    "fps": 24,
+    "path_seconds": 6,
+    "total_path_frames": 144,
+    "engine": "Cycles",
+    "samples": 16,
+    "sampling_seed": 5540,
+    "animated_seed": false,
+    "denoising": true,
+    "motion_blur_shutter": 0.35
+  },
+  "sample": {
+    "range": [
+      61,
+      84
+    ],
+    "encoded_frames": 24,
+    "duration_seconds": 1,
+    "movie": {
+      "path": "deliverables/motion-sample.mp4",
+      "sha256": "1f906d4419f9c4dde677f518dab713f15ef3ad89f7a2598d1e00031b8f422f62"
+    },
+    "manifest": {
+      "path": "deliverables/motion-sample/path.json",
+      "sha256": "a054e79093fe639d21f54cc9842bee9651abce56f6dcd362a153e03259a23229",
+      "source_revision": "c7affe2d3ebae677a236fd8f2dd170c0107d6abf"
+    },
+    "frame_path_pattern": "deliverables/motion-sample/frame_%04d.png",
+    "frame_sha256": {
+      "61": "0abef802bce5fc920e9f579b02355e346e503c7eebba9d34b1e27522fc8b77f9",
+      "62": "bc985753e93e3c2a61178bbe9e59050d54bc20977c1848c4a09c00f91154921c",
+      "63": "28a4bc08d1735bba326732d6bd0f29f4ef5705083bf5170bbfff1082a809a195",
+      "64": "421f4ca4536cdef9aa339ac4b9b052d9a17d9c9cd4c081d58768f212c759270a",
+      "65": "e9121388ed08ccf559ddec46a836fa96c05afb0a206343e02db6c93db478fa2c",
+      "66": "19ddf810f2a42b951539f0f0699b142c1d50cf63ba17851fe64b45ed138c5633",
+      "67": "06f5f537f2bac6c0deb9f99c1f47e95595b0803bfe5af8818950262a49e58751",
+      "68": "a43be1b8c0a700ce9473fa9c6e171093351fe62ef8617cd34bb02f8a77847791",
+      "69": "9be53b75347e23d371c24b1a2615e77b2ada8b38f0da96b462b2479681d3c6fe",
+      "70": "c128d68b4e31aedc009c66b77851e54597b56b969ec12b4c4b3ebfd81a5624ff",
+      "71": "8946e70c555b01e8a835a063d2eac721ca3207f1d22b3adb6af1a4a710769f66",
+      "72": "ab65830972e04487753b501df12bdd1b519fbc5181830e5279f24ac61a5c968b",
+      "73": "bca1f875b03f544dfadf55d2c07194b6fdc6f299e03586fdd3cfd5b21a465c25",
+      "74": "996ed7251258f956b89945dc0d1f9ccabf05ce301ad71ffbb8695a1ecab679f0",
+      "75": "bfc2275d18adb9071821a04c5167c32f789f38044b86e4d7fb121965e91ab795",
+      "76": "924a2d1cb391b91bc7a92e1762b6dc5ee3537d99c67fe9b3b4a8af0897c1d974",
+      "77": "28cde70cdd01d42172a52100a65897795cb94c05b4ac48482e00198e88532508",
+      "78": "0ec48887e6739510567138a0fb8e8a6baa16803776bdef0408f0e09b63bd2a13",
+      "79": "3bfa806a22a6d3dca96c87ef4cfcc2b6665db7007b5e177001f40655e47c2814",
+      "80": "583a1f3b1dbec6231a32b456124858e99d4605afdc3b56fd3713e337ac5e2ab0",
+      "81": "d74d0a0ac4083529ff35371507f00fe9bd3709947ed4473c77880e27bf4b0b08",
+      "82": "f0908416a39be71d26d0a8a361aa052612a085ce79cd614e36cba26a0c4c069f",
+      "83": "ff48227f4e6d8de01d0bb0beb4fc5258181466ac3e746b2fc5dd0257b1198c5a",
+      "84": "7771d21329190e03703dce34f66a9b9d9442228bbd486e2871fea9752e43445b"
+    }
+  },
+  "endpoints": [
+    {
+      "frame": 1,
+      "path": "deliverables/motion-endpoints/frame_0001.png",
+      "sha256": "61d5855703493877239710a76e77eae7c857c61af29ee8f7d9e1ad4bb60c219c",
+      "manifest": {
+        "path": "deliverables/cinematic/seed-provenance/endpoint-0001-path.json",
+        "sha256": "628df54c75c0ea7360f9ba1ba9bedb3dba503cc9bfec7da0ff599417b0452d94",
+        "source_revision": "8be80af8831f1f70ab08357921649eb8351c8e88",
+        "render_start": 1,
+        "render_end": 1
+      }
+    },
+    {
+      "frame": 144,
+      "path": "deliverables/motion-endpoints/frame_0144.png",
+      "sha256": "60a578c66c7e3eeeeca41e7c4e152536872530672696a30f21c69678bce8f8cc",
+      "manifest": {
+        "path": "deliverables/cinematic/seed-provenance/endpoint-0144-path.json",
+        "sha256": "f7c173b4fa278cb1b8ef923a24c5415e9df0c994d52c928549c5f963af3e005d",
+        "source_revision": "8be80af8831f1f70ab08357921649eb8351c8e88",
+        "render_start": 144,
+        "render_end": 144
+      }
+    }
+  ],
+  "inspection": {
+    "root": {
+      "whole_native_frames": [
+        61
+      ],
+      "whole_native_endpoints": [
+        1,
+        144
+      ],
+      "all_24_native_crop_sequences": [
+        "roof_truss",
+        "foliage_foreground"
+      ],
+      "actual_encoded_playback": {
+        "normal_speed": true,
+        "observed_playing_seconds": 0.262,
+        "observed_completed_paused_seconds": 1.0,
+        "duration_seconds": 1.0,
+        "error_observed": false,
+        "repeat_fullscreen_playback_inspected": true
+      }
+    },
+    "independent": {
+      "whole_native_frames_inspected": [
+        61,
+        72,
+        84
+      ],
+      "whole_native_endpoints_inspected": [
+        1,
+        144
+      ],
+      "contact_tiles_at_source_pixel_scale": {
+        "regions": [
+          "roof_truss",
+          "foliage_foreground",
+          "foliage_skyline",
+          "shadow_glass",
+          "shadow_ground"
+        ],
+        "frames": [
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          72,
+          73,
+          74,
+          75,
+          76,
+          77,
+          78,
+          79,
+          80,
+          81,
+          82,
+          83,
+          84
+        ]
+      },
+      "individual_native_crop_pairs": {
+        "roof_truss": [
+          74,
+          75
+        ],
+        "foliage_foreground": [
+          80,
+          81
+        ],
+        "foliage_skyline": [
+          83,
+          84
+        ],
+        "shadow_glass": [
+          76,
+          77
+        ],
+        "shadow_ground": [
+          83,
+          84
+        ]
+      },
+      "encoded_movie_playback_performed_by_this_agent": false
+    },
+    "technical": {
+      "all_24_png_crc_and_decoded_streams_valid": true,
+      "duplicate_encoded_frames": 0,
+      "duplicate_decoded_frames": 0,
+      "sample_movie_complete_decode": true,
+      "sample_movie_dimensions_and_24fps_cadence_verified": true,
+      "endpoint_png_and_preserved_manifest_hashes_verified": true
+    }
+  },
+  "findings": {
+    "framing": "Building, roof/truss, flag and monument retained in native endpoints and sample.",
+    "geometry_and_motion": "No observed crown/member disappearance, discontinuous shadow boundary or major geometry jump.",
+    "accepted_variation": "Mild pixel-level foliage and roof texture variation was accepted after actual playback.",
+    "diagnostic_limit": "Luma and translation residuals include camera motion, parallax, occlusion and denoising; no numeric visual acceptance threshold was used."
+  },
+  "limits": [
+    "The inspected movie is a one-second segment, plus two still endpoints; it does not establish all144-frame temporal quality.",
+    "Sparse regional context, simplified ground tones and synthetic material appearance remain fidelity limits.",
+    "Repeated sample playback was only a review control and is not a full-film substitute.",
+    "Complete film still requires its own encoded playback inspection and final acceptance."
+  ],
+  "full_film_status_at_record": {
+    "status": "rendering; not complete or visually accepted",
+    "start_reuse_check_utc": "2026-09-07T23:50:22.064821+00:00",
+    "reviewed_seed_count": 26,
+    "all_seed_hashes_preserved": true,
+    "initial_missing_frames": 118,
+    "observed_skipped_frames": [
+      1
+    ],
+    "observed_newly_rendered_frames": [
+      2,
+      3
+    ],
+    "original_seed_manifests_and_gate_preserved": true
+  }
+}

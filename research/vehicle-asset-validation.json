@@ -1,0 +1,66 @@
+{
+  "script_sha256": "4f10dbc82e7af842c5eb975c31df6ebf9e0fbd3e8d11076317c3796658732705",
+  "blender_version": "4.2.9 LTS",
+  "models": [
+    {
+      "variant": "sedan",
+      "triangles": 20428,
+      "vertices": 10454,
+      "bounds_min": [
+        -1.11899995803833,
+        -2.307499885559082,
+        0.0
+      ],
+      "bounds_max": [
+        1.11899995803833,
+        2.3510000705718994,
+        1.5520000457763672
+      ],
+      "dimensions": [
+        2.23799991607666,
+        4.6584999561309814,
+        1.5520000457763672
+      ],
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "closed_components": 124,
+      "min_component_signed_volume": 1.2182475378116147e-06,
+      "materials": 9,
+      "single_returned_mesh": true,
+      "preserves_unrelated_object": true
+    },
+    {
+      "variant": "suv",
+      "triangles": 21698,
+      "vertices": 11101,
+      "bounds_min": [
+        -1.11899995803833,
+        -2.307499885559082,
+        0.0
+      ],
+      "bounds_max": [
+        1.11899995803833,
+        2.3510000705718994,
+        1.8480000495910645
+      ],
+      "dimensions": [
+        2.23799991607666,
+        4.6584999561309814,
+        1.8480000495910645
+      ],
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "closed_components": 130,
+      "min_component_signed_volume": 1.2386202191313266e-06,
+      "materials": 9,
+      "single_returned_mesh": true,
+      "preserves_unrelated_object": true
+    }
+  ],
+  "export": "Isolated GLB export completed; generated binaries are kept outside source history.",
+  "scope": "Isolated creation/export and topology verification; no full campus render.",
+  "asset_revision": "v07",
+  "verified_date": "2026-09-07",
+  "license": "MIT",
+  "preview_status": "Initial 1000x650 Cycles preview at24 samples inspected, followed by an800x520 8-sample preview after projecting the lenses onto the actual curved body. Smooth body, dark glass, wheel clearance and continuous lenses improved; close-up design remains simplified. No full campus render."
+}

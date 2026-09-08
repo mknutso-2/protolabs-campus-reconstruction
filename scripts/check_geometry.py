@@ -78,7 +78,14 @@ def scene_box_checks():
     from mathutils import Vector
 
     results = []
-    for name in CLOSED_BOX_NAMES:
+    names = list(CLOSED_BOX_NAMES)
+    canopy = bpy.data.objects.get('Long lower logo canopy')
+    if canopy is not None and canopy.get('Frontage return correction'):
+        names.extend(('Lower fascia main rear return',
+                      'Lower fascia return above vestibule header',
+                      'Lower fascia front panel above vestibule header',
+                      'Fascia return soffit above vestibule'))
+    for name in names:
         obj = bpy.data.objects.get(name)
         if obj is None or obj.type != 'MESH':
             results.append({'object': name, 'passed': False, 'error': 'Required closed mesh is missing'})
@@ -123,6 +130,11 @@ def main():
             top=max(float((surround.matrix_world@v.co).z) for v in surround.data.vertices)
             report['scene_boxes'].append({'object':'Distant surround below measured basin','passed':top<bottom,'surround_z':top,'lowest_ground_z':bottom})
         for obj in bpy.data.objects:
+            if obj.name.startswith('Campus tree '):
+                zs=[float((obj.matrix_world@v.co).z) for v in obj.data.vertices]
+                height=max(zs)-min(zs)
+                passed=abs(height-obj['canopy_height_m'])<.0001 and abs(min(zs)-obj['scene_ground_z'])<.0001
+                if not passed:report['scene_boxes'].append({'object':obj.name,'passed':False,'actual_height':height,'expected_height':obj['canopy_height_m'],'actual_bottom':min(zs),'expected_bottom':obj['scene_ground_z']})
             if obj.name.startswith('North canopy envelope '):
                 actual=max(float((obj.matrix_world@v.co).z) for v in obj.data.vertices)
                 expected=obj['canopy_top_local_z']
