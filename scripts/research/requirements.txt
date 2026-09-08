@@ -1,0 +1,10 @@
+# Python3.12 versions used for the delivered geospatial constraints.
+requests==2.31.0
+numpy==2.5.3
+scipy==1.18.1
+rasterio==1.5.1
+shapely==2.1.2
+pyproj==3.8.0
+laspy==2.7.0
+lazrs==0.8.2
+Pillow==12.3.0

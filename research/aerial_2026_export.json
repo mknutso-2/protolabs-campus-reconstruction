@@ -1,0 +1,16 @@
+{
+  "href": "https://gis.hennepin.us/arcgis/rest/directories/arcgisoutput/Imagery/UTM_Aerial_2026_MapServer/_ags_map4515d398d70d4c2caccf5a25e23d12a7.jpg",
+  "width": 3000,
+  "height": 2500,
+  "extent": {
+    "xmin": 447476.2229682535,
+    "ymin": 4984440.404081672,
+    "xmax": 447920.3911175426,
+    "ymax": 4984810.54420608,
+    "spatialReference": {
+      "wkid": 26915,
+      "latestWkid": 26915
+    }
+  },
+  "scale": 559.5808012003708
+}

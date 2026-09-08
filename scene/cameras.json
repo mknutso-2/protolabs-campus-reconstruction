@@ -1,0 +1,79 @@
+{
+  "reference_aerial": {
+    "position": [
+      122.2179957382899,
+      -41.42428315068638,
+      13.573699988177284
+    ],
+    "target": [
+      49.93647207279663,
+      27.207192698998043,
+      5.505127667814804
+    ],
+    "lens": 25.872180237998062,
+    "reference": "protolabs-official-hq-drone.jpg",
+    "fit_rms_pixels": 3.1687213315060028,
+    "rotation_euler": [
+      1.4900175333023071,
+      0.011439290829002857,
+      0.8103691935539246
+    ]
+  },
+  "entrance_detail": {
+    "position": [
+      94,
+      -7,
+      1.75
+    ],
+    "target": [
+      75,
+      3.5,
+      5.5
+    ],
+    "lens": 28,
+    "reference": "businessjournal-entrance-2018.jpg",
+    "rotation_euler": [
+      1.74185311794281,
+      1.1183114878576816e-07,
+      1.0659350156784058
+    ]
+  },
+  "arrival": {
+    "position": [
+      115,
+      -39,
+      2.0
+    ],
+    "target": [
+      72,
+      13,
+      4.4
+    ],
+    "lens": 27,
+    "reference": "machine-design-frontage-2024.png",
+    "rotation_euler": [
+      1.6063494682312012,
+      -1.139838019525996e-07,
+      0.6909432411193848
+    ]
+  },
+  "campus_overview": {
+    "position": [
+      208,
+      -179,
+      164
+    ],
+    "target": [
+      42,
+      34,
+      0
+    ],
+    "lens": 46,
+    "reference": "aerial_2026.jpg",
+    "rotation_euler": [
+      1.0250239372253418,
+      -3.252697666766835e-08,
+      0.6620175242424011
+    ]
+  }
+}

@@ -1,0 +1,131 @@
+[
+  {
+    "id": "official-address",
+    "url": "https://www.protolabs.com/about-us/",
+    "acquired": "2026-09-07",
+    "date_of_source": "current page accessed",
+    "confidence": "high",
+    "observations": [
+      "Company identifies address as Proto Labs Inc, 5540 Pioneer Creek Dr, Maple Plain MN 55359."
+    ],
+    "basis": "authoritative company page"
+  },
+  {
+    "id": "official-address-sec-2026",
+    "url": "https://www.sec.gov/Archives/edgar/data/control/000144366926000018/0001443669-26-000018-index.htm",
+    "acquired": "2026-09-07",
+    "date_of_source": "2026-04-08",
+    "confidence": "high",
+    "observations": [
+      "2026 SEC filing business address agrees with company contact address."
+    ],
+    "basis": "authoritative regulatory filing"
+  },
+  {
+    "id": "hennepin-parcels",
+    "url": "https://gis.hennepin.us/arcgis/rest/services/HennepinData/LAND_PROPERTY/MapServer/1",
+    "acquired": "2026-09-07",
+    "date_of_source": "Service describes monthly compilation, accessed 2026-09-07",
+    "confidence": "high",
+    "local_files": [
+      "campus_parcels.geojson",
+      "parcels_1.json",
+      "campus_aerial_measured.jpg"
+    ],
+    "observations": [
+      "Parcel PID 2411824320013 address 5540 Pioneer Creek Dr, owner PROTO LABS INC, area 304931.5668 square feet (7.0 acres), BUILD_YR 1999.",
+      "Adjacent west parcel 5600 Pioneer Creek Dr owned ANTIOCH PARTNERSHIP LLC; north marsh owned MARSH LAND PROPERTIES LLC; immediate east parcels owned NORTH SHORE GYMNASTICS ASSOC. Do not equate visual context with campus ownership."
+    ],
+    "basis": "measured public tax parcel GIS; not legal survey",
+    "attribution": "Hennepin County GIS Office / Resident and Real Estate Services Survey Division"
+  },
+  {
+    "id": "hennepin-aerial-2026",
+    "url": "https://gis.hennepin.us/arcgis/rest/services/Imagery/UTM_Aerial_2026/MapServer",
+    "acquired": "2026-09-07",
+    "date_of_source": "Spring 2026; exact flight date not published in service metadata",
+    "confidence": "high",
+    "local_files": [
+      "aerial_2026.jpg",
+      "aerial_2026_export.json",
+      "api_2.json",
+      "hq_aerial_detail.jpg",
+      "campus_aerial_measured.jpg"
+    ],
+    "observations": [
+      "Layer name HennepinCounty_MN_Nearmap_Sp26_6in.sid, 6 inch ground sample. Export EPSG26915 at 0.148m/pixel, 3000x2500.",
+      "HQ brick mass with rooftop plant room, white north-east tilted wing, folded ribbon roof; large east parking, smaller west terraced parking, pond north, road south.",
+      "Images acquired as reference only; Nearmap copyright/redistribution rights not established. Retain attribution and do not claim CC/public-domain license."
+    ],
+    "basis": "visually confirmed current ortho image",
+    "attribution": "Hennepin County / Nearmap, Spring 2026"
+  },
+  {
+    "id": "osm-buildings",
+    "url": "https://www.openstreetmap.org/way/663955213",
+    "acquired": "2026-09-07",
+    "date_of_source": "OSM snapshot 2026-09-07T16:48:50Z",
+    "confidence": "medium",
+    "local_files": [
+      "osm_buildings.json",
+      "hq_footprint_local.json"
+    ],
+    "observations": [
+      "Way name Protolabs Inc, levels2, but erroneous house number5840, superseded by official company and county address5540.",
+      "OSM trace provides footprint context but displaced/undertraced by several meters against measured lidar. Prefer lidar roof outline for roof geometry, company photos for wall geometry."
+    ],
+    "basis": "community mapped geometry; conflicts recorded",
+    "attribution": "\u00a9 OpenStreetMap contributors, ODbL 1.0",
+    "license": "https://www.openstreetmap.org/copyright"
+  },
+  {
+    "id": "usgs-lidar-2022",
+    "url": "https://rockyweb.usgs.gov/vdelivery/Datasets/Staged/Elevation/LPC/Projects/MN_CentralMissRiver_B22/MN_CentralMissRiver_4_B22/LAZ/USGS_LPC_MN_CentralMissRiver_B22_4475_49845.laz",
+    "catalog_url": "https://www.sciencebase.gov/catalog/item/6507791fd34eb6693be87fe4",
+    "metadata_url": "https://stac.gisdata.mn.gov/collections/central-mississippi-work-units/items/cog_cm_work_4",
+    "acquired": "2026-09-07",
+    "date_of_source": "Spring 2022 (collection 2022-04-25 through 2022-06-02), published USGS 2023-09-14",
+    "confidence": "high",
+    "local_files": [
+      "USGS_LPC_MN_CentralMissRiver_B22_4475_49845.laz",
+      "campus_lidar_clip.npz",
+      "lidar_roof_constraints.json",
+      "terrain_scene_grid.json",
+      "terrain_1m_navd88.npy",
+      "lidar_hq_height_map.png",
+      "hq_surface_grid_2m.json"
+    ],
+    "observations": [
+      "74129464 bytes downloaded, 13,323,368 points; LAS1.4 format6, 500x500m tile. Nominal project density30ppsm.",
+      "CRS NAD83(2011) UTM15N EPSG6344; vertical NAVD88 GEOID18 metres. OSM/aerial coordinates translated via EPSG26915; possible submeter datum alignment uncertainty retained.",
+      "Lidar contains classes1,2,7,18. Roof points unclassified1, ground2.",
+      "Strong terrain relief: entrance303.6m, west parking298.6m, rear298.6m. Roof310.2\u2013310.6m main block; wing308.1\u2013308.4m; plant room314.25m; top tower314.9m.",
+      "Lidar captures 2022 form; current aerial2026 confirms matching main roof arrangement, but facade details require photographic evidence.",
+      "Flagpole measured at local(84.20,-5.80), ground303.33m, top316.18m NAVD88; a narrow0.12m-radius cylinder has returns at ground, mid-pole310.84 and top316.18. Adjacent flag-shaped returns corroborate pole interpretation."
+    ],
+    "basis": "measured lidar, manually selected bounded samples and robust plane fits",
+    "attribution": "USGS 3DEP; Woolpert/NV5; Minnesota Geospatial Information Office",
+    "license": "US Government lidar public domain; retain source attribution"
+  },
+  {
+    "id": "usgs-lidar-2022-south",
+    "url": "https://rockyweb.usgs.gov/vdelivery/Datasets/Staged/Elevation/LPC/Projects/MN_CentralMissRiver_B22/MN_CentralMissRiver_4_B22/LAZ/USGS_LPC_MN_CentralMissRiver_B22_4475_49840.laz",
+    "catalog_url": "https://www.sciencebase.gov/catalog/item/650a809ad34e823a02733a3d",
+    "metadata_url": "https://stac.gisdata.mn.gov/collections/central-mississippi-work-units/items/cog_cm_work_4",
+    "acquired": "2026-09-07",
+    "date_of_source": "Spring 2022 (collection 2022-04-25 through 2022-06-02), published USGS 2023-09-14",
+    "confidence": "high",
+    "local_files": [
+      "USGS_LPC_MN_CentralMissRiver_B22_4475_49840.laz",
+      "terrain_grid.json"
+    ],
+    "observations": [
+      "100131419 bytes downloaded. South adjacent 500x500m tile used to extend measured terrain into immediate surroundings south of Pioneer Creek Drive.",
+      "Same2022 project and vertical/horizontal datums as northern HQ tile.",
+      "terrain_grid.json uses x-east y-north, z[y][x] and NAVD88-303.6 with 5m median ground bins, nearest fill then Gaussian smoothing sigma0.65 cells."
+    ],
+    "basis": "measured lidar, manually selected bounded samples and robust plane fits",
+    "attribution": "USGS 3DEP; Woolpert/NV5; Minnesota Geospatial Information Office",
+    "license": "US Government lidar public domain; retain source attribution"
+  }
+]

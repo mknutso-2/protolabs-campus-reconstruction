@@ -1,0 +1,268 @@
+{
+  "reference_image": "protolabs-official-hq-drone.jpg",
+  "reference_size": [
+    1200,
+    800
+  ],
+  "method": "Manual2D landmark annotation with lidar3D correspondences; robust nonlinear camera fit; approximate visual alignment, not surveyed calibration.",
+  "axes": "x east, y north, z NAVD88-303.6",
+  "position": [
+    122.2179957382899,
+    -41.42428315068638,
+    13.573699988177284
+  ],
+  "rotation_euler_xyz_radians": [
+    1.4900175028888165,
+    0.011439290773957111,
+    0.8103691719963717
+  ],
+  "rotation_euler_xyz_degrees": [
+    85.37171431615113,
+    0.6554230819706834,
+    46.4307334029032
+  ],
+  "rotation_matrix_columns_right_up_back": [
+    [
+      0.6891859044431689,
+      -0.05060556072532876,
+      0.7228152366549327
+    ],
+    [
+      0.7244942632286504,
+      0.06387577645863644,
+      -0.6863147584968442
+    ],
+    [
+      -0.011439041289665495,
+      0.9966739498981007,
+      0.0806857232036248
+    ]
+  ],
+  "focal_length_pixels": 862.4060079332687,
+  "sensor_width_mm": 36,
+  "lens_mm": 25.872180237998062,
+  "shift_x": 0,
+  "shift_y": 0,
+  "target_100m_forward": [
+    49.93647207279663,
+    27.207192698998043,
+    5.505127667814804
+  ],
+  "rmse_pixel_unweighted": 7.8704776426456,
+  "rms_pixel_weighted": 3.1687213315060028,
+  "landmarks": [
+    {
+      "name": "ribbon_high_south_tip",
+      "world": [
+        78.25,
+        -7.5,
+        9.464
+      ],
+      "annotated_pixel": [
+        508,
+        393
+      ],
+      "projected_pixel": [
+        511.61632251770766,
+        395.3928148422406
+      ],
+      "residual_px": 4.33628313435902,
+      "weight": 1.0
+    },
+    {
+      "name": "ribbon_low_front",
+      "world": [
+        78.45,
+        9,
+        5.153
+      ],
+      "annotated_pixel": [
+        682,
+        438
+      ],
+      "projected_pixel": [
+        683.3010244028432,
+        438.10445508502175
+      ],
+      "residual_px": 1.3052108494723327,
+      "weight": 1.0
+    },
+    {
+      "name": "ribbon_high_north",
+      "world": [
+        60.75,
+        53.75,
+        9.596
+      ],
+      "annotated_pixel": [
+        808,
+        365
+      ],
+      "projected_pixel": [
+        808.6928129161881,
+        359.0581487443494
+      ],
+      "residual_px": 5.982105488965703,
+      "weight": 1.0
+    },
+    {
+      "name": "ribbon_low_north",
+      "world": [
+        69.25,
+        51,
+        4.609
+      ],
+      "annotated_pixel": [
+        843,
+        389
+      ],
+      "projected_pixel": [
+        857.2582453489035,
+        402.95266867112906
+      ],
+      "residual_px": 19.949298821658758,
+      "weight": 0.3
+    },
+    {
+      "name": "flagpole_top",
+      "world": [
+        84.2,
+        -5.8,
+        12.58
+      ],
+      "annotated_pixel": [
+        594,
+        351
+      ],
+      "projected_pixel": [
+        593.6904960911564,
+        346.78853202152493
+      ],
+      "residual_px": 4.2228254999834345,
+      "weight": 1.0
+    },
+    {
+      "name": "flagpole_base",
+      "world": [
+        84.2,
+        -5.8,
+        -0.27
+      ],
+      "annotated_pixel": [
+        596,
+        548
+      ],
+      "projected_pixel": [
+        596.2035442389468,
+        556.0434231578224
+      ],
+      "residual_px": 8.045998157655916,
+      "weight": 1.0
+    },
+    {
+      "name": "monument_panel_center",
+      "world": [
+        94.39,
+        -27.81,
+        1.0
+      ],
+      "annotated_pixel": [
+        345,
+        697
+      ],
+      "projected_pixel": [
+        340.44187544079085,
+        690.197956415351
+      ],
+      "residual_px": 8.188058159584028,
+      "weight": 0.55
+    },
+    {
+      "name": "brick_front_SW_roof",
+      "world": [
+        3.5,
+        1.25,
+        6.58
+      ],
+      "annotated_pixel": [
+        222,
+        386
+      ],
+      "projected_pixel": [
+        221.06647136281947,
+        386.85324895804644
+      ],
+      "residual_px": 1.2647171623898623,
+      "weight": 0.65
+    },
+    {
+      "name": "wing_east_roof",
+      "world": [
+        105.25,
+        37.5,
+        4.8
+      ],
+      "annotated_pixel": [
+        1186,
+        436
+      ],
+      "projected_pixel": [
+        1185.5570187811454,
+        436.5374601286089
+      ],
+      "residual_px": 0.6964881550336786,
+      "weight": 1.0
+    },
+    {
+      "name": "wing_front_west_roof",
+      "world": [
+        78.25,
+        24.25,
+        4.8
+      ],
+      "annotated_pixel": [
+        799,
+        423
+      ],
+      "projected_pixel": [
+        793.2347652668909,
+        425.8459499199
+      ],
+      "residual_px": 6.429413851544035,
+      "weight": 0.55
+    },
+    {
+      "name": "wing_north_roof",
+      "world": [
+        92.5,
+        62.5,
+        4.83
+      ],
+      "annotated_pixel": [
+        1112,
+        407
+      ],
+      "projected_pixel": [
+        1106.420977728003,
+        405.27968898174873
+      ],
+      "residual_px": 5.8382325673919055,
+      "weight": 0.6
+    }
+  ],
+  "limitations": [
+    "Several roof corners occluded or rounded; correspondence uncertainty5\u201315px.",
+    "2022 lidar and photo capture dates differ; sign height approximate.",
+    "Photo may have crop or lens correction not represented in pinhole camera.",
+    "Flagpole/base annotation may be obscured by vegetation."
+  ],
+  "source_url": "https://www.protolabs.com/media/s4dignhf/hq-drone.jpg",
+  "source_attribution": "Proto Labs, Inc.; acquired2026-09-07; photograph undated, same setup as official2024 exterior",
+  "sensor_fit": "HORIZONTAL",
+  "pixel_aspect": [
+    1,
+    1
+  ],
+  "recommended_use": "Apply camera position, EulerXYZ and lens exactly. Use1200x800 for direct comparison; for16:9 output preserve horizontal FOV and expect vertical crop. Set no automatic look-at override after Euler assignment.",
+  "confidence": "medium-high for approximate visual alignment. Uncertain north ribbon endpoint is partly occluded by equipment; core facade corners closely match."
+}

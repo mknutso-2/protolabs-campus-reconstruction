@@ -1,0 +1,132 @@
+{
+  "retrieved_at": "2026-09-07",
+  "license_note": "Images downloaded for reconstruction reference. Public accessibility does not establish a redistribution license; preserve publisher attribution and original source links. No private or restricted premises information collected.",
+  "sources": [
+    {
+      "id": "official-locations",
+      "url": "https://www.protolabs.com/about-us/locations/",
+      "publisher": "Proto Labs, Inc.",
+      "acquired": "2026-09-07",
+      "source_date": "Current page retrieved 2026-09-07",
+      "type": "official location directory",
+      "confidence": "high",
+      "observations": [
+        "Lists Global Headquarters at 5540 Pioneer Creek Dr., Maple Plain, MN 55359.",
+        "Lists 8500 Wyoming Avenue N, Brooklyn Park separately as a manufacturing facility, so photos of building 8500 must not be substituted."
+      ]
+    },
+    {
+      "id": "official-exterior-2024",
+      "url": "https://www.protolabs.com/media/sj0nwkxv/hq_mp_exterior_2024.jpg",
+      "parent_url": "https://www.protolabs.com/about-us/locations/",
+      "publisher": "Proto Labs, Inc.",
+      "acquired": "2026-09-07",
+      "source_date": "Filename says 2024; exact capture date not independently documented. Current location page uses image.",
+      "type": "official headquarters oblique aerial photograph",
+      "local_file": "protolabs-official-hq-exterior-2024.jpg",
+      "confidence": "high for visible geometry, medium for capture year",
+      "observations": [
+        "Low, broad building combines darker brown/red left flat-roof block with white-clad right wing and reflective glazing.",
+        "Prominent silver standing-seam single-sloped central roof has high left end and low right edge in this front view.",
+        "Front entrance lies near junction; broad left-projecting horizontal fascia carries blue Protolabs branding.",
+        "Flagpole and red fire hydrant occupy small rock island in front drive; main sign at driveway edge; right parking has accessible striped bays.",
+        "Several white rooftop equipment screens and exposed HVAC units visible."
+      ]
+    },
+    {
+      "id": "official-drone",
+      "url": "https://www.protolabs.com/media/s4dignhf/hq-drone.jpg",
+      "parent_url": "https://www.protolabs.com/about-us/locations/",
+      "publisher": "Proto Labs, Inc.",
+      "acquired": "2026-09-07",
+      "source_date": "Undated; image search indexed under official locations; same photographic setup as 2024 file, wider view.",
+      "type": "official wider oblique aerial",
+      "local_file": "protolabs-official-hq-drone.jpg",
+      "confidence": "high for visible geometry",
+      "observations": [
+        "Wider frame includes complete right facade, dark parking surface, long islands and site edge.",
+        "Mature trees lie left; field/wetland-like open ground and treeline lie behind.",
+        "Right facade long glazing strip terminates at white end wall with single exterior service door.",
+        "Address on freestanding sign verifies 5540. Ignore erroneous generated image-search description calling this Dublin."
+      ]
+    },
+    {
+      "id": "machine-design-2024",
+      "url": "https://www.machinedesign.com/automation-iiot/article/21281562/protolabs-qa-protolabs-rebranded-manufacturing-partner-network-expands-capabilities",
+      "asset_url": "https://img.machinedesign.com/files/base/ebm/machinedesign/image/2024/01/65b3eaaec31141001e691630-1fc1be36e61e4974bed45b9d85c6f450.png?auto=format%2Ccompress&fit=max&q=85&w=1600",
+      "publisher": "Machine Design; image credited Protolabs",
+      "acquired": "2026-09-07",
+      "source_date": "Article January 26, 2024; exact image capture date unknown",
+      "type": "published ground frontage photograph",
+      "local_file": "machine-design-frontage-2024.png",
+      "confidence": "high for visible geometry",
+      "observations": [
+        "Black/dark navy monument sign with blue/green/white cube mark and PROTOLABS text, Manufacturing. Accelerated. tagline, blue separator line and 5540 Pioneer Creek Drive below.",
+        "Single sloped front roof profile is clear; tall left tip projects past supporting truss.",
+        "Dormant landscape and snow show winter conditions, not a permanent surface treatment."
+      ]
+    },
+    {
+      "id": "business-journal-2018",
+      "url": "https://www.bizjournals.com/twincities/news/2018/12/06/2018-business-of-manufacturing-proto-labs-inc.html",
+      "asset_url": "https://media.bizj.us/view/img/11107152/proto-labs-hq%2A900xx2016-1134-0-189.jpg",
+      "publisher": "Minneapolis / St. Paul Business Journal; photographer not independently verified",
+      "acquired": "2026-09-07",
+      "source_date": "Article December 6, 2018; exact photograph date unknown",
+      "type": "close entrance photograph",
+      "local_file": "businessjournal-entrance-2018.jpg",
+      "confidence": "high for canopy structure; historical signage",
+      "observations": [
+        "Dark blue-gray cylindrical columns carry white steel fan braces.",
+        "Shallow triangular web truss follows projecting sloped roof edge.",
+        "Triangular clerestory glass closes rear part of sloped facade while forward canopy is open.",
+        "Rectangular glass vestibule projects forward, with double door, side panes, and upper transom; 5540 numerals above.",
+        "Historical proto labs green/blue lettering must be replaced with modern blue branding for a current interpretation."
+      ]
+    },
+    {
+      "id": "business-journal-2021",
+      "url": "https://www.bizjournals.com/twincities/news/2021/01/19/protolabs-acquires-3d-hubs-digital-manufacturer.html",
+      "asset_url": "https://media.bizj.us/view/img/11938391/hq-exterior.jpg",
+      "publisher": "Minneapolis / St. Paul Business Journal; image marked Proto Labs Inc",
+      "acquired": "2026-09-07",
+      "source_date": "Article January 19, 2021; photo visibly predates current rebranding",
+      "type": "front entrance with historical monument sign",
+      "local_file": "businessjournal-sign-2021.jpg",
+      "confidence": "high for structure; low as current brand evidence",
+      "observations": [
+        "Near frontal view confirms dramatic mono-pitch roof slope and fan-shaped steel braces.",
+        "Older freestanding white sign carries proto labs / Real Parts. Really Fast.; do not use for current branding."
+      ]
+    },
+    {
+      "id": "official-procurement-2025",
+      "url": "https://www.protolabs.com/media/y3gd35lg/pl_procurement_guide.pdf",
+      "publisher": "Proto Labs, Inc.",
+      "acquired": "2026-09-07",
+      "source_date": "Copyright 2025; search metadata approximately 2025",
+      "type": "official facilities table",
+      "local_file": "protolabs-procurement-guide-2025.pdf",
+      "confidence": "high",
+      "observations": [
+        "US Facilities table lists HQ at 5540 Pioneer Creek: total 95,800 square feet, office 95,800, manufacturing 0.",
+        "Year established 2007. Construction material Pre-cast Concrete/Steel and Glass.",
+        "Do not interpret company-wide manufacturing totals as building area."
+      ]
+    },
+    {
+      "id": "hcm-cached-conflict",
+      "url": "https://www.hcmarchitects.com/proto-labs-1",
+      "publisher": "HCM Architects",
+      "acquired": "2026-09-07",
+      "source_date": "Search cached page crawled ~4 months ago; URL now 404 after website redesign",
+      "type": "architect portfolio search excerpt",
+      "confidence": "low; internally inconsistent, not accepted for geometric scale",
+      "observations": [
+        "Search excerpt lists photos named 5540 Pioneer Creek Drive_010.jpg etc, location Maple Plain, 2016, 87,510 SF.",
+        "Same excerpt describes Plymouth and 170,000 SF with 150,000 SF manufacturing; conflicts with location and official HQ facilities table.",
+        "Current HCM projects index contains no Proto Labs link. Do not assign these figures to HQ."
+      ]
+    }
+  ]
+}

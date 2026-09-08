@@ -1,0 +1,122 @@
+{
+  "snapshot_date": "2026-09-07",
+  "notes": [
+    "Static LAZ and optional company photographs enforce recorded SHA256. Dynamic county/OSM responses retain observed_sha256 for comparison but may differ in JSON serialization or content.",
+    "Exactly two500x500m lidar tiles,74MB and100MB; each download hard-limited below150MB.",
+    "Local world coordinates x east,y north,z NAVD88 GEOID18 minus303.6m. Horizontal datum reconciliation still has potential submeter uncertainty."
+  ],
+  "sources": [
+    {
+      "id": "usgs-lidar-4475_49845",
+      "kind": "binary",
+      "url": "https://rockyweb.usgs.gov/vdelivery/Datasets/Staged/Elevation/LPC/Projects/MN_CentralMissRiver_B22/MN_CentralMissRiver_4_B22/LAZ/USGS_LPC_MN_CentralMissRiver_B22_4475_49845.laz",
+      "filename": "USGS_LPC_MN_CentralMissRiver_B22_4475_49845.laz",
+      "bytes_at_snapshot": 74129464,
+      "max_bytes": 149000000,
+      "sha256": "772f6ee72e6ba327d653a3a9a10f42e867884f0d748cbc8d1b7f2b54dc699436",
+      "source_date": "2022-04-25 through2022-06-02 project collection interval",
+      "published_date": "2023-09-14",
+      "attribution": "USGS3DEP / Woolpert / NV5 / Minnesota Geospatial Information Office",
+      "rights": "Public US federal lidar data; retain attribution",
+      "metadata_url": "https://stac.gisdata.mn.gov/collections/central-mississippi-work-units/items/cog_cm_work_4"
+    },
+    {
+      "id": "usgs-lidar-4475_49840",
+      "kind": "binary",
+      "url": "https://rockyweb.usgs.gov/vdelivery/Datasets/Staged/Elevation/LPC/Projects/MN_CentralMissRiver_B22/MN_CentralMissRiver_4_B22/LAZ/USGS_LPC_MN_CentralMissRiver_B22_4475_49840.laz",
+      "filename": "USGS_LPC_MN_CentralMissRiver_B22_4475_49840.laz",
+      "bytes_at_snapshot": 100131419,
+      "max_bytes": 149000000,
+      "sha256": "d7d5609b045ecb2c836216d374cc291f5eb56cbcfa960ed7f4f9280d03272d1c",
+      "source_date": "2022-04-25 through2022-06-02 project collection interval",
+      "published_date": "2023-09-14",
+      "attribution": "USGS3DEP / Woolpert / NV5 / Minnesota Geospatial Information Office",
+      "rights": "Public US federal lidar data; retain attribution",
+      "metadata_url": "https://stac.gisdata.mn.gov/collections/central-mississippi-work-units/items/cog_cm_work_4"
+    },
+    {
+      "id": "hennepin-aerial-2026",
+      "kind": "arcgis_export",
+      "url": "https://gis.hennepin.us/arcgis/rest/services/Imagery/UTM_Aerial_2026/MapServer/export",
+      "params": {
+        "bbox": "-93.6665,45.0115,-93.661,45.0148",
+        "bboxSR": 4326,
+        "imageSR": 26915,
+        "size": "3000,2500",
+        "format": "jpg",
+        "f": "json"
+      },
+      "filename": "aerial_2026.jpg",
+      "max_bytes": 20000000,
+      "observed_sha256": "9676510b54e9ec80df2046c9ba6d7b1c349cb6bb890b03eadf5bd6449066a251",
+      "source_date": "Spring2026; exact flight date not exposed",
+      "attribution": "Hennepin County / Nearmap",
+      "rights": "Research comparison reference only; public availability does not establish redistribution rights or a texture license."
+    },
+    {
+      "id": "hennepin-parcels",
+      "kind": "json",
+      "json": true,
+      "url": "https://gis.hennepin.us/arcgis/rest/services/HennepinData/LAND_PROPERTY/MapServer/1/query",
+      "params": {
+        "geometry": "-93.668,45.01,-93.659,45.016",
+        "geometryType": "esriGeometryEnvelope",
+        "inSR": 4326,
+        "outSR": 4326,
+        "spatialRel": "esriSpatialRelIntersects",
+        "outFields": "PID,HOUSE_NO,STREET_NM,OWNER_NM,BUILD_YR,PARCEL_AREA,LAT,LON",
+        "f": "geojson"
+      },
+      "filename": "parcels_1.json",
+      "max_bytes": 5000000,
+      "observed_sha256": "af5b5e24c1d6f77ed679278b6cef634bd8676fded7f26c80cdb3e64fdf405995",
+      "source_date": "County describes monthly compilation; accessed2026-09-07",
+      "attribution": "Hennepin County GIS Office / Resident and Real Estate Services Survey Division",
+      "rights": "Public county parcel GIS; not a legal survey. API may change; receipt records new retrieval."
+    },
+    {
+      "id": "osm-buildings",
+      "kind": "json",
+      "json": true,
+      "url": "https://overpass-api.de/api/interpreter",
+      "form": {
+        "data": "[out:json][date:\"2026-09-07T16:48:50Z\"];way[building](45.010,-93.668,45.016,-93.659);out geom;"
+      },
+      "filename": "osm_buildings.json",
+      "max_bytes": 5000000,
+      "observed_sha256": "642d0c1c94c10e59392df1b2e0a7d60cd454c1effdc27feb51f4ba64b22d6e06",
+      "source_date": "Requested historical snapshot2026-09-07T16:48:50Z",
+      "attribution": "\u00a9 OpenStreetMap contributors",
+      "rights": "ODbL1.0 https://www.openstreetmap.org/copyright",
+      "notes": "OSM erroneous building address5840 must not override official5540; roof trace offset from lidar retained as uncertainty."
+    },
+    {
+      "id": "protolabs-official-hq-drone",
+      "kind": "binary",
+      "url": "https://www.protolabs.com/media/s4dignhf/hq-drone.jpg",
+      "filename": "protolabs-official-hq-drone.jpg",
+      "max_bytes": 10000000,
+      "sha256": "d63946a04d11b20ae3cc026b06cf07e0a58deb7d46b8ece8bd305912a60f47a9",
+      "bytes_at_snapshot": 155607,
+      "optional_reference_photo": true,
+      "source_date": "Filename2024 for exterior; wider drone undated",
+      "attribution": "Proto Labs, Inc.",
+      "rights": "Public company research reference; redistribution license not established",
+      "parent_url": "https://www.protolabs.com/about-us/locations/"
+    },
+    {
+      "id": "protolabs-official-hq-exterior-2024",
+      "kind": "binary",
+      "url": "https://www.protolabs.com/media/sj0nwkxv/hq_mp_exterior_2024.jpg",
+      "filename": "protolabs-official-hq-exterior-2024.jpg",
+      "max_bytes": 10000000,
+      "sha256": "80ed894035cc51634bbe2920683ac2badc317275de3e35b52437c0975fd1bf07",
+      "bytes_at_snapshot": 530881,
+      "optional_reference_photo": true,
+      "source_date": "Filename2024 for exterior; wider drone undated",
+      "attribution": "Proto Labs, Inc.",
+      "rights": "Public company research reference; redistribution license not established",
+      "parent_url": "https://www.protolabs.com/about-us/locations/"
+    }
+  ]
+}
