@@ -39,3 +39,12 @@ Packaging used the recorded mean linear albedos before optimization, then `optim
 The existing performance comparison belongs to the preserved `7dd2ff5a…` master and the same `reference_aerial` path, not this fresh v07c package. At 1280 × 680, DPR 1, on the reported Intel HD Graphics 4000 renderer, an eight-second moving-camera diagnostic measured 6.49 fps with distant cards and 17.79 fps with the proxies; the proxy median/p95 frame intervals were 56.9/67.8 ms. Root inspected the proxy aerial and overview without browser warnings/errors. The diagnostic used `preserveDrawingBuffer`, background workload was not independently isolated, and these observations do not establish 60 fps, other-device performance, or acceptance of the current staged site. See [the performance record](viewer-performance.md).
 
 Local detailed receipts are `work/viewer-v07c-final-check/master-validation.json` and `package-validation.json` in the outer workspace. Current staged-site inspection, completed still review, motion sample and encoded film remain separate acceptance steps.
+
+
+## Saved eye-level cameras: orbit limit correction
+
+The current production preview exposed a camera defect that the earlier navigation checks had missed: the entrance and arrival presets appeared above eye level. The orbit control's 87.3° polar limit raised cameras whose saved targets are above the viewer. With the actual Three r180 controls, it raised entrance local Z from 1.75 to 6.537746 m and arrival from 2.0 to 7.580561 m.
+
+Restoring the standard `Math.PI` limit preserves all four saved positions over 240 control updates (maximum numeric drift 1.34e−13 m). The existing 36 mm horizontal-sensor field-of-view conversion also passes four aspect ratios. [The bounded numeric check](../research/viewer-camera-orbit-validation.json) measures position and field of view; it does not claim exact photographic registration or Blender/browser shading parity. Free orbit can look below its target, while walking retains its separate ground/collision rules.
+
+After lint and production build passed, the actual current preview showed the entrance at its intended eye height. Visible forward/right walk steps and selecting the same entrance preset returned to Orbit mode and restored the view. The current browser model remains the hash-verified v07c package above. Final movie and hosted-site checks remain separate.

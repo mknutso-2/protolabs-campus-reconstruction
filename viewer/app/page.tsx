@@ -142,7 +142,9 @@ function Walkthrough({
         });
         orbit.enableDamping = true;
         orbit.dampingFactor = 0.09;
-        orbit.maxPolarAngle = Math.PI * 0.485;
+        // Saved eye-level views look upward toward the entrance and must not
+        // be raised above their targets by an orbit-angle clamp.
+        orbit.maxPolarAngle = Math.PI;
         orbit.minDistance = 3;
         orbit.maxDistance = 420;
         scene.add(new THREE.AmbientLight(0xffffff, 0.8));

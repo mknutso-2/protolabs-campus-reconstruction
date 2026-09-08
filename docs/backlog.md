@@ -19,7 +19,7 @@
 - [ ] Refine roof equipment, facade depth, materials and small features where the reviewed views show discrepancies; preserve uncertainty for weakly evidenced rear/service areas.
 - [x] Save the fixed cameras and generate the editable master and GLB.
 - [x] Check the local viewer at `5bf2a27`: lint, clean npm dependency installation, production build, orbit/walk navigation, visible walk controls, rotated exterior footprints and saved-view selection. Offline installation used an existing package cache.
-- [ ] Inspect the refreshed v07 comparison gallery in the browser, including attribution, saved transforms, six preserved earlier versions and the current accuracy account. Its generated image hashes match the inspected static set.
+- [x] Inspect the refreshed v07 comparison gallery: current/reference pair, wipe movement, version selection, attribution and six preserved iterations. All 58 local links/assets resolve and current/history image hashes match; three reference caches pass their pinned hashes.
 - [ ] Refresh viewer assets after the v07 scene is accepted and check visibility, navigation, new material fallbacks, reference assets and saved-view correspondence.
 - [x] Preserve the v05 preliminary opening motion sample and its bounded engineering diagnostics. It does not approve later scene revisions or full-path playback quality.
 - [ ] Complete and inspect the current-revision 24-frame middle sample (frames 61–84) at 1280 × 720 / 24 fps, plus endpoint frames 1 and 144. Check leaf edges, shadows, reflections, continuity and clipping before the six-second cinematic. V06 motion was deliberately not run because its reviewed synthetic surfaces prompted v07.

@@ -1,0 +1,470 @@
+{
+  "node_version": "v22.23.2",
+  "three_revision": "180",
+  "orbit_controls_path": "/home/matthew/Documents/Codex/2026-09-07/files-pasted-by-the-user-build/outputs/protolabs-campus/viewer/node_modules/three/examples/jsm/controls/OrbitControls.js",
+  "orbit_controls_sha256": "b97879c748170baadeb3fb84cea1ffdf4674e283dc06042f34e2acb95a76042c",
+  "camera_json_sha256": "852823aa47e727b08bdd79a2fbe89161f614a495ec14196eb23bc9cd1dd9ae1a",
+  "page_tsx_sha256_at_check": "63d67ce025a5a9a913032040b211bc71477b35d59c8aa3a22a1242259f102f40",
+  "dom_element": null,
+  "renders": 0,
+  "source_edits": false,
+  "tested_scope": "Same position/target coordinate transform, damping, distance limits and setView sequence as viewer; no pending user-input damping delta.",
+  "tests": {
+    "original_0485_pi": {
+      "max_polar_degrees": 87.3,
+      "presets": {
+        "reference_aerial": {
+          "intended_polar_degrees": 85.3720177958157,
+          "actual_polar_degrees": 85.3720177958157,
+          "intended_blender_xyz": [
+            122.2179957382899,
+            -41.42428315068638,
+            13.573699988177284
+          ],
+          "actual_blender_xyz": [
+            122.2179957382899,
+            -41.424283150686364,
+            13.573699988177292
+          ],
+          "position_drift_m": 1.6758116906701664e-14,
+          "eye_height_drift_m": 8.881784197001252e-15,
+          "view_direction_drift_degrees": 0,
+          "target_drift_m": 0,
+          "radius_before_m": 99.99999999999999,
+          "radius_after_m": 99.99999999999999,
+          "additional_position_drift_after_240_updates_m": 0,
+          "vertical_fov_degrees_at_16_9": 42.74548259066522,
+          "horizontal_fov_degrees": 69.65483288090333
+        },
+        "entrance_detail": {
+          "intended_polar_degrees": 99.80083715794798,
+          "actual_polar_degrees": 87.3,
+          "intended_blender_xyz": [
+            94,
+            -7,
+            1.75
+          ],
+          "actual_blender_xyz": [
+            94.25999939145359,
+            -7.143683874224356,
+            6.537746128291436
+          ],
+          "position_drift_m": 4.796952962896134,
+          "eye_height_drift_m": 4.787746128291436,
+          "view_direction_drift_degrees": 12.500837157947963,
+          "target_drift_m": 0,
+          "radius_before_m": 22.029809350060205,
+          "radius_after_m": 22.02980935006021,
+          "additional_position_drift_after_240_updates_m": 1.7763568394002505e-15,
+          "vertical_fov_degrees_at_16_9": 39.76070472928529,
+          "horizontal_fov_degrees": 65.47045254421519
+        },
+        "arrival": {
+          "intended_polar_degrees": 92.03705149296681,
+          "actual_polar_degrees": 87.3,
+          "intended_blender_xyz": [
+            115,
+            -39,
+            2
+          ],
+          "actual_blender_xyz": [
+            114.9794254893499,
+            -38.97511919642312,
+            7.580561133358623
+          ],
+          "position_drift_m": 5.580654525056,
+          "eye_height_drift_m": 5.580561133358623,
+          "view_direction_drift_degrees": 4.737051492966771,
+          "target_drift_m": 0,
+          "radius_before_m": 67.51859003267174,
+          "radius_after_m": 67.51859003267175,
+          "additional_position_drift_after_240_updates_m": 7.105427357601002e-15,
+          "vertical_fov_degrees_at_16_9": 41.11209043916693,
+          "horizontal_fov_degrees": 67.38013505195956
+        },
+        "campus_overview": {
+          "intended_polar_degrees": 58.72955272590256,
+          "actual_polar_degrees": 58.72955272590254,
+          "intended_blender_xyz": [
+            208,
+            -179,
+            164
+          ],
+          "actual_blender_xyz": [
+            207.99999999999991,
+            -178.99999999999991,
+            164.00000000000006
+          ],
+          "position_drift_m": 1.3330963383348915e-13,
+          "eye_height_drift_m": 5.684341886080802e-14,
+          "view_direction_drift_degrees": 8.537736462515939e-7,
+          "target_drift_m": 7.105427357601002e-15,
+          "radius_before_m": 315.94461539959815,
+          "radius_after_m": 315.9446153995981,
+          "additional_position_drift_after_240_updates_m": 9.845568954283847e-14,
+          "vertical_fov_degrees_at_16_9": 24.826717367757336,
+          "horizontal_fov_degrees": 42.74124453868637
+        }
+      }
+    },
+    "proposed_pi": {
+      "max_polar_degrees": 180,
+      "presets": {
+        "reference_aerial": {
+          "intended_polar_degrees": 85.3720177958157,
+          "actual_polar_degrees": 85.3720177958157,
+          "intended_blender_xyz": [
+            122.2179957382899,
+            -41.42428315068638,
+            13.573699988177284
+          ],
+          "actual_blender_xyz": [
+            122.2179957382899,
+            -41.424283150686364,
+            13.573699988177292
+          ],
+          "position_drift_m": 1.6758116906701664e-14,
+          "eye_height_drift_m": 8.881784197001252e-15,
+          "view_direction_drift_degrees": 0,
+          "target_drift_m": 0,
+          "radius_before_m": 99.99999999999999,
+          "radius_after_m": 99.99999999999999,
+          "additional_position_drift_after_240_updates_m": 0,
+          "vertical_fov_degrees_at_16_9": 42.74548259066522,
+          "horizontal_fov_degrees": 69.65483288090333
+        },
+        "entrance_detail": {
+          "intended_polar_degrees": 99.80083715794798,
+          "actual_polar_degrees": 99.80083715794798,
+          "intended_blender_xyz": [
+            94,
+            -7,
+            1.75
+          ],
+          "actual_blender_xyz": [
+            94,
+            -7.0000000000000036,
+            1.7499999999999991
+          ],
+          "position_drift_m": 3.66205343881779e-15,
+          "eye_height_drift_m": -8.881784197001252e-16,
+          "view_direction_drift_degrees": 0,
+          "target_drift_m": 0,
+          "radius_before_m": 22.029809350060205,
+          "radius_after_m": 22.029809350060205,
+          "additional_position_drift_after_240_updates_m": 0,
+          "vertical_fov_degrees_at_16_9": 39.76070472928529,
+          "horizontal_fov_degrees": 65.47045254421519
+        },
+        "arrival": {
+          "intended_polar_degrees": 92.03705149296681,
+          "actual_polar_degrees": 92.03705149296681,
+          "intended_blender_xyz": [
+            115,
+            -39,
+            2
+          ],
+          "actual_blender_xyz": [
+            115,
+            -39,
+            2.0000000000000058
+          ],
+          "position_drift_m": 5.773159728050814e-15,
+          "eye_height_drift_m": 5.773159728050814e-15,
+          "view_direction_drift_degrees": 0,
+          "target_drift_m": 0,
+          "radius_before_m": 67.51859003267174,
+          "radius_after_m": 67.51859003267174,
+          "additional_position_drift_after_240_updates_m": 0,
+          "vertical_fov_degrees_at_16_9": 41.11209043916693,
+          "horizontal_fov_degrees": 67.38013505195956
+        },
+        "campus_overview": {
+          "intended_polar_degrees": 58.72955272590256,
+          "actual_polar_degrees": 58.72955272590254,
+          "intended_blender_xyz": [
+            208,
+            -179,
+            164
+          ],
+          "actual_blender_xyz": [
+            207.99999999999991,
+            -178.99999999999991,
+            164.00000000000006
+          ],
+          "position_drift_m": 1.3330963383348915e-13,
+          "eye_height_drift_m": 5.684341886080802e-14,
+          "view_direction_drift_degrees": 8.537736462515939e-7,
+          "target_drift_m": 7.105427357601002e-15,
+          "radius_before_m": 315.94461539959815,
+          "radius_after_m": 315.9446153995981,
+          "additional_position_drift_after_240_updates_m": 9.845568954283847e-14,
+          "vertical_fov_degrees_at_16_9": 24.826717367757336,
+          "horizontal_fov_degrees": 42.74124453868637
+        }
+      }
+    },
+    "bounded_056_pi": {
+      "max_polar_degrees": 100.80000000000001,
+      "presets": {
+        "reference_aerial": {
+          "intended_polar_degrees": 85.3720177958157,
+          "actual_polar_degrees": 85.3720177958157,
+          "intended_blender_xyz": [
+            122.2179957382899,
+            -41.42428315068638,
+            13.573699988177284
+          ],
+          "actual_blender_xyz": [
+            122.2179957382899,
+            -41.424283150686364,
+            13.573699988177292
+          ],
+          "position_drift_m": 1.6758116906701664e-14,
+          "eye_height_drift_m": 8.881784197001252e-15,
+          "view_direction_drift_degrees": 0,
+          "target_drift_m": 0,
+          "radius_before_m": 99.99999999999999,
+          "radius_after_m": 99.99999999999999,
+          "additional_position_drift_after_240_updates_m": 0,
+          "vertical_fov_degrees_at_16_9": 42.74548259066522,
+          "horizontal_fov_degrees": 69.65483288090333
+        },
+        "entrance_detail": {
+          "intended_polar_degrees": 99.80083715794798,
+          "actual_polar_degrees": 99.80083715794798,
+          "intended_blender_xyz": [
+            94,
+            -7,
+            1.75
+          ],
+          "actual_blender_xyz": [
+            94,
+            -7.0000000000000036,
+            1.7499999999999991
+          ],
+          "position_drift_m": 3.66205343881779e-15,
+          "eye_height_drift_m": -8.881784197001252e-16,
+          "view_direction_drift_degrees": 0,
+          "target_drift_m": 0,
+          "radius_before_m": 22.029809350060205,
+          "radius_after_m": 22.029809350060205,
+          "additional_position_drift_after_240_updates_m": 0,
+          "vertical_fov_degrees_at_16_9": 39.76070472928529,
+          "horizontal_fov_degrees": 65.47045254421519
+        },
+        "arrival": {
+          "intended_polar_degrees": 92.03705149296681,
+          "actual_polar_degrees": 92.03705149296681,
+          "intended_blender_xyz": [
+            115,
+            -39,
+            2
+          ],
+          "actual_blender_xyz": [
+            115,
+            -39,
+            2.0000000000000058
+          ],
+          "position_drift_m": 5.773159728050814e-15,
+          "eye_height_drift_m": 5.773159728050814e-15,
+          "view_direction_drift_degrees": 0,
+          "target_drift_m": 0,
+          "radius_before_m": 67.51859003267174,
+          "radius_after_m": 67.51859003267174,
+          "additional_position_drift_after_240_updates_m": 0,
+          "vertical_fov_degrees_at_16_9": 41.11209043916693,
+          "horizontal_fov_degrees": 67.38013505195956
+        },
+        "campus_overview": {
+          "intended_polar_degrees": 58.72955272590256,
+          "actual_polar_degrees": 58.72955272590254,
+          "intended_blender_xyz": [
+            208,
+            -179,
+            164
+          ],
+          "actual_blender_xyz": [
+            207.99999999999991,
+            -178.99999999999991,
+            164.00000000000006
+          ],
+          "position_drift_m": 1.3330963383348915e-13,
+          "eye_height_drift_m": 5.684341886080802e-14,
+          "view_direction_drift_degrees": 8.537736462515939e-7,
+          "target_drift_m": 7.105427357601002e-15,
+          "radius_before_m": 315.94461539959815,
+          "radius_after_m": 315.9446153995981,
+          "additional_position_drift_after_240_updates_m": 9.845568954283847e-14,
+          "vertical_fov_degrees_at_16_9": 24.826717367757336,
+          "horizontal_fov_degrees": 42.74124453868637
+        }
+      }
+    }
+  },
+  "fov_checks": [
+    {
+      "preset": "reference_aerial",
+      "aspect": 1.7777777777777777,
+      "vertical_fov_degrees": 42.74548259066522,
+      "horizontal_fov_degrees": 69.65483288090333,
+      "expected_horizontal_fov_degrees": 69.65483288090336,
+      "difference_degrees": 2.842170943040401e-14,
+      "projection_x_scale": 1.437343346555448,
+      "expected_projection_x_scale": 1.437343346555448
+    },
+    {
+      "preset": "entrance_detail",
+      "aspect": 1.7777777777777777,
+      "vertical_fov_degrees": 39.76070472928529,
+      "horizontal_fov_degrees": 65.47045254421519,
+      "expected_horizontal_fov_degrees": 65.4704525442152,
+      "difference_degrees": 1.4210854715202004e-14,
+      "projection_x_scale": 1.5555555555555558,
+      "expected_projection_x_scale": 1.5555555555555556
+    },
+    {
+      "preset": "arrival",
+      "aspect": 1.7777777777777777,
+      "vertical_fov_degrees": 41.11209043916693,
+      "horizontal_fov_degrees": 67.38013505195956,
+      "expected_horizontal_fov_degrees": 67.38013505195957,
+      "difference_degrees": 1.4210854715202004e-14,
+      "projection_x_scale": 1.5000000000000002,
+      "expected_projection_x_scale": 1.5
+    },
+    {
+      "preset": "campus_overview",
+      "aspect": 1.7777777777777777,
+      "vertical_fov_degrees": 24.826717367757336,
+      "horizontal_fov_degrees": 42.74124453868637,
+      "expected_horizontal_fov_degrees": 42.741244538686374,
+      "difference_degrees": 7.105427357601002e-15,
+      "projection_x_scale": 2.5555555555555554,
+      "expected_projection_x_scale": 2.5555555555555554
+    },
+    {
+      "preset": "reference_aerial",
+      "aspect": 1.5,
+      "vertical_fov_degrees": 49.76550043549985,
+      "horizontal_fov_degrees": 69.65483288090336,
+      "expected_horizontal_fov_degrees": 69.65483288090336,
+      "difference_degrees": 0,
+      "projection_x_scale": 1.4373433465554477,
+      "expected_projection_x_scale": 1.437343346555448
+    },
+    {
+      "preset": "entrance_detail",
+      "aspect": 1.5,
+      "vertical_fov_degrees": 46.39718102729638,
+      "horizontal_fov_degrees": 65.4704525442152,
+      "expected_horizontal_fov_degrees": 65.4704525442152,
+      "difference_degrees": 0,
+      "projection_x_scale": 1.5555555555555551,
+      "expected_projection_x_scale": 1.5555555555555556
+    },
+    {
+      "preset": "arrival",
+      "aspect": 1.5,
+      "vertical_fov_degrees": 47.924977949156364,
+      "horizontal_fov_degrees": 67.38013505195957,
+      "expected_horizontal_fov_degrees": 67.38013505195957,
+      "difference_degrees": 0,
+      "projection_x_scale": 1.4999999999999998,
+      "expected_projection_x_scale": 1.5
+    },
+    {
+      "preset": "campus_overview",
+      "aspect": 1.5,
+      "vertical_fov_degrees": 29.241747977263312,
+      "horizontal_fov_degrees": 42.74124453868637,
+      "expected_horizontal_fov_degrees": 42.741244538686374,
+      "difference_degrees": 7.105427357601002e-15,
+      "projection_x_scale": 2.555555555555556,
+      "expected_projection_x_scale": 2.5555555555555554
+    },
+    {
+      "preset": "reference_aerial",
+      "aspect": 1.3333333333333333,
+      "vertical_fov_degrees": 55.1107448747509,
+      "horizontal_fov_degrees": 69.65483288090336,
+      "expected_horizontal_fov_degrees": 69.65483288090336,
+      "difference_degrees": 0,
+      "projection_x_scale": 1.4373433465554477,
+      "expected_projection_x_scale": 1.437343346555448
+    },
+    {
+      "preset": "entrance_detail",
+      "aspect": 1.3333333333333333,
+      "vertical_fov_degrees": 51.48141671246568,
+      "horizontal_fov_degrees": 65.4704525442152,
+      "expected_horizontal_fov_degrees": 65.4704525442152,
+      "difference_degrees": 0,
+      "projection_x_scale": 1.5555555555555551,
+      "expected_projection_x_scale": 1.5555555555555556
+    },
+    {
+      "preset": "arrival",
+      "aspect": 1.3333333333333333,
+      "vertical_fov_degrees": 53.13010235415598,
+      "horizontal_fov_degrees": 67.38013505195957,
+      "expected_horizontal_fov_degrees": 67.38013505195957,
+      "difference_degrees": 0,
+      "projection_x_scale": 1.5,
+      "expected_projection_x_scale": 1.5
+    },
+    {
+      "preset": "campus_overview",
+      "aspect": 1.3333333333333333,
+      "vertical_fov_degrees": 32.7116342020345,
+      "horizontal_fov_degrees": 42.741244538686374,
+      "expected_horizontal_fov_degrees": 42.741244538686374,
+      "difference_degrees": 0,
+      "projection_x_scale": 2.555555555555555,
+      "expected_projection_x_scale": 2.5555555555555554
+    },
+    {
+      "preset": "reference_aerial",
+      "aspect": 0.5625,
+      "vertical_fov_degrees": 102.08853120385211,
+      "horizontal_fov_degrees": 69.65483288090333,
+      "expected_horizontal_fov_degrees": 69.65483288090336,
+      "difference_degrees": 2.842170943040401e-14,
+      "projection_x_scale": 1.4373433465554482,
+      "expected_projection_x_scale": 1.437343346555448
+    },
+    {
+      "preset": "entrance_detail",
+      "aspect": 0.5625,
+      "vertical_fov_degrees": 97.6281496685807,
+      "horizontal_fov_degrees": 65.4704525442152,
+      "expected_horizontal_fov_degrees": 65.4704525442152,
+      "difference_degrees": 0,
+      "projection_x_scale": 1.5555555555555556,
+      "expected_projection_x_scale": 1.5555555555555556
+    },
+    {
+      "preset": "arrival",
+      "aspect": 0.5625,
+      "vertical_fov_degrees": 99.68800075016138,
+      "horizontal_fov_degrees": 67.38013505195958,
+      "expected_horizontal_fov_degrees": 67.38013505195957,
+      "difference_degrees": 1.4210854715202004e-14,
+      "projection_x_scale": 1.4999999999999996,
+      "expected_projection_x_scale": 1.5
+    },
+    {
+      "preset": "campus_overview",
+      "aspect": 0.5625,
+      "vertical_fov_degrees": 69.64897831391359,
+      "horizontal_fov_degrees": 42.74124453868635,
+      "expected_horizontal_fov_degrees": 42.741244538686374,
+      "difference_degrees": 2.1316282072803006e-14,
+      "projection_x_scale": 2.555555555555555,
+      "expected_projection_x_scale": 2.5555555555555554
+    }
+  ],
+  "maximum_proposed_position_error_m": 1.3330963383348915e-13,
+  "maximum_fov_error_degrees": 2.842170943040401e-14,
+  "minimum_cap_for_current_presets_degrees": 99.80083715794798
+}
