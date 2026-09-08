@@ -1,0 +1,47 @@
+{
+  "schema": "final_viewer_payload_review_v1",
+  "reviewed_at_utc": "2026-09-08T01:58:16.968092+00:00",
+  "status": "complete_local_viewer_integration_inspected",
+  "source_files_from_revision": "fc53ab50a30920c1aadc11b8d759af570cd3dbf1",
+  "page_sha256": "e28f69806c7fb3089ed619fe6711c616021636f8df0145f70cbd3d10de3c7e9b",
+  "master_sha256": "3d861d6c2e1c54f7c144d52c5e74f21568b18d047a326631405c9da1956b8e5a",
+  "optimized_model_sha256": "d7a84c65e0936f0f95618ca3db691dba0d3ec6c235d386f3d1007017cf394fed",
+  "package_receipt_sha256": "733f80300bc83145b3e6631878eec0e7dea8a944d752e6439ec217e78fbd619d",
+  "public_payload_sha256": {
+    "viewer/public/models/campus.glb": "d7a84c65e0936f0f95618ca3db691dba0d3ec6c235d386f3d1007017cf394fed",
+    "viewer/public/models/cameras.json": "852823aa47e727b08bdd79a2fbe89161f614a495ec14196eb23bc9cd1dd9ae1a",
+    "viewer/public/models/materials.json": "1d2bf0cde7655713e1be23f2eea214a35ebf3adf746e15ba327e9746afb3bac0",
+    "viewer/public/models/terrain.json": "560d3a528b43f1ffd212113b6092e150004d4b2aa29da2c77a1390aa5cbae939",
+    "viewer/public/renders/reference_aerial.jpg": "9214b72bfa096e3648c607362d4022f424f2f5c201df063dcb10659ac705a7e4",
+    "viewer/public/renders/entrance_detail.jpg": "64dbec187c6b36fbc9a36a1bc1bd01dcaf5d2afd6b4fc22a752d00b0834d264a",
+    "viewer/public/renders/arrival.jpg": "5ebcf34dbe3fc9d758c8bc28468a4d1232f7e04758eeb4abcb1fb94043e87128",
+    "viewer/public/renders/campus_overview.jpg": "5b84ab8ba261dd49a3295e97aeb500a8bfb12f5cf69bdb96f85c73a3f67dcc55",
+    "viewer/public/renders/flythrough.mp4": "67bdc8f5448c1652f350b72f3355dc9ce06076c49f32680011f1dc2a8277e859",
+    "viewer/public/references/hq.jpg": "d63946a04d11b20ae3cc026b06cf07e0a58deb7d46b8ece8bd305912a60f47a9",
+    "viewer/public/references/entrance.jpg": "f32689f94544e5d477a29bf6d4832609bce9f6ef4971c1bd64cd72bee7093d60",
+    "viewer/public/references/arrival.png": "d5fbb19417bdef49a362e166602ffededde84336ef3b5749c81546be92d9c83b"
+  },
+  "prior_interface_review": {
+    "path": "research/viewer-v07c-runtime-review.json",
+    "sha256": "85532c933b434548d41528f54de9a8dbe62d30dc849e74321f7bf46fbf536e7b",
+    "current_page_and_model_unchanged": true
+  },
+  "final_build": {
+    "result": "passed",
+    "log_sha256": "65b5ef6e6adbe59cd68c62c85765d23e356eab7d63f71c572186242c11b58f74",
+    "source_files": 18,
+    "public_payload_files": 12
+  },
+  "actual_movie_panel": {
+    "caption": "A six-second approach to the southeast frontage.",
+    "src": "/renders/flythrough.mp4",
+    "duration_seconds": 6,
+    "video_width": 1280,
+    "video_height": 720,
+    "ready_state": 4,
+    "video_error": null,
+    "browser_warning_error_log_entries": 0
+  },
+  "deployment": "No source upload, saved version or deployment. Separate user approval remains pending.",
+  "limits": "Earlier documented local UI and rendering limits still apply. This is not a deployed-site or other-device performance test."
+}
