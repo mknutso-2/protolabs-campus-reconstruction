@@ -354,6 +354,19 @@ The current v07 work is on local branch `feat/reference-lighting`. Connector mir
 
 After normal Git CLI authentication is configured, fetch and inspect both histories before reconciling them. Preserve existing branches and commits; do not force-push simply to make SHAs match. A new authenticated clone of the remote branch is the simplest clean starting point for normal future pushes. Connector mirroring and local source history must have an explicit mapping until reconciliation is complete.
 
+## Run the walkthrough from a complete delivery archive
+
+The versioned ZIP includes the exact generated browser payload under `viewer/public/`, including camera/terrain data, four JPEG stills, three attributed reference images and the accepted movie. After extraction, use Node.js 22.13 or later:
+
+```bash
+cd protolabs-campus/viewer
+npm ci
+npm run build
+npm run start
+```
+
+Open the local URL printed by the server. No Blender render, reference download or `package_viewer.py` run is needed for this path. Dependency installation still needs network access or a populated npm cache. A source-only GitHub checkout uses the asset acquisition and packaging steps above.
+
 ## Large files, archives, and fresh-checkout verification
 
 The selected approach is **regenerate binary artifacts and distribute versioned archives**, rather than put every `.blend`, GLB, image, and video revision in Git LFS. Commit scene-generation code, small measured constraints, camera definitions, provenance, and dependency locks. Keep dependencies, caches, secrets, raw lidar/imagery, generated scenes, frames, movies, and viewer binary staging out of normal Git history. If irreplaceable manually edited binary assets are introduced later, document their authoritative storage and recovery before relying on them.

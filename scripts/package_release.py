@@ -23,11 +23,27 @@ from frame_integrity import inspect_png
 
 ROOT = Path(__file__).resolve().parents[1]
 VIEW_NAMES = ('reference_aerial', 'entrance_detail', 'arrival', 'campus_overview')
+VIEWER_COPY_SOURCES = {
+    'viewer/public/models/cameras.json': 'scene/cameras.json',
+    'viewer/public/models/materials.json': 'scene/materials.json',
+    'viewer/public/models/terrain.json': 'research/terrain_grid.json',
+    'viewer/public/renders/flythrough.mp4': 'deliverables/flythrough.mp4',
+    'viewer/public/references/hq.jpg': 'research/images/protolabs-official-hq-drone.jpg',
+    'viewer/public/references/entrance.jpg': 'research/images/businessjournal-entrance-2018.jpg',
+    'viewer/public/references/arrival.png': 'research/images/machine-design-frontage-2024.png',
+}
+VIEWER_PUBLIC_FILES = (
+    'viewer/public/models/campus.glb',
+    'viewer/public/models/cameras.json', 'viewer/public/models/materials.json', 'viewer/public/models/terrain.json',
+    *[f'viewer/public/renders/{name}.jpg' for name in VIEW_NAMES],
+    'viewer/public/renders/flythrough.mp4',
+    'viewer/public/references/hq.jpg', 'viewer/public/references/entrance.jpg', 'viewer/public/references/arrival.png',
+)
 REQUIRED_FILES = [
     'scene/protolabs-campus.blend', 'scene/protolabs-motion.blend',
     'scene/protolabs-campus.glb', 'scene/protolabs-campus-viewer.glb',
     'scene/viewer-export.json', 'scene/cameras.json', 'scene/materials.json',
-    'scene/viewer-package.json', 'viewer/public/models/campus.glb',
+    'scene/viewer-package.json', *VIEWER_PUBLIC_FILES,
     *[f'deliverables/stills/{name}.{suffix}' for name in VIEW_NAMES for suffix in ('png', 'json')],
     'deliverables/flythrough.mp4', 'deliverables/cinematic/path.json',
     'deliverables/motion-sample.mp4', 'deliverables/motion-sample/path.json',
@@ -154,6 +170,24 @@ def main():
     precision = viewer_package.get('position_compression', {})
     if precision.get('positionComponentType') != 5126 or precision.get('decodedPositionsExact') is not True:
         raise RuntimeError('The walkthrough package lacks verified full-precision positions')
+    payload = viewer_package.get('public_payload_sha256')
+    if (viewer_package.get('public_payload_complete') is not True or not isinstance(payload, dict)
+            or set(payload) != set(VIEWER_PUBLIC_FILES)):
+        raise RuntimeError('The viewer package lacks the complete generated public payload receipt')
+    for name in VIEWER_PUBLIC_FILES:
+        if payload[name] != hashes[name]:
+            raise RuntimeError('The generated viewer payload differs from its package receipt: ' + name)
+    copy_source_hashes = {}
+    for name, original in VIEWER_COPY_SOURCES.items():
+        copy_source_hashes[original] = file_sha(local_file(original))
+        if hashes[name] != copy_source_hashes[original]:
+            raise RuntimeError('The viewer copy differs from its original: ' + name)
+    render_sources = viewer_package.get('public_render_source_sha256', {})
+    if not isinstance(render_sources, dict):
+        raise RuntimeError('The viewer render-source receipt is invalid')
+    for name in VIEW_NAMES:
+        if render_sources.get(f'viewer/public/renders/{name}.jpg') != hashes[f'deliverables/stills/{name}.png']:
+            raise RuntimeError('The viewer JPEG derives from a stale production still: ' + name)
     if not re.fullmatch(r'[0-9a-f]{64}', path.get('camera_path_sha256', '')):
         raise RuntimeError('The full motion path fingerprint is missing')
     for key in ('camera_path_sha256', 'camera_path_hash_schema', 'camera_path_frame_count',
@@ -183,7 +217,7 @@ def main():
             raise RuntimeError('The gallery displays a stale or historical saved view: ' + name)
     videos = {'film': inspect_video(ffmpeg, 'deliverables/flythrough.mp4', path, total),
               'sample': inspect_video(ffmpeg, 'deliverables/motion-sample.mp4', sample, sample['render_end'] - sample['render_start'] + 1)}
-    assets = set(REQUIRED_FILES + [REVIEW_FILE])
+    assets = set(REQUIRED_FILES + [REVIEW_FILE]) | set(VIEWER_COPY_SOURCES.values())
     for pattern in ('research/images/*', 'deliverables/iterations/*/reference_aerial.png',
                     'deliverables/iterations/*/cameras.json', 'deliverables/iterations/*/stills/*.png',
                     'deliverables/iterations/*/motion-sample.mp4'):
@@ -229,7 +263,7 @@ def main():
                 if len(data) != record['bytes'] or sha(data) != record['sha256']:
                     raise RuntimeError('Release verification failed: ' + name)
             # Catch a file replaced during packaging, not just corruption of the ZIP.
-            for name, digest in {**hashes, REVIEW_FILE: review_hash}.items():
+            for name, digest in {**hashes, **copy_source_hashes, REVIEW_FILE: review_hash}.items():
                 if manifest['files'][name]['sha256'] != digest:
                     raise RuntimeError('Reviewed artifact changed while packaging: ' + name)
         receipt = {'archive': str(output), 'bytes': staged.stat().st_size,
