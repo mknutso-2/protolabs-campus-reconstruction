@@ -24,3 +24,6 @@ viewer/public/references/
 viewer/out/
 viewer/.vite/
 scripts/research/.venv/
+
+# Derived browser export provenance, regenerated with the master
+scene/viewer-export.json

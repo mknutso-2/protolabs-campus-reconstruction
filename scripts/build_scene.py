@@ -268,7 +268,21 @@ for j in range(len(ty)-1):
  for i in range(len(tx)-1):
   a=j*len(tx)+i;faces.append((a,a+1,a+1+len(tx),a+len(tx)))
 mesh('Measured rolling ground',verts,faces,meadow)
-polygon('Distant ground surround',[(-2000,-2000),(2000,-2000),(2000,2000),(-2000,2000)],-10,meadow)
+north_ground=json.loads((ROOT/'research/north_context_ground_grid.json').read_text())
+nx,ny,nz=north_ground['x'],north_ground['y'],north_ground['z']
+rows=[j for j,y in enumerate(ny) if y>=ty[-1]]
+v=[];f=[]
+for j in rows:
+ for i,x in enumerate(nx):
+  blend=min(1,max(0,(ny[j]-ty[-1])/10))
+  v.append((x,ny[j],ground(x,ty[-1])*(1-blend)+nz[j][i]*blend))
+for j in range(len(rows)-1):
+ for i in range(len(nx)-1):
+  a=j*len(nx)+i;f.append((a,a+1,a+len(nx)+1,a+len(nx)))
+mesh('North context ground | lidar',v,f,meadow)
+# The far surround must remain below every measured point, including the pond basin.
+surround_z=min(min(row) for row in tz+nz)-.5
+polygon('Distant ground surround',[(-2000,-2000),(2000,-2000),(2000,2000),(-2000,2000)],surround_z,meadow)
 layout=json.loads((ROOT/'research/site-layout.json').read_text());extent=layout['extent']
 def pixel(pt):return (extent['xmin']+pt[0]/3000*(extent['xmax']-extent['xmin'])-447671.8750643735,extent['ymax']-pt[1]/2500*(extent['ymax']-extent['ymin'])-4984591.8364606025)
 for poly in layout['polygons']:
@@ -358,10 +372,20 @@ if not opt.no_trees:
   for o in assets:
    for c in list(o.users_collection):c.objects.unlink(o)
    COL[active].objects.link(o);o.hide_render=True;o.hide_viewport=True
+  canopy=json.loads((ROOT/'research/north_context_canopy_constraints.json').read_text())
+  measured=[row for row in canopy['rows'] if row.get('scene_eligible',True)]
+  # Retain aerial-traced campus planting; prefer measured envelopes where traces overlap.
   poses=[pixel(t['center_px']) for t in layout['trees']]
-  poses += [(random.uniform(-180,230),random.uniform(73,155)) for _ in range(230)]
+  poses=[(x,y) for x,y in poses if not (y>=70 and any((x-r['position'][0])**2+(y-r['position'][1])**2<36 for r in measured))]
   for j,(x,y) in enumerate(poses):
-   src=assets[j%3];o=bpy.data.objects.new('Mature deciduous tree',src.data);COL[active].objects.link(o);o.location=(x,y,ground(x,y));s=random.uniform(.78,1.35);forest=j>=len(layout['trees']);o.scale=(s*(1.3 if forest else 1),s*(1.3 if forest else 1),s*(1.65 if forest else 1));o.rotation_euler.z=random.random()*6.283
+   src=assets[j%3];o=bpy.data.objects.new('Aerial-traced campus tree',src.data);COL[active].objects.link(o);o.location=(x,y,ground(x,y));scale=random.uniform(.78,1.35);o.scale=(scale,scale,scale);o.rotation_euler.z=random.random()*6.283
+  bounds=[]
+  for src in assets:
+   low=[min(v.co[k] for v in src.data.vertices) for k in range(3)];high=[max(v.co[k] for v in src.data.vertices) for k in range(3)];bounds.append((low,high))
+  for j,row in enumerate(measured):
+   src=assets[j%3];low,high=bounds[j%3];h=row['canopy_height'];width=row['crown_diameter_m'];vertical=h/(high[2]-low[2]);horizontal=width/max(high[0]-low[0],high[1]-low[1]);x,y=row['position']
+   o=bpy.data.objects.new('North canopy envelope '+row.get('candidate_id',str(j+1)),src.data);COL[active].objects.link(o);o.location=(x,y,row['ground_z']-low[2]*vertical);o.scale=(horizontal,horizontal,vertical);o.rotation_euler.z=random.random()*6.283
+   o['evidence']='Lidar envelope peak; trunk, species and crown shape inferred';o['canopy_height_m']=h;o['canopy_top_local_z']=row['top_z']
   shrub=create_shrub_asset('Landscape shrub asset',seed=444,height=1.0,width=1.4)
   for c in list(shrub.users_collection):c.objects.unlink(shrub)
   COL[active].objects.link(shrub);shrub.hide_render=True;shrub.hide_viewport=True
@@ -393,7 +417,7 @@ for name,cfg in cameras.items():
  c.data.clip_end=1500;c.data.clip_start=.1;c['reference']=cfg['reference'];cfg['rotation_euler']=list(c.rotation_euler)
 scene=bpy.context.scene;scene.camera=bpy.data.objects['reference_aerial'];scene.render.engine='CYCLES';scene.cycles.device='CPU';scene.cycles.samples=opt.samples;scene.cycles.use_denoising=True;scene.cycles.adaptive_threshold=.035;scene.cycles.max_bounces=6;scene.cycles.transparent_max_bounces=6;scene.render.threads_mode='FIXED';scene.render.threads=6
 scene.render.resolution_x=opt.width;scene.render.resolution_y=round(opt.width*2/3);scene.render.resolution_percentage=100;scene.render.image_settings.file_format='PNG';scene.render.film_transparent=False
-scene.view_settings.view_transform='AgX';scene.view_settings.look='AgX - Medium High Contrast';scene.view_settings.exposure=-.25
+scene.view_settings.view_transform='AgX';scene.view_settings.look='AgX - Medium High Contrast';scene.view_settings.exposure=-.85
 scene.render.fps=24;scene.frame_end=288
 (ROOT/'scene').mkdir(exist_ok=True);(ROOT/'deliverables').mkdir(exist_ok=True)
 (ROOT/'scene/cameras.json').write_text(json.dumps(cameras,indent=2)+'\n')
@@ -407,4 +431,5 @@ if opt.export:
  bpy.ops.export_scene.gltf(filepath=str(ROOT/'scene/protolabs-campus.glb'),export_format='GLB',use_visible=True,export_cameras=False,export_lights=False,export_yup=True,export_apply=True)
 if opt.render:
  scene.camera=bpy.data.objects[opt.render];scene.render.filepath=str(ROOT/'deliverables'/f'{opt.render}.png');bpy.ops.render.render(write_still=True)
+if opt.export:exec(compile((ROOT/'scripts/export_viewer.py').read_text(),str(ROOT/'scripts/export_viewer.py'),'exec'))
 print('SCENE_READY',len(bpy.data.objects))
