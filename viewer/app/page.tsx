@@ -27,6 +27,7 @@ import {
   Move,
   RotateCcw,
   Maximize,
+  Minimize,
   ArrowUpRight,
   Eye,
   Play,
@@ -88,7 +89,17 @@ function Walkthrough({
   } | null>(null);
   const [status, setStatus] = useState('Loading the exterior scene…');
   const [walk, setWalk] = useState(false);
+  const [fullscreen, setFullscreen] = useState(false);
   const currentView = useRef(view);
+  useEffect(() => {
+    const updateFullscreen = () =>
+      setFullscreen(
+        document.fullscreenElement === mount.current?.parentElement,
+      );
+    document.addEventListener('fullscreenchange', updateFullscreen);
+    return () =>
+      document.removeEventListener('fullscreenchange', updateFullscreen);
+  }, []);
   useEffect(() => {
     currentView.current = view;
   }, [view]);
@@ -111,7 +122,12 @@ function Walkthrough({
           alpha: false,
           powerPreference: 'high-performance',
         });
-        renderer.setPixelRatio(Math.min(devicePixelRatio, 1.5));
+        const interactivePixelRatio = Math.min(devicePixelRatio, 1.5);
+        const restingPixelRatio =
+          renderer.getContext().getContextAttributes()?.antialias === false
+            ? 2
+            : interactivePixelRatio;
+        renderer.setPixelRatio(interactivePixelRatio);
         renderer.setSize(el.clientWidth, el.clientHeight);
         renderer.outputColorSpace = THREE.SRGBColorSpace;
         renderer.toneMapping = THREE.ACESFilmicToneMapping;
@@ -124,6 +140,11 @@ function Walkthrough({
           renderer.domElement.remove();
         };
         let needsRender = true;
+        let lastChange = performance.now();
+        const markDirty = () => {
+          needsRender = true;
+          lastChange = performance.now();
+        };
         const scene = new THREE.Scene();
         scene.background = new THREE.Color('#a9c3d3');
         scene.fog = new THREE.Fog('#a9c3d3', 420, 1100);
@@ -137,9 +158,9 @@ function Walkthrough({
         cam.position.set(166, 31, 108);
         const orbit = new OrbitControls(cam, renderer.domElement);
         orbit.target.set(50, 3.6, -19);
-        orbit.addEventListener('change', () => {
-          needsRender = true;
-        });
+        orbit.addEventListener('change', markDirty);
+        orbit.addEventListener('start', markDirty);
+        orbit.addEventListener('end', markDirty);
         orbit.enableDamping = true;
         orbit.dampingFactor = 0.09;
         // Saved eye-level views look upward toward the entrance and must not
@@ -197,7 +218,7 @@ function Walkthrough({
           const v = cameras[id];
           if (!v) return;
           currentLens = v.lens;
-          needsRender = true;
+          markDirty();
           cam.position.set(v.position[0], v.position[2], -v.position[1]);
           orbit.target.set(v.target[0], v.target[2], -v.target[1]);
           cam.fov =
@@ -276,16 +297,23 @@ function Walkthrough({
             ].includes(e.key)
           ) {
             keys.add(e.key);
+            markDirty();
             e.preventDefault();
           }
         };
-        const up = (e: KeyboardEvent) => keys.delete(e.key);
-        const blur = () => keys.clear();
+        const up = (e: KeyboardEvent) => {
+          if (keys.delete(e.key)) markDirty();
+        };
+        const blur = () => {
+          if (keys.size) markDirty();
+          keys.clear();
+        };
         window.addEventListener('blur', blur);
         window.addEventListener('keydown', down);
         window.addEventListener('keyup', up);
         const pointerdown = (e: PointerEvent) => {
           if (isWalk) {
+            markDirty();
             dragging = true;
             lastX = e.clientX;
             lastY = e.clientY;
@@ -308,11 +336,12 @@ function Walkthrough({
             .copy(cam.position)
             .add(new THREE.Vector3().setFromSpherical(spherical));
           cam.lookAt(orbit.target);
-          needsRender = true;
+          markDirty();
           lastX = e.clientX;
           lastY = e.clientY;
         };
         const pointerup = () => {
+          if (dragging) markDirty();
           dragging = false;
         };
         renderer.domElement.addEventListener('pointerdown', pointerdown);
@@ -321,7 +350,7 @@ function Walkthrough({
         const toggle = (value: boolean) => {
           isWalk = value;
           keys.clear();
-          needsRender = true;
+          markDirty();
           orbit.enabled = !value;
           if (value) {
             cam.position.set(97, ground(97, 17) + 1.7, 17);
@@ -330,6 +359,7 @@ function Walkthrough({
           }
         };
         const move = (delta: import('three').Vector3) => {
+          markDirty();
           const next = cam.position.clone().add(delta);
           if (!canWalkTo(next.x, -next.z)) return;
           const dy = ground(next.x, next.z) + 1.7 - cam.position.y;
@@ -337,7 +367,6 @@ function Walkthrough({
           cam.position.y += dy;
           orbit.target.add(delta);
           orbit.target.y += dy;
-          needsRender = true;
         };
         const step = (forward: number, sideways: number) => {
           if (!isWalk) return;
@@ -380,7 +409,16 @@ function Walkthrough({
               move(delta);
             }
           } else orbit.update();
-          if (needsRender && now - lastDraw >= 1000 / 30) {
+          const pixelRatio =
+            now - lastChange >= 200 ? restingPixelRatio : interactivePixelRatio;
+          if (
+            (needsRender || renderer.getPixelRatio() !== pixelRatio) &&
+            now - lastDraw >= 1000 / 30
+          ) {
+            // Resolution changes do not count as input: draw once after
+            // settling, then remain idle until the next camera/input change.
+            if (renderer.getPixelRatio() !== pixelRatio)
+              renderer.setPixelRatio(pixelRatio);
             renderer.render(scene, cam);
             needsRender = false;
             lastDraw = now;
@@ -391,7 +429,7 @@ function Walkthrough({
         const resize = new ResizeObserver(() => {
           if (el.clientWidth && el.clientHeight) {
             renderer.setSize(el.clientWidth, el.clientHeight);
-            needsRender = true;
+            markDirty();
             cam.aspect = el.clientWidth / el.clientHeight;
             cam.fov =
               (2 * Math.atan(36 / (2 * currentLens * cam.aspect)) * 180) /
@@ -462,12 +500,18 @@ function Walkthrough({
         </span>
         <button
           className="icon-button"
-          aria-label="Fullscreen walkthrough"
+          aria-label={
+            fullscreen
+              ? 'Exit fullscreen walkthrough'
+              : 'Fullscreen walkthrough'
+          }
           onClick={() => {
-            void mount.current?.parentElement?.requestFullscreen?.();
+            if (document.fullscreenElement === mount.current?.parentElement)
+              void document.exitFullscreen();
+            else void mount.current?.parentElement?.requestFullscreen?.();
           }}
         >
-          <Maximize size={18} />
+          {fullscreen ? <Minimize size={18} /> : <Maximize size={18} />}
         </button>
       </div>
       {walk && !status && (

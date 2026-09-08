@@ -1,6 +1,6 @@
 # Browser verification
 
-The earlier interface checks below used preserved v06 assets. The fresh v07c export and packaging checks at the end of this document supersede their model-size figures; current staged-site runtime review remains pending.
+The current local v07c preview has passed the bounded interface review recorded below. The earlier sections preserve v06 observations; the fresh v07c figures supersede their model sizes. The completed film and deployed private Site remain pending separate review.
 
 The recovered source passed a fresh cached `npm ci --offline --no-audit --no-fund` (746 packages), lint, and a complete static production build on 7 September 2026. Vinext's prerender step requires a localhost socket; the initial sandbox denied that socket, and the permitted build then completed successfully. The build retains a size warning for the dynamically loaded Three.js bundle.
 
@@ -48,3 +48,16 @@ The current production preview exposed a camera defect that the earlier navigati
 Restoring the standard `Math.PI` limit preserves all four saved positions over 240 control updates (maximum numeric drift 1.34e−13 m). The existing 36 mm horizontal-sensor field-of-view conversion also passes four aspect ratios. [The bounded numeric check](../research/viewer-camera-orbit-validation.json) measures position and field of view; it does not claim exact photographic registration or Blender/browser shading parity. Free orbit can look below its target, while walking retains its separate ground/collision rules.
 
 After lint and production build passed, the actual current preview showed the entrance at its intended eye height. Visible forward/right walk steps and selecting the same entrance preset returned to Orbit mode and restored the view. The current browser model remains the hash-verified v07c package above. Final movie and hosted-site checks remain separate.
+
+
+## Current local v07c interface, September 8, 2026 UTC
+
+The staged production build uses the current v07c model hash above and all four current 1600 × 1067 stills. Lint and static production build passed. In the actual Codex browser, all four saved cameras opened; forward/right walking steps changed the view; selecting the same entrance preset exited Walk and restored Orbit. The three comparison choices displayed their corresponding attributed photographs and current renders. All four still images loaded at their full dimensions. No browser warning/error entries were reported after this bounded sequence. This is a local runtime check; the full movie and published URL are separate gates.
+
+The fullscreen button now toggles exit as well as entry and updates its accessible label. Actual entry showed “Exit fullscreen walkthrough”; clicking it restored the page tabs and normal layout. Resize processing preserved the camera aspect and redrew the scene.
+
+The actual Intel HD Graphics 4000 WebGL context declines requested multisample antialiasing. Unsupported contexts now navigate at the existing `min(devicePixelRatio, 1.5)` and draw one DPR 2 frame after 200 ms without camera/input changes. Contexts with native antialiasing retain their original ratio. A controlled timing check covers repeated input, the 30 fps cap and no additional idle draws; it is not a browser performance benchmark. Read-only DOM observations confirm a settled 1974 × 1148 buffer for a 987 × 574 canvas and 3840 × 2160 for a 1920 × 1080 fullscreen canvas.
+
+The sharper resting image improves thin-feature coverage but does **not** eliminate broken subpixel parking lines and roof-band aliasing at shallow angles. Equal-camera comparisons of the prepared and final GLB, near planes of 0.15 and 10 m, active logarithmic depth, and a paint-only polygon offset did not visibly resolve that pattern. Those experimental depth/bias changes were not adopted. The browser also retains simplified diffuse shading, dark opaque glazing, no dynamic shadows, and reduced distant canopy; the Cycles stills provide the detailed lighting/material presentation.
+
+Read-only rays through 116 corrected-row points agreed between the master and prepared GLB: 10.5–13.1 mm vertical clearance and 137–732 standard 24-bit same-ray depth steps, with no sampled point buried. This weighs against depth quantization for those rows. Large roof faces retain constant, face-aligned vertex normals; the cause of every roof band is not established. Some older curved stripes elsewhere partly intersect asphalt or sit behind nearer terrain, which remains a separate geometry limitation. The [portable runtime receipt](../research/viewer-v07c-runtime-review.json) binds this local check to the current page and model.

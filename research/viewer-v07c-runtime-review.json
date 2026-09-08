@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "reviewed_at_utc": "2026-09-08T00:17:22.568163+00:00",
+  "status": "local_interface_inspected_with_limitations",
+  "source_file": "viewer/app/page.tsx",
+  "source_file_sha256": "e28f69806c7fb3089ed619fe6711c616021636f8df0145f70cbd3d10de3c7e9b",
+  "master_sha256": "3d861d6c2e1c54f7c144d52c5e74f21568b18d047a326631405c9da1956b8e5a",
+  "optimized_glb_sha256": "d7a84c65e0936f0f95618ca3db691dba0d3ec6c235d386f3d1007017cf394fed",
+  "checks": [
+    "All four current saved camera views inspected",
+    "Forward/right walk steps and repeated entrance preset reset inspected",
+    "Fullscreen entry, exit, accessible label and restored layout inspected",
+    "Three attributed reference pairings inspected",
+    "All four current JPEG stills loaded at1600x1067",
+    "Settled DPR2 canvas dimensions observed at ordinary andfullscreen sizes",
+    "No warning/error browser log entries after bounded sequence"
+  ],
+  "limitations": [
+    "No sustained performance or exhaustive collision/keyboard-hold claim",
+    "Thin parking/roof features still alias at shallow angles",
+    "Diffuse browser shading, opaque glass, reduced distant foliage and no dynamic shadows differ from Cycles",
+    "Complete film and deployed URL are not accepted by this local interface receipt"
+  ]
+}
