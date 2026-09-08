@@ -26,14 +26,14 @@
 - [x] Inspect the v07c 24-frame middle sample (61–84) at 1280 × 720 / 24 fps / 16 Cycles samples, plus endpoints 1/144. Accepted for full-film rendering at 23:46:49 UTC on September 7, 2026 after encoded playback and native image/crop inspection; mild foliage and roof texture variation remains. [The acceptance receipt](../research/v07c-motion-sample-review.json) binds the exact evidence. V06 motion was deliberately not run because its reviewed synthetic surfaces prompted v07.
 - [x] Inspect and accept the full film with documented limits. All 144 frames finished at 01:41:05 UTC on September 8, 2026; encoding, complete decode, actual normal/fullscreen playback and independent image review passed. [Acceptance](../research/v07c-cinematic-review.json) was recorded at 01:55:53 UTC; fine-detail variation and scenery/material limitations remain.
 - [x] Verify a clean v06 source archive: generate the master and both GLBs, preserve full master foliage, match camera/material baselines and all 102 canopy placements, and pass the corrected geometry checker. Retain the independent top-rounding threshold correction and original receipts.
-- [ ] Complete delivery-archive verification after extraction. Clean v07c generation, four-view inspection, film acceptance and final local viewer integration passed. The documented build uses pinned derived JSON and verified material inputs; the versioned delivery ZIP remains pending.
+- [x] Verify the actual release candidate after extraction: all 202 manifest files, complete runtime payload and original source/asset/review bindings passed. Fresh cached npm installation and the extracted production build succeeded; original payload bytes remained unchanged. See [delivery verification](delivery-verification.md).
 - [ ] Publish and verify the owner-only private viewer after final integration and the user's required separate approval. No upload or deployment has occurred; registration of the private site is not publication.
-- [ ] Package source revision, derived-input identifiers, master scene, GLB, accepted stills/video, gallery and accuracy report in a versioned archive with a verified SHA-256 manifest.
+- [x] Package source, derived inputs, native scenes, exports, accepted stills/video, complete viewer payload, gallery and accuracy records with a verified SHA-256 manifest. The final archive sidecars identify its exact clean source and bytes.
 
 ## GitHub project
 
 - [x] Create the [private repository](https://github.com/mknutso-2/protolabs-campus-reconstruction) and prioritized issues; [PR #7](https://github.com/mknutso-2/protolabs-campus-reconstruction/pull/7) and [PR #8](https://github.com/mknutso-2/protolabs-campus-reconstruction/pull/8) are merged. Authenticated connector mirroring records equal source trees.
-- [ ] Complete the final delivery PR and verify the resulting main tree against the local source, retaining source-tree mappings and visual-check notes. Normal Git CLI authentication/history reconciliation is documented; it does not prevent connector mirroring.
+- Final v07 source and delivery integration are tracked in [PR #9](https://github.com/mknutso-2/protolabs-campus-reconstruction/pull/9), with exact source-tree comparison to main. Normal Git CLI authentication/history reconciliation is documented; connector mirroring preserves the source contents.
 
 ## P2 • later fidelity gaps
 

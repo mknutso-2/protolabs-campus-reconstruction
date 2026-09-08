@@ -2,11 +2,26 @@
 
 An editable, evidence-led exterior reconstruction of Protolabs headquarters at **5540 Pioneer Creek Drive, Maple Plain, Minnesota**. The project combines Blender scene generation, a browser exterior viewer, fixed-camera renders, and a reference comparison workflow.
 
-**Status: work in progress.** Public evidence was acquired on September 7, 2026. Spring 2026 aerial imagery and 2022 lidar constrain the site plan, roofs, and terrain; older ground photographs constrain visible architectural detail. These sources do not prove every feature exists in the same condition today. This is not a surveyed digital twin, and full fidelity or photorealism is not claimed. The cinematic must pass a delivery-resolution motion inspection before it is considered complete.
+**Status: v0.1 research reconstruction, inspected.** Public evidence was acquired on September 7, 2026. Spring 2026 aerial imagery and 2022 lidar constrain the site plan, roofs, and terrain; older ground photographs constrain visible architectural detail. These sources do not prove every feature exists in the same condition today. This is not a surveyed digital twin, and full fidelity or photorealism is not claimed. The complete cinematic has passed its delivery-resolution image and playback review.
 
-The [clean v07c build](docs/fresh-checkout-v07c.md) generated the editable master, both GLBs and all four **1600 × 1067, 64-sample** stills. All four images have been inspected. The final static set includes corrected entrance returns, pavement markings and joints, a flat pond, a continuous terrain join and conservative distant woodland coverage. Earlier iterations through v06 remain intact in the comparison gallery. The [accuracy account](docs/accuracy-summary.md) explains the remaining synthetic surfaces, repeated vegetation and uncertain fine detail. The accepted motion sample was followed by the complete 144-frame render and encoded film. The [complete-film review](research/v07c-cinematic-review.json) accepted it with documented limits at 01:55:53 UTC on September 8, 2026. Current local viewer checks have passed within their recorded scope, and all 12 final viewer assets have passed packaging. Final local movie integration passed; versioned-archive verification remains pending. Private-site publication requires the user's separate approval; no upload or deployment has occurred.
+The [clean v07c build](docs/fresh-checkout-v07c.md) generated the editable master, both GLBs and all four **1600 × 1067, 64-sample** stills. All four images have been inspected. The final static set includes corrected entrance returns, pavement markings and joints, a flat pond, a continuous terrain join and conservative distant woodland coverage. Earlier iterations through v06 remain intact in the comparison gallery. The [accuracy account](docs/accuracy-summary.md) explains the remaining synthetic surfaces, repeated vegetation and uncertain fine detail. The accepted motion sample was followed by the complete 144-frame render and encoded film. The [complete-film review](research/v07c-cinematic-review.json) accepted it with documented limits at 01:55:53 UTC on September 8, 2026. Current local viewer checks have passed within their recorded scope, and all 12 final viewer assets have passed packaging. Final local movie integration and an actual extracted-archive build passed; see [delivery verification](docs/delivery-verification.md). Private-site publication requires the user's separate approval; no upload or deployment has occurred.
 
 The confirmed headquarters parcel is 7.00 acres. Adjacent parking, buildings, and landscape provide context and are not all Protolabs-owned property. See [geospatial findings](research/geospatial-findings.md) and the [architecture source ledger](research/architecture-sources.json).
+
+## Open the delivery
+
+The versioned local bundle `protolabs-campus-0.1.0.zip` contains the inspected assets, source, Git history and integrity manifest. Its adjacent `.json` and `.sha256` record the final archive hash. See [delivery verification](docs/delivery-verification.md) for the actual extraction/build check and [accuracy limits](docs/accuracy-summary.md).
+
+| Deliverable | Location inside the extracted project |
+| --- | --- |
+| Editable Blender master | `scene/protolabs-campus.blend` |
+| Exterior walkthrough | `viewer/`: run `npm ci`, `npm run build`, then `npm start` |
+| Four fixed-view stills | `deliverables/stills/` |
+| Six-second film | `deliverables/flythrough.mp4` |
+| Editable film scene | `scene/protolabs-motion.blend` |
+| Reference and iteration gallery | Open `deliverables/comparison/index.html` |
+
+The private [GitHub project](https://github.com/mknutso-2/protolabs-campus-reconstruction) contains reproducible source. Large binaries are supplied in the local archive; a source-only checkout recreates them with the guide below. The walkthrough's 12 model/image/movie payload files are already included in the archive.
 
 ## Build and inspect
 
@@ -64,7 +79,7 @@ The [clean v06 source verification](docs/fresh-checkout-verification.md) passed 
 
 The [GitHub project](https://github.com/mknutso-2/protolabs-campus-reconstruction) is private. Source, small geometric constraints, camera definitions, dependency locks, and provenance belong in Git. Blender files, GLB exports, renders, video, dependencies, and raw reference caches are regenerated or supplied in versioned archives with SHA-256 manifests. Git LFS is not required for the current source-first workflow.
 
-[PR #7](https://github.com/mknutso-2/protolabs-campus-reconstruction/pull/7) and [PR #8](https://github.com/mknutso-2/protolabs-campus-reconstruction/pull/8) are merged. The final delivery PR remains pending; its final source-tree mapping will be recorded after merge.
+[PR #7](https://github.com/mknutso-2/protolabs-campus-reconstruction/pull/7) and [PR #8](https://github.com/mknutso-2/protolabs-campus-reconstruction/pull/8) are merged. [PR #9](https://github.com/mknutso-2/protolabs-campus-reconstruction/pull/9) contains the final v07 delivery changes. The archive manifest identifies its local source revision; GitHub records the integration into main.
 
 Reference photography has its own rights. Public access does not establish a redistribution license. Preserve publisher attribution and fetch references locally where required; do not treat them as freely licensed texture assets or include them in a public artifact bundle without appropriate rights.
 

@@ -1,0 +1,77 @@
+{
+  "schema": "release_candidate_verification_v1",
+  "status": "actual_production_archive_extracted_and_viewer_built",
+  "checked_at_utc": "2026-09-08T02:12:05.155970+00:00",
+  "candidate": {
+    "archive_sha256": "e80c38d5fdf9417288906d860008f63bedf7e8eae2f5a577ea20b5046ff337dc",
+    "archive_bytes": 205330353,
+    "manifest_sha256": "7178a9b4cc081819158cb50ab4b0b99f9a8c2efddae6813384752528a881333a",
+    "version": "0.1.0-rc1",
+    "source_revision": "4c3dc5b2a538c9bdf8dfb794836964c56b50c2f9",
+    "verified_files": 202
+  },
+  "extraction": {
+    "all_manifest_hashes_and_byte_sizes_match": true,
+    "archive_has_exact_manifest_membership": true,
+    "source_revision_in_git_bundle": true
+  },
+  "payload": {
+    "runtime_files": 12,
+    "all_copy_originals_match": true,
+    "jpeg_source_stills_match": true,
+    "source_review_master_movie_matches": true,
+    "exact_FLOAT32_receipt_preserved": true,
+    "public_payload_sha256": {
+      "viewer/public/models/campus.glb": "d7a84c65e0936f0f95618ca3db691dba0d3ec6c235d386f3d1007017cf394fed",
+      "viewer/public/models/cameras.json": "852823aa47e727b08bdd79a2fbe89161f614a495ec14196eb23bc9cd1dd9ae1a",
+      "viewer/public/models/materials.json": "1d2bf0cde7655713e1be23f2eea214a35ebf3adf746e15ba327e9746afb3bac0",
+      "viewer/public/models/terrain.json": "560d3a528b43f1ffd212113b6092e150004d4b2aa29da2c77a1390aa5cbae939",
+      "viewer/public/renders/reference_aerial.jpg": "9214b72bfa096e3648c607362d4022f424f2f5c201df063dcb10659ac705a7e4",
+      "viewer/public/renders/entrance_detail.jpg": "64dbec187c6b36fbc9a36a1bc1bd01dcaf5d2afd6b4fc22a752d00b0834d264a",
+      "viewer/public/renders/arrival.jpg": "5ebcf34dbe3fc9d758c8bc28468a4d1232f7e04758eeb4abcb1fb94043e87128",
+      "viewer/public/renders/campus_overview.jpg": "5b84ab8ba261dd49a3295e97aeb500a8bfb12f5cf69bdb96f85c73a3f67dcc55",
+      "viewer/public/renders/flythrough.mp4": "67bdc8f5448c1652f350b72f3355dc9ce06076c49f32680011f1dc2a8277e859",
+      "viewer/public/references/hq.jpg": "d63946a04d11b20ae3cc026b06cf07e0a58deb7d46b8ece8bd305912a60f47a9",
+      "viewer/public/references/entrance.jpg": "f32689f94544e5d477a29bf6d4832609bce9f6ef4971c1bd64cd72bee7093d60",
+      "viewer/public/references/arrival.png": "d5fbb19417bdef49a362e166602ffededde84336ef3b5749c81546be92d9c83b"
+    }
+  },
+  "dependency_install": {
+    "command": "npm ci --offline --no-audit --no-fund",
+    "packages": 746,
+    "reported_seconds": 20,
+    "cache": "existing host npm cache; no offline guarantee without it",
+    "sandbox_attempt": "esbuild postinstall child-process EPERM; authorized host retry completed"
+  },
+  "production_build": {
+    "command": "npm run build",
+    "completed": true,
+    "static_routes_prerendered": 2,
+    "ui_review_in_extracted_copy": false,
+    "exit_code": 0,
+    "all12_dist_client_payloads_hash_identical": true
+  },
+  "post_build": {
+    "checked_at_utc": "2026-09-08T02:12:05.155970+00:00",
+    "archive_sha256": "e80c38d5fdf9417288906d860008f63bedf7e8eae2f5a577ea20b5046ff337dc",
+    "source_revision": "4c3dc5b2a538c9bdf8dfb794836964c56b50c2f9",
+    "verified_original_files_after_build": 202,
+    "all_original_manifest_files_unchanged_after_build": true,
+    "all12_public_payloads_unchanged": true,
+    "viewer_dist_present": true,
+    "command_logs": {
+      "npm-ci.log": "69bb57dad414dd68aa298df7f0f7dcccd65a5df9204ff18e4887671057a712c5",
+      "npm-build.log": "d4bf05dc08a4e9a564f13dc1927c90caa0b0ec55fec4f9d6c2fff56501d1f028"
+    },
+    "production_archive_modified": false,
+    "ui_playback_review_performed": false
+  },
+  "evidence_sha256": {
+    "archive-extraction-validation.json": "60a6b4d27a7447e28f5f37e023a7f861e6e5744586dabbae3cc1162341fa9c28",
+    "post-build-file-validation.json": "a753904fe4fe84f72045056148a546663ea0182f65229ec7f7d6f1229b878721",
+    "npm-ci.log": "69bb57dad414dd68aa298df7f0f7dcccd65a5df9204ff18e4887671057a712c5",
+    "npm-build.log": "d4bf05dc08a4e9a564f13dc1927c90caa0b0ec55fec4f9d6c2fff56501d1f028"
+  },
+  "scope": "Actual production candidate, not a synthetic fixture. All202 original files and12public payloads remain unchanged after installation/build. Final0.1.0 uses the same production assets and executable source with subsequent documentation/receipt-only changes; its own final manifest and sidecar identify exact bytes.",
+  "independent_final_receipt_sha256": "78ad1b6fbeeb84ca0744fd96c4fd16ce69e4c0712352afe04edb2fe8c3c0ac98"
+}
