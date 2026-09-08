@@ -1,8 +1,8 @@
 # Reproduction and delivery guide
 
-Run the commands below from the repository root unless a block explicitly changes directory. They describe the current workflow, including the clean `e29ad4b9` static source and later gentler camera path. **The [v07c static build and four-view inspection](fresh-checkout-v07c.md) are complete; current motion and full delivery remain pending.** A command or output file does not establish that its result has passed inspection.
+Run the commands below from the repository root unless a block explicitly changes directory. They describe the current workflow, including the clean `e29ad4b9` static source and later gentler camera path. **The [v07c static build and four-view inspection](fresh-checkout-v07c.md) are complete, and the [motion sample and endpoints](../research/v07c-motion-sample-review.json) are accepted for full-film rendering. The full film and delivery remain pending.** A command or output file does not establish that its result has passed inspection.
 
-The v06 master, both models, four stills, camera/material metadata and snapshot hashes are preserved in `deliverables/iterations/v06/`. Motion was deliberately not rendered for v06 because the reviewed stills exposed synthetic materials and lighting. The earlier [v07 frontage checkpoint](fresh-checkout-v07.md) and isolated regional-ground, water and parking corrections have their own evidence records. They do not accept the final combined production stills, current-revision motion sample, full film, private hosted site or versioned delivery archive; those remain pending.
+The v06 master, both models, four stills, camera/material metadata and snapshot hashes are preserved in `deliverables/iterations/v06/`. Motion was deliberately not rendered for v06 because the reviewed stills exposed synthetic materials and lighting. The earlier [v07 frontage checkpoint](fresh-checkout-v07.md) and isolated regional-ground, water and parking corrections have their own evidence records. The later v07c static inspection and sample acceptance supersede their pending statuses for those specific checks. The complete film, private hosted site and versioned delivery archive remain pending.
 
 ## Dependencies
 
@@ -106,13 +106,14 @@ The build workspace has a portable **FFmpeg 7.0.2-static** executable acquired f
 - `research/reference_drone_camera_fit.json`: the fixed reference-camera fit.
 - `research/north_context_canopy_constraints.json`: 105 inferred canopy-envelope candidates, of which 102 are eligible; `research/campus-tree-constraints.json` supplies the separately reviewed campus placements and omissions.
 - `research/distant-woodland.json` and `research/regional_context_ground_grid.json`: eight eligible wooded interiors and the bounded 50 m USGS regional DEM. See [distant context and DEM provenance](distant-context.md).
+- `research/nlcd_landcover_grid.json` and `research/nlcd_context_selection.json`: the pinned 2025 Annual NLCD 30 m class grid and reviewed selection of 347 distant forest cells in 36 patches. The selection pins both the grid and manual-belt hashes. See [NLCD evidence and reproduction](nlcd-context-evidence.md); class coverage does not measure current tree positions or heights.
 - `research/water-surface-constraints.json`: the dated class 2-derived flat pond level and footprint/basin limits. See [water evidence](water-surface-evidence.md).
 - `research/entrance-parking-correction.json`: the four corrected entrance rows, end hatching and exclusion of access paint from the entry apron. See [parking markings](parking-markings.md).
 - `research/frontage-fascia-fit.json` and `research/monument-sign-fit.json`: interpreted frontage/sign fits consumed by their finishing helpers; see [visual accuracy](visual-accuracy.md).
 - `research/font-asset.json`, the bundled font and its license: verified portable typography.
 - `research/material-assets.json` and the acquired `research/material-assets/` files: scanned surface and lighting proxies consumed by `material_quality.py`.
 
-The regional DEM, water and parking additions are pinned derived JSON in Git. **They add no mandatory network acquisition, raw-lidar processing or research-library installation to a normal scene build.** Once Blender and the required material cache are available, these helpers run with Blender's bundled Python. Pillow is used by packaging and optional DEM reacquisition; NumPy, laspy, rasterio and the other research dependencies are not required by the scene generator.
+The regional DEM, NLCD, water and parking additions are pinned derived JSON in Git. **They add no mandatory network acquisition, raw-lidar processing or research-library installation to a normal scene build.** Once Blender and the required material cache are available, these helpers run with Blender's bundled Python. Pillow is used by packaging and optional DEM reacquisition; NumPy, laspy, rasterio and the other research dependencies are not required by the scene generator.
 
 Keep the source ledgers alongside those inputs. They record confidence, dates, attribution, and conflicts. The scene uses metres, X east / Y north / Z up. Its local origin is NAD83 UTM15N `(447671.8750643735, 4984591.8364606025)`. Measured NAVD88 elevations are offset by **303.6 m** for the scene. Roof-plane equations return absolute NAVD88 metres; subtract 303.6 when constructing scene geometry. The lidar/aerial datum distinction is documented in `research/geospatial-findings.md`; this is not a claim of survey-grade alignment.
 
@@ -166,6 +167,15 @@ Keep the default one-million-point chunk size when reproducing the recorded grid
 
 **Validation scope:** the packaged acquisition script passed its no-network dry-run, Python scripts compiled, processing dependencies imported, and the existing immutable raw sources matched recorded hashes. The complete 174 MB acquisition/processing pipeline was **not rerun** merely to validate packaging. Compare a fresh run's numeric coordinates, elevations, and dimensions with `expected_outputs.json` before accepting replacement inputs; JSON byte hashes can differ because explanatory metadata and formatting changed. Preserve the current inputs until that comparison is complete.
 
+Optional NLCD reproduction uses rasterio, NumPy, SciPy and Shapely from the research environment above. Set `PROTOLABS_NLCD_TIFF` to the reviewed `nlcd-2025-window.tif` and write the two derived JSONs outside the authoritative `research/` directory:
+
+```bash
+work/research-venv/bin/python "$PWD/scripts/research/acquire_nlcd_context.py" \
+  --raster "$PROTOLABS_NLCD_TIFF" --output "$PWD/data/research/nlcd-derived"
+```
+
+Omitting `--raster` makes one bounded USGS WCS request; `--cache` selects its TIFF cache directory. The response is capped at 4 MB and must match the reviewed source SHA-256 before derivation. The TIFF was reprocessed twice and reproduced both committed JSONs byte-for-byte; this optional research workflow is not part of a normal scene build. [The NLCD record](nlcd-context-evidence.md) retains the exact source, hashes, selection exclusions and coverage limits.
+
 ## Generate and open the master
 
 ```bash
@@ -177,7 +187,7 @@ Keep the default one-million-point chunk size when reproducing the recorded grid
 "$PROTOLABS_BLENDER" "$PWD/scene/protolabs-campus.blend"
 ```
 
-The generator creates a new scene and overwrites generated scene files and metadata. Preserve an edited master or earlier iteration before regenerating. It constructs the base geometry, original assets, campus/north vegetation and distant context first. `distant_context.add_distant_context()` creates the continuous regional terrain through `regional_ground.py`; it does not add isolated flat woodland platforms. The generator then creates the saved cameras and writes their definitions.
+The generator creates a new scene and overwrites generated scene files and metadata. Preserve an edited master or earlier iteration before regenerating. It constructs the base geometry, original assets, campus/north vegetation and distant context first. `distant_context.add_distant_context()` creates the continuous regional terrain through `regional_ground.py` and the three far-canopy group templates. Immediately afterward, inside the trees-enabled branch, `nlcd_context.add_nlcd_context(ROOT, COL['Context | approximate'])` uses that ground and those templates to add the 36 merged forest patches. Neither helper adds isolated flat woodland platforms. The generator then creates the saved cameras and writes their definitions.
 
 The final finishing order is explicit in `build_scene.py`:
 
@@ -185,10 +195,11 @@ The final finishing order is explicit in `build_scene.py`:
 2. `frontage_finish.apply_frontage_finish()` applies the fitted fascia, its vestibule termination and photo-interpreted frontage details.
 3. `monument_finish.apply_monument_finish(ROOT)` transforms the complete fitted monument-sign assembly.
 4. `water_finish.apply_water_finish(ROOT)` replaces only the two water meshes with the flat, basin-clipped surfaces.
-5. `parking_finish.apply_parking_finish(ROOT)` replaces the selected parking/access paint after the apron and original curves exist.
-6. `material_quality.apply_material_quality(ROOT)` applies the final shared materials and environment.
+5. `apron_finish.apply_apron_finish(ROOT)` conforms sidewalk joints to the evaluated apron and removes the overlapping rock-bed slab inside its footprint.
+6. `parking_finish.apply_parking_finish(ROOT)` replaces the selected parking/access paint after the apron and original curves exist.
+7. `material_quality.apply_material_quality(ROOT)` applies the final shared materials and environment.
 
-The generator retains water, parking, campus-tree and distant-context reports in scene properties, exports material fallbacks, packs used images/fonts, and saves the master before GLB export. The finishing helpers need their existing geometry prerequisites and should normally be invoked through this generator. Missing required source inputs or mismatching scan/HDRI files fail instead of silently substituting an earlier scene. The checker command above opens the saved master for bounded geometry checks and writes a report without saving it; visual inspection remains separate.
+The generator retains water, apron-joint, parking, campus-tree, distant-context and NLCD reports in scene properties, exports material fallbacks, packs used images/fonts, and saves the master before GLB export. The finishing helpers need their existing geometry prerequisites and should normally be invoked through this generator. Missing required source inputs or mismatching scan/HDRI files fail instead of silently substituting an earlier scene. The checker command above opens the saved master for bounded geometry checks and writes a report without saving it; visual inspection remains separate.
 
 Current color management is AgX Medium High Contrast, exposure −0.35 and gamma 1.05. The pinned lighting/material proxy and interpreted entrance details preserve the measured massing; their physical and photographic limits remain documented in [material provenance](material-provenance.md) and [visual accuracy](visual-accuracy.md). The revised `vehicles.py` supplies original generic sedan/SUV geometry; vehicle occupancy remains inferred, and the reference-visible foreground court is empty. See [vehicle provenance](vehicle-provenance.md). None of these source-feature descriptions replaces final production-image inspection.
 
@@ -246,7 +257,7 @@ Use a new output directory for a preserved iteration, for example `--out deliver
 
 ## Motion sample, then cinematic
 
-`render_motion.py` generates a continuous southeast exterior arc with an approach and lens change. It saves `scene/protolabs-motion.blend`, PNG frames, `path.json`, and `render-progress.json`; video encoding is a separate step. **The current sample/full-film target is 1280 × 720, 24 fps, and a six-second path (144 frames).** The planned sample is frames 61–84, a one-second segment near the middle of the path where the camera moves faster than at its eased endpoints. It uses 16 Cycles samples; inspect its quality before retaining that setting for a full render. V06's four stills were reviewed, and its motion run was deliberately deferred for the v07 material/lighting correction. The v05 opening sample remains historical engineering evidence in [motion review](motion-review.md); it does not approve the revised scene or faster middle section. Current-revision sample inspection and the complete encoded movie remain pending.
+`render_motion.py` generates a continuous southeast exterior arc with an approach and lens change. It saves `scene/protolabs-motion.blend`, PNG frames, `path.json`, and `render-progress.json`; video encoding is a separate step. **The current sample/full-film target is 1280 × 720, 24 fps, 16 Cycles samples and a six-second path (144 frames).** The v07c sample covers frames 61–84, a one-second segment near the faster middle of the path. It and endpoints 1/144 were accepted for full-film rendering at **23:46:49 UTC on September 7, 2026**, after encoded playback and native image/crop inspection. Mild pixel-level foliage and roof texture variation was accepted. [The portable acceptance receipt](../research/v07c-motion-sample-review.json) pins master `3d861d6c…`, path `23282775…`, all reviewed PNGs and sample MP4 `1f906d44…`; [motion review](motion-review.md) describes the inspection and limits. The full film is rendering and still requires complete encoding, playback inspection and acceptance. V06 motion was deliberately deferred for its material/lighting correction, and the v05 opening sample remains historical evidence.
 
 Begin with an empty `deliverables/motion-sample/` frame directory, preserving any earlier sample and its manifest under an iteration-specific name. Different master generations or disjoint samples must not share an encoding input directory.
 
