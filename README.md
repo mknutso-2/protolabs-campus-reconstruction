@@ -4,9 +4,22 @@ An editable, evidence-led exterior reconstruction of Protolabs headquarters at *
 
 **Status: v0.1 research reconstruction, inspected.** Public evidence was acquired on September 7, 2026. Spring 2026 aerial imagery and 2022 lidar constrain the site plan, roofs, and terrain; older ground photographs constrain visible architectural detail. These sources do not prove every feature exists in the same condition today. This is not a surveyed digital twin, and full fidelity or photorealism is not claimed. The complete cinematic has passed its delivery-resolution image and playback review.
 
-The [clean v07c build](docs/fresh-checkout-v07c.md) generated the editable master, both GLBs and all four **1600 × 1067, 64-sample** stills. All four images have been inspected. The final static set includes corrected entrance returns, pavement markings and joints, a flat pond, a continuous terrain join and conservative distant woodland coverage. Earlier iterations through v06 remain intact in the comparison gallery. The [accuracy account](docs/accuracy-summary.md) explains the remaining synthetic surfaces, repeated vegetation and uncertain fine detail. The accepted motion sample was followed by the complete 144-frame render and encoded film. The [complete-film review](research/v07c-cinematic-review.json) accepted it with documented limits at 01:55:53 UTC on September 8, 2026. Current local viewer checks have passed within their recorded scope, and all 12 final viewer assets have passed packaging. Final local movie integration and an actual extracted-archive build passed; see [delivery verification](docs/delivery-verification.md). The [public walkthrough](https://protolabs-campus-mknutso.mknutso2.chatgpt.site) is live; [publication verification](docs/site-publication.md) records its exact version and checks. The GitHub source repository remains private.
+The [clean v07c build](docs/fresh-checkout-v07c.md) generated the editable master, both GLBs and all four **1600 × 1067, 64-sample** stills. All four images have been inspected. The final static set includes corrected entrance returns, pavement markings and joints, a flat pond, a continuous terrain join and conservative distant woodland coverage. Earlier iterations through v06 remain intact in the comparison gallery. The [accuracy account](docs/accuracy-summary.md) explains the remaining synthetic surfaces, repeated vegetation and uncertain fine detail. The accepted motion sample was followed by the complete 144-frame render and encoded film. The [complete-film review](research/v07c-cinematic-review.json) accepted it with documented limits at 01:55:53 UTC on September 8, 2026. Current local viewer checks have passed within their recorded scope, and all 12 final viewer assets have passed packaging. Final local movie integration and an actual extracted-archive build passed; see [delivery verification](docs/delivery-verification.md). The [public walkthrough](https://protolabs-campus-mknutso.mknutso2.chatgpt.site) is live; [publication verification](docs/site-publication.md) records its exact version and checks. The GitHub source repository is public.
 
 The confirmed headquarters parcel is 7.00 acres. Adjacent parking, buildings, and landscape provide context and are not all Protolabs-owned property. See [geospatial findings](research/geospatial-findings.md) and the [architecture source ledger](research/architecture-sources.json).
+
+## Download the Blender scenes
+
+The [Blender downloads page](https://protolabs-campus-mknutso.mknutso2.chatgpt.site/downloads) provides the final inspected v07c scenes directly, with opening instructions and checksums. These are generated build outputs: source-controlled Python scripts and pinned inputs regenerate the scenes, while the downloads preserve the exact inspected snapshots. See the [reproduction guide](docs/reproduction.md) to rebuild them.
+
+| Download | What it contains | Size |
+| --- | --- | --- |
+| [Campus master](https://protolabs-campus-mknutso.mknutso2.chatgpt.site/downloads/protolabs-campus-blender-v07c.tar.xz) | Editable campus, packed materials and four fixed-view cameras | 17.7 MB |
+| [Animation scene](https://protolabs-campus-mknutso.mknutso2.chatgpt.site/downloads/protolabs-motion-blender-v07c.tar.xz) | The campus and the 144-frame, 24 fps approach animation | 17.7 MB |
+
+Extract either `.tar.xz` archive and open its `.blend` file in **Blender 4.2.9 LTS**. All 15 material, leaf and environment images and the DejaVu font are packed; no separate texture downloads or script execution are required. Each scene expands to approximately 87 MB. These are the unchanged files from the inspected delivery.
+
+Each download includes opening instructions, component license notices, material provenance and a SHA-256 manifest. [Archive checksums](https://protolabs-campus-mknutso.mknutso2.chatgpt.site/downloads/SHA256SUMS.txt) are also available separately. Reference photographs, old drafts and Git history are excluded. Component licenses retain their own scope; no project-wide license for the complete reconstruction has been specified.
 
 ## Open the delivery
 
@@ -23,7 +36,7 @@ The versioned local bundle `protolabs-campus-0.1.0.zip` contains the inspected a
 | Editable film scene | `scene/protolabs-motion.blend` |
 | Reference and iteration gallery | Open `deliverables/comparison/index.html` |
 
-The private [GitHub project](https://github.com/mknutso-2/protolabs-campus-reconstruction) contains reproducible source. Large binaries are supplied in the local archive; a source-only checkout recreates them with the guide below. The walkthrough's 12 model/image/movie payload files are already included in the archive.
+The public [GitHub project](https://github.com/mknutso-2/protolabs-campus-reconstruction) contains reproducible source. The packed Blender scenes are available as public downloads above; the original complete local archive remains separate. A source-only checkout recreates the generated assets with the guide below. The walkthrough's 12 model/image/movie payload files are already included in the archive.
 
 ## Build and inspect
 
@@ -80,7 +93,7 @@ The [clean v06 source verification](docs/fresh-checkout-verification.md) passed 
 
 ## Source control and large files
 
-The [GitHub project](https://github.com/mknutso-2/protolabs-campus-reconstruction) is private. Source, small geometric constraints, camera definitions, dependency locks, and provenance belong in Git. Blender files, GLB exports, renders, video, dependencies, and raw reference caches are regenerated or supplied in versioned archives with SHA-256 manifests. Git LFS is not required for the current source-first workflow.
+The [GitHub project](https://github.com/mknutso-2/protolabs-campus-reconstruction) is public. Source, small geometric constraints, camera definitions, dependency locks, and provenance belong in Git. Blender files, GLB exports, renders, video, dependencies, and raw reference caches are regenerated or supplied in versioned archives with SHA-256 manifests. Git LFS is not required for the current source-first workflow.
 
 [PR #7](https://github.com/mknutso-2/protolabs-campus-reconstruction/pull/7) and [PR #8](https://github.com/mknutso-2/protolabs-campus-reconstruction/pull/8) are merged. [PR #9](https://github.com/mknutso-2/protolabs-campus-reconstruction/pull/9) merged the final v07 delivery changes. The later public-site source changes preserve that release archive. The archive manifest identifies its local source revision; GitHub records the integration into main.
 
